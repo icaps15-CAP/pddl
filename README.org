@@ -1,0 +1,51 @@
+* Pddl  - PDDL parser
+
+** Usage
+
+** Dependencies
+
+This library is at least tested on implementation listed below:
+
++ SBCL 1.1.6.15.doc-ja.41-94573ed on X86-64 Linux  3.2.0-45-generic (author's environment)
+
+Also, it depends on the following libraries:
+
++ GUICHO-UTILITIES by guicho ::
+    Personal utilities for Masataro Asai(guicho2.71828@gmail.com).
+
++ FIVEAM by Edward Marco Baringer <mb@bese.it> ::
+    
+
++ OPTIMA by Tomohiro Matsuyama ::
+    Optimized Pattern Matching Library
+
++ ITERATE  ::
+    Jonathan Amsterdam's iterator/gatherer/accumulator facility
+
++ ALEXANDRIA  ::
+    Alexandria is a collection of portable public domain utilities.
+
++ CL-ANNOT by Tomohiro Matsuyama ::
+    Python-like Annotation Syntax for Common Lisp
+
++ ANAPHORA  ::
+    
+
+
+
+** Installation
+
+
+** Author
+
++ guicho (guicho2.71828@gmail.com)
+
+* Copyright
+
+Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
+
+
+* License
+
+Licensed under the LLGPL License.
+
