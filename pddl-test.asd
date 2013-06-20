@@ -12,7 +12,7 @@
   :author "guicho"
   :license "LLGPL"
   :depends-on (:pddl
-               :cl-test-more)
+               :fiveam)
   :components ((:module "t"
                 :components
                 ((:file "pddl"))))

@@ -23,7 +23,7 @@
                :optima
                :iterate
                :alexandria
-               :cl-annot
+               :cl-syntax-annot
                :anaphora)
   :components ((:module "src"
                 :components
