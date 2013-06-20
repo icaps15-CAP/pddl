@@ -64,3 +64,6 @@
     (is (eql '((at ?x ?z))
 	     (add-list a)))
     (is-true (valid a))))
+
+
+(run! :pddl)

@@ -26,8 +26,10 @@
                :cl-syntax-annot
                :anaphora)
   :components ((:module "src"
+		:serial t
                 :components
-                ((:file "pddl"))))
+                ((:file :pddl)
+		 (:file :class))))
   :description "PDDL parser"
   :long-description
   #.(with-open-file (stream (merge-pathnames
