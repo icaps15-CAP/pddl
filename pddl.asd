@@ -19,6 +19,7 @@
   :author "guicho"
   :license "LLGPL"
   :depends-on (:guicho-utilities
+	       :metatilities
                :fiveam
                :optima
                :iterate
@@ -29,7 +30,8 @@
 		:serial t
                 :components
                 ((:file :pddl)
-		 (:file :class))))
+		 (:file :domain)
+		 (:file :problem))))
   :description "PDDL parser"
   :long-description
   #.(with-open-file (stream (merge-pathnames
