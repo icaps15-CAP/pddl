@@ -23,7 +23,6 @@
 		    acc))
     (nil acc)))
 
-
 ;; (:key ... body...)
 (defun find-clause (domain-or-problem-body key)
   (cdr (find-if (lambda (clause) (eq (car clause) key))
@@ -57,6 +56,13 @@
 	    predicates)))
 
 ;; (define-clause-getter functions :functions)
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;; actions etc.
 
 (defmacro define-action-getter (name key initializer)
   `(progn
