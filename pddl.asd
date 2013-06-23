@@ -30,8 +30,10 @@
 		:serial t
                 :components
                 ((:file :pddl)
-		 (:file :domain)
-		 (:file :problem))))
+		 (:file :domain-class)
+		 (:file :problem-class)
+		 (:file :domain-parser)
+		 (:file :problem-parser))))
   :description "PDDL parser"
   :long-description
   #.(with-open-file (stream (merge-pathnames

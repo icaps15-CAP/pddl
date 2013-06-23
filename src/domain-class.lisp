@@ -7,7 +7,7 @@
 
 
 (defmacro define-pddl-class (name superclass slots)
-  `(progn
+  `(eval-when (:compile-toplevel :load-toplevel :execute)
      (defclass* ,name ,superclass
        ,slots
        (:EXPORT-P t)
@@ -31,10 +31,21 @@
   (domain))
 
 (define-pddl-class pddl-predicate (pddl-domain-slot)
-  (name (parameters :type variable)))
+  (name (parameters :type pddl-variable)))
 
-(define-pddl-class pddl-variable (pddl-domain-slot)
-  (name type))
+#+sbcl
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (sb-ext:with-unlocked-packages (:cl)
+    (define-pddl-class pddl-variable (pddl-domain-slot)
+      (name type))))
+
+#-sbcl
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (define-pddl-class pddl-variable (pddl-domain-slot)
+    (name type)))
+
+(define-pddl-class pddl-type (pddl-variable)
+  ())
 
 (define-pddl-class pddl-constant (pddl-variable)
   ())
@@ -43,15 +54,30 @@
   (body))
 
 (define-pddl-class pddl-action (pddl-domain-slot)
-  ((parameters :type variable)
+  (name
+   (parameters :type pddl-variable)
    precondition
    effect))
 
-(define-pddl-class pddl-durative-action (pddl-domain-slot)
-  ((parameters :type variable)
-   condition
-   effect))
+#+sbcl
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (sb-ext:with-unlocked-packages (:cl)
+    (define-pddl-class pddl-durative-action (pddl-domain-slot)
+      (name
+       (parameters :type pddl-variable)
+       duration
+       condition
+       effect))))
+
+#-sbcl
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (define-pddl-class pddl-durative-action (pddl-domain-slot)
+    ((parameters :type pddl-variable)
+     condition
+     effect)))
+
+
 
 (define-pddl-class pddl-derived-predicate (pddl-domain-slot)
-  ((parameters :type variable)
-   body))
+  ((parameters :type pddl-variable)
+   effect))
