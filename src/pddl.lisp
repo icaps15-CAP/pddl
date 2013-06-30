@@ -5,11 +5,14 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
 
 (in-package :cl-user)
 (defpackage pddl
-  (:use :cl :cl-syntax :optima :alexandria :guicho-utilities)
+  (:use :cl :cl-syntax :optima :alexandria :guicho-utilities
+	:annot.doc :annot.eval-when)
   (:import-from :metatilities :defclass*))
 (in-package :pddl)
 (use-syntax :annot)
 ;; blah blah blah.
+(package-optimize-setting 0 3 3 0)
+(optimize*)
 
 @export
 (defun parse-file (pathname)
@@ -31,7 +34,9 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
 	',name))
     ((list 'problem name)
      `(progn
-	(defparameter ,name ,(parse-problem body))
+	(unless (boundp ',name)
+	  (error "the domain ~A is not loaded yet!" ',name))
+	(defparameter ,name ,(parse-problem name body))
 	',name))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -43,10 +48,12 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
 	       :types           (types        body)
 	       :predicates      (predicates   body)
 	       :constants       (constants    body)
-	       :functions       (functions    body)
+	       ;; :functions       (functions    body)
 	       :actions         (actions      body)
-	       :durative-action (durative-actions body)))
-(defun parse-problem (body)
+	       :durative-actions (durative-actions body)
+	       :derived-predicates (derived-predicates body)))
+
+(defun parse-problem (name body)
   (pddl-problem :name name
 		:domain  (domain body)
 		:objects (objects body)

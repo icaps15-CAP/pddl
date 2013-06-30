@@ -3,6 +3,7 @@
 (use-syntax :annot)
 ;; metatilities:defclass*
 
+@export
 @doc "returns a list of PDDL-VARIABLEs."
 (defun parse-typed-list (lst)
   (%getting-vars lst nil nil))
@@ -21,7 +22,11 @@
      (%getting-vars rest
 		    (cons name vars)
 		    acc))
-    (nil acc)))
+    (nil (nreverse (append (mapcar (lambda (name)
+				      (pddl-variable :name name
+						     :type t))
+				    vars)
+			   acc)))))
 
 ;; (:key ... body...)
 (defun find-clause (domain-or-problem-body key)
@@ -82,11 +87,9 @@
 	    :effect effect)
      (pddl-action :name name
 		  :parameters (parse-typed-list typed-variables)
-		  :precondition precond
-		  :effect effect))))
+		  :precondition (parse-GD precond)
+		  :effect (parse-GD effect)))))
 
-;; (defpattern GD (precond effect)
-  
 (define-action-getter durative-actions :durative-action
   #'parse-durative-action)
 
@@ -102,7 +105,7 @@
       :parameters (parse-typed-list typed-variables)
       :duration f-exp
       :condition cond
-      :effect effect))))
+      :effect (parse-GD effect)))))
 
 (define-action-getter derived-predicates :derived
   #'parse-derived-predicate)
@@ -112,4 +115,4 @@
     ((list* typed-variables effect)
      (pddl-derived-predicate
       :parameters (parse-typed-list typed-variables)
-      :effect effect))))
+      :effect (parse-GD effect)))))

@@ -7,8 +7,11 @@
 (defpackage pddl-test
   (:use :cl
 	:iterate
+	:optima
         :pddl
-        :fiveam))
+        :fiveam)
+  (:shadow :place)
+  (:shadowing-import-from :fiveam :fail))
 (in-package :pddl-test)
 
 (defun data (name)
@@ -16,54 +19,46 @@
    name
    (asdf:system-relative-pathname :pddl "data/")))
 
-(defvar +eight02+ "eight02.pddl")
+(defvar +problem+ "pfile1")
 (defvar +domain+ "domain.pddl")
-(print (data +eight02+))
+(print (data +problem+))
 (print (data +domain+))
 
 (def-suite :pddl)
 (in-suite :pddl)
 
 (defvar domain)
+(defvar problem)
+
+
+(test parse-typed-list
+  (match (parse-typed-list '(a b c))
+    ((list (pddl-variable :name 'a :type t)
+	   (pddl-variable :name 'b :type t)
+	   (pddl-variable :name 'c :type t))
+     (pass))
+    (_ (fail)))
+  (match (parse-typed-list '(a b - number c - time d))
+    ((list (pddl-variable :name 'a :type 'number)
+	   (pddl-variable :name 'b :type 'number)
+	   (pddl-variable :name 'c :type 'time)
+	   (pddl-variable :name 'd :type t))
+     (pass))
+    (_ (fail))))
 
 (test parse-stream-success
   (finishes
-    (with-open-file (s (data +eight02+))
+    (with-open-file (s (data +domain+))
+       (parse-stream s)))
+  (finishes
+    (with-open-file (s (data +problem+))
        (parse-stream s))))
 
-(test parse-success
-  (finishes (setf domain (parse-file (data +domain+)))))
+(test (parse-success :depends-on parse-stream-success)
+  (finishes (setf domain (parse-file (data +domain+))))
+  (finishes (setf problem (parse-file (data +problem+))))
+  (is (eq 'depot domain))
+  (print depot)
+  (is (typep depot 'pddl-domain)))
 
-(test (accessors :depends-on parse-success)
-  (is (null (requirements domain)))
-  (is (null (types domain)))
-  (is (not (null (predicates domain))))
-  (is (null (constants domain)))
-  (is (null (functions domain)))
-  (is (= 5 (length (actions domain)))))
-
-(test (actions :depends-on accessors)
-  (is (= 5 (length (actions domain))))
-  (let ((a (action domain :drive)))
-    (is (eq '(:action drive
-	      :parameters ( ?x ?y ?z)
-	      :precondition
-	      (and (truck ?x) (place ?y) (place ?z)  (at ?x ?y))
-	      :effect
-	      (and (at ?x ?z) (not (at ?x ?y))))
-	    a))
-    (is (= 3 (arity a)))
-    (is (eql '(?x ?y ?z)
-	     (parameters a)))
-    (is (eql '(and (truck ?x) (place ?y) (place ?z)  (at ?x ?y))
-	     (precondition a)))
-    (is (eql '(and (at ?x ?z) (not (at ?x ?y)))
-	     (effect a)))
-    (is (eql '((at ?x ?y))
-	     (delete-list a)))
-    (is (eql '((at ?x ?z))
-	     (add-list a)))
-    (is-true (valid a))))
-
-
-(run! :pddl)
+(5am:run! :pddl)

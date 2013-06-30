@@ -4,7 +4,15 @@
 ;; metatilities:defclass*
 
 
+;; (defmacro define-class-pattern (class-name)
+;;   (let ((c (find-class class-name)))
+;;     `(eval-when (:load-toplevel :execute)
+;;        (defpattern ,class-name ,(class-slot-names c)
+;; 	 `(,',class-name
+;; 	      ,@(iter (for slot-name in (class-slot-names c))
+;; 		      (collecting `(,slot-name slot-name))))))))
 
+;; (define-class-pattern pddl-domain)
 
 (defmacro define-pddl-class (name superclass slots)
   `(eval-when (:compile-toplevel :load-toplevel :execute)
@@ -33,11 +41,15 @@
 (define-pddl-class pddl-predicate (pddl-domain-slot)
   (name (parameters :type pddl-variable)))
 
+
 #+sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (sb-ext:with-unlocked-packages (:cl)
     (define-pddl-class pddl-variable (pddl-domain-slot)
       (name type))))
+
+(defmethod print-object ((v pddl-variable) s)
+  (format s "#V<~A ~A>" (type v) (name v)))
 
 #-sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
