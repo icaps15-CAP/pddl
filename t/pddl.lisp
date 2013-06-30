@@ -19,10 +19,13 @@
    name
    (asdf:system-relative-pathname :pddl "data/")))
 
-(defvar +problem+ "pfile1")
-(defvar +domain+ "domain.pddl")
-(print (data +problem+))
-(print (data +domain+))
+(defvar +problem+ (data "pfile1"))
+(defvar +domain+ (data "domain.pddl"))
+(defvar +plan+ (data "pfile1.plan.1"))
+
+(print +problem+)
+(print +domain+)
+(print +plan+)
 
 (def-suite :pddl)
 (in-suite :pddl)
@@ -46,17 +49,18 @@
      (pass))
     (_ (fail))))
 
-(test parse-stream-success
-  (finishes
-    (with-open-file (s (data +domain+))
-       (parse-stream s)))
-  (finishes
-    (with-open-file (s (data +problem+))
-       (parse-stream s))))
+(test parse-plan
+  (finishes (parse-plan +plan+)))
 
-(test (parse-success :depends-on parse-stream-success)
-  (finishes (setf domain (parse-file (data +domain+))))
-  (finishes (setf problem (parse-file (data +problem+))))
+(test parse-domain
+  (finishes (parse-file +domain+)))
+
+(test (parse-problem :depends-on parse-domain)
+  (finishes (parse-file +problem+)))
+
+(test (parse-success :depends-on (parse-domain parse-problem))
+  (finishes (setf domain (parse-file +domain+)))
+  (finishes (setf problem (parse-file +problem+)))
   (is (eq 'depot domain))
   (print depot)
   (is (typep depot 'pddl-domain)))
