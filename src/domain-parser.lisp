@@ -23,9 +23,9 @@
 		    (cons name vars)
 		    acc))
     (nil (nreverse (append (mapcar (lambda (name)
-				      (pddl-variable :name name
-						     :type t))
-				    vars)
+				     (pddl-variable :name name
+						    :type t))
+				   vars)
 			   acc)))))
 
 ;; (:key ... body...)
@@ -62,10 +62,10 @@
 		  :parameters (parse-typed-list parameters)))))
 	    predicates)))
 
-;; (define-clause-getter functions :functions)
+(define-clause-getter functions :functions #'parse-functions)
 
-
-
+(defun parse-functions (body)
+  (not-implemented 'functions))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -83,25 +83,25 @@
 
 (defun parse-action (action)
   (ematch action
-    ((list* name
-	    :parameters typed-variables
-	    :precondition precond
-	    :effect effect)
+    ((list name
+	   :parameters typed-variables
+	   :precondition precond
+	   :effect effect)
      (pddl-action :name name
 		  :parameters (parse-typed-list typed-variables)
-		  :precondition (parse-GD precond)
-		  :effect (parse-GD effect)))))
+		  :precondition (parse-pre-GD precond)
+		  :effect (parse-effect effect)))))
 
 (define-action-getter durative-actions :durative-action
   #'parse-durative-action)
 
 (defun parse-durative-action (durative-action)
   (ematch durative-action
-    ((list* name
-	    :parameters typed-variables
-	    :duration (list '= '?duration f-exp)
-	    :condition cond
-	    :effect effect)
+    ((list name
+	   :parameters typed-variables
+	   :duration (list '= '?duration f-exp)
+	   :condition cond
+	   :effect effect)
      (pddl-durative-action
       :name name
       :parameters (parse-typed-list typed-variables)
@@ -114,7 +114,7 @@
 
 (defun parse-derived-predicate (derived-predicate)
   (ematch durative-action
-    ((list* typed-variables effect)
+    ((list typed-variables effect)
      (pddl-derived-predicate
       :parameters (parse-typed-list typed-variables)
       :effect (parse-GD effect)))))

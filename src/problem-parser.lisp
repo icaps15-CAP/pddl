@@ -28,7 +28,8 @@
 
 (defun parse-pre-GD (goal-description)
   (match goal-description
-    ((list* 'and ds) (parse-pre-GD ds))
+    ((list* 'and ds)
+     `(and ,@(mapcar #'parse-pre-GD ds)))
     ((list (and op 'forall) (and (type list) typed-list) d)
      `(,op ,(parse-typed-list typed-list) ,(parse-pre-GD d)))
     (_ (parse-pref-GD goal-description))))
@@ -40,11 +41,11 @@
     (_ (parse-GD goal-description))))
 
 (defun parse-GD (goal-description)
-  (match goal-description
+  (ematch goal-description
     ;; ((list* (and operator (or 'and 'or 'not 'implies)) ds)
     ;;  `(,operator ,@(parse-GD ds)))
     ((list* (and op (or 'and 'or)) ds)
-     `(,op ,@(parse-GD ds)))
+     `(,op ,@(mapcar #'parse-GD ds)))
     ((list 'not d)
      `(not ,(parse-GD d)))
     ((list 'implies d1 d2)
@@ -52,7 +53,12 @@
     ((list (and op (or 'exists 'forall)) (and (type list) typed-list) d)
      `(,op ,(parse-typed-list typed-list) ,(parse-GD d)))
     ((list* (or '> '< '>= '<= '=) _)
-     (not-implemented '(> < >= <= =)))))
+     (parse-f-comp goal-description))
+    (_ (parse-atomic-formula goal-description))))
+
+(defun parse-f-comp (f-comp)
+  @ignore f-comp
+  (not-implemented '(> < >= <= =)))
 
 (defun parse-literal (desc)
   (match desc
@@ -65,7 +71,7 @@
 (defun parse-effect (effect)
   (match effect
     ((list* 'and ds)
-     `(and ,@(parse-c-effect ds)))
+     `(and ,@(mapcar #'parse-c-effect ds)))
     (_ (parse-c-effect effect))))
 
 (defun parse-c-effect (effect)
@@ -87,7 +93,7 @@
 (defun parse-cond-effect (effect)
   (match effect
     ((list* 'and p)
-     `(and ,(parse-p-effect p)))
+     `(and ,(mapcar #'parse-p-effect p)))
     (_ (parse-p-effect effect))))
 
 (define-clause-getter metric :metric

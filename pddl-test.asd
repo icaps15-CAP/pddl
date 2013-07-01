@@ -14,6 +14,9 @@
   :depends-on (:pddl
                :fiveam)
   :components ((:module "t"
+		:serial t
                 :components
-                ((:file "pddl"))))
+                ((:file :pddl)
+		 (:file :accessors)
+		 (:file :run-test))))
   :perform (load-op :after (op c) (asdf:clear-system c)))
