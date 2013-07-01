@@ -1,7 +1,7 @@
 (in-package :pddl-test)
 (in-suite :pddl)
 
-(test (accessors :depends-on parse-success)
+(test (accessors :depends-on parse-domain)
   (is (null (requirements depot)))
   (is (null (types depot)))
   (is (= 15 (length (predicates depot))))
@@ -27,6 +27,7 @@
     (is (= 1 (length (delete-list a))))
     (is (= 1 (length (add-list a))))))
 
-;; (test (appliable :depends-on (and actions predicate))
+;; (test (plans :depends-on (and actions predicate))
+;;   (
 ;;   (let ((a (action depot :drive)))
 ;;     (is (appliable 

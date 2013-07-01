@@ -32,6 +32,7 @@
 
 (defvar domain)
 (defvar problem)
+(defvar plan)
 
 
 (test parse-typed-list
@@ -49,17 +50,17 @@
      (pass))
     (_ (fail))))
 
-(test parse-plan
-  (finishes (parse-plan +plan+)))
-
 (test parse-domain
-  (finishes (parse-file +domain+)))
+  (finishes (setf domain (parse-file +domain+)))
+  ;; depot
+  (is (typep (symbol-value domain) 'pddl-domain)))
 
 (test (parse-problem :depends-on parse-domain)
-  (finishes (parse-file +problem+)))
-
-(test (parse-success :depends-on (and parse-domain parse-problem))
-  (finishes (setf domain (parse-file +domain+)))
   (finishes (setf problem (parse-file +problem+)))
-  (is (eq 'depot domain))
-  (is (typep depot 'pddl-domain)))
+  ;; depotprob1818 
+  (is (typep (symbol-value problem) 'pddl-problem)))
+
+(test (parse-plan :depends-on parse-problem)
+  (finishes (setf plan (parse-plan +plan+
+				   (symbol-value domain)
+				   (symbol-value problem)))))

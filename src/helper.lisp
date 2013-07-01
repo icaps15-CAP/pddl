@@ -1,0 +1,15 @@
+(in-package :pddl)
+(use-syntax :annot)
+
+(defun not-implemented (what)
+  (warn "~A not implemented yet." what))
+(defpattern op (operater &rest arguments)
+  `(list* ',operater ,@arguments))
+(defpattern andp (&rest rest)
+  `(op and ,@rest))
+(defpattern orp (&rest rest)
+  `(op or ,@rest))
+(defpattern notp (pred)
+  `(list 'not ,pred))
+
+(export '(orp andp notp op))

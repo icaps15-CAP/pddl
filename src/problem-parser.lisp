@@ -10,26 +10,14 @@
 	  (warn "the domain ~A is not loaded yet!" domain-symbol)))))
 
 (define-clause-getter init :init
-  (curry #'mapcar
-	 #'parse-atomic-formula))
+  (lambda (init-descriptions)
+    (mapcar (lambda (desc)
+	      (change-class (parse-atomic-formula desc)
+			    'pddl-atomic-state))
+	    init-descriptions)))
 
 (define-clause-getter goal :goal
-  #'parse-GD)
-
-(defun not-implemented (what)
-  (warn "~A not implemented yet." what))
-
-(defpattern op (operater &rest arguments)
-  `(list* ',operater ,@arguments))
-
-(defpattern andp (&rest rest)
-  `(op and ,@rest))
-(defpattern orp (&rest rest)
-  `(op or ,@rest))
-(defpattern notp (pred)
-  `(list 'not ,pred))
-
-(export '(orp andp notp op))
+  (compose #'parse-GD #'car))
 
 (defun parse-pre-GD (goal-description)
   (match goal-description
