@@ -58,12 +58,16 @@
 @export
 @doc "find the predicate specified by the designator."
 (defgeneric predicate (pddl-domain designator))
-(defmethod predicate ((dom pddl-domain) designator)
+
+(defmethod predicate ((dom pddl-domain) (designator symbol))
   (find-if (lambda (predicate)
 	     (string= (symbol-name (name predicate))
-		      (typecase designator
-			(symbol (symbol-name designator))
-			(string designator))))
+		      (symbol-name designator)))
+	   (predicates dom)))
+
+(defmethod predicate ((dom pddl-domain) (str string))
+  (find-if (lambda (predicate)
+	     (string= str (symbol-name (name predicate))))
 	   (predicates dom)))
 
 @export
@@ -74,6 +78,8 @@
 (define-pddl-class pddl-predicate (pddl-domain-slot namable)
   ((parameters :type pddl-variable)))
 
+(defmethod print-object ((o pddl-predicate) s)
+  (format s "#<PREDICATE ~a ~{~a~^ ~}>" (name o) (parameters o)))
 
 #+sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
@@ -83,7 +89,9 @@
       (type))))
 
 (defmethod print-object ((v pddl-variable) s)
-  (format s "#V<~A ~A>" (type v) (name v)))
+  (if (eq (type v) t)
+      (format s "~A" (name v))
+      (format s "<~A - ~A>" (name v) (type v))))
 
 #-sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
@@ -104,32 +112,24 @@
    precondition
    effect))
 
-
-@export
-(defgeneric add-list (pddl-action))
-@export
-(defgeneric delete-list (pddl-action))
-
 (defmethod add-list ((a pddl-action))
   (let ((acc nil))
     (walk-tree (lambda (branch cont)
 		 (match branch
-		   ((list* 'and rest)
+		   ((op and rest)
 		    (funcall cont rest))
-		   ((list 'not _)
+		   ((op not _)
 		    nil)
 		   ((type pddl-predicate)
 		    (push branch acc))))
 	       (effect a))
     acc))
 
-@export
 (defmethod delete-list ((a pddl-action))
   (let ((acc nil))
     (walk-tree (lambda (branch cont)
-		 (print branch)
 		 (match branch
-		   ((list* 'and rest)
+		   ((op and rest)
 		    (funcall cont rest))
 		   ((list 'not pred)
 		    (push pred acc))
@@ -137,7 +137,6 @@
 		    nil)))
 	       (effect a))
     acc))
-
 
 #+sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)

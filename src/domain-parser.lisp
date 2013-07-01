@@ -28,6 +28,18 @@
 				   vars)
 			   acc)))))
 
+
+(defun parse-predicate (predicate-def)
+  (match predicate-def
+    ((list* pred-name arguments)
+     (pddl-predicate :name pred-name
+		     :parameters (parse-typed-list arguments)))))
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; domain clause getters 
+
 ;; (:key ... body...)
 (defun find-clause (domain-or-problem-body key)
   (cdr (find-if (lambda (clause) (eq (car clause) key))
@@ -37,7 +49,7 @@
   `(defmethod ,name ((domain list))
      (if-let ((cl (find-clause domain ,key)))
        (funcall ,initializer cl)
-       (warn "~A not found in this domain" ',name))))
+       (warn "~A not found in this PDDL" ',name))))
 
 (define-clause-getter requirements :requirements #'identity)
 
@@ -74,10 +86,13 @@
 (defmacro define-action-getter (name key initializer)
   `(progn
      (defmethod ,name ((domain-body list))
-       (mapcar (compose ,initializer #'cdr)
-	       (remove-if-not
-		(lambda (clause) (eq (car clause) ,key))
-		domain-body)))))
+
+       (if-let ((cls (remove-if-not
+		      (lambda (clause) (eq (car clause) ,key))
+		      domain-body)))
+	 (mapcar (compose ,initializer #'cdr)
+		 cls)
+	 (warn "~A not found in this PDDL" ',name)))))
 
 (define-action-getter actions :action #'parse-action)
 
@@ -102,19 +117,21 @@
 	   :duration (list '= '?duration f-exp)
 	   :condition cond
 	   :effect effect)
+     (not-implemented 'durative-action)
      (pddl-durative-action
       :name name
       :parameters (parse-typed-list typed-variables)
       :duration f-exp
-      :condition cond
-      :effect (parse-GD effect)))))
+      :condition (parse-GD cond)
+      :effect (parse-effect effect)))))
 
 (define-action-getter derived-predicates :derived
   #'parse-derived-predicate)
 
 (defun parse-derived-predicate (derived-predicate)
-  (ematch durative-action
+  (ematch derived-predicate
     ((list typed-variables effect)
+     (not-implemented 'derived-predicate)
      (pddl-derived-predicate
       :parameters (parse-typed-list typed-variables)
       :effect (parse-GD effect)))))

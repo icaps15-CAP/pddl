@@ -9,12 +9,6 @@
 	  (symbol-value domain-symbol)
 	  (warn "the domain ~A is not loaded yet!" domain-symbol)))))
 
-(defun parse-predicate (predicate-def)
-  (match predicate-def
-    ((list* pred-name arguments)
-     (pddl-predicate :name pred-name
-		     :parameters (parse-typed-list arguments)))))
-
 (define-clause-getter init :init
   (curry #'mapcar
 	 #'parse-atomic-formula))
@@ -25,18 +19,29 @@
 (defun not-implemented (what)
   (warn "~A not implemented yet." what))
 
+(defpattern op (operater &rest arguments)
+  `(list* ',operater ,@arguments))
+
+(defpattern andp (&rest rest)
+  `(op and ,@rest))
+(defpattern orp (&rest rest)
+  `(op or ,@rest))
+(defpattern notp (pred)
+  `(list 'not ,pred))
+
+(export '(orp andp notp op))
 
 (defun parse-pre-GD (goal-description)
   (match goal-description
-    ((list* 'and ds)
+    ((andp ds)
      `(and ,@(mapcar #'parse-pre-GD ds)))
-    ((list (and op 'forall) (and (type list) typed-list) d)
-     `(,op ,(parse-typed-list typed-list) ,(parse-pre-GD d)))
+    ((op forall (and (type list) typed-list) d)
+     `(forall ,(parse-typed-list typed-list) ,(parse-pre-GD d)))
     (_ (parse-pref-GD goal-description))))
 
 (defun parse-pref-GD (goal-description)
   (match goal-description
-    ((list* 'preference _)
+    ((op preference _)
      (not-implemented 'preference))
     (_ (parse-GD goal-description))))
 
@@ -47,7 +52,7 @@
     ((list* (and op (or 'and 'or)) ds)
      `(,op ,@(mapcar #'parse-GD ds)))
     ((list 'not d)
-     `(not ,(parse-GD d)))
+     `(not ,@(parse-GD d)))
     ((list 'implies d1 d2)
      `(implies ,(parse-GD d1) ,(parse-GD d2)))
     ((list (and op (or 'exists 'forall)) (and (type list) typed-list) d)
@@ -70,7 +75,7 @@
 
 (defun parse-effect (effect)
   (match effect
-    ((list* 'and ds)
+    ((andp ds)
      `(and ,@(mapcar #'parse-c-effect ds)))
     (_ (parse-c-effect effect))))
 
@@ -92,7 +97,7 @@
 
 (defun parse-cond-effect (effect)
   (match effect
-    ((list* 'and p)
+    ((andp p)
      `(and ,(mapcar #'parse-p-effect p)))
     (_ (parse-p-effect effect))))
 

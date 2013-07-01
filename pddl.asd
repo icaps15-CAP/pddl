@@ -30,6 +30,7 @@
 		:serial t
                 :components
                 ((:file :pddl)
+		 (:file :generics)
 		 (:file :domain-class)
 		 (:file :problem-class)
 		 (:file :domain-parser)

@@ -20,9 +20,9 @@
     (is (= 3 (arity a)))
     (finishes
       (ematch (effect a)
-	((list 'and
-	       (type pddl-predicate)
-	       (list 'not (type pddl-predicate)))
+	((andp
+	  (type pddl-predicate)
+	  (notp (type pddl-predicate)) _)
 	 nil)))
     (is (= 1 (length (delete-list a))))
     (is (= 1 (length (add-list a))))))
