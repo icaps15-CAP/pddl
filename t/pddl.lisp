@@ -58,7 +58,7 @@
 (test (parse-problem :depends-on parse-domain)
   (finishes (parse-file +problem+)))
 
-(test (parse-success :depends-on (parse-domain parse-problem))
+(test (parse-success :depends-on (and parse-domain parse-problem))
   (finishes (setf domain (parse-file +domain+)))
   (finishes (setf problem (parse-file +problem+)))
   (is (eq 'depot domain))

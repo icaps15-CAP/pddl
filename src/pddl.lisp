@@ -34,8 +34,6 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
 	',name))
     ((list 'problem name)
      `(progn
-	(unless (boundp ',name)
-	  (error "the domain ~A is not loaded yet!" ',name))
 	(defparameter ,name ,(parse-problem name body))
 	',name))))
 

@@ -35,7 +35,9 @@
 
 (defmacro define-clause-getter (name key initializer)
   `(defmethod ,name ((domain list))
-       (funcall ,initializer (find-clause domain ,key))))
+     (if-let ((cl (find-clause domain ,key)))
+       (funcall ,initializer cl)
+       (warn "~A not found in this domain" ',name))))
 
 (define-clause-getter requirements :requirements #'identity)
 

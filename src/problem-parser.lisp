@@ -4,7 +4,10 @@
 
 (define-clause-getter domain :domain 
   (lambda (clause-body)
-    (symbol-value (first clause-body))))
+    (let ((domain-symbol (first clause-body)))
+      (if (boundp domain-symbol)
+	  (symbol-value domain-symbol)
+	  (warn "the domain ~A is not loaded yet!" domain-symbol)))))
 
 (defun parse-predicate (predicate-def)
   (match predicate-def
@@ -19,6 +22,10 @@
 (define-clause-getter goal :goal
   #'parse-GD)
 
+(defun not-implemented (what)
+  (warn "~A not implemented yet." what))
+
+
 (defun parse-pre-GD (goal-description)
   (match goal-description
     ((list* 'and ds) (parse-pre-GD ds))
@@ -29,7 +36,7 @@
 (defun parse-pref-GD (goal-description)
   (match goal-description
     ((list* 'preference _)
-     (error "preference not supported"))
+     (not-implemented 'preference))
     (_ (parse-GD goal-description))))
 
 (defun parse-GD (goal-description)
@@ -45,7 +52,7 @@
     ((list (and op (or 'exists 'forall)) (and (type list) typed-list) d)
      `(,op ,(parse-typed-list typed-list) ,(parse-GD d)))
     ((list* (or '> '< '>= '<= '=) _)
-     (error "bindary compare ops not supported"))))
+     (not-implemented '(> < >= <= =)))))
 
 (defun parse-literal (desc)
   (match desc
@@ -72,10 +79,10 @@
 (defun parse-p-effect (effect)
   (match effect
     ((list* (or 'assign 'scale-up 'scale-down 'increase 'decrease) _)
-     (error "assign ops not supported"))
+     (not-implemented '(assign scale-up scale-down increase decrease)))
     ((list 'not d)
      `(not ,(parse-atomic-formula d)))
-    (_ (parse-atomic-formula error))))
+    (_ (parse-atomic-formula effect))))
 
 (defun parse-cond-effect (effect)
   (match effect
@@ -84,8 +91,18 @@
     (_ (parse-p-effect effect))))
 
 (define-clause-getter metric :metric
-  #'pddl-metric)
+  #'parse-metric)
+
+(defun parse-metric (body)
+  @ignore body
+  (not-implemented 'metric)
+  ;; (ematch body
+  ;;   ((list (and optimization (or 'maximize 'minimize)) metric-f-exp)
+  ;;    `(,optimization ,(parse-metric-f-exp metric-f-exp))))
+  )
+
+;; (defun parse-metric-f-exp (body)
+;;   (
 
 (define-clause-getter objects :objects
   (rcurry #'typed-objects 'pddl-object))
-   
