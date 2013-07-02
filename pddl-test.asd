@@ -18,5 +18,6 @@
                 :components
                 ((:file :pddl)
 		 (:file :accessors)
+		 (:file :matcher)
 		 (:file :run-test))))
   :perform (load-op :after (op c) (asdf:clear-system c)))

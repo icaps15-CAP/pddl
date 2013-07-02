@@ -11,56 +11,65 @@
 
 (define-clause-getter init :init
   (lambda (init-descriptions)
-    (mapcar (lambda (desc)
-	      (change-class (parse-atomic-formula desc)
-			    'pddl-atomic-state))
+    (mapcar #'parse-atomic-state
 	    init-descriptions)))
+
+
+@export
+(defun parse-atomic-state (desc)
+  (change-class (parse-atomic-formula desc)
+		'pddl-atomic-state))
 
 (define-clause-getter goal :goal
   (compose #'parse-GD #'car))
 
+@export
+@doc "Parsing description for precondition."
 (defun parse-pre-GD (goal-description)
   (match goal-description
     ((andp ds)
      `(and ,@(mapcar #'parse-pre-GD ds)))
-    ((op forall (and (type list) typed-list) d)
+    ((forallp typed-list d)
      `(forall ,(parse-typed-list typed-list) ,(parse-pre-GD d)))
     (_ (parse-pref-GD goal-description))))
 
+@export
 (defun parse-pref-GD (goal-description)
   (match goal-description
-    ((op preference _)
+    ((op 'preference _)
      (not-implemented 'preference))
     (_ (parse-GD goal-description))))
 
+@export
 (defun parse-GD (goal-description)
   (ematch goal-description
     ;; ((list* (and operator (or 'and 'or 'not 'implies)) ds)
     ;;  `(,operator ,@(parse-GD ds)))
-    ((list* (and op (or 'and 'or)) ds)
-     `(,op ,@(mapcar #'parse-GD ds)))
-    ((list 'not d)
-     `(not ,@(parse-GD d)))
-    ((list 'implies d1 d2)
-     `(implies ,(parse-GD d1) ,(parse-GD d2)))
-    ((list (and op (or 'exists 'forall)) (and (type list) typed-list) d)
+    ((op (and op (or 'or 'and)) ds)  `(,op ,@(mapcar #'parse-GD ds)))
+    ((notp d)                        `(not ,@(parse-GD d)))
+    ((impliesp d1 d2)                `(implies ,(parse-GD d1) ,(parse-GD d2)))
+    ((op (and op (or 'forall 'exists)) typed-list d)
      `(,op ,(parse-typed-list typed-list) ,(parse-GD d)))
-    ((list* (or '> '< '>= '<= '=) _)
+    ((op (or '> '< '>= '<= '=) _)
      (parse-f-comp goal-description))
     (_ (parse-atomic-formula goal-description))))
 
+@export
 (defun parse-f-comp (f-comp)
   @ignore f-comp
   (not-implemented '(> < >= <= =)))
 
+@export
 (defun parse-literal (desc)
   (match desc
-    ((list 'not atom) (parse-atomic-formula atom))
+    ((notp atom) (parse-atomic-formula atom))
     (atom (parse-atomic-formula atom))))
 
+@export
 (defun parse-atomic-formula (atom)
   (parse-predicate atom)) ;; same as predicate
 
+@export
 (defun parse-effect (effect)
   (match effect
     ((andp ds)
@@ -69,9 +78,9 @@
 
 (defun parse-c-effect (effect)
   (match effect
-    ((list (and op 'forall) (and (type list) typed-list) d)
-     `(,op ,(parse-typed-list typed-list) ,(parse-effect d)))
-    ((list 'when cond cond-effect)
+    ((forallp typed-list d)
+     `(forall ,(parse-typed-list typed-list) ,(parse-effect d)))
+    ((whenp cond cond-effect)
      `(when ,(parse-GD cond) ,(parse-cond-effect cond-effect)))
     (_ (parse-p-effect effect))))
   
@@ -79,7 +88,7 @@
   (match effect
     ((list* (or 'assign 'scale-up 'scale-down 'increase 'decrease) _)
      (not-implemented '(assign scale-up scale-down increase decrease)))
-    ((list 'not d)
+    ((notp d)
      `(not ,(parse-atomic-formula d)))
     (_ (parse-atomic-formula effect))))
 
@@ -92,6 +101,7 @@
 (define-clause-getter metric :metric
   #'parse-metric)
 
+@export
 (defun parse-metric (body)
   @ignore body
   (not-implemented 'metric)

@@ -24,8 +24,12 @@
 	  (type pddl-predicate)
 	  (notp (type pddl-predicate)) _)
 	 nil)))
-    (is (= 1 (length (delete-list a))))
-    (is (= 1 (length (add-list a))))))
+    (is (= 1 (length (delete-list a)))
+	"(length (delete-list a)) should be 1,~%~
+         but (delete-list a) was ~a ." (delete-list a))
+    (is (= 1 (length (add-list a)))
+	"(length (add-list a)) should be 1,~%~
+         but (add-list a) was ~a ." (add-list a))))
 
 ;; (test (plans :depends-on (and actions predicate))
 ;;   (

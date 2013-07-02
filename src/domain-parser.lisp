@@ -29,6 +29,7 @@
 			   acc)))))
 
 
+@export
 (defun parse-predicate (predicate-def)
   (match predicate-def
     ((list* pred-name arguments)
@@ -76,6 +77,7 @@
 
 (define-clause-getter functions :functions #'parse-functions)
 
+@export
 (defun parse-functions (body)
   (not-implemented 'functions))
 
@@ -96,6 +98,7 @@
 
 (define-action-getter actions :action #'parse-action)
 
+@export
 (defun parse-action (action)
   (ematch action
     ((list name
@@ -110,6 +113,7 @@
 (define-action-getter durative-actions :durative-action
   #'parse-durative-action)
 
+@export
 (defun parse-durative-action (durative-action)
   (ematch durative-action
     ((list name
@@ -128,6 +132,7 @@
 (define-action-getter derived-predicates :derived
   #'parse-derived-predicate)
 
+@export
 (defun parse-derived-predicate (derived-predicate)
   (ematch derived-predicate
     ((list typed-variables effect)

@@ -40,5 +40,5 @@
 (defmethod object ((problem pddl-problem) (name symbol))
   (find name (objects problem) :key #'name))
 (defmethod object ((problem pddl-problem) (name string))
-  (find name (objects problem) :key (curry #'symbol-name #'name)))
+  (find name (objects problem) :key (compose #'symbol-name #'name)))
 

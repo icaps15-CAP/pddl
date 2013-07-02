@@ -90,8 +90,8 @@
 
 (defmethod print-object ((v pddl-variable) s)
   (if (eq (type v) t)
-      (format s "~A" (name v))
-      (format s "<~A - ~A>" (name v) (type v))))
+      (format s "#[~A]" (name v))
+      (format s "#[~A ∈ ~A]" (name v) (type v))))
 
 #-sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
@@ -116,9 +116,9 @@
   (let ((acc nil))
     (walk-tree (lambda (branch cont)
 		 (match branch
-		   ((op and rest)
+		   ((op 'and rest)
 		    (funcall cont rest))
-		   ((op not _)
+		   ((op 'not _)
 		    nil)
 		   ((type pddl-predicate)
 		    (push branch acc))))
@@ -129,9 +129,9 @@
   (let ((acc nil))
     (walk-tree (lambda (branch cont)
 		 (match branch
-		   ((op and rest)
+		   ((op 'and rest)
 		    (funcall cont rest))
-		   ((list 'not pred)
+		   ((op 'not pred)
 		    (push pred acc))
 		   ((type pddl-predicate)
 		    nil)))

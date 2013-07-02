@@ -36,7 +36,8 @@
 		 (:file :problem-class)
 		 (:file :domain-parser)
 		 (:file :problem-parser)
-		 (:file :plan-reader))))
+		 (:file :plan-reader)
+		 (:file :appliability))))
   :description "PDDL parser"
   :long-description
   #.(with-open-file (stream (merge-pathnames
