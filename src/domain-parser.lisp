@@ -4,29 +4,40 @@
 ;; metatilities:defclass*
 
 @export
-@doc "returns a list of PDDL-VARIABLEs."
-(defun parse-typed-list (lst)
-  (%getting-vars lst nil nil))
+@doc "returns a list of PDDL-VARIABLEs.
+the optional argument DICTIONARY is a list of `pddl-variable's.
+if the designator in the list refers to an already defined variable
+then it is always used. The reference is determined by the EQuality
+to the `pddl-variable''s slot NAME."
+(defun parse-typed-list (lst &optional dictionary)
+  (%getting-vars lst nil nil dictionary))
 
-(defun %getting-vars (lst vars acc)
+(defun %eqname1 (sym var)
+  (eq sym (name var)))
+
+(defun %intern-variable (name type dictionary)
+  (if-let ((found (find-if (curry #'%eqname1 name) dictionary)))
+    (values found nil)
+    (values (pddl-variable :name name :type type) t)))
+
+(defun %getting-vars (lst vars acc dictionary)
   (ematch lst
     ((list* '- type rest)
-     (%getting-vars rest
-		    nil 
-		    (append (mapcar (lambda (name)
-				      (pddl-variable :name name
-						     :type type))
-				    vars)
-			    acc)))
-    ((list* name rest)
-     (%getting-vars rest
-		    (cons name vars)
-		    acc))
-    (nil (nreverse (append (mapcar (lambda (name)
-				     (pddl-variable :name name
-						    :type t))
-				   vars)
-			   acc)))))
+     (iter (for name in vars) ;; 2. vars : reverse order
+	   (for (values var new?) = (%intern-variable name type dictionary))
+	   (when new? (push var dictionary))
+	   ;; 3. pushing at the beginning, resulting order is regular
+	   (collecting var into variables at beginning)
+	   (finally
+	    (return
+	      (%getting-vars ;; 4. acc is always in a regular order
+	       rest nil (append acc variables) dictionary)))))
+    ((list* name rest) ;; 1. reversed order
+     (%getting-vars rest (cons name vars) acc dictionary))
+    (nil
+     ;; 5. var is reversed, acc is regular
+     (append acc (nreverse (mapcar (rcurry #'%intern-variable t dictionary)
+				   vars))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; domain clause getters 

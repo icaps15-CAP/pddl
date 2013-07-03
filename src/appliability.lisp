@@ -26,20 +26,6 @@ PROBLEM: `pddl-problem'."
 
   (%apply-clause-rec states (precondition action) nil nil))
 
-;; @export
-;; (defun retrieve-all-matching (states action)
-;;   (%retrieve-many-matching states action nil))
-
-;; @export
-;; (defun %retrieve-many-matching (states action match-sets)
-;;   (multiple-value-match (%apply-clause-rec states (precondition action) nil nil)
-;;     ((t _ matches used)
-     
-;;      (%retrieve-many-matching (remove (car used) states) action (cons matches match-sets)))
-;;     ((_) match-sets)))
-
-
-
 @export
 (defun retrieve-all-match-set (states action)
   (if states
