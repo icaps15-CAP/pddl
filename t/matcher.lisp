@@ -9,7 +9,7 @@
 	 (matches (%try-match p s nil)))
     (iter (for var in (parameters p))
 	  (for obj in (parameters s))
-	  (is (eq (getf matches var)
+	  (is (eq (getf matches (name var))
 		  obj)))
 
 
@@ -22,3 +22,10 @@
 
   )
 
+;; (test all-match-set
+  
+;;   (retrieve-all-matching
+;;    (init depotprob1818)
+;;    (action depot :drive))
+
+;;   )

@@ -21,52 +21,96 @@ PROBLEM: `pddl-problem'."
   ;;      #<PREDICATE AT ?X ?Y>)
   ;; see parse-pre-GD .
 
-  (%apply-clause-rec states (precondition action) nil))
+  ;; %apply-clause-rec only provides 1 matching to the current states,
+  ;; so it would be necessary to retrieve as many matching as possible.
+
+  (%apply-clause-rec states (precondition action) nil nil))
+
+;; @export
+;; (defun retrieve-all-matching (states action)
+;;   (%retrieve-many-matching states action nil))
+
+;; @export
+;; (defun %retrieve-many-matching (states action match-sets)
+;;   (multiple-value-match (%apply-clause-rec states (precondition action) nil nil)
+;;     ((t _ matches used)
+     
+;;      (%retrieve-many-matching (remove (car used) states) action (cons matches match-sets)))
+;;     ((_) match-sets)))
 
 
-@doc "returns 3 values. success-p, new-states, new-matches."
-(defun %apply-clause-rec (states precond-branch matches)
+
+@export
+(defun retrieve-all-matching2 (states action)
+  (if states
+      (multiple-value-match (%apply-clause-rec states (precondition action) nil nil)
+	((t _ matches used)
+	 (cons matches
+	       (iter (for u in used)
+		     (format t "~%removed ~a!~%" u)
+		     (when-let ((match (retrieve-all-matching2 (remove u states) action)))
+		       (appending match)))))
+	((_) nil))
+      nil))
+
+
+
+@doc "Returns 4 values or nil when no matching found.
+Values are (success-p remaining-states new-matches used-states)."
+(defun %apply-clause-rec (states precond-branch matches used-states)
   (match precond-branch
     ((andp preds)
-     (%apply-and-rec states preds matches))
+     (%apply-and-rec states preds matches used-states))
     ((orp preds)
-     (%apply-or-rec states preds matches))
+     (%apply-or-rec states preds matches used-states))
     ((notp pred)
-     (%apply-not-rec states pred matches))
+     (%apply-not-rec states pred matches used-states))
     ((type pddl-predicate)
-     (%apply-rec states precond-branch matches nil))
+     (%apply-rec states precond-branch matches nil used-states))
     (_ (error "May contain unrecognizable clause? ~%~A" precond-branch))))
 
-(defun %apply-and-rec (states preds matches)
-  (multiple-value-match (%apply-clause-rec states (car preds) matches)
-    (((not nil) new-states new-matches)
+(defun %apply-and-rec (states preds matches used-states)
+  (multiple-value-match (%apply-clause-rec states (car preds) matches used-states)
+    (((not nil) remaining-states new-matches used-states)
      (if-let ((rest (cdr preds)))
-       (%apply-and-rec new-states rest new-matches)
-       (values t new-states new-matches)))
+       (%apply-and-rec remaining-states rest new-matches used-states)
+       (values t remaining-states new-matches used-states)))
     (() nil)))
 
-(defun %apply-or-rec (states preds matches)
-  (multiple-value-match (%apply-clause-rec states (car preds) matches)
-    (((not nil) new-state new-matches)
-     (values t new-state new-matches))
+(defun %apply-or-rec (states preds matches used-states)
+  (multiple-value-match (%apply-clause-rec states (car preds) matches used-states)
+    (((not nil) new-state new-matches used-states)
+     (values t new-state new-matches used-states))
     (()
      (if-let ((rest (cdr preds)))
-       (%apply-or-rec states rest matches)
+       (%apply-or-rec states rest matches used-states)
        nil))))
 
-(defun %apply-not-rec (states pred matches)
-  (multiple-value-match (%apply-clause-rec states pred matches)
+(defun %apply-not-rec (states pred matches used-states)
+  (multiple-value-match (%apply-clause-rec states pred matches used-states)
     (((not nil) _ _)
      nil)
     (()
-     (values t states matches))))
+     (values t states matches used-states))))
 
-(defun %apply-rec (unmatched pred matches unused)
-  (if unmatched
-      (if-let ((new-matches (%try-match pred (car unmatched) matches)))
-	(values t (append unused (cdr unmatched)) new-matches)
-	(%apply-rec (cdr unmatched) pred matches (cons (car unmatched) unused)))
-      nil))
+(defun %apply-rec (unmatched pred matches unused used-states)
+  (let (diffs sames)
+    (dolist (u unmatched)
+      (if (eqname u pred)
+	  (push u sames)
+	  (push u diffs)))
+    (when sames
+      (multiple-value-bind (success remaining-states new-matches new-used-states)
+	  (%apply-rec-pruned sames pred matches unused used-states)
+	(values success (append diffs remaining-states) new-matches new-used-states)))))
+
+(defun %apply-rec-pruned (unmatched pred matches unused used-states)
+  (destructuring-bind (s . rest) unmatched
+    (if-let ((new-matches (%try-match pred s matches)))
+      (values t (append unused rest) new-matches (cons s used-states))
+      (if rest
+	  (%apply-rec-pruned rest pred matches (cons s unused) used-states)
+	  nil))))
 
 (defun eqname (a b)
   (eq (name a) (name b)))
@@ -79,13 +123,13 @@ PROBLEM: `pddl-problem'."
 	  (changed nil))
       (iter (for var in (parameters p))
 	    (for obj in (parameters s))
-	    (if-let ((matched-obj (getfe matches var)))
+	    (if-let ((matched-obj (getf matches (name var))))
 	      (if (eqname obj matched-obj)
 		  (next-iteration)
 		  (return-from %try-match nil))
 	      (progn 
 		(setf changed t)
-		(setf (getf matches var) obj))))
+		(setf (getf matches (name var)) obj))))
       (values matches changed))))
 
 (define-condition assignment-error ()
