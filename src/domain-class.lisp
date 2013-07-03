@@ -1,8 +1,6 @@
-
 (in-package :pddl)
 (use-syntax :annot)
 ;; metatilities:defclass*
-
 
 ;; (defmacro define-class-pattern (class-name)
 ;;   (let ((c (find-class class-name)))

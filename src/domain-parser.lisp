@@ -3,42 +3,6 @@
 (use-syntax :annot)
 ;; metatilities:defclass*
 
-@export
-@doc "returns a list of PDDL-VARIABLEs.
-the optional argument DICTIONARY is a list of `pddl-variable's.
-if the designator in the list refers to an already defined variable
-then it is always used. The reference is determined by the EQuality
-to the `pddl-variable''s slot NAME."
-(defun parse-typed-list (lst &optional dictionary)
-  (%getting-vars lst nil nil dictionary))
-
-(defun %eqname1 (sym var)
-  (eq sym (name var)))
-
-(defun %intern-variable (name type dictionary)
-  (if-let ((found (find-if (curry #'%eqname1 name) dictionary)))
-    (values found nil)
-    (values (pddl-variable :name name :type type) t)))
-
-(defun %getting-vars (lst vars acc dictionary)
-  (ematch lst
-    ((list* '- type rest)
-     (iter (for name in vars) ;; 2. vars : reverse order
-	   (for (values var new?) = (%intern-variable name type dictionary))
-	   (when new? (push var dictionary))
-	   ;; 3. pushing at the beginning, resulting order is regular
-	   (collecting var into variables at beginning)
-	   (finally
-	    (return
-	      (%getting-vars ;; 4. acc is always in a regular order
-	       rest nil (append acc variables) dictionary)))))
-    ((list* name rest) ;; 1. reversed order
-     (%getting-vars rest (cons name vars) acc dictionary))
-    (nil
-     ;; 5. var is reversed, acc is regular
-     (append acc (nreverse (mapcar (rcurry #'%intern-variable t dictionary)
-				   vars))))))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; domain clause getters 
 
@@ -47,30 +11,39 @@ to the `pddl-variable''s slot NAME."
   (cdr (find-if (lambda (clause) (eq (car clause) key))
 		domain-or-problem-body)))
 
-(defmacro define-clause-getter (name key initializer)
-  `(defmethod ,name ((domain list))
+(defmacro define-clause-getter (name key additional-arguments initializer)
+  `(defun ,(concatenate-symbols 'parse name)
+       (domain ,@additional-arguments)
+     (declare (type list domain))
      (if-let ((cl (find-clause domain ,key)))
-       (funcall ,initializer cl)
+       (funcall ,initializer cl ,@additional-arguments)
        (warn "~A not found in this PDDL" ',name))))
 
-(define-clause-getter requirements :requirements #'identity)
+(define-clause-getter
+    requirements :requirements ()
+    #'identity)
 
 (defun typed-objects (typed-list class)
   (mapcar (rcurry #'change-class class)
 	  (parse-typed-list typed-list)))
 ;;           ^^-- returns PDDL-VARIABLEs
 
-(define-clause-getter types :types
-  (rcurry #'typed-objects 'pddl-types))
+(define-clause-getter
+    types :types ()
+    (rcurry #'typed-objects 'pddl-types))
 
-(define-clause-getter constants :constants
-  (rcurry #'typed-objects 'pddl-constant))
+(define-clause-getter
+    constants :constants ()
+    (rcurry #'typed-objects 'pddl-constant))
 
-(define-clause-getter predicates :predicates
-  (lambda (predicates)
-    (mapcar #'parse-predicate predicates)))
+(define-clause-getter 
+    predicates :predicates ()
+    (lambda (predicates)
+      (mapcar #'parse-predicate predicates)))
 
-(define-clause-getter functions :functions #'parse-functions)
+(define-clause-getter
+    functions :functions ()
+    #'parse-functions)
 
 @export
 (defun parse-functions (body)
@@ -80,38 +53,40 @@ to the `pddl-variable''s slot NAME."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;; actions etc.
 
-(defmacro define-action-getter (name key initializer)
+(defmacro define-action-getter (name key additional-arguments initializer)
   `(progn
-     (defmethod ,name ((domain-body list))
-
+     (defun ,(concatenate-symbols 'parse name)
+	 (domain ,@additional-arguments)
        (if-let ((cls (remove-if-not
 		      (lambda (clause) (eq (car clause) ,key))
-		      domain-body)))
-	 (mapcar (compose ,initializer #'cdr)
+		      domain)))
+	 (mapcar (compose (rcurry ,initializer ,@additional-arguments)
+			  #'cdr)
 		 cls)
 	 (warn "~A not found in this PDDL" ',name)))))
 
-(define-action-getter actions :action #'parse-action)
+(define-action-getter actions :action () #'parse-action)
 
 @export
-(defun parse-action (action)
+(defun parse-action (action predicates)
   (ematch action
     ((list name
 	   :parameters typed-variables
 	   :precondition precond
 	   :effect effect)
-     (let ((params (parse-typed-list typed-variables)))
+     (let ((params (parse-typed-list typed-variables nil nil)))
        (pddl-action :name name
 		    :parameters params
 		    :precondition (parse-pre-GD precond params)
 		    :effect (parse-effect effect params))))))
 
-(define-action-getter durative-actions :durative-action
+(define-action-getter durative-actions :durative-action ()
   #'parse-durative-action)
 
 @export
 (defun parse-durative-action (durative-action)
   (not-implemented 'durative-action)
+  ;; TODO:: params
   ;; (ematch durative-action
   ;;   ((list name
   ;; 	   :parameters typed-variables
@@ -127,12 +102,13 @@ to the `pddl-variable''s slot NAME."
   ;;    	:effect (parse-effect effect params)))))
   )
 
-(define-action-getter derived-predicates :derived
+(define-action-getter derived-predicates :derived ()
   #'parse-derived-predicate)
 
 @export
 (defun parse-derived-predicate (derived-predicate)
   (not-implemented 'derived-predicate)
+  ;; TODO:: params
   ;; (ematch derived-predicate
   ;;   ((list typed-variables effect)
   ;;    (not-implemented 'derived-predicate)
