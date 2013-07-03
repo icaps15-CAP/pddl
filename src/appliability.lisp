@@ -41,14 +41,15 @@ PROBLEM: `pddl-problem'."
 
 
 @export
-(defun retrieve-all-matching2 (states action)
+(defun retrieve-all-match-set (states action)
   (if states
       (multiple-value-match (%apply-clause-rec states (precondition action) nil nil)
 	((t _ matches used)
 	 (cons matches
 	       (iter (for u in used)
 		     (format t "~%removed ~a!~%" u)
-		     (when-let ((match (retrieve-all-matching2 (remove u states) action)))
+		     (when-let ((match (retrieve-all-match-set
+					(remove u states) action)))
 		       (appending match)))))
 	((_) nil))
       nil))

@@ -22,10 +22,11 @@
 
   )
 
-;; (test all-match-set
+(test all-match-set
   
-;;   (retrieve-all-matching
-;;    (init depotprob1818)
-;;    (action depot :drive))
+  (is (equalp (retrieve-all-match-set
+	       (init depotprob1818)
+	       (action depot :drive))
+	      `(
 
-;;   )
+  )

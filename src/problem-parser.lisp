@@ -14,6 +14,16 @@
     (mapcar #'parse-atomic-state
 	    init-descriptions)))
 
+@export
+(defun parse-predicate (predicate-def)
+  (match predicate-def
+    ((list* pred-name arguments)
+     (pddl-predicate :name pred-name
+		     :parameters (parse-typed-list arguments)))))
+
+@export
+(defun parse-atomic-formula (atom)
+  (parse-predicate atom)) ;; same as predicate
 
 @export
 (defun parse-atomic-state (desc)
@@ -64,10 +74,6 @@
   (match desc
     ((notp atom) (parse-atomic-formula atom))
     (atom (parse-atomic-formula atom))))
-
-@export
-(defun parse-atomic-formula (atom)
-  (parse-predicate atom)) ;; same as predicate
 
 @export
 (defun parse-effect (effect)

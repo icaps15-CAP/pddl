@@ -28,16 +28,6 @@
 				   vars)
 			   acc)))))
 
-
-@export
-(defun parse-predicate (predicate-def)
-  (match predicate-def
-    ((list* pred-name arguments)
-     (pddl-predicate :name pred-name
-		     :parameters (parse-typed-list arguments)))))
-
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; domain clause getters 
 
@@ -67,13 +57,7 @@
 
 (define-clause-getter predicates :predicates
   (lambda (predicates)
-    (mapcar (lambda (predicate)
-	      (ematch predicate
-		((list* name parameters)
-		 (pddl-predicate
-		  :name name
-		  :parameters (parse-typed-list parameters)))))
-	    predicates)))
+    (mapcar #'parse-predicate predicates)))
 
 (define-clause-getter functions :functions #'parse-functions)
 
@@ -105,38 +89,43 @@
 	   :parameters typed-variables
 	   :precondition precond
 	   :effect effect)
-     (pddl-action :name name
-		  :parameters (parse-typed-list typed-variables)
-		  :precondition (parse-pre-GD precond)
-		  :effect (parse-effect effect)))))
+     (let ((params (parse-typed-list typed-variables)))
+       (pddl-action :name name
+		    :parameters params
+		    :precondition (parse-pre-GD precond params)
+		    :effect (parse-effect effect params))))))
 
 (define-action-getter durative-actions :durative-action
   #'parse-durative-action)
 
 @export
 (defun parse-durative-action (durative-action)
-  (ematch durative-action
-    ((list name
-	   :parameters typed-variables
-	   :duration (list '= '?duration f-exp)
-	   :condition cond
-	   :effect effect)
-     (not-implemented 'durative-action)
-     (pddl-durative-action
-      :name name
-      :parameters (parse-typed-list typed-variables)
-      :duration f-exp
-      :condition (parse-GD cond)
-      :effect (parse-effect effect)))))
+  (not-implemented 'durative-action)
+  ;; (ematch durative-action
+  ;;   ((list name
+  ;; 	   :parameters typed-variables
+  ;; 	   :duration (list '= '?duration f-exp)
+  ;; 	   :condition cond
+  ;; 	   :effect effect)
+  ;;    (let ((params (parse-typed-list typed-variables)))
+  ;;      (pddl-durative-action
+  ;;    	:name name
+  ;;    	:parameters params
+  ;;    	:duration f-exp
+  ;;    	:condition (parse-GD cond params)
+  ;;    	:effect (parse-effect effect params)))))
+  )
 
 (define-action-getter derived-predicates :derived
   #'parse-derived-predicate)
 
 @export
 (defun parse-derived-predicate (derived-predicate)
-  (ematch derived-predicate
-    ((list typed-variables effect)
-     (not-implemented 'derived-predicate)
-     (pddl-derived-predicate
-      :parameters (parse-typed-list typed-variables)
-      :effect (parse-GD effect)))))
+  (not-implemented 'derived-predicate)
+  ;; (ematch derived-predicate
+  ;;   ((list typed-variables effect)
+  ;;    (not-implemented 'derived-predicate)
+  ;;    (pddl-derived-predicate
+  ;;     :parameters (parse-typed-list typed-variables)
+  ;;     :effect (parse-GD effect))))
+  )
