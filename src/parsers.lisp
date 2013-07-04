@@ -8,139 +8,178 @@ the optional argument DICTIONARY is a list of `pddl-variable's.
 if the designator in the list refers to an already defined variable
 then it is always used. The reference is determined by the EQuality
 to the `pddl-variable''s slot NAME."
-(defun parse-typed-list (lst &optional dictionary (error-not-found t))
-  (%getting-vars lst nil nil dictionary error-not-found))
+(defun parse-typed-list (lst &optional
+			 (dictionary *params*))
+  (%getting-vars lst nil nil dictionary))
 
 (defun %eqname1 (sym var)
   (eq sym (name var)))
 
+@export
+(define-condition found-in-dictionary (simple-warning)
+  ((found :initarg :found) (dictionary :initarg :dictionary))
+  (:report
+   (lambda (c s)
+     (with-slots (found dictionary) c
+       (format s "~A found in the dictionary:~%~a~% Maybe duplicated?"
+	       found dictionary)))))
+@export
+(define-condition not-found-in-dictionary (simple-error)
+  ((name :initarg :name) (dictionary :initarg :dictionary))
+  (:report
+   (lambda (c s)
+     (with-slots (name dictionary) c
+       (format s "~A not found in the given dictionary:~% ~a"
+	       name dictionary)))))
+
+
 (defun %intern-variable (name type dictionary)
   (if-let ((found (find-if (curry #'%eqname1 name) dictionary)))
-    (values found nil)
-    (values (pddl-variable :name name :type type) t)))
+    (progn
+      (warn 'found-in-dictionary :found found :dictionary dictionary)
+      found)
+    (error 'not-found-in-dictionary :name name :dictionary dictionary)))
 
-(defun %getting-vars (lst vars acc dictionary e)
+(defun %getting-vars (lst vars acc dictionary)
   (ematch lst
     ((list* '- type rest)
      (iter (for name in vars) ;; 2. vars : reverse order
-	   (for (values var new?) = (%intern-variable name type dictionary))
-	   (when new?
-	     (if e
-		 (error "~A not found in given dictionary ~a" var dictionary)
-		 (push var dictionary)))
+	   (for var = 
+		(restart-case
+		    (%intern-variable name type dictionary)
+		  (intern-variable ()
+		    (let ((var (pddl-variable :name name :type type)))
+		      (push var dictionary)
+		      var))))
 	   ;; 3. pushing at the beginning, resulting order is regular
 	   (collecting var into variables at beginning)
 	   (finally
 	    (return
 	      (%getting-vars ;; 4. acc is always in a regular order
-	       rest nil (append acc variables) dictionary e)))))
+	       rest nil (append acc variables) dictionary)))))
     ((list* name rest) ;; 1. reversed order
-     (%getting-vars rest (cons name vars) acc dictionary e))
+     (%getting-vars rest (cons name vars) acc dictionary))
     (nil
+     
      ;; 5. var is reversed, acc is regular
-     (append acc (nreverse (mapcar (rcurry #'%intern-variable t dictionary)
+     (append acc (nreverse (mapcar (lambda (name)
+				     (restart-case
+					 (%intern-variable name t nil)
+				       (intern-variable ()
+					 (pddl-variable :name name :type t))))
 				   vars))))))
 
 @export
-(defun parse-predicate (predicate-def params &optional dictionary (error-not-found t))
+(defun parse-predicate (predicate-def &optional
+			(params *params*)
+			(dictionary (predicates *domain*)))
   (match predicate-def
     ((list* pred-name arguments)
-     (if-let ((found (find-if (curry #'%eqname1 pred-name) dictionary)))
-	     (values found nil)
-	     (when error-not-found
-	       (error "~A not found in given dictionary ~a" pred-name dictionary)
-	       (values (pddl-predicate
-			:name pred-name
-			:parameters (parse-typed-list arguments params)) t))))))
+     (restart-case
+	 (if-let ((found (find-if (curry #'%eqname1 pred-name) dictionary)))
+	   (progn
+	     (warn 'found-in-dictionary :found found :dictionary dictionary)
+	     found)
+	   (error 'not-found-in-dictionary
+		  :name pred-name :dictionary dictionary))
+       (intern-variable ()
+	 (handler-bind ((not-found-in-dictionary 
+			 (lambda (c)
+			   @ignore c
+			   (invoke-restart
+			    (find-restart 'intern-variable)))))
+	   (pddl-predicate
+	    :name pred-name
+	    :parameters (parse-typed-list arguments params))))))))
 
 @export
-(defun parse-atomic-formula (atom params predicates)
-  (parse-predicate atom params predicates)) ;; same as predicate
+(defun parse-atomic-formula (atom)
+  (parse-predicate atom)) ;; same as predicate
 
 @export
-(defun parse-atomic-state (desc params predicates)
-  (change-class (parse-atomic-formula desc params predicates)
+(defun parse-atomic-state (desc)
+  (change-class (parse-atomic-formula desc)
 		'pddl-atomic-state))
 
 @export
 @doc "Parsing description for precondition."
-(defun parse-pre-GD (goal-description params predicates)
+(defun parse-pre-GD (goal-description)
   (match goal-description
     ((andp ds)
-     `(and ,@(mapcar (rcurry #'parse-pre-GD params predicates) ds)))
+     `(and ,@(mapcar (rcurry #'parse-pre-GD) ds)))
     ((forallp typed-list d)
-     `(forall ,(parse-typed-list typed-list params) ,(parse-pre-GD d params predicates)))
-    (_ (parse-pref-GD goal-description params predicates))))
+     `(forall ,(parse-typed-list typed-list) ,(parse-pre-GD d)))
+    (_ (parse-pref-GD goal-description))))
 
 @export
-(defun parse-pref-GD (goal-description params predicates)
+(defun parse-pref-GD (goal-description)
   (match goal-description
     ((op 'preference _)
      (not-implemented 'preference))
-    (_ (parse-GD goal-description params predicates))))
+    (_ (parse-GD goal-description))))
 
 @export
-(defun parse-GD (goal-description params predicates)
+(defun parse-GD (goal-description)
   (ematch goal-description
-    ((op (and op (or 'or 'and)) ds)  `(,op ,@(mapcar (rcurry #'parse-GD params predicates) ds)))
-    ((notp d)                        `(not ,(parse-GD d params predicates)))
-    ((impliesp d1 d2)                `(implies ,(parse-GD d1 params predicates)
-					       ,(parse-GD d2 params predicates)))
+    ((op (and op (or 'or 'and)) ds)  `(,op ,@(mapcar (rcurry #'parse-GD) ds)))
+    ((notp d)                        `(not ,(parse-GD d)))
+    ((impliesp d1 d2)                `(implies ,(parse-GD d1)
+					       ,(parse-GD d2)))
     ((op (and op (or 'forall 'exists)) typed-list d)
-     `(,op ,(parse-typed-list typed-list params) ,(parse-GD d params predicates)))
+     `(,op ,(parse-typed-list typed-list) ,(parse-GD d)))
     ((op (or '> '< '>= '<= '=) _)
-     (parse-f-comp goal-description params predicates))
-    (_ (parse-atomic-formula goal-description params predicates))))
+     (parse-f-comp goal-description))
+    (_ (parse-atomic-formula goal-description))))
 
 @export
 (defun parse-functions (body)
   (not-implemented 'functions))
 
 @export
-(defun parse-f-comp (f-comp params predicates)
-  @ignore f-comp params
+(defun parse-f-comp (f-comp)
+  @ignore f-comp
   (not-implemented '(> < >= <= =)))
 
 @export
-(defun parse-literal (desc params predicates)
+(defun parse-literal (desc)
   (match desc
-    ((notp atom) (parse-atomic-formula atom params predicates))
-    (atom (parse-atomic-formula atom params predicates))))
+    ((notp atom) (parse-atomic-formula atom))
+    (atom (parse-atomic-formula atom))))
 
 @export
-(defun parse-effect (effect params predicates)
+(defun parse-effect (effect)
   (match effect
     ((andp ds)
-     `(and ,@(mapcar (rcurry #'parse-c-effect params predicates) ds)))
-    (_ (parse-c-effect effect params predicates))))
+     `(and ,@(mapcar (rcurry #'parse-c-effect) ds)))
+    (_ (parse-c-effect effect))))
 
-(defun parse-c-effect (effect params predicates)
+(defun parse-c-effect (effect)
   (match effect
     ((forallp typed-list d)
-     `(forall ,(parse-typed-list typed-list params)
-	      ,(parse-effect d params predicates)))
+     `(forall ,(parse-typed-list typed-list)
+	      ,(parse-effect d)))
     ((whenp cond cond-effect)
-     `(when ,(parse-GD cond params predicates)
-	,(parse-cond-effect cond-effect params predicates)))
-    (_ (parse-p-effect effect params predicates))))
+     `(when ,(parse-GD cond)
+	,(parse-cond-effect cond-effect)))
+    (_ (parse-p-effect effect))))
   
-(defun parse-p-effect (effect params predicates)
+(defun parse-p-effect (effect)
   (match effect
     ((list* (or 'assign 'scale-up 'scale-down 'increase 'decrease) _)
      (not-implemented '(assign scale-up scale-down increase decrease)))
     ((notp d)
-     `(not ,(parse-atomic-formula d params predicates)))
-    (_ (parse-atomic-formula effect params predicates))))
+     `(not ,(parse-atomic-formula d)))
+    (_ (parse-atomic-formula effect))))
 
-(defun parse-cond-effect (effect params predicates)
+(defun parse-cond-effect (effect)
   (match effect
     ((andp p)
-     `(and ,(mapcar (rcurry #'parse-p-effect params predicates) p)))
-    (_ (parse-p-effect effect params predicates))))
+     `(and ,(mapcar (rcurry #'parse-p-effect) p)))
+    (_ (parse-p-effect effect))))
 
 @export
-(defun parse-metric (body params predicates)
-  @ignore body params predicates
+(defun parse-metric (body)
+  @ignore body
   (not-implemented 'metric)
   ;; (ematch body
   ;;   ((list (and optimization (or 'maximize 'minimize)) metric-f-exp)

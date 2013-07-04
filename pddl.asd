@@ -30,13 +30,19 @@
 		:serial t
                 :components
                 ((:file :pddl)
-		 (:file :helper)
+		 (:file :specials)
 		 (:file :generics)
+		 (:file :helper)
+		 (:file :parsers)
+		 
 		 (:file :domain-class)
 		 (:file :problem-class)
 		 (:file :domain-parser)
 		 (:file :problem-parser)
+		 (:file :bootstrap)
+		 
 		 (:file :plan-reader)
+		 
 		 (:file :appliability))))
   :description "PDDL parser"
   :long-description

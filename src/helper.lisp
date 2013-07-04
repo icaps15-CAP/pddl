@@ -1,6 +1,7 @@
 (in-package :pddl)
 (use-syntax :annot)
 
+@export
 (defun not-implemented (what)
   (warn "~A not implemented yet." what))
 
@@ -30,3 +31,8 @@
 
 
 (export '(orp andp notp op impliesp forallp existsp whenp))
+
+@export
+(defun intern-variable-handler (c)
+  @ignore c
+  (invoke-restart 'intern-variable))

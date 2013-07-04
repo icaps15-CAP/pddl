@@ -14,6 +14,11 @@
 (define-pddl-class pddl-problem-slot (pddl-domain-slot)
   (problem))
 
+(defmethod initialize-instance :after ((o pddl-problem-slot)
+				       &rest args)
+  @ignore args
+  (setf (problem o) *problem*))
+
 (define-pddl-class pddl-atomic-state (pddl-problem-slot pddl-predicate)
   ())
 
@@ -30,7 +35,6 @@
   (if (eq (type v) t)
       (format s "#<OBJ ~A>" (name v))
       (format s "#<OBJ ~A - ~A>" (name v) (type v))))
-
 
 (define-pddl-class pddl-metric (pddl-problem-slot)
   (body))

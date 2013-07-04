@@ -32,6 +32,11 @@
 (define-pddl-class pddl-domain-slot ()
   (domain))
 
+(defmethod initialize-instance :after ((o pddl-domain-slot)
+				       &rest args)
+  @ignore args
+  (setf (domain o) *domain*))
+
 (define-pddl-class pddl-domain (namable)
   (requirements
    types

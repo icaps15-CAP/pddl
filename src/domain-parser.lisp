@@ -1,6 +1,7 @@
 
 (in-package :pddl)
 (use-syntax :annot)
+(optimize*)
 ;; metatilities:defclass*
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -11,17 +12,16 @@
   (cdr (find-if (lambda (clause) (eq (car clause) key))
 		domain-or-problem-body)))
 
-(defmacro define-clause-getter (name key additional-arguments initializer)
-  `(defun ,(concatenate-symbols 'parse name)
-       (domain ,@additional-arguments)
+(defmacro define-clause-getter (name key initializer)
+  `(defun ,(concatenate-symbols 'parse name) (unparsed-domain-or-problem)
      (declare (type list domain))
      (if-let ((cl (find-clause domain ,key)))
-       (funcall ,initializer cl ,@additional-arguments)
+       (funcall ,initializer cl)
        (warn "~A not found in this PDDL" ',name))))
 
 (define-clause-getter
-    requirements :requirements ()
-    #'identity)
+    requirements :requirements
+  #'identity)
 
 (defun typed-objects (typed-list class)
   (mapcar (rcurry #'change-class class)
@@ -29,53 +29,57 @@
 ;;           ^^-- returns PDDL-VARIABLEs
 
 (define-clause-getter
-    types :types ()
-    (rcurry #'typed-objects 'pddl-types))
+    types :types
+  (rcurry #'typed-objects 'pddl-types))
 
 (define-clause-getter
-    constants :constants ()
-    (rcurry #'typed-objects 'pddl-constant))
+    constants :constants
+  (rcurry #'typed-objects 'pddl-constant))
 
 (define-clause-getter 
-    predicates :predicates ()
-    (lambda (predicates)
-      (mapcar #'parse-predicate predicates)))
+    predicates :predicates
+  (lambda (predicates)
+    (handler-bind ((not-found-in-dictionary
+		    #'intern-variable-handler))
+      (mapcar (lambda (predicate-def)
+		(parse-predicate predicate-def nil nil))
+	      predicates))))
 
 (define-clause-getter
-    functions :functions ()
-    #'parse-functions)
+    functions :functions
+  #'parse-functions)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;; actions etc.
 
-(defmacro define-action-getter (name key additional-arguments initializer)
+(defmacro define-action-getter (name key initializer)
   `(progn
-     (defun ,(concatenate-symbols 'parse name)
-	 (domain ,@additional-arguments)
+     (defun ,(concatenate-symbols 'parse name) (domain)
        (if-let ((cls (remove-if-not
 		      (lambda (clause) (eq (car clause) ,key))
 		      domain)))
-	 (mapcar (compose (rcurry ,initializer ,@additional-arguments)
-			  #'cdr)
-		 cls)
+	 (mapcar (compose ,initializer #'cdr) cls)
 	 (warn "~A not found in this PDDL" ',name)))))
 
-(define-action-getter actions :action () #'parse-action)
+(define-action-getter actions :action #'parse-action)
+
 
 @export
-(defun parse-action (action predicates)
+(defun parse-action (action)
   (ematch action
     ((list name
 	   :parameters typed-variables
 	   :precondition precond
 	   :effect effect)
-     (let ((params (parse-typed-list typed-variables nil nil)))
+     (let ((*params* (handler-bind ((not-found-in-dictionary
+				     #'intern-variable-handler))
+		       (parse-typed-list typed-variables nil))))
        (pddl-action :name name
-		    :parameters params
-		    :precondition (parse-pre-GD precond params)
-		    :effect (parse-effect effect params))))))
+		    :parameters *params*
+		    :precondition (parse-pre-GD precond)
+		    :effect (parse-effect effect))))))
 
-(define-action-getter durative-actions :durative-action ()
+(define-action-getter durative-actions :durative-action
   #'parse-durative-action)
 
 @export
@@ -97,7 +101,7 @@
   ;;    	:effect (parse-effect effect params)))))
   )
 
-(define-action-getter derived-predicates :derived ()
+(define-action-getter derived-predicates :derived
   #'parse-derived-predicate)
 
 @export

@@ -2,7 +2,7 @@
 (in-package :pddl)
 (use-syntax :annot)
 
-(define-clause-getter domain :domain ()
+(define-clause-getter domain :domain
   (lambda (clause-body)
     (let ((domain-symbol (first clause-body)))
       (if (boundp domain-symbol)
@@ -11,18 +11,18 @@
 
 ;; these need to accept additional arguments `params'
 
-(define-clause-getter objects :objects ()
+(define-clause-getter objects :objects
   (rcurry #'typed-objects 'pddl-object))
 
-(define-clause-getter init :init (predicates objects)
-  (lambda (init-descriptions predicates objects)
-    (mapcar (rcutty #'parse-atomic-state objects predicates)
+(define-clause-getter init :init
+  (lambda (init-descriptions)
+    (mapcar #'parse-atomic-state
 	    init-descriptions)))
 
-(define-clause-getter goal :goal (predicates objects)
-  (lambda (goal-clause predicates objects)
-    (parse-GD (car goal-clause) objects predicates)))
+(define-clause-getter goal :goal
+  (lambda (goal-clause)
+    (parse-GD (car goal-clause))))
 
-(define-clause-getter metric :metric ()
+(define-clause-getter metric :metric
   #'parse-metric-spec)
 

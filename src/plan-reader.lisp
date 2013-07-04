@@ -3,19 +3,20 @@
 (use-syntax :annot)
 
 @export
-(defun parse-plan (pathname domain problem)
+(defun parse-plan (pathname *domain* *problem*)
   (with-open-file (s pathname)
     (mapcar (lambda (plan-description)
 	      (ematch plan-description
 		((list* action-name arguments)
-		 (assert (action domain action-name) nil
-			 "action-name ~A not found in ~A" action-name domain)
+		 (assert (action *domain* action-name) nil
+			 "action-name ~A not found in ~A"
+			 action-name *domain*)
 		 (pddl-atomic-state
 		  :name action-name
-		  :domain domain
-		  :problem problem
+		  :domain *domain*
+		  :problem *problem*
 		  :parameters
-		  (mapcar (curry #'object problem)
+		  (mapcar (curry #'object *problem*)
 			  arguments)))))
 	    (%parse-plan-rec s nil))))
 
