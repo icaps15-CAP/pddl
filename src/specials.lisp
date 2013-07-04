@@ -18,11 +18,3 @@ The consequence is undefined if the value changes during the parsing."
 only used during the parsing, do not use it to store a specific variable.
 The consequence is undefined if the value changes during the parsing."
 (defvar *params* nil)
-
-
-@export
-@doc "the predicates in the domain currently parsing.
-only used during the parsing, so
-do not use it to store a specific variable.
-The consequence is undefined if the value changes during the parsing."
-(defvar *predicates* nil)

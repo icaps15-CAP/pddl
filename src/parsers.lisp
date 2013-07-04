@@ -70,26 +70,17 @@ to the `pddl-variable''s slot NAME."
 
 @export
 (defun parse-predicate (predicate-def &optional
-			(params *params*)
-			(dictionary *predicates*))
+			(params *params*))
   (match predicate-def
     ((list* pred-name arguments)
-     (restart-case
-	 (if-let ((found (find-if (curry #'%eqname1 pred-name) dictionary)))
-	   (progn
-	     (warn 'found-in-dictionary :found found :dictionary dictionary)
-	     found)
-	   (error 'not-found-in-dictionary
-		  :name pred-name :dictionary dictionary))
-       (intern-variable ()
-	 (handler-bind ((not-found-in-dictionary 
-			 (lambda (c)
-			   @ignore c
-			   (invoke-restart
-			    (find-restart 'intern-variable)))))
-	   (pddl-predicate
-	    :name pred-name
-	    :parameters (parse-typed-list arguments params))))))))
+     (handler-bind ((not-found-in-dictionary 
+		     (lambda (c)
+		       @ignore c
+		       (invoke-restart
+			(find-restart 'intern-variable)))))
+       (pddl-predicate
+	:name pred-name
+	:parameters (parse-typed-list arguments params))))))
 
 @export
 (defun parse-atomic-formula (atom)
