@@ -45,11 +45,6 @@
     functions :functions ()
     #'parse-functions)
 
-@export
-(defun parse-functions (body)
-  (not-implemented 'functions))
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;; actions etc.
 

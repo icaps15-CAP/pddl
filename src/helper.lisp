@@ -3,6 +3,11 @@
 
 (defun not-implemented (what)
   (warn "~A not implemented yet." what))
+
+
+(defpattern qor (&rest syms)
+  `(or ,(mapcar (lambda (sym) `(quote ,sym)) syms)))
+
 (defpattern op (operater &rest arguments)
   `(list* ,operater ,@arguments))
 (defpattern andp (&rest rest)

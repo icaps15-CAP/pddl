@@ -10,17 +10,19 @@
 	  (warn "the domain ~A is not loaded yet!" domain-symbol)))))
 
 ;; these need to accept additional arguments `params'
-(define-clause-getter init :init ()
-  (lambda (init-descriptions)
-    (mapcar #'parse-atomic-state
-	    init-descriptions)))
-
-(define-clause-getter goal :goal ()
-  (compose #'parse-GD #'car))
-
-(define-clause-getter metric :metric ()
-  #'parse-metric)
 
 (define-clause-getter objects :objects ()
   (rcurry #'typed-objects 'pddl-object))
+
+(define-clause-getter init :init (predicates objects)
+  (lambda (init-descriptions predicates objects)
+    (mapcar (rcutty #'parse-atomic-state objects predicates)
+	    init-descriptions)))
+
+(define-clause-getter goal :goal (predicates objects)
+  (lambda (goal-clause predicates objects)
+    (parse-GD (car goal-clause) objects predicates)))
+
+(define-clause-getter metric :metric ()
+  #'parse-metric-spec)
 

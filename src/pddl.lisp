@@ -31,17 +31,17 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
   (ematch type
     ((list 'domain name)
      `(progn
-	(defparameter ,name ,(parse-domain name body))
+	(defparameter ,name ,(parse-domain-def name body))
 	',name))
     ((list 'problem name)
      `(progn
-	(defparameter ,name ,(parse-problem name body))
+	(defparameter ,name ,(parse-problem-def name body))
 	',name))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; bare parser
 
-(defun parse-domain (name body)
+(defun parse-domain-def (name body)
   (let ((dom (pddl-domain :name name)))
     (macrolet ((body-domain (accessor &rest args)
 		 `(setf (,accessor dom)
@@ -54,13 +54,13 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
       (body-domain types)
       (body-domain predicates)
       (body-domain constants)
-      (body-domain functions (predicates dom))
+      (body-domain functions)
       (body-domain actions (predicates dom))
       (body-domain durative-actions (predicates dom))
       (body-domain derived-predicates (predicates dom)))
     dom))
 
-(defun parse-problem (name body)
+(defun parse-problem-def (name body)
   (let* ((dom (domain body))
 	 (prob (pddl-problem :name name
 			     :domain dom)))
@@ -72,7 +72,7 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
 				  obj)
 				(,(concatenate-symbols 'parse accessor)
 				  body ,@args)))))
-      (body-problem objects (predicates dom))
+      (body-problem objects)
       (body-problem init (predicates dom) (objects prob))
 
       (setf (goal prob)
@@ -83,9 +83,9 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
 			    (change-class branch 'pddl-atomic-state
 					  :domain dom :problem prob))
 			   (t branch)))
-		       (goal body (predicates dom) (objects prob))))
+		       (parse-goal body (predicates dom) (objects prob))))
 
-      (body-problem metric (predicates dom))
+      (body-problem metric)
       prob)))
 
 ;; (eval-when (:compile-toplevel :load-toplevel :execute)
