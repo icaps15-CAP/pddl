@@ -6,6 +6,7 @@
 (in-package :cl-user)
 (defpackage pddl-test
   (:use :cl
+	:guicho-utilities
 	:iterate
 	:optima
         :pddl

@@ -14,8 +14,8 @@
 
 (defmacro define-clause-getter (name key initializer)
   `(defun ,(concatenate-symbols 'parse name) (unparsed-domain-or-problem)
-     (declare (type list domain))
-     (if-let ((cl (find-clause domain ,key)))
+     (declare (type list unparsed-domain-or-problem))
+     (if-let ((cl (find-clause unparsed-domain-or-problem ,key)))
        (funcall ,initializer cl)
        (warn "~A not found in this PDDL" ',name))))
 

@@ -32,7 +32,6 @@ to the `pddl-variable''s slot NAME."
        (format s "~A not found in the given dictionary:~% ~a"
 	       name dictionary)))))
 
-
 (defun %intern-variable (name type dictionary)
   (if-let ((found (find-if (curry #'%eqname1 name) dictionary)))
     (progn
@@ -64,7 +63,7 @@ to the `pddl-variable''s slot NAME."
      ;; 5. var is reversed, acc is regular
      (append acc (nreverse (mapcar (lambda (name)
 				     (restart-case
-					 (%intern-variable name t nil)
+					 (%intern-variable name t dictionary)
 				       (intern-variable ()
 					 (pddl-variable :name name :type t))))
 				   vars))))))
@@ -72,7 +71,7 @@ to the `pddl-variable''s slot NAME."
 @export
 (defun parse-predicate (predicate-def &optional
 			(params *params*)
-			(dictionary (predicates *domain*)))
+			(dictionary *predicates*))
   (match predicate-def
     ((list* pred-name arguments)
      (restart-case

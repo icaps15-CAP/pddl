@@ -7,31 +7,43 @@
 	 (*problem* depotprob1818)
 	 (p (predicate *domain* :at))
 	 (*params* (objects depotprob1818)))
-    (let* ((s (parse-atomic-state '(at pallet1 distributor0)))
-	   (s2 (parse-atomic-state '(at pallet1 distributor1)))
-	   (matches (%try-match p s nil)))
-      
-      (is (eq 'pallet1 (name (first (parameters s)))))
-      (is (eq 'distributor0 (name (second (parameters s)))))
-      (is (eq 'distributor1 (name (second (parameters s2)))))
+    (let ((s (find-if (lambda (pred)
+			(match pred
+			  ((pddl-atomic-state
+			    :name 'at
+			    :parameters
+			    (list (pddl-object :name 'pallet0)
+			    	  (pddl-object :name 'depot0)))
+			   t)))
+		      (init *problem*)))
+	  (s2 (find-if (lambda (pred)
+			 (match pred
+			   ((state 'at 'pallet1 'distributor0) t)))
+		       (init *problem*)))
+	  
+	  (s3 (find-if (lambda (pred)
+			 (match pred
+			   ((state 'place 'depot0) t)))
+		       (init *problem*))))
+      (let* ((matches (%try-match p s nil)))
+	(is-false (null s))
+	(is-false (null s2))
 
-      (is (eq (first (parameters s))
-	      (first (parameters s2))))
+	(is (eq (second (parameters s))
+		(first (parameters s3))))
 
-      (iter (for var in (parameters p))
-	    (for obj in (parameters s))
-	    (is (eq (getf matches (name var))
-		    obj)))
+	(iter (for var in (parameters p))
+	      (for obj in (parameters s))
+	      (is (eq (getf matches (name var))
+		      obj)))
 
 
-      ;; (signals assignment-error
-      ;;   (%try-match p s2 matches))
-      (is (null (%try-match p s2 matches)))))
-  (is (appliable
-       (init depotprob1818)
-       (action depot :drive)))
-
-  )
+	;; (signals assignment-error
+	;;   (%try-match p s2 matches))
+	(is (null (%try-match p s2 matches)))))
+    (is (appliable
+	 (init *problem*)
+	 (action *domain* :drive)))))
 
 (test (all-match-set :depends-on appliability)
   (let ((set (retrieve-all-match-set

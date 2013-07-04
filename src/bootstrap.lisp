@@ -37,24 +37,26 @@
       (body-domain requirements)
       (body-domain types)
       (body-domain predicates)
-      (body-domain constants)
-      (body-domain functions)
-      (body-domain actions)
-      (body-domain durative-actions)
-      (body-domain derived-predicates))
+      (let ((*predicates* (predicates *domain*)))
+	(body-domain constants)
+	(body-domain functions)
+	(body-domain actions)
+	(body-domain durative-actions)
+	(body-domain derived-predicates)))
     *domain*))
 
 (defun parse-problem-def (name body)
-  (let* ((*domain* (parse-domain body)) ; these special variables are used in
-	 (*problem*               ; the initialization of subclause objects.
-	  (pddl-problem :name name)))
+  (let* (;; these special variables are used in
+	 ;; the initialization of subclause objects.
+	 (*domain* (parse-domain body))
+	 (*problem* (pddl-problem :name name)))
     (macrolet ((body-problem (accessor)
 		 `(setf (,accessor *problem*)
 			(,(concatenate-symbols 'parse accessor) body))))
-      (let ((*params* (handler-bind ((not-found-in-dictionary
-				      #'intern-variable-handler))
-			(body-problem objects))))
-	(body-problem init)
-	(body-problem goal)      
-	(body-problem metric))
+      (handler-bind ((not-found-in-dictionary
+		      #'intern-variable-handler))
+	(let ((*params* (body-problem objects)))
+	  (body-problem init)
+	  (body-problem goal)      
+	  (body-problem metric)))
       *problem*)))

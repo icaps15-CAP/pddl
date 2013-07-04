@@ -30,7 +30,31 @@
   `(op 'when ,cond ,cond-effect _))
 
 
-(export '(orp andp notp op impliesp forallp existsp whenp))
+(defpattern predicate (name &rest rest)
+  `(pddl-predicate
+    :name ,name
+    :parameters
+    (list ,@(mapcar (lambda (varspec)
+		      (match varspec
+			((list (and name (not 'quote)) type)
+			 `(pddl-variable :name ,name :type ,type))
+			(_ `(pddl-variable :name ,varspec))))
+		    rest))))
+
+(defpattern state (name &rest rest)
+  `(pddl-atomic-state
+    :name ,name
+    :parameters
+    (list ,@(mapcar (lambda (varspec)
+		      (match varspec
+			((list (and name (not 'quote)) type)
+			 `(pddl-object :name ,name :type ,type))
+			(_ `(pddl-object :name ,varspec))))
+		    rest))))
+
+
+
+(export '(orp andp notp op impliesp forallp existsp whenp predicate state))
 
 @export
 (defun intern-variable-handler (c)

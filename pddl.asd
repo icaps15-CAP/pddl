@@ -43,7 +43,9 @@
 		 
 		 (:file :plan-reader)
 		 
-		 (:file :appliability))))
+		 (:file :appliability)
+
+		 (:file :printers))))
   :description "PDDL parser"
   :long-description
   #.(with-open-file (stream (merge-pathnames

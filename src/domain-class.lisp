@@ -25,10 +25,6 @@
 (define-pddl-class namable ()
   (name))
 
-(defmethod print-object ((o namable) s)
-  (print-unreadable-object (o s :type t)
-    (princ (name o) s)))
-
 (define-pddl-class pddl-domain-slot ()
   (domain))
 
@@ -81,20 +77,12 @@
 (define-pddl-class pddl-predicate (pddl-domain-slot namable)
   ((parameters :type pddl-variable)))
 
-(defmethod print-object ((o pddl-predicate) s)
-  (format s "#<PREDICATE ~a ~{~a~^ ~}>" (name o) (parameters o)))
-
 #+sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (sb-ext:with-unlocked-packages (:cl)
     (define-pddl-class pddl-variable (pddl-domain-slot
 				      namable)
       (type))))
-
-(defmethod print-object ((v pddl-variable) s)
-  (if (eq (type v) t)
-      (format s "#[~A]" (name v))
-      (format s "#[~A ∈ ~A]" (name v) (type v))))
 
 #-sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
@@ -111,7 +99,7 @@
   (body))
 
 (define-pddl-class pddl-action (pddl-domain-slot namable)
-  (   (parameters :type pddl-variable)
+  ((parameters :type pddl-variable)
    precondition
    effect))
 
