@@ -107,9 +107,9 @@
   (let ((acc nil))
     (walk-tree (lambda (branch cont)
 		 (match branch
-		   ((op 'and rest)
+		   ((andp rest)
 		    (funcall cont rest))
-		   ((op 'not _)
+		   ((notp _)
 		    nil)
 		   ((type pddl-predicate)
 		    (push branch acc))))
@@ -120,9 +120,9 @@
   (let ((acc nil))
     (walk-tree (lambda (branch cont)
 		 (match branch
-		   ((op 'and rest)
+		   ((andp rest)
 		    (funcall cont rest))
-		   ((op 'not pred)
+		   ((notp pred)
 		    (push pred acc))
 		   ((type pddl-predicate)
 		    nil)))

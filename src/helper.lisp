@@ -36,8 +36,8 @@
     :parameters
     (list ,@(mapcar (lambda (varspec)
 		      (match varspec
-			((list (and name (not 'quote)) type)
-			 `(pddl-variable :name ,name :type ,type))
+			((list* (and obj (not 'quote)) args)
+			 `(and ,obj (pddl-variable ,@args)))
 			(_ `(pddl-variable :name ,varspec))))
 		    rest))))
 
@@ -47,8 +47,8 @@
     :parameters
     (list ,@(mapcar (lambda (varspec)
 		      (match varspec
-			((list (and name (not 'quote)) type)
-			 `(pddl-object :name ,name :type ,type))
+			((list* (and obj (not 'quote)) args)
+			 `(and ,obj (pddl-object ,@args)))
 			(_ `(pddl-object :name ,varspec))))
 		    rest))))
 
