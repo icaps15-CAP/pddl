@@ -42,7 +42,7 @@
     (handler-bind ((not-found-in-dictionary
 		    #'intern-variable-handler))
       (mapcar (lambda (predicate-def)
-		(parse-predicate predicate-def nil nil))
+		(parse-predicate predicate-def nil))
 	      predicates))))
 
 (define-clause-getter
