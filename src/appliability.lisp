@@ -33,7 +33,7 @@ PROBLEM: `pddl-problem'."
 	((t _ matches used)
 	 (cons matches
 	       (iter (for u in used)
-		     (format t "~%removed ~a!~%" u)
+		     (warn "removed ~a from the states!" u)
 		     (when-let ((match (retrieve-all-match-set
 					(remove u states) action)))
 		       (appending match)))))
