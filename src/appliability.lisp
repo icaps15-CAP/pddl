@@ -110,13 +110,13 @@ Values are (success-p remaining-states new-matches used-states)."
 	  (changed nil))
       (iter (for var in (parameters p))
 	    (for obj in (parameters s))
-	    (if-let ((matched-obj (getf matches (name var))))
-	      (if (eqname obj matched-obj)
+	    (if-let ((matched-obj (getf matches var)))
+	      (if (eq obj matched-obj)
 		  (next-iteration)
 		  (return-from %try-match nil))
 	      (progn 
 		(setf changed t)
-		(setf (getf matches (name var)) obj))))
+		(setf (getf matches var) obj))))
       (values matches changed))))
 
 (define-condition assignment-error ()

@@ -34,7 +34,7 @@
 
 	(iter (for var in (parameters p))
 	      (for obj in (parameters s))
-	      (is (eq (getf matches (name var))
+	      (is (eq (getf matches var)
 		      obj)))
 
 
