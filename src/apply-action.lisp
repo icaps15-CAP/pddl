@@ -7,4 +7,4 @@
 
 @export
 (defun make-actual-action (action match-set)
-  )
+  (plist-alist state))
