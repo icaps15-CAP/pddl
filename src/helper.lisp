@@ -30,6 +30,11 @@
   `(op 'when ,cond ,cond-effect _))
 
 
+(defpattern var (name type)
+  `(pddl-variable
+    :name ,name
+    :type ,type))
+
 (defpattern predicate (name &rest rest)
   `(pddl-predicate
     :name ,name
@@ -54,7 +59,9 @@
 
 
 
-(export '(orp andp notp op impliesp forallp existsp whenp predicate state))
+(export '(op orp andp notp
+	  impliesp forallp existsp whenp
+	  var predicate state))
 
 @export
 (defun intern-variable-handler (c)

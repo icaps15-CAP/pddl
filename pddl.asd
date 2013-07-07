@@ -44,6 +44,7 @@
 		 (:file :plan-reader)
 		 
 		 (:file :appliability)
+		 (:file :apply-action)
 
 		 (:file :printers))))
   :description "PDDL parser"

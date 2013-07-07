@@ -56,9 +56,9 @@
 (test (apply-action :depends-on appliability)
   (let* ((a (action depot :drive))
 	 (new-states (apply-action 
-		      (make-actual-action
-		       a (first (retrieve-all-match-set
-				 (init depotprob1818) a)))
+		      a
+		      (first (retrieve-all-match-set
+			      (init depotprob1818) a))
 		      (init depotprob1818))))
     (is-false (null new-states))
     (dolist (s new-states)
