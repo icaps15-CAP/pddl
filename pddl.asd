@@ -45,6 +45,7 @@
 		 
 		 (:file :appliability)
 		 (:file :apply-action)
+		 (:file :goal-check)
 
 		 (:file :printers))))
   :description "PDDL parser"
