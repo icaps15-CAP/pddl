@@ -51,30 +51,32 @@
 	       (action depot :drive))))
     (is (= (length set) 2))))
 
-
+(defun new-states (prob)
+  (let* ((a (action depot :drive))
+	 (set (first (retrieve-all-match-set
+		      (init prob) a))))
+    (apply-action 
+     a
+     set
+     (init prob))))
 
 (test (apply-action :depends-on appliability)
-  (let* ((a (action depot :drive))
-	 (new-states (apply-action 
-		      a
-		      (first (retrieve-all-match-set
-			      (init depotprob1818) a))
-		      (init depotprob1818))))
+  (let ((new-states (new-states depotprob1818)))
     (is-false (null new-states))
     (dolist (s new-states)
       (match s
 	((state 'at 'truck1 (where))
-	 (case where
-	   ((object depotprob1818 'distributor1) (pass))
-	   ((object depotprob1818 'depot0) (fail "truck1 not moved"))
-	   (t (fail "truck1 moved to the wrong position ~A" where))))
-	(_ (pass))))))
+	 (is-false (eq where (object depotprob1818 'depot0))
+		   "truck1 not moved")
+	 (is (eq where (object depotprob1818 'distributor1))
+	     "truck1 moved to the wrong position ~A"))))))
 
 (test (simulate-plan :depends-on apply-action)
   (iter (for aa in plan)
-	(for state 
+	(for a = (action (domain aa) aa))
+	(for states 
 	     first (init depotprob1818)
-	     then (apply-action aa state))
-	(print state)
+	     then (apply-action a (match-set aa) states))
+	(print states)
 	(finally
-	 (is (goal-p depotprob1818 state)))))
+	 (is (goal-p depotprob1818 states)))))

@@ -7,8 +7,8 @@
 
 (define-pddl-class pddl-problem (pddl-domain-slot namable)
   (objects
-   (init :type pddl-atomic-state)
-   (goal :type pddl-atomic-state)
+   init
+   goal
    metric))
 
 (define-pddl-class pddl-problem-slot (pddl-domain-slot)
@@ -24,7 +24,6 @@
 
 (defmethod predicate ((domain pddl-domain) (state pddl-atomic-state))
   (predicate domain (name state)))
-
 
 (define-pddl-class pddl-object (pddl-problem-slot pddl-variable)
   ())

@@ -21,7 +21,14 @@
 
 (define-clause-getter goal :goal
   (lambda (goal-clause)
-    (parse-GD (car goal-clause))))
+    (walk-tree
+     (lambda (branch cont)
+       (etypecase branch
+	 (cons (funcall cont branch))
+	 (pddl-predicate (change-class branch 'pddl-atomic-state
+				       :problem *problem*))
+	 (symbol branch)))
+     (parse-GD (car goal-clause)))))
 
 (define-clause-getter metric :metric
   #'parse-metric-spec)
