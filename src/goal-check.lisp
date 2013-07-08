@@ -7,10 +7,10 @@
   (walk-tree
    (lambda (branch cont)
      (match branch
+       ((andp check-states) (every #'identity (funcall cont check-states)))
+       ((orp check-states) (some #'identity (funcall cont check-states)))
        ((type pddl-atomic-state) (%match-state branch states))
-       ((andp check-states) (every cont check-states))
-       ((orp check-states) (some cont check-states))
-       ((notp check-state) (not (funcall cont check-state)))))
+       ((notp state) (not (%match-state state states)))))
    (goal problem)))
 
 
