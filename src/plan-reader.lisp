@@ -12,12 +12,12 @@
 			 "action-name ~A not found in ~A"
 			 action-name *domain*)
 		 (pddl-actual-action
-		  :name action-name
-		  :domain *domain*
-		  :problem *problem*
-		  :parameters
-		  (mapcar (curry #'object *problem*)
-			  arguments)))))
+			    :name action-name
+			    :domain *domain*
+			    :problem *problem*
+			    :parameters
+			    (mapcar (curry #'object *problem*)
+				    arguments)))))
 	    (%parse-plan-rec s nil))))
 
 (defun %parse-plan-rec (s acc)
@@ -30,6 +30,38 @@
 
 (defmethod action ((dom pddl-domain) (aa pddl-actual-action))
   (action dom (name aa)))
+
+(defmethod initialize-instance :after ((aa pddl-actual-action)
+				       &rest args)
+  @ignore args
+  (let ((set (match-set aa))
+	(a (action (domain aa) aa)))
+    (setf (effect aa)
+	  (walk-tree 
+	   (lambda (branch cont)
+	     (match branch
+	       ((cons op preds) `(,op ,@(funcall cont preds)))
+	       ((pddl-predicate :name name :parameters parameters)
+		(pddl-atomic-state
+		 :name name
+		 :parameters
+		 (mapcar (lambda (param)
+			   (getf set param))
+			 parameters)))))
+	   (effect a))
+	  (precondition aa)
+	  (walk-tree 
+	   (lambda (branch cont)
+	     (match branch
+	       ((cons op preds) `(,op ,@(funcall cont preds)))
+	       ((pddl-predicate :name name :parameters parameters)
+		(pddl-atomic-state
+		 :name name
+		 :parameters
+		 (mapcar (lambda (param)
+			   (getf set param))
+			 parameters)))))
+	   (precondition a)))))
 
 @export
 (defgeneric match-set (source))

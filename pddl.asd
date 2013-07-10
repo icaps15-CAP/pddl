@@ -33,6 +33,7 @@
 		 (:file :specials)
 		 (:file :generics)
 		 (:file :helper)
+		 (:file :equality)
 		 (:file :parsers)
 		 
 		 (:file :domain-class)

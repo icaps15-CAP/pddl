@@ -1,8 +1,6 @@
 (in-package :pddl)
 (use-syntax :annot)
 
-
-
 @export
 (defun apply-action (action match-set states)
   (assert (= (arity action) (/ (length match-set) 2)))

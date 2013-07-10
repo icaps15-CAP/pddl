@@ -99,9 +99,6 @@ Values are (success-p remaining-states new-matches used-states)."
 	  (%apply-rec-pruned rest pred matches (cons s unused) used-states)
 	  nil))))
 
-(defun eqname (a b)
-  (eq (name a) (name b)))
-
 @export
 (defun %try-match (p s matches)
   (when (and (= (arity p) (arity s))
