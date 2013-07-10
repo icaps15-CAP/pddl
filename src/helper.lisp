@@ -60,6 +60,7 @@
 
 
 (export '(op orp andp notp
+	  qor
 	  impliesp forallp existsp whenp
 	  var predicate state))
 
