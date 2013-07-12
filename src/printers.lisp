@@ -35,6 +35,11 @@
 	    (mapcar #'name (parameters o))
 	    (precondition o))))
 
+(defmethod print-object ((o pddl-actual-action) s)
+  (print-ignoring-unbound-slot
+    (format s "*(ACT (~{~A~^ ~}))"
+	    (mapcar #'name (parameters o)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; instances under problems
 
