@@ -5,20 +5,23 @@
 @export
 (defun parse-plan (pathname *domain* *problem*)
   (with-open-file (s pathname)
-    (mapcar (lambda (plan-description)
-	      (ematch plan-description
-		((list* action-name arguments)
-		 (assert (action *domain* action-name) nil
-			 "action-name ~A not found in ~A"
-			 action-name *domain*)
-		 (pddl-actual-action
-			    :name action-name
-			    :domain *domain*
-			    :problem *problem*
-			    :parameters
-			    (mapcar (curry #'object *problem*)
-				    arguments)))))
-	    (%parse-plan-rec s nil))))
+    (flet ((instantiate (plan-description index)
+	     (ematch plan-description
+	       ((list* action-name arguments)
+		(assert (action *domain* action-name) nil
+			"action-name ~A not found in ~A"
+			action-name *domain*)
+		(pddl-actual-action
+		 :name action-name
+		 :domain *domain*
+		 :problem *problem*
+		 :index index
+		 :parameters
+		 (mapcar (curry #'object *problem*)
+			 arguments))))))
+      (iter (for plan-description in (%parse-plan-rec s nil))
+	    (for index from 0)
+	    (collecting (instantiate plan-description index))))))
 
 (defun %parse-plan-rec (s acc)
   (if-let ((read (read s nil)))
@@ -26,7 +29,7 @@
     (nreverse acc)))
 
 (define-pddl-class pddl-actual-action (pddl-problem-slot pddl-action)
-  ())
+  (index))
 
 (defmethod action ((dom pddl-domain) (aa pddl-actual-action))
   (action dom (name aa)))
@@ -36,7 +39,7 @@
   @ignore args
   (let ((set (match-set aa))
 	(a (action (domain aa) aa)))
-    (with-slots (effect) aa
+    (with-slots (effect precondition) aa
       (setf effect
 	    (walk-tree 
 	     (lambda (branch cont)
@@ -50,7 +53,7 @@
 			     (getf set param))
 			   parameters)))))
 	     (effect a))
-	    (precondition aa)
+	    precondition
 	    (walk-tree 
 	     (lambda (branch cont)
 	       (match branch
