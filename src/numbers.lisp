@@ -40,6 +40,33 @@
 ;; <metric-f-exp>	 total-time					
 ;; --------- <metric-f-exp>	 (is-violated <pref-name>)
 
+
+
+@export
+(defun parse-functions (body)
+  (handler-bind ((not-found-in-dictionary
+		  #'intern-variable-handler))
+    (%getting-vars
+     body nil nil nil
+     (lambda (atomic-function-skelton &optional (type 'number))
+       (match atomic-function-skelton
+	 ((list* name typed-variables)
+	  (pddl-function
+	   :name name
+	   :type type
+	   :parameters
+	   (handler-bind ((not-found-in-dictionary
+			   #'intern-variable-handler))
+	     (parse-typed-list typed-variables nil)))))))))
+
+@export
+(defun parse-metric (body)
+  @ignore body
+  (ematch body
+    ((list (and optimization (or 'maximize 'minimize)) metric-f-exp)
+     `(,optimization ,(parse-metric-f-exp metric-f-exp)))))
+
+
 @export
 (defun parse-functions (body)
   (not-implemented 'functions))
@@ -57,7 +84,7 @@
 (defun parse-metric-spec (body)
   (match body
     ((op (and op (qor minimize maximize)) fexps)
-     ((parse-f-exp fexps))))
+     (parse-f-exp fexps))))
 
 ;; どう実装する????
 @export

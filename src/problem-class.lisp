@@ -31,9 +31,6 @@
 (define-pddl-class pddl-object (pddl-problem-slot pddl-variable)
   ())
 
-(define-pddl-class pddl-metric (pddl-problem-slot)
-  (body))
-
 @export
 (defgeneric object (problem designator))
 (defmethod object ((problem pddl-problem) (name symbol))
@@ -41,3 +38,6 @@
 (defmethod object ((problem pddl-problem) (name string))
   (find name (objects problem) :key (compose #'symbol-name #'name)))
 
+
+(define-pddl-class pddl-metric (pddl-problem-slot)
+  (optimization metric-fn))

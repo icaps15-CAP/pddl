@@ -35,6 +35,7 @@
 		 (:file :helper)
 		 (:file :equality)
 		 (:file :parsers)
+		 (:file :numbers)
 		 
 		 (:file :domain-class)
 		 (:file :problem-class)

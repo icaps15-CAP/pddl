@@ -109,8 +109,8 @@
 (define-pddl-class pddl-constant (pddl-variable)
   ())
 
-(define-pddl-class pddl-function (pddl-domain-slot)
-  (body))
+(define-pddl-class pddl-function (pddl-predicate)
+  (type))
 
 (define-pddl-class pddl-action (pddl-domain-slot namable)
   ((parameters :type pddl-variable)
