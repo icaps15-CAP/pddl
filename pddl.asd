@@ -48,7 +48,8 @@
 		 (:file :apply-action)
 		 (:file :goal-check)
 
-		 (:file :printers))))
+		 (:file :printers)
+		 (:file :output))))
   :description "PDDL parser"
   :long-description
   #.(with-open-file (stream (merge-pathnames
