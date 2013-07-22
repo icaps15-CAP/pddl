@@ -2,13 +2,23 @@
 (use-syntax :annot)
 
 @export
-(defun parse-file (pathname)
-  (with-open-file (s pathname)
+(defun parse-file (pddl-pathname)
+  (with-open-file (s pddl-pathname)
     (parse-stream s)))
 
 @export
 (defun parse-stream (s)
-  (eval (read s)))
+  (let (results)
+    (tagbody
+       start
+       (print results)
+       (handler-bind ((end-of-file
+		       (lambda (c)
+			 @ignore c
+			 (return-from parse-stream
+			   (values-list results)))))
+	 (push (eval (read s)) results)
+	 (go start)))))
 
 (export '(domain problem))
 
