@@ -2,8 +2,13 @@
 (in-package :pddl)
 (use-syntax :annot)
 
-(defun variable-generator (name &optional (type t))
-  (pddl-variable :name name :type type))
+(defun variable-generator (name &optional (typesym t type-supplied-p))
+  (pddl-variable 
+   :name name
+   :type (or (not type-supplied-p)
+	     (find-if (curry #'%eqname1 typesym) (types *domain*))
+	     (error 'declared-type-not-found :typesym typesym
+		    :domain *domain*))))
 
 @export
 @doc "returns a list of PDDL-VARIABLEs.
@@ -19,15 +24,42 @@ then it is always used. The reference is determined by the EQNAME."
   (eq sym (name var)))
 
 @export
-(define-condition found-in-dictionary (simple-warning)
+(define-condition domain-parse-condition (simple-condition)
+  ((domain :initarg :domain :reader domain :initform *domain*))
+  (:report
+   (lambda (c s)
+     (format s "condition ~A signalled in parsing ~A"
+	     (class-name (class-of c)) (domain c)))))
+
+@export
+(define-condition declared-type-not-found (domain-parse-condition)
+  ((typesym :initarg :typesym))
+  (:report
+   (lambda (c s)
+     (with-slots (typesym) c
+       (format s "~A is not defined in ~A:~%~A"
+	       typesym (domain c) (types (domain c)))))))
+
+@export
+(define-condition found-in-dictionary (domain-parse-condition)
   ((found :initarg :found) (dictionary :initarg :dictionary))
   (:report
    (lambda (c s)
      (with-slots (found dictionary) c
        (format s "~A found in the dictionary:~%~a~% Maybe duplicated?"
 	       found dictionary)))))
+
 @export
-(define-condition not-found-in-dictionary (simple-error)
+(define-condition type-conflict (found-in-dictionary)
+  ((declared-type :initarg :declared-type))
+  (:report
+   (lambda (c s)
+     (with-slots (dictionary found declared-type) c
+       (format s "In ~A:~%The declared type ~A conflicts with ~A"
+	        dictionary declared-type found)))))
+
+@export
+(define-condition not-found-in-dictionary (domain-parse-condition)
   ((name :initarg :name) (dictionary :initarg :dictionary))
   (:report
    (lambda (c s)
@@ -35,12 +67,14 @@ then it is always used. The reference is determined by the EQNAME."
        (format s "~A not found in the given dictionary:~% ~a"
 	       name dictionary)))))
 
-(defun %intern-variable (name type dictionary)
-  (if-let ((found (find-if (curry #'%eqname1 name) dictionary)))
+(defun %intern-variable (dictionary namesym &optional typesym)
+  (if-let ((found (find-if (curry #'%eqname1 namesym) dictionary)))
     (progn
       (warn 'found-in-dictionary :found found :dictionary dictionary)
+      (when (and typesym (not (%eqname1 typesym (type found))))
+	(error 'type-conflict :found found :declared-type typesym))
       found)
-    (error 'not-found-in-dictionary :name name :dictionary dictionary)))
+    (error 'not-found-in-dictionary :name namesym :dictionary dictionary)))
 
 (defun %getting-vars (lst vars acc dictionary generator)
   (ematch lst
@@ -48,7 +82,7 @@ then it is always used. The reference is determined by the EQNAME."
      (iter (for name in vars) ;; 2. vars : reverse order
 	   (for var = 
 		(restart-case
-		    (%intern-variable name type dictionary)
+		    (%intern-variable dictionary name type)
 		  (intern-variable ()
 		    (let ((instance (funcall generator name type)))
 		      (push instance dictionary)
@@ -66,7 +100,7 @@ then it is always used. The reference is determined by the EQNAME."
      ;; 5. var is reversed, acc is regular
      (append acc (nreverse (mapcar (lambda (name)
 				     (restart-case
-					 (%intern-variable name t dictionary)
+					 (%intern-variable dictionary name)
 				       (intern-variable ()
 					 (funcall generator name))))
 				   vars)))))))
