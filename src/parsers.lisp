@@ -2,15 +2,18 @@
 (in-package :pddl)
 (use-syntax :annot)
 
+(defun variable-generator (name &optional (type t))
+  (pddl-variable :name name :type type))
+
 @export
 @doc "returns a list of PDDL-VARIABLEs.
 the optional argument DICTIONARY is a list of `pddl-variable's.
 if the designator in the list refers to an already defined variable
-then it is always used. The reference is determined by the EQuality
-to the `pddl-variable''s slot NAME."
+then it is always used. The reference is determined by the EQNAME."
 (defun parse-typed-list (lst &optional
-			 (dictionary *params*))
-  (%getting-vars lst nil nil dictionary))
+			 (dictionary *params*)
+			 (generator #'variable-generator))
+  (%getting-vars lst nil nil dictionary generator))
 
 (defun %eqname1 (sym var)
   (eq sym (name var)))
@@ -39,7 +42,7 @@ to the `pddl-variable''s slot NAME."
       found)
     (error 'not-found-in-dictionary :name name :dictionary dictionary)))
 
-(defun %getting-vars (lst vars acc dictionary)
+(defun %getting-vars (lst vars acc dictionary generator)
   (ematch lst
     ((list* '- type rest)
      (iter (for name in vars) ;; 2. vars : reverse order
@@ -47,17 +50,17 @@ to the `pddl-variable''s slot NAME."
 		(restart-case
 		    (%intern-variable name type dictionary)
 		  (intern-variable ()
-		    (let ((var (pddl-variable :name name :type type)))
-		      (push var dictionary)
-		      var))))
+		    (let ((instance (funcall generator name type)))
+		      (push instance dictionary)
+		      instance))))
 	   ;; 3. pushing at the beginning, resulting order is regular
 	   (collecting var into variables at beginning)
 	   (finally
 	    (return
 	      (%getting-vars ;; 4. acc is always in a regular order
-	       rest nil (append acc variables) dictionary)))))
+	       rest nil (append acc variables) dictionary generator)))))
     ((list* name rest) ;; 1. reversed order
-     (%getting-vars rest (cons name vars) acc dictionary))
+     (%getting-vars rest (cons name vars) acc dictionary generator))
     (nil
      
      ;; 5. var is reversed, acc is regular
@@ -65,8 +68,8 @@ to the `pddl-variable''s slot NAME."
 				     (restart-case
 					 (%intern-variable name t dictionary)
 				       (intern-variable ()
-					 (pddl-variable :name name :type t))))
-				   vars))))))
+					 (funcall generator name))))
+				   vars)))))))
 
 @export
 (defun parse-predicate (predicate-def &optional
