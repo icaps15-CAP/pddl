@@ -37,13 +37,15 @@
 
 (defmethod print-object ((o pddl-action) s)
   (print-ignoring-unbound-slot
-    (format s "*(ACT (~{~A~^ ~}) ~a)"
+    (format s "*(ACT ~a (~{~A~^ ~}) ~a)"
+	    (name o)
 	    (mapcar #'name (parameters o))
 	    (precondition o))))
 
 (defmethod print-object ((o pddl-actual-action) s)
   (print-ignoring-unbound-slot
-    (format s "*(ACT (~{~A~^ ~}))"
+    (format s "*(ACT ~a (~{~A~^ ~}))"
+	    (name o)
 	    (mapcar #'name (parameters o)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
