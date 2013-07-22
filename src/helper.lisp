@@ -7,7 +7,7 @@
 
 
 (defpattern qor (&rest syms)
-  `(or ,(mapcar (lambda (sym) `(quote ,sym)) syms)))
+  `(or ,@(mapcar (lambda (sym) `(quote ,sym)) syms)))
 
 (defpattern op (operater &rest arguments)
   `(list* ,operater ,@arguments))
