@@ -29,6 +29,12 @@
 	(format s "*(V ~A)" (name v))
 	(format s "*(V ~A ∈ ~A)" (name v) (type v)))))
 
+(defmethod print-object ((v pddl-type) s)
+  (print-ignoring-unbound-slot
+    (if (eq (type v) t)
+	(format s "*(TYPE ~A)" (name v))
+	(format s "*(TYPE ~A << ~A)" (name v) (type v)))))
+
 (defmethod print-object ((o pddl-action) s)
   (print-ignoring-unbound-slot
     (format s "*(ACT (~{~A~^ ~}) ~a)"

@@ -30,7 +30,12 @@
 
 (define-clause-getter
     types :types
-  (rcurry #'typed-objects 'pddl-types))
+  (lambda (types)
+    (handler-bind ((not-found-in-dictionary
+		    #'intern-variable-handler))
+      (parse-typed-list types *params*
+			(lambda (name &optional (type t))
+			  (pddl-type :name name :type type))))))
 
 (define-clause-getter
     constants :constants
