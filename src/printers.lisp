@@ -24,15 +24,18 @@
 
 (defmethod print-object ((v pddl-variable) s)
   (print-ignoring-unbound-slot
-    (if (eq (type v) t)
+    (if (eq (type v) *pddl-primitive-object-type*)
 	(format s "*(V ~A)" (name v))
 	(format s "*(V ~A ∈ ~A)" (name v) (name (type v))))))
 
 (defmethod print-object ((v pddl-type) s)
   (print-ignoring-unbound-slot
-    (if (eq (type v) t)
-	(format s "*(TYPE ~A)" (name v))
-	(format s "*(TYPE ~A << ~A)" (name v) (type v)))))
+    (cond 
+      ((eq (type v) *pddl-primitive-object-type*)
+       (format s "*(TYPE ~A)" (name v)))
+      (;;(eq (name (type v)) 'number)
+       t
+       (format s "*(TYPE ~A << ~A)" (name v) (name (type v)))))))
 
 (defmethod print-object ((o pddl-action) s)
   (print-ignoring-unbound-slot

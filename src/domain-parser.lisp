@@ -33,9 +33,11 @@
   (lambda (types)
     (handler-bind ((not-found-in-dictionary
 		    #'intern-variable))
-      (parse-typed-list types *params*
-			(lambda (name &optional (type t))
-			  (pddl-type :name name :type type))))))
+      (cons *pddl-primitive-object-type*
+	    (parse-typed-list
+	     types (list *pddl-primitive-object-type*)
+	     (lambda (name &optional (type *pddl-primitive-object-type*))
+	       (pddl-type :name name :type type)))))))
 
 (define-clause-getter
     constants :constants

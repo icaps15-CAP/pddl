@@ -82,15 +82,29 @@
   (sb-ext:with-unlocked-packages (:cl)
     (define-pddl-class pddl-variable (pddl-domain-slot
 				      namable)
-      ((type :initform t)))))
+      (type))))
 
 #-sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (define-pddl-class pddl-variable (pddl-domain-slot namable)
-    ((type :initform t))))
+    (type)))
 
 (define-pddl-class pddl-type (pddl-variable)
   ())
+
+@eval-always
+@export
+(defvar *pddl-primitive-object-type*
+  (let ((pt (pddl-type :name 'object)))
+    (setf (type pt) pt)
+    pt))
+
+@eval-always
+@export
+(defvar *pddl-primitive-number-type*
+  (let ((pt (pddl-type :name 'number)))
+    (setf (type pt) pt)
+    pt))
 
 (define-pddl-class pddl-constant (pddl-variable)
   ())

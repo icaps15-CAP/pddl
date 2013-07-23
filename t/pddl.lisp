@@ -43,16 +43,18 @@
 
   (let ((*domain* (pddl-domain)))
     (setf (types *domain*)
-	  (list (pddl-type :name 'number :domain *domain*)
-		(pddl-type :name 'number :domain *domain*)))
+	  (list *pddl-primitive-object-type*
+		*pddl-primitive-number-type*))
     (handler-bind ((not-found-in-dictionary
 		    #'intern-variable))
-      (match (parse-typed-list '(a b c))
-	((list (pddl-variable :name 'a :type t)
-	       (pddl-variable :name 'b :type number)
-	       (pddl-variable :name 'c :type t))
-	 (pass))
-	(_ (fail))))))
+      (ematch (parse-typed-list '(a - object b - number c))
+	((list (pddl-variable :name 'a
+			      :type (eq *pddl-primitive-object-type*))
+	       (pddl-variable :name 'b
+			      :type (eq *pddl-primitive-number-type*))
+	       (pddl-variable :name 'c
+			      :type (eq *pddl-primitive-object-type*)))
+	 (pass))))))
 
 (test parse-domain
   (finishes (setf domain (parse-file +domain+)))

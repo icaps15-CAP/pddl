@@ -51,8 +51,8 @@
 
 (defmethod print-pddl-object ((v pddl-variable))
   `(,(name v)
-     ,@(when (not (eq (type v) t))
-	     `(- ,(type v)))))
+     ,@(when (not (eq (type v) *pddl-primitive-object-type*))
+	     `(- ,(name (type v))))))
 
 (defmethod print-pddl-object ((o pddl-action))
   `(:action ,(name o)

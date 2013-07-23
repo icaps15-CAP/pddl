@@ -2,13 +2,14 @@
 (in-package :pddl)
 (use-syntax :annot)
 
-(defun variable-generator (name &optional (typesym t type-supplied-p))
+(defun variable-generator (name &optional typesym)
   (pddl-variable 
    :name name
-   :type (or (not type-supplied-p)
-	     (find-if (curry #'%eqname1 typesym) (types *domain*))
-	     (error 'declared-type-not-found :typesym typesym
-		    :domain *domain*))))
+   :type (if typesym
+	     (or (find-if (curry #'%eqname1 typesym) (types *domain*))
+		 (error 'declared-type-not-found :typesym typesym
+			:domain *domain*))
+	     *pddl-primitive-object-type*)))
 
 @export
 @doc "returns a list of PDDL-VARIABLEs.
