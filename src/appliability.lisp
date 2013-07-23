@@ -33,7 +33,7 @@ PROBLEM: `pddl-problem'."
 	((t _ matches used)
 	 (cons matches
 	       (iter (for u in used)
-		     (warn "removed ~a from the states!" u)
+		     (warn "~@<~;removed ~a from the states!~;~@:>" u)
 		     (when-let ((match (retrieve-all-match-set
 					(remove u states) action)))
 		       (appending match)))))
@@ -54,10 +54,12 @@ Values are (success-p remaining-states new-matches used-states)."
      (%apply-not-rec states pred matches used-states))
     ((type pddl-predicate)
      (%apply-rec states precond-branch matches nil used-states))
-    (_ (error "May contain unrecognizable clause? ~%~A" precond-branch))))
+    (_ (error "~@<~;May contain unrecognizable clause? ~A~;~@:>"
+	      precond-branch))))
 
 (defun %apply-and-rec (states preds matches used-states)
-  (multiple-value-match (%apply-clause-rec states (car preds) matches used-states)
+  (multiple-value-match (%apply-clause-rec states (car preds)
+					   matches used-states)
     (((not nil) remaining-states new-matches used-states)
      (if-let ((rest (cdr preds)))
        (%apply-and-rec remaining-states rest new-matches used-states)
@@ -87,9 +89,11 @@ Values are (success-p remaining-states new-matches used-states)."
 	  (push u sames)
 	  (push u diffs)))
     (when sames
-      (multiple-value-bind (success remaining-states new-matches new-used-states)
+      (multiple-value-bind (success remaining-states
+				    new-matches new-used-states)
 	  (%apply-rec-pruned sames pred matches unused used-states)
-	(values success (append diffs remaining-states) new-matches new-used-states)))))
+	(values success (append diffs remaining-states)
+		new-matches new-used-states)))))
 
 (defun %apply-rec-pruned (unmatched pred matches unused used-states)
   (destructuring-bind (s . rest) unmatched

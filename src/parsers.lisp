@@ -24,48 +24,60 @@ then it is always used. The reference is determined by the EQNAME."
   (eq sym (name var)))
 
 @export
-(define-condition domain-parse-condition (simple-condition)
+(define-condition domain-parse-condition ()
   ((domain :initarg :domain :reader domain :initform *domain*))
   (:report
    (lambda (c s)
-     (format s "condition ~A signalled in parsing ~A"
+     (format s "~@<~;condition ~A signalled in parsing ~A~;~@:>"
 	     (class-name (class-of c)) (domain c)))))
 
 @export
-(define-condition declared-type-not-found (domain-parse-condition)
+(define-condition declared-type-not-found (domain-parse-condition error)
   ((typesym :initarg :typesym))
   (:report
    (lambda (c s)
      (with-slots (typesym) c
-       (format s "~A is not defined in ~A:~%~A"
+       (format s "~@<~;~A is not defined in ~A: ~A~;~:@>"
 	       typesym (domain c) (types (domain c)))))))
 
 @export
-(define-condition found-in-dictionary (domain-parse-condition)
-  ((found :initarg :found) (dictionary :initarg :dictionary))
+(define-condition found-in-dictionary (domain-parse-condition warning)
+  ((found :initarg :found)
+   (dictionary :initarg :dictionary)
+   (interning-class :reader interning-class
+		    :initarg :interning-class
+		    :initform 'pddl-variable))
   (:report
    (lambda (c s)
-     (with-slots (found dictionary) c
-       (format s "~A found in the dictionary:~%~a~% Maybe duplicated?"
-	       found dictionary)))))
+     (with-slots (interning-class found dictionary) c
+       (format s "~@<~;During trying to make an instance of type ~A, ~
+                  ~A has been found in the dictionary: ~
+                  ~a ~
+                  Maybe duplicated?~;~:@>"
+	       interning-class found dictionary)))))
 
 @export
-(define-condition type-conflict (found-in-dictionary)
+(define-condition type-conflict (found-in-dictionary error)
   ((declared-type :initarg :declared-type))
   (:report
    (lambda (c s)
      (with-slots (dictionary found declared-type) c
-       (format s "In ~A:~%The declared type ~A conflicts with ~A"
+       (format s "~@<~;In ~A: The declared type ~A conflicts with ~A.~;~@:>"
 	        dictionary declared-type found)))))
 
 @export
-(define-condition not-found-in-dictionary (domain-parse-condition)
-  ((name :initarg :name) (dictionary :initarg :dictionary))
+(define-condition not-found-in-dictionary (domain-parse-condition error)
+  ((name :initarg :name)
+   (dictionary :initarg :dictionary)
+   (interning-class :reader interning-class
+		    :initarg :interning-class
+		    :initform 'pddl-variable))
   (:report
    (lambda (c s)
-     (with-slots (name dictionary) c
-       (format s "~A not found in the given dictionary:~% ~a"
-	       name dictionary)))))
+     (with-slots (name dictionary interning-class) c
+       (format s "~@<~;During trying to make an instance of type ~A, ~
+                  ~A hasn't been found in the given dictionary: ~a~;~@:>"
+	       interning-class name dictionary)))))
 
 (defun %intern-variable (dictionary namesym &optional typesym)
   (if-let ((found (find-if (curry #'%eqname1 namesym) dictionary)))

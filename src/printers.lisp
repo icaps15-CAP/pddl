@@ -16,7 +16,6 @@
     (print-unreadable-object (o s :type t)
       (princ (name o) s))))
 
-
 (defmethod print-object ((o pddl-predicate) s)
   (print-ignoring-unbound-slot
     (format s "*(PRE ~a ~{~a~^ ~})"
@@ -27,7 +26,7 @@
   (print-ignoring-unbound-slot
     (if (eq (type v) t)
 	(format s "*(V ~A)" (name v))
-	(format s "*(V ~A ∈ ~A)" (name v) (type v)))))
+	(format s "*(V ~A ∈ ~A)" (name v) (name (type v))))))
 
 (defmethod print-object ((v pddl-type) s)
   (print-ignoring-unbound-slot
@@ -37,14 +36,15 @@
 
 (defmethod print-object ((o pddl-action) s)
   (print-ignoring-unbound-slot
-    (format s "*(ACT ~a (~{~A~^ ~}) ~a)"
+    (format s "~@<*(ACT ~;~a ~_~a ~_~a~;)~:>"
 	    (name o)
 	    (mapcar #'name (parameters o))
 	    (precondition o))))
 
+
 (defmethod print-object ((o pddl-actual-action) s)
   (print-ignoring-unbound-slot
-    (format s "*(ACT ~a (~{~A~^ ~}))"
+    (format s "~@<*(AC* ~;~a ~_~a~;)~:>"
 	    (name o)
 	    (mapcar #'name (parameters o)))))
 
@@ -53,11 +53,11 @@
 
 (defmethod print-object ((o pddl-atomic-state) s)
   (print-ignoring-unbound-slot
-    (format s "*(STT ~a ~{~a~^ ~})" (name o) (parameters o))))
+    (format s "~@<*(STT ~;~a ~_~a~;)~:>" (name o) (parameters o))))
 
 (defmethod print-object ((v pddl-object) s)
   (print-ignoring-unbound-slot
     (if (eq (type v) t)
 	(format s "*(O ~A)" (name v))
-	(format s "*(O ~A - ~A)" (name v) (type v)))))
+	(format s "*(O ~A ∈ ~A)" (name v) (name (type v))))))
 

@@ -8,13 +8,13 @@
 		(always (getf match-set var))))
 
   (format t
-	  "APPLY-ACTION initiated.~%~
-           match-set to apply: ~a~%~
-           action: ~14t~a~%~
-           add-list: ~14t~a~%~
-           delete-list: ~14t~a~%~
-           ~%~
-           state: ~14t~a"
+	  "~@<APPLY-ACTION: ~@;~
+             match:~:@_~a~:@_~
+             action:~:@_~a~:@_~
+             eff+:~:@_~a~:@_~
+             eff-:~:@_~a~:@_~
+             states:~:@_~a~:@_~
+          ~;~:@>"
 	  match-set
 	  action
 	  (add-list action)
@@ -40,4 +40,3 @@
 		       (collecting (getf match-set param))))
 		new-states))
     new-states))
-
