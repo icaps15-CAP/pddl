@@ -41,21 +41,18 @@
   (signals not-found-in-dictionary
     (parse-typed-list '(a b c)))
 
-  (handler-bind ((not-found-in-dictionary
-		  #'intern-variable-handler))
-    (match (parse-typed-list '(a b c))
-      ((list (pddl-variable :name 'a :type t)
-	     (pddl-variable :name 'b :type t)
-	     (pddl-variable :name 'c :type t))
-       (pass))
-      (_ (fail)))
-    (match (parse-typed-list '(a b - number c - (either time number) d))
-      ((list (pddl-variable :name 'a :type 'number)
-	     (pddl-variable :name 'b :type 'number)
-	     (pddl-variable :name 'c :type '(either time number))
-	     (pddl-variable :name 'd :type t))
-       (pass))
-      (_ (fail)))))
+  (let ((*domain* (pddl-domain)))
+    (setf (types *domain*)
+	  (list (pddl-type :name 'number :domain *domain*)
+		(pddl-type :name 'number :domain *domain*)))
+    (handler-bind ((not-found-in-dictionary
+		    #'intern-variable))
+      (match (parse-typed-list '(a b c))
+	((list (pddl-variable :name 'a :type t)
+	       (pddl-variable :name 'b :type number)
+	       (pddl-variable :name 'c :type t))
+	 (pass))
+	(_ (fail))))))
 
 (test parse-domain
   (finishes (setf domain (parse-file +domain+)))

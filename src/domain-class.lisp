@@ -36,7 +36,7 @@
 (define-pddl-class pddl-domain (namable)
   (requirements
    types
-   predicates
+   (predicates :initform nil)
    constants
    functions
    actions

@@ -121,15 +121,28 @@ then it is always used. The reference is determined by the EQNAME."
 (defun parse-predicate (predicate-def &optional
 			(params *params*))
   (match predicate-def
-    ((list* pred-name arguments)
-     (handler-bind ((not-found-in-dictionary 
-		     (lambda (c)
-		       @ignore c
-		       (invoke-restart
-			(find-restart 'intern-variable)))))
-       (pddl-predicate
-	:name pred-name
-	:parameters (parse-typed-list arguments params))))))
+    ((list* namesym arguments)
+     ;; check feasibility
+     (let ((dictionary (predicates *domain*)))
+       (if-let ((found (find-if (curry #'%eqname1 namesym) dictionary)))
+	 (progn
+	   (warn 'found-in-dictionary :found found :dictionary dictionary
+		 :interning-class 'pddl-predicate)
+	   (assert (= (length arguments) (arity found))
+		   nil "predicate ~a has the wrong arity than the declared one.~%~a"
+		   predicate-def found))
+	 (restart-case
+	     (error 'not-found-in-dictionary
+		    :interning-class 'pddl-predicate
+		    :name namesym :dictionary dictionary)
+	   (intern-variable (&optional c)
+	     @ignore c))))
+     (pddl-predicate
+      :name namesym
+      :parameters
+      (handler-bind ((not-found-in-dictionary
+		      #'intern-variable))
+	(parse-typed-list arguments params))))))
 
 @export
 (defun parse-atomic-formula (atom)
