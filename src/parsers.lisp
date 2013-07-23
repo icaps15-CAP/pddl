@@ -69,15 +69,17 @@ then it is always used. The reference is determined by the EQNAME."
 (define-condition not-found-in-dictionary (domain-parse-condition error)
   ((name :initarg :name)
    (dictionary :initarg :dictionary)
+   (pddl-form :initarg :pddl-form)
    (interning-class :reader interning-class
 		    :initarg :interning-class
 		    :initform 'pddl-variable))
   (:report
    (lambda (c s)
-     (with-slots (name dictionary interning-class) c
+     (with-slots (name dictionary interning-class pddl-form) c
        (format s "~@<~;During trying to make an instance of type ~A, ~
-                  ~A hasn't been found in the given dictionary: ~a~;~@:>"
-	       interning-class name dictionary)))))
+                  ~A hasn't been found in the given dictionary ~a . ~
+                  Adding ~a to the definition may solve this. ~;~@:>"
+	       interning-class name dictionary pddl-form)))))
 
 (defun %intern-variable (dictionary namesym &optional typesym)
   (if-let ((found (find-if (curry #'%eqname1 namesym) dictionary)))
@@ -135,6 +137,7 @@ then it is always used. The reference is determined by the EQNAME."
 		   predicate-def found))
 	 (restart-case
 	     (error 'not-found-in-dictionary
+		    :pddl-form predicate-def
 		    :interning-class 'pddl-predicate
 		    :name namesym :dictionary dictionary)
 	   (intern-variable (&optional c)
