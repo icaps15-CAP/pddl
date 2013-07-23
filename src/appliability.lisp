@@ -4,7 +4,9 @@
 
 @export
 @doc "STATES : list of `pddl-atomic-state' .
-PROBLEM: `pddl-problem'."
+PROBLEM: `pddl-problem'.
+supported requirements:
+ (:DISJUNCTIVE-PRECONDITIONS :NEGATIVE-PRECONDITIONS)"
 (defun appliable (states action)
   
   ;; assume all state in states are in the same domain
