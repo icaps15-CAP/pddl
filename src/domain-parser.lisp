@@ -32,7 +32,7 @@
     types :types
   (lambda (types)
     (handler-bind ((not-found-in-dictionary
-		    #'intern-variable-handler))
+		    #'intern-variable))
       (parse-typed-list types *params*
 			(lambda (name &optional (type t))
 			  (pddl-type :name name :type type))))))
@@ -45,7 +45,9 @@
     predicates :predicates
   (lambda (predicates)
     (handler-bind ((not-found-in-dictionary
-		    #'intern-variable-handler))
+		    (lambda (c)
+		      (if (eq (interning-class c) 'pddl-predicate)
+			  (intern-variable)))))
       (mapcar (lambda (predicate-def)
 		(parse-predicate predicate-def nil))
 	      predicates))))
@@ -77,7 +79,7 @@
 	   :precondition precond
 	   :effect effect)
      (let ((*params* (handler-bind ((not-found-in-dictionary
-				     #'intern-variable-handler))
+				     #'intern-variable))
 		       (parse-typed-list typed-variables nil))))
        (pddl-action :name name
 		    :parameters *params*

@@ -95,7 +95,8 @@ then it is always used. The reference is determined by the EQNAME."
 	   (for var = 
 		(restart-case
 		    (%intern-variable dictionary name type)
-		  (intern-variable ()
+		  (intern-variable (&optional c)
+		    @ignore c
 		    (let ((instance (funcall generator name type)))
 		      (push instance dictionary)
 		      instance))))
@@ -113,7 +114,8 @@ then it is always used. The reference is determined by the EQNAME."
      (append acc (nreverse (mapcar (lambda (name)
 				     (restart-case
 					 (%intern-variable dictionary name)
-				       (intern-variable ()
+				       (intern-variable (&optional c)
+					 @ignore c
 					 (funcall generator name))))
 				   vars)))))))
 

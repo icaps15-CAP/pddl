@@ -65,6 +65,6 @@
 	  var predicate state))
 
 @export
-(defun intern-variable-handler (c)
-  @ignore c
+(defun intern-variable (&optional c)
   (invoke-restart 'intern-variable))
+

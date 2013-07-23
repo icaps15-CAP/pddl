@@ -12,7 +12,10 @@
 ;; these need to accept additional arguments `params'
 
 (define-clause-getter objects :objects
-  (rcurry #'typed-objects 'pddl-object))
+  (lambda (objects)
+    (handler-bind ((not-found-in-dictionary
+		    #'intern-variable))
+      (typed-objects objects 'pddl-object))))
 
 (define-clause-getter init :init
   (lambda (init-descriptions)
