@@ -8,7 +8,7 @@
 		(always (getf match-set var))))
 
   (format t
-	  "~@<APPLY-ACTION: ~@;~
+	  "~%~@<APPLY-ACTION: ~@;~
              match:~:@_~a~:@_~
              action:~:@_~a~:@_~
              eff+:~:@_~a~:@_~
