@@ -3,14 +3,19 @@
 
 @export
 (defun parse-file (pddl-pathname)
-  (with-open-file (s pddl-pathname)
-    (parse-stream s)))
+  (tagbody
+   parse-start
+     (restart-case
+	 (with-open-file (s pddl-pathname)
+	   (parse-stream s))
+       (retry-reading-file ()
+	 (go parse-start)))))
 
 @export
 (defun parse-stream (s)
   (let (results)
     (tagbody
-       start
+     start
        (print results)
        (handler-bind ((end-of-file
 		       (lambda (c)
