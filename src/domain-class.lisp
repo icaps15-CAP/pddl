@@ -82,12 +82,12 @@
   (sb-ext:with-unlocked-packages (:cl)
     (define-pddl-class pddl-variable (pddl-domain-slot
 				      namable)
-      (type))))
+      ((type :initform t)))))
 
 #-sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (define-pddl-class pddl-variable (pddl-domain-slot namable)
-    (type)))
+    ((type :initform t))))
 
 (define-pddl-class pddl-type (pddl-variable)
   ())
