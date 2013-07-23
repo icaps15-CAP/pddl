@@ -117,7 +117,7 @@ then it is always used. The reference is determined by the EQNAME."
 				       (intern-variable (&optional c)
 					 @ignore c
 					 (funcall generator name))))
-				   vars)))))))
+				   vars))))))
 
 @export
 (defun parse-predicate (predicate-def &optional
