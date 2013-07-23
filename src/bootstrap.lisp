@@ -7,7 +7,8 @@
    parse-start
      (restart-case
 	 (with-open-file (s pddl-pathname)
-	   (parse-stream s))
+	   (return-from parse-file 
+	     (parse-stream s)))
        (retry-reading-file ()
 	 (go parse-start)))))
 
