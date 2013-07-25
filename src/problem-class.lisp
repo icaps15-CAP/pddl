@@ -4,12 +4,15 @@
 
 ;; metatilities:defclass*
 
-
 (define-pddl-class pddl-problem (pddl-domain-slot namable)
   (objects
    init
    goal
    metric))
+
+(defmethod objects :around ((p pddl-problem))
+  (append (constants (domain p))
+	  (call-next-method)))
 
 (define-pddl-class pddl-problem-slot (pddl-domain-slot)
   (problem))
