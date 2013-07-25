@@ -196,7 +196,7 @@ then it is always used. The reference is determined by the EQNAME."
 (defun parse-pre-GD (goal-description)
   (match goal-description
     ((andp ds)
-     `(and ,@(mapcar (rcurry #'parse-pre-GD) ds)))
+     `(and ,@(mapcar #'parse-pre-GD ds)))
     ((forallp typed-list d)
      `(forall ,(parse-typed-list typed-list) ,(parse-pre-GD d)))
     (_ (parse-pref-GD goal-description))))
