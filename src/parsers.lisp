@@ -179,13 +179,17 @@ then it is always used. The reference is determined by the EQNAME."
 @export
 (defun parse-GD (goal-description)
   (ematch goal-description
-    ((op (and op (or 'or 'and)) ds)  `(,op ,@(mapcar (rcurry #'parse-GD) ds)))
+    ((op (and op (qor or and)) ds)  `(,op ,@(mapcar (rcurry #'parse-GD) ds)))
     ((notp d)                        `(not ,(parse-GD d)))
     ((impliesp d1 d2)                `(implies ,(parse-GD d1)
 					       ,(parse-GD d2)))
-    ((op (and op (or 'forall 'exists)) typed-list d)
-     `(,op ,(parse-typed-list typed-list) ,(parse-GD d)))
-    ((op (or '> '< '>= '<= '=) _)
+    ((op (and op (qor forall exists)) typed-list d _)
+     (let* ((closure-arguments (handler-bind ((not-found-in-dictionary
+					#'intern-variable))
+			  (parse-typed-list typed-list)))
+	    (*params* (append closure-arguments *params*)))
+       `(,op ,closure-arguments ,(parse-GD d))))
+    ((op (qor > < >= <= =) _)
      (parse-f-comp goal-description))
     (_ (parse-atomic-formula goal-description))))
 
@@ -223,7 +227,7 @@ then it is always used. The reference is determined by the EQNAME."
   
 (defun parse-p-effect (effect)
   (match effect
-    ((list* (or 'assign 'scale-up 'scale-down 'increase 'decrease) _)
+    ((list* (qor assign scale-up scale-down increase decrease) _)
      (not-implemented '(assign scale-up scale-down increase decrease)))
     ((notp d)
      `(not ,(parse-atomic-formula d)))
@@ -240,7 +244,7 @@ then it is always used. The reference is determined by the EQNAME."
   @ignore body
   (not-implemented 'metric)
   ;; (ematch body
-  ;;   ((list (and optimization (or 'maximize 'minimize)) metric-f-exp)
+  ;;   ((list (and optimization (qor maximize minimize)) metric-f-exp)
   ;;    `(,optimization ,(parse-metric-f-exp metric-f-exp))))
   )
 
