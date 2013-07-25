@@ -51,7 +51,7 @@ then it is always used. The reference is determined by the EQNAME."
   (:report
    (lambda (c s)
      (with-slots (interning-class found dictionary) c
-       (format s "~@<~;During trying to make an instance of type ~A, ~
+       (format s "~@<~;While trying to make an instance of type ~A, ~
                   ~A has been found in the dictionary: ~
                   ~a ~
                   Maybe duplicated?~;~:@>"
@@ -77,7 +77,7 @@ then it is always used. The reference is determined by the EQNAME."
   (:report
    (lambda (c s)
      (with-slots (name dictionary interning-class pddl-form) c
-       (format s "~@<~;During trying to make an instance of type ~A, ~
+       (format s "~@<~;While trying to make an instance of type ~A, ~
                   ~A hasn't been found in the given dictionary ~a . ~
                   Adding ~a to the definition may solve this. ~;~@:>"
 	       interning-class name dictionary pddl-form)))))
