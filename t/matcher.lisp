@@ -69,7 +69,7 @@
 	 (is-false (eq where (object depotprob1818 'depot0))
 		   "truck1 not moved")
 	 (is (eq where (object depotprob1818 'distributor1))
-	     "truck1 moved to the wrong position ~A"))))))
+	     "truck1 moved to the wrong position ~A" where))))))
 
 (test (simulate-plan :depends-on apply-action)
   (iter (for aa in plan)
