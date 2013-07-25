@@ -6,9 +6,7 @@
   (pddl-variable 
    :name name
    :type (if typesym
-	     (or (find-if (curry #'%eqname1 typesym) (types *domain*))
-		 (error 'declared-type-not-found :typesym typesym
-			:domain *domain*))
+	     (find-if (curry #'%eqname1 typesym) (types *domain*))
 	     *pddl-primitive-object-type*)))
 
 @export
@@ -26,11 +24,14 @@ then it is always used. The reference is determined by the EQNAME."
 
 @export
 (define-condition domain-parse-condition ()
-  ((domain :initarg :domain :reader domain :initform *domain*))
+  ((domain :initarg :domain :reader domain :initform *domain*)
+   (clause :initarg :clause :accessor clause))
   (:report
    (lambda (c s)
-     (format s "~@<~;condition ~A signalled in parsing ~A~;~@:>"
-	     (class-name (class-of c)) (domain c)))))
+     (format s "~@<~;condition ~A signalled while ~
+                     parsing the clause in domain ~A: ~
+                     ~A~;~@:>"
+	     (class-name (class-of c)) (domain c) (clause c)))))
 
 @export
 (define-condition declared-type-not-found (domain-parse-condition error)
@@ -38,8 +39,9 @@ then it is always used. The reference is determined by the EQNAME."
   (:report
    (lambda (c s)
      (with-slots (typesym) c
-       (format s "~@<~;~A is not defined in ~A: ~A~;~:@>"
-	       typesym (domain c) (types (domain c)))))))
+       (format s "~@<~;type ~A is not defined in ~A: ~A ~
+                       while parsing ~A~;~:@>"
+	       typesym (domain c) (types (domain c)) (clause c))))))
 
 @export
 (define-condition found-in-dictionary (domain-parse-condition warning)
@@ -70,7 +72,7 @@ then it is always used. The reference is determined by the EQNAME."
 (define-condition not-found-in-dictionary (domain-parse-condition error)
   ((name :initarg :name)
    (dictionary :initarg :dictionary)
-   (pddl-form :initarg :pddl-form)
+   (pddl-form :initarg :pddl-form :initform nil)
    (interning-class :reader interning-class
 		    :initarg :interning-class
 		    :initform 'pddl-variable))
@@ -85,42 +87,72 @@ then it is always used. The reference is determined by the EQNAME."
 (defun %intern-variable (dictionary namesym &optional typesym)
   (if-let ((found (find-if (curry #'%eqname1 namesym) dictionary)))
     (progn
-      (warn 'found-in-dictionary :found found :dictionary dictionary)
-      (when (and typesym (not (%eqname1 typesym (type found))))
-	(error 'type-conflict :found found :declared-type typesym))
+      (warn 'found-in-dictionary
+	    :found found
+	    :dictionary dictionary)
+      (when typesym
+	(if-let ((typeobj (find-if (curry #'%eqname1 typesym)
+				(types *domain*))))
+	  (unless (%eqname1 typesym (type found)) ; a bit faster
+	    (error 'type-conflict
+		   :found found
+		   :declared-type typeobj))
+	  (restart-case
+	      (error 'declared-type-not-found
+		     :typesym typesym
+		     :domain *domain*)
+	    (continue (c)
+	      @ignore c))))
       found)
-    (error 'not-found-in-dictionary :name namesym :dictionary dictionary)))
+    (error 'not-found-in-dictionary
+	   :name namesym
+	   :dictionary dictionary)))
+
+(defun %add-current-parsing-clause (lst)
+  (lambda (c)
+    (unless (slot-boundp c 'clause)
+      (setf (clause c) lst))))
 
 (defun %getting-vars (lst vars acc dictionary generator)
   (ematch lst
     ((list* '- type rest)
-     (iter (for name in vars) ;; 2. vars : reverse order
-	   (for var = 
-		(restart-case
-		    (%intern-variable dictionary name type)
-		  (intern-variable (&optional c)
-		    @ignore c
-		    (let ((instance (funcall generator name type)))
-		      (push instance dictionary)
-		      instance))))
-	   ;; 3. pushing at the beginning, resulting order is regular
-	   (collecting var into variables at beginning)
-	   (finally
-	    (return
-	      (%getting-vars ;; 4. acc is always in a regular order
-	       rest nil (append acc variables) dictionary generator)))))
+     (restart-case
+	 (handler-bind ((domain-parse-condition
+			 (%add-current-parsing-clause `(,@vars - ,type))))
+	   (iter (for name in vars) ;; 2. vars : reverse order
+		 (for var = 
+		      (restart-case
+			  (%intern-variable dictionary name type)
+			(intern-variable (&optional c)
+			  @ignore c
+			  (let ((instance (funcall generator name type)))
+			    (push instance dictionary)
+			    instance))
+			(skip-variable (&optional c)
+			  @ignore c
+			  (next-iteration))))
+		 ;; 3. pushing at the beginning, resulting order is regular
+		 (collecting var into variables at beginning)
+		 (finally
+		  (return
+		    (%getting-vars ;; 4. acc is always in a regular order
+		     rest nil (append acc variables) dictionary generator)))))
+       (skip-this-type (&optional c)
+	 @ignore c
+	 (%getting-vars rest nil acc dictionary generator))))
     ((list* name rest) ;; 1. reversed order
      (%getting-vars rest (cons name vars) acc dictionary generator))
     (nil
-     
-     ;; 5. var is reversed, acc is regular
-     (append acc (nreverse (mapcar (lambda (name)
-				     (restart-case
-					 (%intern-variable dictionary name)
-				       (intern-variable (&optional c)
-					 @ignore c
-					 (funcall generator name))))
-				   vars))))))
+     (handler-bind ((domain-parse-condition
+		     (%add-current-parsing-clause vars)))
+       ;; 5. var is reversed, acc is regular
+       (append acc (nreverse (mapcar (lambda (name)
+				       (restart-case
+					   (%intern-variable dictionary name)
+					 (intern-variable (&optional c)
+					   @ignore c
+					   (funcall generator name))))
+				     vars)))))))
 
 @export
 (defun parse-predicate (predicate-def &optional

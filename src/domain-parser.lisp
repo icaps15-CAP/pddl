@@ -29,20 +29,56 @@
 	  (parse-typed-list typed-list)))
 ;;           ^^-- returns PDDL-VARIABLEs
 
+
+;; only :types clause should be parsed incrementally, or for many times,
+;; in order to resolve the forward referenced type issue.
 (define-clause-getter
     types :types
   (lambda (types)
-    (handler-bind ((not-found-in-dictionary
-		    #'intern-variable))
-      (cons *pddl-primitive-object-type*
-	    (parse-typed-list
-	     types (list *pddl-primitive-object-type*)
-	     (lambda (name &optional (type *pddl-primitive-object-type*))
-	       (pddl-type :name name :type type)))))))
+    (%parse-types-rec types (list *pddl-primitive-object-type*))))
+
+
+(defun %parse-types-rec (input parsed-types)
+  (let ((delayed-types nil))
+    (let ((newly-parsed
+	   (handler-bind ((not-found-in-dictionary #'intern-variable)
+			  (declared-type-not-found
+			   (lambda (c)
+			     (appendf delayed-types (clause c))
+			     (invoke-restart 'skip-this-type))))
+	     (parse-typed-list
+	      input parsed-types
+	      (lambda (name &optional typesym)
+		(pddl-type
+		 :name name
+		 :type (if typesym
+			   (if-let ((type-found
+				     (find-if (curry #'%eqname1 typesym)
+					      parsed-types)))
+			     type-found
+			     ;; this is always handled
+			     (error 'declared-type-not-found))
+			   *pddl-primitive-object-type*)))))))
+      (if delayed-types
+	  (%parse-types-rec
+	   delayed-types
+	   (append newly-parsed parsed-types))
+	  (append newly-parsed parsed-types)))))
+
 
 (define-clause-getter
     constants :constants
-  (rcurry #'typed-objects 'pddl-constant))
+  (lambda (constants)
+    (handler-bind ((not-found-in-dictionary
+		    #'intern-variable))
+      (parse-typed-list
+       constants nil
+       (lambda (name &optional typesym)
+	 (pddl-constant 
+	  :name name
+	  :type  (if typesym
+		     (find-if (curry #'%eqname1 typesym) (types *domain*))
+		     *pddl-primitive-object-type*)))))))
 
 (define-clause-getter 
     predicates :predicates
