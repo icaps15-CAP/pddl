@@ -59,12 +59,18 @@
 (test parse-domain
   (finishes (setf domain (parse-file +domain+)))
   ;; depot
-  (is (typep (symbol-value domain) 'pddl-domain)))
+  (is (typep (symbol-value domain) 'pddl-domain))
+
+  ;; airport-adl
+  (finishes (parse-file (data "airport-adl/domain.pddl"))))
 
 (test (parse-problem :depends-on parse-domain)
   (finishes (setf problem (parse-file +problem+)))
   ;; depotprob1818 
-  (is (typep (symbol-value problem) 'pddl-problem)))
+  (is (typep (symbol-value problem) 'pddl-problem))
+
+  ;; airport 
+  (finishes (parse-file (data "airport-adl/p01-airport1-p1.pddl"))))
 
 (test (parse-plan :depends-on parse-problem)
   (finishes (setf plan (parse-plan +plan+
