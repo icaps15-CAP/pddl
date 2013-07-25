@@ -64,6 +64,9 @@
 	  impliesp forallp existsp whenp
 	  var predicate state))
 
+
+(export '(forall exists implies))
+
 @export
 (defun intern-variable (&optional c)
   (invoke-restart 'intern-variable))
