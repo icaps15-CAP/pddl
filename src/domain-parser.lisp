@@ -13,11 +13,12 @@
 		domain-or-problem-body)))
 
 (defmacro define-clause-getter (name key initializer)
-  `(defun ,(concatenate-symbols 'parse name) (unparsed-domain-or-problem)
-     (declare (type list unparsed-domain-or-problem))
-     (if-let ((cl (find-clause unparsed-domain-or-problem ,key)))
-       (funcall ,initializer cl)
-       (warn "~A not found in this PDDL" ',name))))
+  (with-gensyms (cl)
+    `(defun ,(concatenate-symbols 'parse name) (unparsed-domain-or-problem)
+       (declare (type list unparsed-domain-or-problem))
+       (if-let ((,cl (find-clause unparsed-domain-or-problem ,key)))
+	 (funcall ,initializer ,cl)
+	 (warn "~A not found in this PDDL" ',name)))))
 
 (define-clause-getter
     requirements :requirements
@@ -62,13 +63,14 @@
 ;;;;;;;;;;;;;;;; actions etc.
 
 (defmacro define-action-getter (name key initializer)
-  `(progn
-     (defun ,(concatenate-symbols 'parse name) (domain)
-       (if-let ((cls (remove-if-not
-		      (lambda (clause) (eq (car clause) ,key))
-		      domain)))
-	 (mapcar (compose ,initializer #'cdr) cls)
-	 (warn "~A not found in this PDDL" ',name)))))
+  (with-gensyms (cls)
+    `(progn
+       (defun ,(concatenate-symbols 'parse name) (domain)
+	 (if-let ((,cls (remove-if-not
+			 (lambda (clause) (eq (car clause) ,key))
+			 domain)))
+	   (mapcar (compose ,initializer #'cdr) ,cls)
+	   (warn "~A not found in this PDDL" ',name))))))
 
 (define-action-getter actions :action #'parse-action)
 
