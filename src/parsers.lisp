@@ -250,13 +250,8 @@ then it is always used. The reference is determined by the EQNAME."
   
 (defun parse-p-effect (effect)
   (match effect
-<<<<<<< HEAD
-    ((list* (qor assign scale-up scale-down increase decrease) _)
-     (not-implemented '(assign scale-up scale-down increase decrease)))
-=======
-    ((list* (or 'assign 'scale-up 'scale-down 'increase 'decrease) _)
+    ((op (qor assign scale-up scale-down increase decrease) _)
      (parse-numeric-effect effect))
->>>>>>> adding various parsers and modified class.
     ((notp d)
      `(not ,(parse-atomic-formula d)))
     (_ (parse-atomic-formula effect))))
@@ -266,19 +261,4 @@ then it is always used. The reference is determined by the EQNAME."
     ((andp p)
      `(and ,(mapcar (rcurry #'parse-p-effect) p)))
     (_ (parse-p-effect effect))))
-
-<<<<<<< HEAD
-@export
-(defun parse-metric (body)
-  @ignore body
-  (not-implemented 'metric)
-  ;; (ematch body
-  ;;   ((list (and optimization (qor maximize minimize)) metric-f-exp)
-  ;;    `(,optimization ,(parse-metric-f-exp metric-f-exp))))
-  )
-
-;; (defun parse-metric-f-exp (body)
-;;   (
-=======
->>>>>>> adding various parsers and modified class.
 
