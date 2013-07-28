@@ -1,6 +1,12 @@
 (in-package :pddl)
 (use-syntax :annot)
 
+(defmacro lambda-match (&body clauses)
+  (with-gensyms (arg)
+    `(lambda (,arg)
+       (match ,arg
+	 ,@clauses))))
+
 @export
 (defun not-implemented (what)
   (warn "~A not implemented yet." what))
