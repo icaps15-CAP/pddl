@@ -92,6 +92,19 @@
 (define-pddl-class pddl-type (pddl-variable)
   ())
 
+(defun pddl-supertype (type)
+  (type type))
+
+(defun pddl-supertype-p (subtype supertype)
+  (or (eq subtype supertype)
+      (let ((subtype-1 (pddl-supertype subtype)))
+	(unless (eq subtype subtype-1)
+	  (pddl-supertype-p subtype-1 supertype)))))
+
+(defun pddl-typep (object type)
+  (pddl-supertype-p (type object) type))
+
+
 @eval-always
 @export
 (defvar *pddl-primitive-object-type*
