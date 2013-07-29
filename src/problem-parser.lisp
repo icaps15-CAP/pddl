@@ -19,8 +19,20 @@
 
 (define-clause-getter init :init
   (lambda (init-descriptions)
-    (mapcar #'parse-atomic-state
+    (mapcar #'parse-init-el
 	    init-descriptions)))
+
+(defun parse-init-el (desc)
+  (match desc
+    ((list '= head (and n (type number)))
+     (let ((head (parse-f-head head)))
+       (pddl-function-state
+	:name (first head)
+	:parameters (parse-typed-list (rest head))
+	:value n)))
+    ((list '= _ (type symbol))
+     (not-implemented 'object-fluents))
+    (_ (parse-atomic-state desc))))
 
 (define-clause-getter goal :goal
   (lambda (goal-clause)
