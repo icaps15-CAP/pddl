@@ -22,21 +22,29 @@
 	  states)
 
   (let ((new-states (copy-seq states)))
-    (iter (for effect-pred in (delete-list action))
-	  (setf new-states
-		(delete-if
-		 (lambda (state)
-		   (and (eqname state effect-pred)
-			(equalp (parameters state)
-				(iter (for param in (parameters effect-pred))
-				      (collecting (getf match-set param))))))
-		 new-states)))
-
-    (iter (for effect-pred in (add-list action))
-	  (push (pddl-atomic-state
-		 :name (name effect-pred)
+    ;; deletes all states that matches an object in the delete-list
+    (dolist (effect-pred (delete-list action))
+      (setf new-states
+	    (delete-if
+	     (lambda-match
+	       ((pddl-atomic-state
+		 :name (eq (name effect-pred))
 		 :parameters
-		 (iter (for param in (parameters effect-pred))
-		       (collecting (getf match-set param))))
-		new-states))
+		 (equalp (mapcar (curry #'getf match-set)
+				 (parameters effect-pred))))
+		t))
+	     new-states)))
+    ;; adds all states that matches an object in the add-list
+    (dolist (effect-pred (add-list action))
+      (push (pddl-atomic-state
+	     :name (name effect-pred)
+	     :parameters
+	     (iter (for param in (parameters effect-pred))
+		   (collecting (getf match-set param))))
+	    new-states))
+
+    ;; apply all assign operators to the current states
+    (dolist (effect-pred (assign-ops action))
+      (funcall (state-transition-function effect-pred)
+	       new-function-states))
     new-states))

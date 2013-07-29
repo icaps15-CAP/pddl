@@ -93,7 +93,8 @@
 
 (define-clause-getter
     functions :functions
-  #'parse-functions)
+  (lambda (functions)
+    (parse-function-typed-list functions)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;; actions etc.
