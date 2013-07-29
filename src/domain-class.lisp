@@ -28,6 +28,10 @@
 (define-pddl-class pddl-domain-slot ()
   (domain))
 
+(define-pddl-class pddl-state-transition ()
+  (state-transition-function))
+
+
 (defmethod initialize-instance :after ((o pddl-domain-slot)
 				       &rest args)
   @ignore args
@@ -123,38 +127,64 @@
   ())
 
 (define-pddl-class pddl-function (pddl-predicate)
-  (type))
+  ((type :initform *pddl-primitive-number-type*)))
+@export
+@doc "find the pddl-function specified by the designator."
+(defun pfunction (domain name)
+  (find name (functions domain) :key #'name))
 
-(define-pddl-class pddl-action (pddl-domain-slot namable)
+(define-pddl-class pddl-assign-op (pddl-domain-slot
+				   pddl-state-transition)
+  (place value))
+
+
+
+(define-pddl-class pddl-action (pddl-domain-slot
+				namable
+				pddl-state-transition)
   ((parameters :type pddl-variable)
    precondition
-   effect))
+   effect
+   add-list
+   delete-list
+   assign-ops))
 
 (defmethod add-list ((a pddl-action))
-  (let ((acc nil))
-    (walk-tree (lambda (branch cont)
-		 (match branch
-		   ((andp rest)
-		    (funcall cont rest))
-		   ((notp _)
-		    nil)
-		   ((type pddl-predicate)
-		    (push branch acc))))
-	       (effect a))
-    acc))
+  (with-memoising-slot (add-list a)
+    (let ((acc nil))
+      (walk-tree (lambda (branch cont)
+		   (match branch
+		     ((andp rest)
+		      (funcall cont rest))
+		     ((type pddl-predicate)
+		      (push branch acc))))
+		 (effect a))
+      acc)))
 
 (defmethod delete-list ((a pddl-action))
-  (let ((acc nil))
-    (walk-tree (lambda (branch cont)
-		 (match branch
-		   ((andp rest)
-		    (funcall cont rest))
-		   ((notp pred)
-		    (push pred acc))
-		   ((type pddl-predicate)
-		    nil)))
-	       (effect a))
-    acc))
+  (with-memoising-slot (delete-list a)
+    (let ((acc nil))
+      (walk-tree (lambda (branch cont)
+		   (match branch
+		     ((andp rest)
+		      (funcall cont rest))
+		     ((notp (and pred (type pddl-predicate)))
+		      (push pred acc))))
+		 (effect a))
+      acc)))
+
+(defmethod assign-ops ((a pddl-action))
+  (with-memoising-slot (assign-ops a)
+    (let ((acc nil))
+      (walk-tree (lambda (branch cont)
+		   (match branch
+		     ((andp rest)
+		      (funcall cont rest))
+		     ((type pddl-assign-op)
+		      (push branch acc))))
+		 (effect a))
+      acc)))
+
 
 #+sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)

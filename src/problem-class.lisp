@@ -40,4 +40,8 @@
 
 
 (define-pddl-class pddl-metric (pddl-problem-slot)
-  (optimization metric-fn))
+  (optimization metric-function))
+
+(define-pddl-class pddl-function-state (pddl-function)
+  (value))
+
