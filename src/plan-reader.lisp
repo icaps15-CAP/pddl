@@ -17,7 +17,7 @@
 		 :problem *problem*
 		 :index index
 		 :parameters
-		 (mapcar (curry #'object *problem*)
+		 (mapcar (curry #'object *problem*) ;; namesym -> object
 			 arguments))))))
       (iter (for plan-description in (%parse-plan-rec s nil))
 	    (for index from 0)
@@ -68,6 +68,9 @@
 	     (precondition a))))))
 
 @export
+@doc "Returns a plist 
+  (<pddl-variable> <pddl-object> <pddl-variable> <pddl-object> ...)
+meaning it is a valid assignment of an object to a variable in an action."
 (defgeneric match-set (source))
 (defmethod match-set ((aa pddl-actual-action))
   (let ((set nil)
