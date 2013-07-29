@@ -35,13 +35,14 @@
 		 (:file :helper)
 		 (:file :equality)
 		 (:file :parsers)
-		 (:file :numbers)
 		 
 		 (:file :domain-class)
 		 (:file :problem-class)
 		 (:file :domain-parser)
 		 (:file :problem-parser)
 		 (:file :bootstrap)
+
+		 (:file :numbers)
 		 
 		 (:file :plan-reader)
 		 

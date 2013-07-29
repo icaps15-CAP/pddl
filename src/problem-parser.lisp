@@ -46,5 +46,5 @@
      (parse-GD (car goal-clause)))))
 
 (define-clause-getter metric :metric
-  #'parse-metric)
+  #'parse-metric-body)
 

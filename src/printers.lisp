@@ -18,7 +18,13 @@
 
 (defmethod print-object ((o pddl-predicate) s)
   (print-ignoring-unbound-slot
-    (format s "*(PRE ~a ~{~a~^ ~})"
+    (format s "*(PRE ~a~{ ~a~})"
+	    (name o)
+	    (mapcar #'name (parameters o)))))
+
+(defmethod print-object ((o pddl-function) s)
+  (print-ignoring-unbound-slot
+    (format s "*(FUN ~a~{ ~a~})"
 	    (name o)
 	    (mapcar #'name (parameters o)))))
 
@@ -72,3 +78,8 @@
 	(format s "*(O ~A)" (name v))
 	(format s "*(O ~A ∈ ~A)" (name v) (name (type v))))))
 
+(defmethod print-object ((o pddl-function-state) s)
+  (print-ignoring-unbound-slot
+    (format s "*(FST ~a~{ ~a~})"
+	    (name o)
+	    (mapcar #'name (parameters o)))))

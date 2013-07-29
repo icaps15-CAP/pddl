@@ -14,7 +14,7 @@ clause in the domain description.
      body nil
      (lambda (atomic-function-skelton &optional type)
        (let ((type (if type
-		       (find-if #'%eqname1 (types *domain*))
+		       (find-if (curry #'%eqname1 type) (types *domain*))
 		       *pddl-primitive-number-type*)))
 	 (match atomic-function-skelton
 	   ((list* name typed-variables)
@@ -51,20 +51,21 @@ clause in the domain description.
 		   (lambda (state)
 		     (match state
 		       ((pddl-function-state
-			 :name (eq ,name)
+			 :name (eq ',name)
 			 :parameters
-			 (plist
-			  ,@(iter (for p in *params*)
-				  ;; *params* and (parameter action)
-				  ;;  is identical
-				  (collecting
-				   `(,p (eq (getf ,matches ,p))))))
-			 t))
+			 (list
+			  ,@(iter
+			     (for p in *params*)
+			     ;; *params* and (parameter action)
+			     ;;  is identical
+			     (collecting
+			      `(eq (getf ,matches ,p))))))
+			t)
 		       (_ (error "The value is not initialized~_~
                                   in the problem description!~_~
                                   ~a~_~
                                   add (= ~a 0)~_ to the problem file."
-				 ,head))))
+				 ,head ,head))))
 		   ,states)))))
        (pddl-assign-op
 	:place place
@@ -85,12 +86,17 @@ clause in the domain description.
 			(%function-state head matches states))))))))))))
 
 @export
-(defun parse-metric (body)
+(defun parse-metric-body (body)
   (ematch body
     ((list (and optimization (or 'maximize 'minimize)) metric-f-exp)
      (pddl-metric
       :optimization optimization
       :metric-function (parse-metric-f-exp metric-f-exp)))))
+
+@export
+(defun parse-metric-f-exp (body)
+  (not-implemented 'parse-metric-f-exp)
+  body)
 
 ;; どう実装する????
 
@@ -106,7 +112,7 @@ clause in the domain description.
      `(,op ,(parse-f-exp-body fexp1 state-name getter)
 	   ,(parse-f-exp-body fexp2 state-name getter)))
     ((op (multi-op op) fexps)
-     `(,op ,@(mapcar (rcurry #'parse-f-exp-body state-name) fexps)))
+     `(,op ,@(mapcar (rcurry #'parse-f-exp-body state-name getter) fexps)))
     ((op '- fexp)
      `(- ,(parse-f-exp-body fexp state-name getter)))
     ((type number) body)
@@ -151,9 +157,3 @@ clause in the domain description.
   (not-implemented '(> < >= <= =)))
 
   
-
-
-
-
-
- 
