@@ -43,5 +43,5 @@
   (optimization metric-function))
 
 (define-pddl-class pddl-function-state (pddl-function)
-  (value))
+  (value body))
 

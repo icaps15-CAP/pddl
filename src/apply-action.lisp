@@ -45,6 +45,5 @@
 
     ;; apply all assign operators to the current states
     (dolist (effect-pred (assign-ops action))
-      (funcall (state-transition-function effect-pred)
-	       new-states))
+      (apply-assign-op effect-pred match-set new-states))
     new-states))

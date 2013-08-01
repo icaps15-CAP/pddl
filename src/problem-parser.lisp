@@ -24,11 +24,13 @@
 
 (defun parse-init-el (desc)
   (match desc
-    ((list '= head (and n (type number)))
+    ((list '= (and head (list* name params)) (and n (type number)))
      (let ((head (parse-f-head head)))
        (pddl-function-state
-	:name (first head)
-	:parameters (parse-typed-list (rest head))
+	:name name
+	:parameters (parse-typed-list params) ;; *params* = objects 
+	:type (type head)
+	:body head
 	:value n)))
     ((list '= _ (type symbol))
      (not-implemented 'object-fluents))

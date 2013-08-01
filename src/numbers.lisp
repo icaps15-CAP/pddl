@@ -28,6 +28,26 @@ clause in the domain description.
 
 (export '(scale-up scale-down increase decrease assign))
 
+(defun %function-state-compiler (head matches states)
+  `(or (find-if 
+	(lambda-match
+	  ((pddl-function-state
+	    :name ',(name head)
+	    :parameters
+	    (list 
+	     ,@(mapcar
+		(lambda (p)
+		  `(eq (getf ,matches ,p)))
+		(parameters head))))
+	   t))
+	,states)
+       (error "The value is not initialized~_~
+                  in the problem description!~_~
+                  ~a~_~
+                  add (= ~a 0)~_ to the problem file."
+	      ,head 
+	      (print-pddl-object ,head))))
+
 @export
 @doc "This function is meant to be called while parsing the action effect.
 *params* is bound to the action parameters."
@@ -42,48 +62,32 @@ clause in the domain description.
     ((list 'decrease place modifier)
      (parse-numeric-effect `(assign ,place (- ,place ,modifier))))
     ((list 'assign place new-value)
-     (flet ((%function-state (head matches states)
-	      (ematch head
-		;; get the function object and
-		;; ensures the arity, etc.
-		((pddl-function :name name)
-		 `(find-if 
-		   (lambda (state)
-		     (match state
-		       ((pddl-function-state
-			 :name (eq ',name)
-			 :parameters
-			 (list
-			  ,@(iter
-			     (for p in *params*)
-			     ;; *params* and (parameter action)
-			     ;;  is identical
-			     (collecting
-			      `(eq (getf ,matches ,p))))))
-			t)
-		       (_ (error "The value is not initialized~_~
-                                  in the problem description!~_~
-                                  ~a~_~
-                                  add (= ~a 0)~_ to the problem file."
-				 ,head ,head))))
-		   ,states)))))
-       (pddl-assign-op
-	:place place
-	:value new-value
-	:state-transition-function
-	(compile
+     (pddl-assign-op
+      :place-function
+      (with-gensyms (matches states)
+	(compile 
 	 nil
-	 (with-gensyms (matches states)
-	   `(lambda (,matches ,states)
-	      ;; matches: (<var> <obj>) plist. came from action parameters
-	      ;; states: list of states.
-	      (setf (value 
-		     ,(%function-state (parse-f-head place)
-				       matches states))
-		    ,(parse-f-exp-body
-		      new-value states
-		      (lambda (head)
-			(%function-state head matches states))))))))))))
+	 `(lambda (,matches ,states)
+	    ,(%function-state-compiler
+	      (parse-f-head place) matches states))))
+      :value-function
+      (with-gensyms (matches states)
+	(compile 
+	 nil
+	 `(lambda (,matches ,states)
+	    ,(compile-f-exp-body
+	      new-value
+	      (lambda (head)
+		(%function-state-compiler
+		 (parse-f-head head) matches states))))))))))
+
+(defun place (op matches states)
+  (funcall (place-function op) matches states))
+(defun new-value (op matches states)
+  (funcall (value-function op) matches states))
+(defun apply-assign-op (op matches states)
+  (setf (value (place op matches states))
+	(new-value op matches states)))
 
 @export
 (defun parse-metric-body (body)
@@ -91,12 +95,26 @@ clause in the domain description.
     ((list (and optimization (or 'maximize 'minimize)) metric-f-exp)
      (pddl-metric
       :optimization optimization
-      :metric-function (parse-metric-f-exp metric-f-exp)))))
+      :metric-function
+      (with-gensyms (states)
+	(compile
+	 nil
+	 `(lambda (,states)
+	    ,(compile-metric-f-exp metric-f-exp states))))))))
 
 @export
-(defun parse-metric-f-exp (body)
-  (not-implemented 'parse-metric-f-exp)
-  body)
+(defun compile-metric-f-exp (body states)
+  (compile-f-exp-body
+   body
+   (lambda (head)
+     (let ((pddl-fn (parse-f-head head)))
+       (%function-state-compiler
+	pddl-fn
+	(iter (for o-name in (cdr head))
+	      (for p in (parameters pddl-fn))
+	      (collecting p)
+	      (collecting (object *problem* o-name)))
+	states)))))
 
 ;; どう実装する????
 
@@ -106,17 +124,17 @@ clause in the domain description.
   `(and ,op (qor + *)))
 
 @export
-(defun parse-f-exp-body (body state-name getter)
+(defun compile-f-exp-body (body getter)
   (ematch body
     ((list (binary-op op) fexp1 fexp2)
-     `(,op ,(parse-f-exp-body fexp1 state-name getter)
-	   ,(parse-f-exp-body fexp2 state-name getter)))
+     `(,op ,(compile-f-exp-body fexp1 getter)
+	   ,(compile-f-exp-body fexp2 getter)))
     ((op (multi-op op) fexps)
-     `(,op ,@(mapcar (rcurry #'parse-f-exp-body state-name getter) fexps)))
-    ((op '- fexp)
-     `(- ,(parse-f-exp-body fexp state-name getter)))
+     `(,op ,@(mapcar (rcurry #'compile-f-exp-body getter) fexps)))
+    ((list '- fexp)
+     `(- ,(compile-f-exp-body fexp getter)))
     ((type number) body)
-    (_ (funcall getter (parse-f-head body)))))
+    (_ (funcall getter body))))
 
 @export
 (defun parse-f-head (head)

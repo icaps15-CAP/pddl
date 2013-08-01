@@ -135,7 +135,7 @@
 
 (define-pddl-class pddl-assign-op (pddl-domain-slot
 				   pddl-state-transition)
-  (place value))
+  (place-function value-function))
 
 
 
