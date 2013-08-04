@@ -58,15 +58,19 @@
 	    (mapcar #'name (parameters o))
 	    (precondition o))))
 
+(defmethod print-object ((o pddl-assign-op) s)
+  (print-ignoring-unbound-slot
+    (format s "~@<*(ASSIGN ~; ~a ~;)~:>"
+	    (%source o))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; instances under problems
 
 (defmethod print-object ((o pddl-actual-action) s)
   (print-ignoring-unbound-slot
     (format s "~@<*(AC* ~;~a ~_~a~;)~:>"
 	    (name o)
 	    (mapcar #'name (parameters o)))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; instances under problems
 
 (defmethod print-object ((o pddl-atomic-state) s)
   (print-ignoring-unbound-slot
@@ -80,6 +84,7 @@
 
 (defmethod print-object ((o pddl-function-state) s)
   (print-ignoring-unbound-slot
-    (format s "*(FST ~a~{ ~a~})"
+    (format s "*(FST ~a = ~a~{ ~a~})"
+	    (value o)
 	    (name o)
 	    (mapcar #'name (parameters o)))))

@@ -72,11 +72,10 @@
 	     "truck1 moved to the wrong position ~A" where))))))
 
 (test (simulate-plan :depends-on apply-action)
-  (iter (for aa in plan)
-	(for a = (action (domain aa) aa))
-	(for states 
-	     first (init depotprob1818)
-	     then (apply-action a (match-set aa) states))
-	(print states)
-	(finally
-	 (is (goal-p depotprob1818 states)))))
+  (setf env (pddl-environment :plan (pddl-plan :domain depot
+					       :problem depotprob1818 
+					       :actions plan)
+			      :domain depot
+			      :problem depotprob1818))
+  (let ((last-env (simulate-plan env)))
+    (is (goal-p depotprob1818 (states last-env)))))

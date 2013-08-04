@@ -28,6 +28,22 @@ clause in the domain description.
 
 (export '(scale-up scale-down increase decrease assign))
 
+(defun %getf-by-name (matches parameter)
+  (match matches
+    (nil nil)
+    ((list* (guard key (and (eqname key parameter)
+			    (or (pddl-supertype-p
+				 (type key)
+				 (type parameter))
+				(pddl-supertype-p
+				 (type parameter)
+				 (type key)))))
+	    value _)
+     value)
+    ((list* _ _ rest)
+     (%getf-by-name rest parameter))))
+     
+
 (defun %function-state-compiler (head matches states)
   `(or (find-if 
 	(lambda-match
@@ -37,16 +53,49 @@ clause in the domain description.
 	    (list 
 	     ,@(mapcar
 		(lambda (p)
-		  `(eq (getf ,matches ,p)))
+		  `(eq (%getf-by-name ,matches ,p)))
 		(parameters head))))
 	   t))
 	,states)
-       (error "The value is not initialized~_~
-                  in the problem description!~_~
-                  ~a~_~
-                  add (= ~a 0)~_ to the problem file."
+       (error "~%The value is not initialized ~_~
+               in the problem description! ~%~
+               ~<match-set: ~@;~@{~a ~30,5:t~a~^~%~}~;~:>~%~
+                 head:      ~a~%~
+               add~%~
+               (= ~a 0)~%~
+               to the problem file.~%~
+               match-test:~%~
+               ~a~%~
+               parameters:~%~
+               ~a~%~
+               tested:~%~
+               ~a~%~
+               state:~%~
+               ~a~%~
+               "
+	      ,matches
 	      ,head 
-	      (print-pddl-object ,head))))
+	      (print-pddl-object ,head)
+	      
+	      '(pddl-function-state
+		:name ',(name head)
+		:parameters
+		(list 
+		 ,@(mapcar
+		    (lambda (p)
+		      `(eq (%getf-by-name ,matches ,p)))
+		    (parameters head))))
+	      (list 
+	       ,@(mapcar
+		  (lambda (p)
+		    `(%getf-by-name ,matches ,p))
+		  (parameters head)))
+	      (list 
+	       ,@(mapcar
+		  (lambda (p)
+		    `(%getf-by-name ,matches ,p))
+		  (parameters head)))
+	      ,states)))
 
 @export
 @doc "This function is meant to be called while parsing the action effect.
@@ -63,11 +112,13 @@ clause in the domain description.
      (parse-numeric-effect `(assign ,place (- ,place ,modifier))))
     ((list 'assign place new-value)
      (pddl-assign-op
+      :%source effect
       :place-function
       (with-gensyms (matches states)
 	(compile 
 	 nil
 	 `(lambda (,matches ,states)
+	    (declare (ignorable ,matches))
 	    ,(%function-state-compiler
 	      (parse-f-head place) matches states))))
       :value-function
@@ -75,11 +126,13 @@ clause in the domain description.
 	(compile 
 	 nil
 	 `(lambda (,matches ,states)
+	    (declare (ignorable ,matches))
 	    ,(compile-f-exp-body
 	      new-value
 	      (lambda (head)
-		(%function-state-compiler
-		 (parse-f-head head) matches states))))))))))
+		`(value
+		  ,(%function-state-compiler
+		    (parse-f-head head) matches states)))))))))))
 
 (defun place (op matches states)
   (funcall (place-function op) matches states))
@@ -100,7 +153,7 @@ clause in the domain description.
 	(compile
 	 nil
 	 `(lambda (,states)
-	    ,(compile-metric-f-exp metric-f-exp states))))))))
+	    (value ,(compile-metric-f-exp metric-f-exp states)))))))))
 
 @export
 (defun compile-metric-f-exp (body states)

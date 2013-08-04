@@ -2,6 +2,86 @@
 (in-package :pddl)
 (use-syntax :annot)
 
+(define-pddl-class pddl-plan (pddl-problem-slot)
+  (path actions))
+
+(defmethod initialize-instance :after ((env pddl-plan)
+				       &key path actions
+				       (domain *domain*)
+				       (problem *problem*))
+  (cond
+    ((and path actions)
+     (error "both actions and path are specified!"))
+    ((not (or path actions))
+     (error "neither actions nor path is specified!"))
+    (path
+     (setf (actions env) 
+	   (coerce (parse-plan path domain problem) 'vector)))
+    (actions
+     (setf (actions env)
+	   (coerce actions 'vector)))))
+
+(define-pddl-class pddl-environment (pddl-problem-slot)
+  (plan
+   (index :initform 0)
+   states))
+
+(defmethod initialize-instance :after ((env pddl-environment)
+				       &key
+				       path plan states
+				       (domain *domain*)
+				       (problem *problem*))
+  (cond
+    ((and path plan) (error "both plan and path are specified!"))
+    ((not (or path plan)) (error "neither plan nor path is specified!"))
+    (path (setf (plan env) (pddl-plan :domain domain
+				      :problem problem
+				      :path path)))
+    (plan (setf (plan env) plan)))
+  (unless states
+    (setf (states env) (mapcar #'shallow-copy (init problem)))))
+
+(defmethod reinitialize-instance :after ((env pddl-environment)
+					 &key
+					 &allow-other-keys)
+  (setf (index env) 0
+	(states env) (mapcar #'shallow-copy (init problem))))
+
+@export
+(defun proceed (env)
+  (let ((aa (elt (actions (plan env)) (index env))))
+    (pddl-environment
+     :domain (domain env)
+     :problem (problem env)
+     :plan (plan env)
+     :index (1+ (index env))
+     :states (apply-actual-action aa (states env)))))
+
+@export
+(defun simulate-plan (env)
+  (handler-case
+      (iter (setf env (proceed env)))
+    (type-error ()
+      env)))
+
+@export
+(defun cost (env)
+  (funcall (metric-function (metric (problem env)))
+	   (states env)))
+
+
+@export
+(defun function-state (env f-head)
+  (match (ensure-list f-head)
+    ((list* name params)
+     (find-if
+      (lambda-match
+	((pddl-function-state
+	  :name (eq name)
+	  :parameters objs)
+	 (equal (mapcar #'name objs) params))) 
+      (states env)))))
+
 @export
 (defun parse-plan (pathname *domain* *problem*)
   (with-open-file (s pathname)
@@ -51,7 +131,8 @@
 		   :parameters
 		   (mapcar (lambda (param)
 			     (getf set param))
-			   parameters)))))
+			   parameters)))
+		 ((and op (pddl-assign-op)) op)))
 	     (effect a))
 	    precondition
 	    (walk-tree 

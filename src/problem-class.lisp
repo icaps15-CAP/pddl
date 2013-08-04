@@ -18,9 +18,8 @@
   (problem))
 
 (defmethod initialize-instance :after ((o pddl-problem-slot)
-				       &rest args)
-  @ignore args
-  (setf (problem o) *problem*))
+				       &key (problem *problem*))
+  (setf (problem o) problem))
 
 (define-pddl-class pddl-atomic-state (pddl-problem-slot pddl-predicate)
   ())

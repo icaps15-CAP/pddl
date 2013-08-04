@@ -28,14 +28,9 @@
 (define-pddl-class pddl-domain-slot ()
   (domain))
 
-(define-pddl-class pddl-state-transition ()
-  (state-transition-function))
-
-
 (defmethod initialize-instance :after ((o pddl-domain-slot)
-				       &rest args)
-  @ignore args
-  (setf (domain o) *domain*))
+				       &key (domain *domain*))
+  (setf (domain o) domain))
 
 (define-pddl-class pddl-domain (namable)
   (requirements
@@ -50,12 +45,15 @@
 @export
 @doc "find the action specified by the designator."
 (defgeneric action (pddl-domain designator))
-(defmethod action ((dom pddl-domain) designator)
+(defmethod action ((dom pddl-domain) (designator symbol))
   (find-if (lambda (action)
 	     (string= (symbol-name (name action))
-		      (typecase designator
-			(symbol (symbol-name designator))
-			(string designator))))
+		      (symbol-name designator)))
+	   (actions dom)))
+(defmethod action ((dom pddl-domain) (designator string))
+  (find-if (lambda (action)
+	     (string= (symbol-name (name action))
+		      designator))
 	   (actions dom)))
 
 @export
@@ -133,21 +131,24 @@
 (defun pfunction (domain name)
   (find name (functions domain) :key #'name))
 
-(define-pddl-class pddl-assign-op (pddl-domain-slot
-				   pddl-state-transition)
-  (place-function value-function))
+(define-pddl-class pddl-assign-op (pddl-domain-slot)
+  (place-function
+   value-function
+   %source))
 
 
 
 (define-pddl-class pddl-action (pddl-domain-slot
-				namable
-				pddl-state-transition)
+				namable)
   ((parameters :type pddl-variable)
    precondition
    effect
    add-list
    delete-list
    assign-ops))
+
+(defmethod action ((dom pddl-domain) (designator pddl-action))
+  (find designator (actions dom)))
 
 (defmethod add-list ((a pddl-action))
   (with-memoising-slot (add-list a)

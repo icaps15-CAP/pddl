@@ -7,6 +7,7 @@
 (defpackage pddl-test
   (:use :cl
 	:guicho-utilities
+	:repl-utilities
 	:iterate
 	:optima
         :pddl
@@ -34,6 +35,7 @@
 (defvar domain)
 (defvar problem)
 (defvar plan)
+(defvar env)
 
 
 (test parse-typed-list
