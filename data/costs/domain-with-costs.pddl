@@ -43,8 +43,11 @@
 
   (:functions
    (total-cost)
-   (loading-cost)
-   (job-cost ?job - job)
+   (loading-cost)        ; the cost to set and eject base
+   (job-cost ?job - job) ; the cost to do each job
+   
+   ;; slidng bases costs nothing
+
    (move-cost ?from ?to - position) - number)
 
   (:action move-arm
