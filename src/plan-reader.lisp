@@ -29,8 +29,12 @@
 (defmethod initialize-instance :after ((env pddl-environment)
 				       &key
 				       path plan states
-				       (domain *domain*)
-				       (problem *problem*))
+				       (domain 
+					(or *domain*
+					    (and plan (domain plan))))
+				       (problem
+					(or *problem*
+					    (and plan (problem plan)))))
   (cond
     ((and path plan) (error "both plan and path are specified!"))
     ((not (or path plan)) (error "neither plan nor path is specified!"))
@@ -58,11 +62,21 @@
      :states (apply-actual-action aa (states env)))))
 
 @export
-(defun simulate-plan (env)
+(defun simulate-plan (env &optional function)
   (handler-case
-      (iter (setf env (proceed env)))
+      (if (functionp function)
+	  (iter (funcall function env)
+		(setf env (proceed env)))
+	  (iter (setf env (proceed env))))
     (type-error ()
       env)))
+
+@export
+(defmacro with-simulating-plan ((envname env) &body body)
+  `(simulate-plan ,env
+		  (lambda (,envname)
+		    ,@body)))
+    
 
 @export
 (defun cost (env)
