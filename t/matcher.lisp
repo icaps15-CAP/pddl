@@ -72,11 +72,12 @@
 	     "truck1 moved to the wrong position ~A"))))))
 
 (test (simulate-plan :depends-on apply-action)
-  (iter (for aa in plan)
+  (iter (for aa in-sequence plan from 1 below (1- (length plan)))
 	(for a = (action (domain aa) aa))
 	(for states 
 	     first (init depotprob1818)
-	     then (apply-action a (match-set aa) states))
+	     then (apply-action a (match-set aa)
+				states))
 	(print states)
 	(finally
 	 (is (goal-p depotprob1818 states)))))

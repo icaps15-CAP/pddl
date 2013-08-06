@@ -31,14 +31,24 @@
 
 (defmethod print-object ((o pddl-action) s)
   (print-ignoring-unbound-slot
-    (format s "*(ACT (~{~A~^ ~}) ~a)"
+    (format s "*(A ~A (~{~A~^ ~}) ~a)"
+	    (name o)
 	    (mapcar #'name (parameters o))
 	    (precondition o))))
 
 (defmethod print-object ((o pddl-actual-action) s)
   (print-ignoring-unbound-slot
-    (format s "*(ACT (~{~A~^ ~}))"
+    (format s "*(A* ~a ~a (~{~A~^ ~}))"
+	    (index o)
+	    (name o)
 	    (mapcar #'name (parameters o)))))
+
+(defmethod print-object ((o pddl-initial-action) s)
+  (print-ignoring-unbound-slot
+    (format s "*(INIT-ACTION)")))
+(defmethod print-object ((o pddl-goal-action) s)
+  (print-ignoring-unbound-slot
+    (format s "*(GOAL-ACTION)")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; instances under problems
