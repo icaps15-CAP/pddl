@@ -35,6 +35,8 @@
 				       (problem
 					(or *problem*
 					    (and plan (problem plan)))))
+  (setf (domain env) domain
+	(problem env) problem)
   (cond
     ((and path plan) (error "both plan and path are specified!"))
     ((not (or path plan)) (error "neither plan nor path is specified!"))
