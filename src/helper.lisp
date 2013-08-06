@@ -1,6 +1,7 @@
 (in-package :pddl)
 (use-syntax :annot)
 
+@export
 (defmacro lambda-match (&body clauses)
   (with-gensyms (arg)
     `(lambda (,arg)

@@ -140,6 +140,7 @@
 (define-pddl-class pddl-goal-action (pddl-actual-action)
   ())
 
+@export
 (defun problem-initial-action (*problem*)
   (pddl-initial-action
    :name 'init
@@ -150,6 +151,7 @@
    :precondition nil
    :effect `(and ,@(init *problem*))))
 
+@export
 (defun problem-goal-action (*problem* index)
   (pddl-goal-action
    :name 'goal
