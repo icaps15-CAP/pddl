@@ -107,7 +107,7 @@
 		(assert (action *domain* action-name) nil
 			"action-name ~A not found in ~A"
 			action-name *domain*)
-		(pddl-actual-action
+		(pddl-intermediate-action
 		 :name action-name
 		 :domain *domain*
 		 :problem *problem*
@@ -116,8 +116,14 @@
 		 (mapcar (curry #'object *problem*) ;; namesym -> object
 			 arguments))))))
       (iter (for plan-description in (%parse-plan-rec s nil))
-	    (for index from 0)
-	    (collecting (instantiate plan-description index))))))
+	    (for index from 1)
+	    (with plan = (list (problem-initial-action *problem*)))
+	    (push (instantiate plan-description index) plan)
+	    (finally
+	     (return
+	       (nreverse
+		(cons (problem-goal-action *problem* (1+ index))
+		      plan))))))))
 
 (defun %parse-plan-rec (s acc)
   (if-let ((read (read s nil)))
@@ -125,12 +131,39 @@
     (nreverse acc)))
 
 (define-pddl-class pddl-actual-action (pddl-problem-slot pddl-action)
-  (index))
+  ((index :type fixnum)))
 
-(defmethod action ((dom pddl-domain) (aa pddl-actual-action))
+(define-pddl-class pddl-intermediate-action (pddl-actual-action)
+  ())
+(define-pddl-class pddl-initial-action (pddl-actual-action)
+  ())
+(define-pddl-class pddl-goal-action (pddl-actual-action)
+  ())
+
+(defun problem-initial-action (*problem*)
+  (pddl-initial-action
+   :name 'init
+   :domain *domain*
+   :problem *problem*
+   :index 0
+   :parameters (objects *problem*)
+   :precondition nil
+   :effect `(and ,@(init *problem*))))
+
+(defun problem-goal-action (*problem* index)
+  (pddl-goal-action
+   :name 'goal
+   :domain *domain*
+   :problem *problem*
+   :index index
+   :parameters (objects *problem*)
+   :precondition (goal *problem*)
+   :effect nil))
+
+(defmethod action ((dom pddl-domain) (aa pddl-intermediate-action))
   (action dom (name aa)))
 
-(defmethod initialize-instance :after ((aa pddl-actual-action)
+(defmethod initialize-instance :after ((aa pddl-intermediate-action)
 				       &rest args)
   @ignore args
   (let ((set (match-set aa))
@@ -169,10 +202,20 @@
   (<pddl-variable> <pddl-object> <pddl-variable> <pddl-object> ...)
 meaning it is a valid assignment of an object to a variable in an action."
 (defgeneric match-set (source))
-(defmethod match-set ((aa pddl-actual-action))
+(defmethod match-set ((aa pddl-intermediate-action))
   (let ((set nil)
 	(a (action (domain aa) aa)))
     (iter (for obj in (parameters aa))
 	  (for var in (parameters a))
 	  (setf (getf set var) obj))
+    set))
+(defmethod match-set ((aa pddl-initial-action))
+  (let ((set nil))
+    (iter (for obj in (parameters aa))
+	  (setf (getf set obj) obj))
+    set))
+(defmethod match-set ((aa pddl-goal-action))
+  (let ((set nil))
+    (iter (for obj in (parameters aa))
+	  (setf (getf set obj) obj))
     set))

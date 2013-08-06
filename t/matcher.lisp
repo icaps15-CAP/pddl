@@ -79,3 +79,4 @@
 			      :problem depotprob1818))
   (let ((last-env (simulate-plan env)))
     (is (goal-p depotprob1818 (states last-env)))))
+
