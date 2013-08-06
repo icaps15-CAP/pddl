@@ -23,7 +23,7 @@
 
 (define-pddl-class pddl-environment (pddl-problem-slot)
   (plan
-   (index :initform 0)
+   (index :initform 1)
    states))
 
 (defmethod initialize-instance :after ((env pddl-environment)
@@ -50,8 +50,8 @@
 (defmethod reinitialize-instance :after ((env pddl-environment)
 					 &key
 					 &allow-other-keys)
-  (setf (index env) 0
-	(states env) (mapcar #'shallow-copy (init problem))))
+  (setf (index env) 1
+	(states env) (mapcar #'shallow-copy (init (problem env)))))
 
 @export
 (defun proceed (env)
@@ -70,7 +70,7 @@
 	  (iter (funcall function env)
 		(setf env (proceed env)))
 	  (iter (setf env (proceed env))))
-    (type-error ()
+    (terminal-action-operator-error ()
       env)))
 
 @export
@@ -162,6 +162,18 @@
 
 (defmethod action ((dom pddl-domain) (aa pddl-intermediate-action))
   (action dom (name aa)))
+
+(define-condition terminal-action-operator-error (simple-error)
+  ())
+
+(defmethod action ((dom pddl-domain) (aa pddl-initial-action))
+  (error 'terminal-action-operator-error
+	 :format-control 
+	 "initial action doesn't have a corresponding operator!"))
+(defmethod action ((dom pddl-domain) (aa pddl-goal-action))
+  (error 'terminal-action-operator-error
+	 :format-control 
+	 "goal action doesn't have a corresponding operator!"))
 
 (defmethod initialize-instance :after ((aa pddl-intermediate-action)
 				       &rest args)
