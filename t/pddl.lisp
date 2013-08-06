@@ -36,7 +36,7 @@
 (defvar problem)
 (defvar plan)
 (defvar env)
-
+(export '(domain problem plan env))
 
 (test parse-typed-list
 
