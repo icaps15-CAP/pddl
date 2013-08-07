@@ -144,7 +144,7 @@
 (defun problem-initial-action (*problem*)
   (pddl-initial-action
    :name 'init
-   :domain *domain*
+   :domain (domain *problem*)
    :problem *problem*
    :index 0
    :parameters (objects *problem*)
@@ -155,7 +155,7 @@
 (defun problem-goal-action (*problem* index)
   (pddl-goal-action
    :name 'goal
-   :domain *domain*
+   :domain (domain *problem*)
    :problem *problem*
    :index index
    :parameters (objects *problem*)
