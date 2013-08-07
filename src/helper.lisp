@@ -73,6 +73,7 @@
 
 
 (export '(forall exists implies))
+(export '(maximize minimize))
 
 @export
 (defun intern-variable (&optional c)
