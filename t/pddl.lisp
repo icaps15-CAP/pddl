@@ -13,6 +13,7 @@
         :pddl
         :fiveam)
   (:shadow :place)
+  (:shadowing-import-from :pddl :maximize :minimize)
   (:shadowing-import-from :fiveam :fail))
 (in-package :pddl-test)
 
