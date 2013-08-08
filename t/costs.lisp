@@ -1,6 +1,9 @@
 (in-package :pddl-test)
 (in-suite :pddl)
 
+(defvar cell-assembly-p1-plan5)
+(export 'cell-assembly-p1-plan5)
+
 (test costs
   (finishes
     (setf domain
@@ -13,10 +16,17 @@
 	   (parse-file (data "costs/model2b1c.pddl"))))
     "failed parsing a problem")
   (finishes
+    (setf cell-assembly-p1-plan5
+	  (pddl-plan :domain domain
+		     :problem problem
+		     :path (data "costs/model2b1c.plan.5")))
+    "failed parsing a plan")
+  (finishes
     (setf env (pddl-environment :domain domain
 				:problem problem
 				:path (data "costs/model2b1c.plan.5")))
     "failed parsing a plan")
+  
 
   (is (= (cost env) 0) "the metric is not initialized to 0")
   (is (= (value (function-state env '(MOVE-COST MACHINE-B MACHINE-A)))

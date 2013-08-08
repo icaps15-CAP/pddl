@@ -74,7 +74,7 @@
 (test (simulate-plan :depends-on apply-action)
   (setf env (pddl-environment :plan (pddl-plan :domain depot
 					       :problem depotprob1818 
-					       :actions plan)
+					       :actions depot-actions)
 			      :domain depot
 			      :problem depotprob1818))
   (let ((last-env (simulate-plan env)))

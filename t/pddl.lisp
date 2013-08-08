@@ -35,9 +35,16 @@
 
 (defvar domain)
 (defvar problem)
+(defvar actions)
+(defvar depot-actions)
 (defvar plan)
 (defvar env)
-(export '(domain problem plan env))
+(export '(depot depotprob1818
+	  cell-assembly-cost cell-assembly
+	  cell-assembly-cost-p1 cell-assembly-p1
+	  cell-assembly-cost-p2 cell-assembly-p2
+	  cell-assembly-cost-p3 cell-assembly-p3))
+
 
 (test parse-typed-list
 
@@ -78,6 +85,6 @@
   (finishes (parse-file (data "airport-adl/p01-airport1-p1.pddl"))))
 
 (test (parse-plan :depends-on parse-problem)
-  (finishes (setf plan (parse-plan +plan+
-				   (symbol-value domain)
-				   (symbol-value problem)))))
+  (finishes (setf depot-actions (parse-plan +plan+
+				      (symbol-value domain)
+				      (symbol-value problem)))))

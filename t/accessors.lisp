@@ -30,8 +30,3 @@
     (is (= 1 (length (add-list a)))
 	"(length (add-list a)) should be 1,~%~
          but (add-list a) was ~a ." (add-list a))))
-
-;; (test (plans :depends-on (and actions predicate))
-;;   (
-;;   (let ((a (action depot :drive)))
-;;     (is (appliable 
