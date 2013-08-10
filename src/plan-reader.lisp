@@ -148,7 +148,7 @@
    :problem *problem*
    :index 0
    :parameters (objects *problem*)
-   :precondition nil
+   :precondition '(and)
    :effect `(and ,@(init *problem*))))
 
 @export
@@ -160,7 +160,7 @@
    :index index
    :parameters (objects *problem*)
    :precondition (goal *problem*)
-   :effect nil))
+   :effect '(and)))
 
 (defmethod action ((dom pddl-domain) (aa pddl-intermediate-action))
   (action dom (name aa)))
