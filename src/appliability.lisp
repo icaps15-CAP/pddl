@@ -129,16 +129,19 @@ Values are (success-p remaining-states new-matches used-states)."
     (() nil)))
 
 (defun %apply-or-rec (states preds matches used-states)
-  (multiple-value-match (%apply-clause-rec states (car preds) matches used-states)
-    (((not nil) new-state new-matches used-states)
-     (values t new-state new-matches used-states))
+  (multiple-value-match
+      (ignore-errors
+	(%apply-clause-rec states (car preds) matches used-states))
+    (((not nil) new-state new-matches used-states)     (values t new-state new-matches used-states))
     (()
      (if-let ((rest (cdr preds)))
        (%apply-or-rec states rest matches used-states)
        nil))))
 
 (defun %apply-not-rec (states pred matches used-states)
-  (multiple-value-match (%apply-clause-rec states pred matches used-states)
+  (multiple-value-match
+      (ignore-errors
+	(%apply-clause-rec states pred matches used-states))
     (((not nil) _ _)
      nil)
     (()
