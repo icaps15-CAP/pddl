@@ -18,41 +18,31 @@ supported requirements:
 returns (values t remained-states matches used-states)
 where remained-states are the states which did not appear in the precond
 and used-states are those which did."
-(defun appliable (states action)
-  
-  ;; assume all state in states are in the same domain
-  
-  ;; assume all object in states are declared in the problem
-  
-  ;; match the action precondition to the state
-  
-  
-  ;; precondition has thefollowing form:
-  ;; (AND #<PREDICATE TRUCK ?X>
-  ;;      #<PREDICATE PLACE ?Y>
-  ;;      #<PREDICATE PLACE ?Z>
-  ;;      #<PREDICATE AT ?X ?Y>)
-  ;; see parse-pre-GD .
+(defgeneric appliable (states action))
 
-  ;; %apply-clause-rec only provides 1 matching to the current states,
-  ;; so it would be necessary to retrieve as many matching as possible.
+(defmethod appliable ((states list) (action pddl-action))
+  (handler-bind ((assignment-error
+		  (lambda (c)
+		    (invoke-restart
+		     (find-restart
+		      'remove-conflict-and-continue c) c))))
+    (%apply-clause-rec states
+		       (precondition action)
+		       nil
+		       nil)))
 
-  (%apply-clause-rec states (precondition action) nil nil))
-
-@export
-(defun retrieve-all-match-set (states action)
-  (if states
-      (multiple-value-match (%apply-clause-rec states (precondition action) nil nil)
-	((t _ matches used)
-	 (cons matches
-	       (iter (for u in used)
-		     (warn "~@<~;removed ~a from the states!~;~@:>" u)
-		     (when-let ((match (retrieve-all-match-set
-					(remove u states) action)))
-		       (appending match)))))
-	((_) nil))
-      nil))
-
+(defmethod appliable ((states list) (aa pddl-actual-action))
+  (handler-bind 
+      ((assignment-error
+	(lambda (c)
+	  (invoke-restart
+	   (find-restart
+	    'ignore-conflict-and-continue c) c))))
+    (%apply-clause-rec
+     states
+     (precondition (action (domain aa) aa))
+     (match-set aa)
+     nil)))
 
 (defun %delay-negatives (preds)
   (let (positive negative)
@@ -84,40 +74,40 @@ Values are (success-p remaining-states new-matches used-states)."
     (_ (error "~@<~;May contain unrecognizable clause? ~A~;~@:>"
 	      precond-branch))))
 
+(defun remove-conflict-handler (states preds matches used-states c)
+  (match c
+    ((class assignment-error
+	    (variable var)
+	    (old-assignment obj))
+     (format t "~%removing facts matching ~a = ~a ..."
+	     var obj)
+     (%apply-and-rec
+      (prog1 (remove-if
+	      (let* ((p (car preds))
+		     (params (parameters p)))
+		(lambda (s)
+		  (when (and (eqname s p)
+			     (eq obj
+				 (nth (position var params)
+				      (parameters s))))
+		    (format t "~%removed ~a" s)
+		    t)))
+	      states)
+	(format t "~%restarting...~%"))
+      preds matches used-states))))
+
 (defun %apply-and-rec (states preds matches used-states)
-  (tagbody
-   start
-     (return-from %apply-and-rec
-       (handler-bind
-	   ((assignment-error
-	     (lambda (c)
-	       (match c
-		 ((class assignment-error
-			 (variable (guard var (null (getf matches var))))
-			 (old-assignment obj))
-		  
-		  (format t "~%removing any facts which matches ~a ~a ..."
-			  var obj)
-		  (setf
-		   states
-		   (remove-if
-		    (let ((p (car preds)))
-		      (lambda (s)
-			(when 
-			    (and (eqname s p)
-				 (eq (nth (position
-					   var (parameters p))
-					  (parameters s))
-				     obj))
-			  (format t "~%removed ~a from the states!"
-				  s)
-			  t)))
-		    states))
-		  (format t "~%restarting...~%")
-		  (go start))
-		 (_ (format
-		     t "~%assignment found, backtracking further..."))))))
-	 (%%apply-and-rec states preds matches used-states)))))
+  (restart-case
+      (%%apply-and-rec states preds matches used-states)
+    (remove-conflict-and-continue (c)
+      :test
+      (lambda (c)
+	(match c
+	  ((class assignment-error
+		  (variable (guard var (null (getf matches var))))) t)))
+      (remove-conflict-handler
+       states preds matches used-states c))))
+
 
 (defun %%apply-and-rec (states preds matches used-states)
   (multiple-value-match (%apply-clause-rec states (car preds)
@@ -162,7 +152,12 @@ Values are (success-p remaining-states new-matches used-states)."
 
 (defun %apply-rec-pruned (unmatched pred matches unused used-states)
   (destructuring-bind (s . rest) unmatched
-    (if-let ((new-matches (%try-match pred s matches)))
+    (if-let ((new-matches
+	      (restart-case 
+		  (%try-match pred s matches)
+		(ignore-conflict-and-continue (c)
+		  @ignore c
+		  nil))))
       (values t (append unused rest) new-matches (cons s used-states))
       (if rest
 	  (%apply-rec-pruned rest pred matches (cons s unused) used-states)
