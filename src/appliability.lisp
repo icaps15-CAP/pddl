@@ -3,10 +3,13 @@
 (use-syntax :annot)
 
 @export
-@doc "STATES : list of `pddl-atomic-state' .
-PROBLEM: `pddl-problem'.
+@doc "STATES : `list' of `pddl-atomic-state' .
+ACTION: `pddl-action'.
 supported requirements:
- (:DISJUNCTIVE-PRECONDITIONS :NEGATIVE-PRECONDITIONS)"
+ (:DISJUNCTIVE-PRECONDITIONS :NEGATIVE-PRECONDITIONS)
+returns (values t remained-states matches used-states)
+where remained-states are the states which did not appear in the precond
+and used-states are those which did."
 (defun appliable (states action)
   
   ;; assume all state in states are in the same domain
