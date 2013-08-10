@@ -5,7 +5,8 @@
 @export
 @doc "Signalled when the match conflict accured and start backtracking."
 (define-condition assignment-error (error)
-  ((variable :initarg :variable)
+  ((state :initarg :state :reader state)
+   (variable :initarg :variable)
    (assignment :initarg :assignment)
    (old-assignment :initarg :old-assignment)))
 
@@ -176,6 +177,7 @@ Values are (success-p remaining-states new-matches used-states)."
 	      (if (eq obj matched-obj)
 		  (next-iteration)
 		  (error 'assignment-error
+			 :state s
 			 :variable var
 			 :assignment obj
 			 :old-assignment matched-obj))
