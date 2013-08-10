@@ -2,17 +2,22 @@
   (:requirements :strips :typing
 		 :negative-preconditions
 		 :action-costs)
-  (:types table - position     ; The place to attach components with arms.
+  (:types arm		       ;
+	  position	       ; Where the arms is potentially able to go
+	  holdable
+	  job - object
+	  
+	  table - position     ; The place to attach components with arms.
 	  container - position ; Has infinite capacity to store things.
+	  
 	  conveyor - container ; Slide things in/away. Infinite length.
 	  tray - container     ; Part trays.
+	  
 	  machine - table      ; Tables which does specific jobs by itself.
 	  machine-job - job    ; Jobs which should be done on machines.
-	  arm		       ;
-	  position	       ; Where the arms is potentially able to go
-	  base		       ;
-	  component	       ; Things which should be attatched on tables.
-	  job)
+	  base - holdable      ;
+	  component - holdable ; Things which should be attatched on tables.
+	  )
   (:constants carry-in - conveyor  ; the start of the base
 	      carry-out - conveyor ; the goal of the base
 	      table-in - table	   ; always connected to the conveyor
@@ -34,7 +39,7 @@
    (arm-present ?pos - position)
    (base-present ?pos - position)
    
-   (hold ?arm - arm ?base - base)
+   (hold ?arm - arm ?holdable - holdable)
    (free ?arm - arm) ;; instead of (not (exists (?base) (hold ?arm ?base)))
 
    ;; (used ?component - component)
