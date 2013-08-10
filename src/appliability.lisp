@@ -46,15 +46,29 @@ and used-states are those which did."
       nil))
 
 
+(defun %delay-negatives (preds)
+  (let (positive negative)
+    (dolist (p preds)
+      (match p
+	((notp _) (push p negative))
+	(_ (push p positive))))
+    (append positive negative)))
+    
 
 @doc "Returns 4 values or nil when no matching found.
 Values are (success-p remaining-states new-matches used-states)."
 (defun %apply-clause-rec (states precond-branch matches used-states)
   (match precond-branch
-    ((andp preds)
-     (%apply-and-rec states preds matches used-states))
-    ((orp preds)
-     (%apply-or-rec states preds matches used-states))
+    ((andp (and preds (not nil)))
+     (%apply-and-rec states (%delay-negatives preds)
+		     matches used-states))
+    ((andp nil)
+     (values t states matches used-states))
+    ((orp (and preds (not nil)))
+     (%apply-or-rec states (nreverse (%delay-negatives preds))
+		    matches used-states))
+    ((orp nil)
+     nil)
     ((notp pred)
      (%apply-not-rec states pred matches used-states))
     ((type pddl-predicate)
