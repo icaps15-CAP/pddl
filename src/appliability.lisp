@@ -109,7 +109,7 @@ Values are (success-p remaining-states new-matches used-states)."
 	  nil))))
 
 @export
-(defun %try-match (p s matches)
+(defun %try-match (p s matches) ;; predicate, state, match-set(plist).
   (when (and (= (arity p) (arity s))
 	     (eqname p s))
     (let ((matches (copy-seq matches))
