@@ -1,31 +1,34 @@
 (in-package :pddl-test)
 (in-suite :pddl)
 
-(defvar cell-assembly-p1-plan5)
-(export 'cell-assembly-p1-plan5)
+(export '(cell-assembly-cost
+	  cell-assembly-with-cost-p1
+	  cell-assembly-with-cost-p2
+	  cell-assembly-with-cost-p3))
 
 (test costs
-  (finishes
-    (setf domain
-	  (symbol-value
-	   (parse-file (data "costs/domain-with-costs.pddl"))))
-    "failed parsing a domain")
-  (finishes
-    (setf problem
-	  (symbol-value
-	   (parse-file (data "costs/model2b1c.pddl"))))
-    "failed parsing a problem")
-  (finishes
-    (setf cell-assembly-p1-plan5
-	  (pddl-plan :domain domain
-		     :problem problem
-		     :path (data "costs/model2b1c.plan.5")))
-    "failed parsing a plan")
-  (finishes
-    (setf env (pddl-environment :domain domain
-				:problem problem
-				:path (data "costs/model2b1c.plan.5")))
-    "failed parsing a plan")
+  
+  (handler-bind ((found-in-dictionary #'muffle-warning))
+    (finishes
+      (setf domain
+	    (symbol-value
+	     (parse-file (data "costs/domain-with-costs.pddl"))))
+      "failed parsing a domain")
+    (finishes
+      (setf problem
+	    (symbol-value
+	     (parse-file (data "costs/model2b1c.pddl"))))
+      "failed parsing a problem")
+    (finishes
+      (pddl-plan :domain domain
+		 :problem problem
+		 :path (data "costs/model2b1c.plan.5"))
+      "failed parsing a plan")
+    (finishes
+      (setf env (pddl-environment :domain domain
+				  :problem problem
+				  :path (data "costs/model2b1c.plan.5")))
+      "failed parsing a plan"))
   
 
   (is (= (cost env) 0) "the metric is not initialized to 0")
@@ -64,6 +67,29 @@
 	(setf env (proceed env)))
   
   (is (= 101 (cost env))))
+
+(test (read-all-problem-and-plans :depends-on costs)
+  (handler-bind ((found-in-dictionary #'muffle-warning))
+    (let ((*domain* cell-assembly-cost))
+      (parse-file (data "costs/model2b2c.pddl"))
+      (parse-file (data "costs/model2b3c.pddl")))
+
+    (flet ((read-many (problem pathstr start end)
+	     (iter (for i from start to end)
+		   (for sym = (concatenate-symbols
+			       (name problem) i))
+		   (setf (symbol-value sym)
+			 (pddl-plan
+			  :domain cell-assembly-cost
+			  :problem problem
+			  :path (data (format nil pathstr i))))
+		   (export sym))))
+      (read-many cell-assembly-with-cost-p1
+		 "costs/model2b1c.plan.~a"
+		 1 5)
+      (read-many cell-assembly-with-cost-p3
+		 "costs/model2b3c.plan.~a"
+		 1 7))))
 
 
 

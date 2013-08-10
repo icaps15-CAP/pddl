@@ -63,13 +63,14 @@
 (test (apply-action :depends-on appliability)
   (let ((new-states (new-states depotprob1818)))
     (is-false (null new-states))
-    (dolist (s new-states)
-      (match s
-	((state 'at 'truck1 (where))
-	 (is-false (eq where (object depotprob1818 'depot0))
-		   "truck1 not moved")
-	 (is (eq where (object depotprob1818 'distributor1))
-	     "truck1 moved to the wrong position ~A" where))))))
+    (handler-bind ((warning #'muffle-warning))
+      (dolist (s new-states)
+	(match s
+	  ((state 'at 'truck1 (where))
+	   (is-false (eq where (object depotprob1818 'depot0))
+		     "truck1 not moved")
+	   (is (eq where (object depotprob1818 'distributor1))
+	       "truck1 moved to the wrong position ~A" where)))))))
 
 (test (simulate-plan :depends-on apply-action)
   (setf env (pddl-environment :plan (pddl-plan :domain depot
@@ -77,6 +78,7 @@
 					       :actions depot-actions)
 			      :domain depot
 			      :problem depotprob1818))
-  (let ((last-env (simulate-plan env)))
+  (let ((last-env (handler-bind ((warning #'muffle-warning))
+		    (simulate-plan env))))
     (is (goal-p depotprob1818 (states last-env)))))
 
