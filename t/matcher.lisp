@@ -38,9 +38,10 @@
 		      obj)))
 
 
-	;; (signals assignment-error
-	;;   (%try-match p s2 matches))
-	(is (null (%try-match p s2 matches)))))
+	(signals assignment-error
+	  (%try-match p s2 matches))
+	;; (is (null (%try-match p s2 matches)))
+	))
     (is (appliable
 	 (init *problem*)
 	 (action *domain* :drive)))))
@@ -51,17 +52,18 @@
 	       (action depot :drive))))
     (is (= (length set) 2))))
 
-(defun new-states (prob)
-  (let* ((a (action depot :drive))
-	 (set (first (retrieve-all-match-set
-		      (init prob) a))))
-    (apply-action 
-     a
-     set
-     (init prob))))
-
 (test (apply-action :depends-on appliability)
-  (let ((new-states (new-states depotprob1818)))
+  (let ((new-states
+	 (apply-actual-action 
+	  (pddl-intermediate-action
+	   :name 'drive
+	   :domain depot
+	   :problem depotprob1818
+	   :parameters (list
+			(object depotprob1818 'truck1)
+			(object depotprob1818 'depot0)
+			(object depotprob1818 'distributor1)))
+	  (init depotprob1818))))
     (is-false (null new-states))
     (handler-bind ((warning #'muffle-warning))
       (dolist (s new-states)

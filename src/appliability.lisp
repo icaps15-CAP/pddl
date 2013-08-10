@@ -3,6 +3,13 @@
 (use-syntax :annot)
 
 @export
+@doc "Signalled when the match conflict accured and start backtracking."
+(define-condition assignment-error (error)
+  ((variable :initarg :variable)
+   (assignment :initarg :assignment)
+   (old-assignment :initarg :old-assignment)))
+
+@export
 @doc "STATES : `list' of `pddl-atomic-state' .
 ACTION: `pddl-action'.
 supported requirements:
@@ -77,6 +84,41 @@ Values are (success-p remaining-states new-matches used-states)."
 	      precond-branch))))
 
 (defun %apply-and-rec (states preds matches used-states)
+  (tagbody
+   start
+     (return-from %apply-and-rec
+       (handler-bind
+	   ((assignment-error
+	     (lambda (c)
+	       (match c
+		 ((class assignment-error
+			 (variable (guard var (null (getf matches var))))
+			 (old-assignment obj))
+		  
+		  (format t "~%removing any facts which matches ~a ~a ..."
+			  var obj)
+		  (setf
+		   states
+		   (remove-if
+		    (let ((p (car preds)))
+		      (lambda (s)
+			(when 
+			    (and (eqname s p)
+				 (eq (nth (position
+					   var (parameters p))
+					  (parameters s))
+				     obj))
+			  (format t "~%removed ~a from the states!"
+				  s)
+			  t)))
+		    states))
+		  (format t "~%restarting...~%")
+		  (go start))
+		 (_ (format
+		     t "~%assignment found, backtracking further..."))))))
+	 (%%apply-and-rec states preds matches used-states)))))
+
+(defun %%apply-and-rec (states preds matches used-states)
   (multiple-value-match (%apply-clause-rec states (car preds)
 					   matches used-states)
     (((not nil) remaining-states new-matches used-states)
@@ -133,15 +175,11 @@ Values are (success-p remaining-states new-matches used-states)."
 	    (if-let ((matched-obj (getf matches var)))
 	      (if (eq obj matched-obj)
 		  (next-iteration)
-		  (return-from %try-match nil))
+		  (error 'assignment-error
+			 :variable var
+			 :assignment obj
+			 :old-assignment matched-obj))
 	      (progn 
 		(setf changed t)
 		(setf (getf matches var) obj))))
       (values matches changed))))
-
-(define-condition assignment-error ()
-  ((variable :initarg :variable)
-   (assignment :initarg :assignment)
-   (old-assignment :initarg :old-assignment)))
-
-(export 'assignment-error)
