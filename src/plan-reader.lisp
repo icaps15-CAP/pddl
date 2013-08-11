@@ -67,8 +67,8 @@
 (defun simulate-plan (env &optional function)
   (handler-case
       (if (functionp function)
-	  (iter (funcall function env)
-		(setf env (proceed env)))
+	  (iter (setf env (proceed env))
+		(funcall function env))
 	  (iter (setf env (proceed env))))
     (terminal-action-operator-error ()
       env)))
