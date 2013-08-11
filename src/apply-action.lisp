@@ -27,20 +27,20 @@
     (setf new-states (%apply-delete-effect action match-set new-states))
     (setf new-states (%apply-add-effect action match-set new-states))
     (setf new-states (%apply-assign-ops action match-set new-states))
-    (format t
-	  "~%~@<APPLY-ACTION: ~@;~
-             match:~:@_~a~:@_~
-             action:~:@_~a~:@_~
-             eff+:~:@_~a~:@_~
-             eff-:~:@_~a~:@_~
-             numeric:~:@_~a~:@_~
-          ~;~:@>~%"
-	  ;; states(old):~:@_~a~:@_~
-	  match-set
-	  action
-	  (add-list action)
-	  (delete-list action)
-	  (assign-ops action))
+    ;; (format t
+    ;; 	  "~%~@<APPLY-ACTION: ~@;~
+    ;;          action:~:@_~a~:@_~
+    ;;          match:~:@_~a~:@_~
+    ;;          eff+:~:@_~a~:@_~
+    ;;          eff-:~:@_~a~:@_~
+    ;;          numeric:~:@_~a~:@_~
+    ;;       ~;~:@>~%"
+    ;; 	  ;; states(old):~:@_~a~:@_~
+    ;; 	  action
+    ;; 	  match-set
+    ;; 	  (add-list action)
+    ;; 	  (delete-list action)
+    ;; 	  (assign-ops action))
     new-states))
 
 @doc "deletes all states that matches an object in the delete-list"
