@@ -4,7 +4,9 @@
 (export '(cell-assembly-cost
 	  cell-assembly-with-cost-p1
 	  cell-assembly-with-cost-p2
-	  cell-assembly-with-cost-p3))
+	  cell-assembly-with-cost-p3
+	  cell-assembly-with-cost-p4
+	  cell-assembly-with-cost-p32))
 
 (test costs
   
@@ -72,7 +74,9 @@
   (handler-bind ((found-in-dictionary #'muffle-warning))
     (let ((*domain* cell-assembly-cost))
       (parse-file (data "costs/model2b2c.pddl"))
-      (parse-file (data "costs/model2b3c.pddl")))
+      (parse-file (data "costs/model2b3c.pddl"))
+      (parse-file (data "costs/model2b3c2.pddl"))
+      (parse-file (data "costs/model2b4c.pddl")))
 
     (flet ((read-many (problem pathstr start end)
 	     (iter (for i from start to end)
@@ -89,7 +93,10 @@
 		 1 5)
       (read-many cell-assembly-with-cost-p3
 		 "costs/model2b3c.plan.~a"
-		 1 7))))
+		 1 7)
+      (read-many cell-assembly-with-cost-p32
+		 "costs/model2b3c2.plan.~a"
+		 1 6))))
 
 
 

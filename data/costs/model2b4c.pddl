@@ -1,4 +1,4 @@
-(define (problem cell-assembly-with-cost-p3)
+(define (problem cell-assembly-with-cost-p4)
   (:domain cell-assembly-cost)
   (:objects arm - arm
 	    b1 b2 b3 b4 - base
