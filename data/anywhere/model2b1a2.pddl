@@ -1,7 +1,7 @@
-(define (problem cell-assembly-with-cost-p3.1)
-  (:domain cell-assembly-cost)
+(define (problem cell-assembly-anywhere-p1.1)
+  (:domain cell-assembly-anywhere)
   (:objects arm - arm
-	    b1 b2 b3 - base
+	    b1 - base
 	    part-a
 	    part-b
 	    part-c - component
@@ -106,12 +106,8 @@
    ;; 
    ;; All bases are at CARRY-IN
    (at b1 carry-in)
-   (at b2 carry-in)
-   (at b3 carry-in)
    ;; Base and jobs. All bases must have finished NOTHING-DONE
    (finished nothing-done b1)
-   (finished nothing-done b2)
-   (finished nothing-done b3)
 
    ;;;; Components ;;;;;;;;
    ;; 
@@ -124,23 +120,19 @@
    ;; 
    ;; Initially it can be anywhere, but I suggest you to keep
    ;; them collision-free.
-   (at arm table-out)
+   ;; (at arm table-out)
    ;; 
    ;; Arm presence. The number of these clause would be exactly the
    ;; same as that of arms.
-   (arm-present table-out)
+   ;; (arm-present table-out)
    ;; 
    ;; All arms should be free.
    (free arm))
   (:goal (and
 	  ;; In the goal state, all bases should be at CARRY-OUT
 	  (at b1 carry-out)
-	  (at b2 carry-out)
-	  (at b3 carry-out)
 	  
 	  ;; Also, all base should already passed the last job.
 	  (finished screw-c b1)
-	  (finished screw-c b2)
-	  (finished screw-c b3)
 	  ))
   (:metric minimize (total-cost)))

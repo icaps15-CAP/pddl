@@ -6,7 +6,9 @@
 	  cell-assembly-with-cost-p2
 	  cell-assembly-with-cost-p3
 	  cell-assembly-with-cost-p4
-	  cell-assembly-with-cost-p32))
+	  
+	  cell-assembly-with-cost-p1.1
+	  cell-assembly-with-cost-p3.1))
 
 (test costs
   
@@ -75,28 +77,32 @@
     (let ((*domain* cell-assembly-cost))
       (parse-file (data "costs/model2b2c.pddl"))
       (parse-file (data "costs/model2b3c.pddl"))
-      (parse-file (data "costs/model2b3c2.pddl"))
-      (parse-file (data "costs/model2b4c.pddl")))
+      (parse-file (data "costs/model2b4c.pddl"))
 
-    (flet ((read-many (problem pathstr start end)
-	     (iter (for i from start to end)
+      (parse-file (data "costs/model2b1c2.pddl"))
+      (parse-file (data "costs/model2b3c2.pddl")))
+
+    (flet ((read-many (problem pathstr)
+	     (iter (for i from 1)
 		   (for sym = (concatenate-symbols
 			       (name problem) i))
+		   (for path = (data (format nil pathstr i)))
+		   (while (probe-file path))
 		   (setf (symbol-value sym)
 			 (pddl-plan
 			  :domain cell-assembly-cost
 			  :problem problem
-			  :path (data (format nil pathstr i))))
+			  :path path))
 		   (export sym))))
       (read-many cell-assembly-with-cost-p1
-		 "costs/model2b1c.plan.~a"
-		 1 5)
+		 "costs/model2b1c.plan.~a")
       (read-many cell-assembly-with-cost-p3
-		 "costs/model2b3c.plan.~a"
-		 1 7)
-      (read-many cell-assembly-with-cost-p32
-		 "costs/model2b3c2.plan.~a"
-		 1 6))))
+		 "costs/model2b3c.plan.~a")
+      
+      (read-many cell-assembly-with-cost-p1.1
+		 "costs/model2b1c2.plan.~a")
+      (read-many cell-assembly-with-cost-p3.1
+		 "costs/model2b3c2.plan.~a"))))
 
 
 

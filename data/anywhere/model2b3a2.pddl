@@ -1,5 +1,5 @@
-(define (problem cell-assembly-with-cost-p3.1)
-  (:domain cell-assembly-cost)
+(define (problem cell-assembly-anywhere-p3.1)
+  (:domain cell-assembly-anywhere)
   (:objects arm - arm
 	    b1 b2 b3 - base
 	    part-a
@@ -124,11 +124,11 @@
    ;; 
    ;; Initially it can be anywhere, but I suggest you to keep
    ;; them collision-free.
-   (at arm table-out)
+   ;; (at arm table-out)
    ;; 
    ;; Arm presence. The number of these clause would be exactly the
    ;; same as that of arms.
-   (arm-present table-out)
+   ;; (arm-present table-out)
    ;; 
    ;; All arms should be free.
    (free arm))

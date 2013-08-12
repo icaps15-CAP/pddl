@@ -1,5 +1,5 @@
-(define (problem cell-assembly-with-cost-p3.1)
-  (:domain cell-assembly-cost)
+(define (problem cell-assembly-anywhere-p3)
+  (:domain cell-assembly-anywhere)
   (:objects arm - arm
 	    b1 b2 b3 - base
 	    part-a
@@ -94,11 +94,11 @@
    (depends attatch-b attatch-c)
    (depends attatch-c screw-c)
 
-   (= (job-cost attatch-a) 35)
-   (= (job-cost attatch-b) 25)
-   (= (job-cost attatch-c) 50)
-   (= (job-cost screw-a) 45)
-   (= (job-cost screw-c) 15)
+   (= (job-cost attatch-a) 5)
+   (= (job-cost attatch-b) 5)
+   (= (job-cost attatch-c) 5)
+   (= (job-cost screw-a) 5)
+   (= (job-cost screw-c) 5)
    
    ;;;;;;;;;;;;;;;; INITIAL STATES ;;;;;;;;;;;;;;;;
    ;; 
@@ -124,11 +124,11 @@
    ;; 
    ;; Initially it can be anywhere, but I suggest you to keep
    ;; them collision-free.
-   (at arm table-out)
+   ;; (at arm table-out)
    ;; 
    ;; Arm presence. The number of these clause would be exactly the
    ;; same as that of arms.
-   (arm-present table-out)
+   ;; (arm-present table-out)
    ;; 
    ;; All arms should be free.
    (free arm))

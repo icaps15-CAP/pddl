@@ -1,7 +1,7 @@
-(define (problem cell-assembly-with-cost-p3.1)
+(define (problem cell-assembly-with-cost-p1.1)
   (:domain cell-assembly-cost)
   (:objects arm - arm
-	    b1 b2 b3 - base
+	    b1 - base
 	    part-a
 	    part-b
 	    part-c - component
@@ -106,12 +106,8 @@
    ;; 
    ;; All bases are at CARRY-IN
    (at b1 carry-in)
-   (at b2 carry-in)
-   (at b3 carry-in)
    ;; Base and jobs. All bases must have finished NOTHING-DONE
    (finished nothing-done b1)
-   (finished nothing-done b2)
-   (finished nothing-done b3)
 
    ;;;; Components ;;;;;;;;
    ;; 
@@ -135,12 +131,8 @@
   (:goal (and
 	  ;; In the goal state, all bases should be at CARRY-OUT
 	  (at b1 carry-out)
-	  (at b2 carry-out)
-	  (at b3 carry-out)
 	  
 	  ;; Also, all base should already passed the last job.
 	  (finished screw-c b1)
-	  (finished screw-c b2)
-	  (finished screw-c b3)
 	  ))
   (:metric minimize (total-cost)))
