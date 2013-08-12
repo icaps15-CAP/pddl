@@ -8,7 +8,11 @@
 	  cell-assembly-with-cost-p4
 	  
 	  cell-assembly-with-cost-p1.1
-	  cell-assembly-with-cost-p3.1))
+	  cell-assembly-with-cost-p3.1
+
+	  cell-assembly-anywhere
+	  cell-assembly-anywhere-p1
+	  cell-assembly-anywhere-p3))
 
 (test costs
   
@@ -16,7 +20,7 @@
     (finishes
       (setf domain
 	    (symbol-value
-	     (parse-file (data "costs/domain-with-costs.pddl"))))
+	     (parse-file (data "costs/domain.pddl"))))
       "failed parsing a domain")
     (finishes
       (setf problem
@@ -81,6 +85,11 @@
 
       (parse-file (data "costs/model2b1c2.pddl"))
       (parse-file (data "costs/model2b3c2.pddl")))
+
+    (parse-file (data "anywhere/domain.pddl"))
+    (let ((*domain* cell-assembly-anywhere))
+      (parse-file (data "costs/model2b1a.pddl"))
+      (parse-file (data "costs/model2b3a.pddl")))
 
     (flet ((read-many (problem pathstr)
 	     (iter (for i from 1)

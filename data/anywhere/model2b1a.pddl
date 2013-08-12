@@ -1,5 +1,5 @@
 (define (problem cell-assembly-anywhere-p1)
-  (:domain cell-assembly-anywhere)
+    (:domain cell-assembly-anywhere)
   (:objects arm - arm
 	    b1 - base
 	    part-a
@@ -28,113 +28,165 @@
    (= (loading-cost) 1) ; !!! do not remove this
 
    ;; arm attributes
-   (reachable arm table-in)   ; !!! do not remove this
-   (reachable arm table-out)  ; !!! do not remove this
-   (reachable arm tray-a)
-   (reachable arm tray-b)
-   (reachable arm tray-c)
-   (reachable arm table2)
-   (reachable arm machine-a)
-   (reachable arm machine-b)
+   ;; (make-reachable 'arm '(table-in
+   ;; 			  tray-a
+   ;; 			  machine-a
+   ;; 			  tray-b
+   ;; 			  table2
+   ;; 			  tray-c
+   ;; 			  machine-b
+   ;; 			  table-out))
+   (REACHABLE ARM TABLE-IN) 
+   (REACHABLE ARM TABLE-OUT) 
+   (REACHABLE ARM TRAY-A) 
+   (REACHABLE ARM TRAY-B) 
+   (REACHABLE ARM TRAY-C) 
+   (REACHABLE ARM TABLE2) 
+   (REACHABLE ARM MACHINE-A) 
+   (REACHABLE ARM MACHINE-B)
+
    ;; position attributes
-   (= (MOVE-COST MACHINE-B MACHINE-A) 3) (= (MOVE-COST MACHINE-A MACHINE-B) 3)
-   (= (MOVE-COST TABLE2 TRAY-C) 3) (= (MOVE-COST TRAY-C TABLE2) 3)
-   (= (MOVE-COST TRAY-B TRAY-A) 3) (= (MOVE-COST TRAY-A TRAY-B) 3)
-   (= (MOVE-COST TRAY-A TABLE-OUT) 3) (= (MOVE-COST TABLE-OUT TRAY-A) 3)
-   (= (MOVE-COST MACHINE-A TABLE2) 4) (= (MOVE-COST TABLE2 MACHINE-A) 4)
-   (= (MOVE-COST TRAY-C TRAY-B) 4) (= (MOVE-COST TRAY-B TRAY-C) 4)
-   (= (MOVE-COST TABLE-OUT TABLE-IN) 4) (= (MOVE-COST TABLE-IN TABLE-OUT) 4)
-   (= (MOVE-COST TRAY-B TABLE-OUT) 5) (= (MOVE-COST TABLE-OUT TRAY-B) 5)
-   (= (MOVE-COST MACHINE-B TABLE2) 6) (= (MOVE-COST TABLE2 MACHINE-B) 6)
-   (= (MOVE-COST MACHINE-A TRAY-C) 6) (= (MOVE-COST TRAY-C MACHINE-A) 6)
-   (= (MOVE-COST TABLE2 TRAY-B) 6) (= (MOVE-COST TRAY-B TABLE2) 6)
-   (= (MOVE-COST TRAY-C TRAY-A) 6) (= (MOVE-COST TRAY-A TRAY-C) 6)
-   (= (MOVE-COST TRAY-A TABLE-IN) 6) (= (MOVE-COST TABLE-IN TRAY-A) 6)
-   (= (MOVE-COST MACHINE-B TRAY-C) 8) (= (MOVE-COST TRAY-C MACHINE-B) 8)
-   (= (MOVE-COST TABLE2 TRAY-A) 8) (= (MOVE-COST TRAY-A TABLE2) 8)
-   (= (MOVE-COST TRAY-C TABLE-OUT) 8) (= (MOVE-COST TABLE-OUT TRAY-C) 8)
-   (= (MOVE-COST TRAY-B TABLE-IN) 8) (= (MOVE-COST TABLE-IN TRAY-B) 8)
-   (= (MOVE-COST MACHINE-A TRAY-B) 9) (= (MOVE-COST TRAY-B MACHINE-A) 9)
-   (= (MOVE-COST TABLE2 TABLE-OUT) 10) (= (MOVE-COST TABLE-OUT TABLE2) 10)
-   (= (MOVE-COST MACHINE-B TRAY-B) 11) (= (MOVE-COST TRAY-B MACHINE-B) 11)
-   (= (MOVE-COST MACHINE-A TRAY-A) 11) (= (MOVE-COST TRAY-A MACHINE-A) 11)
-   (= (MOVE-COST TRAY-C TABLE-IN) 11) (= (MOVE-COST TABLE-IN TRAY-C) 11)
-   (= (MOVE-COST MACHINE-B TRAY-A) 13) (= (MOVE-COST TRAY-A MACHINE-B) 13)
-   (= (MOVE-COST MACHINE-A TABLE-OUT) 13) (= (MOVE-COST TABLE-OUT MACHINE-A) 13)
-   (= (MOVE-COST TABLE2 TABLE-IN) 13) (= (MOVE-COST TABLE-IN TABLE2) 13)
-   (= (MOVE-COST MACHINE-B TABLE-OUT) 15) (= (MOVE-COST TABLE-OUT MACHINE-B) 15)
-   (= (MOVE-COST MACHINE-A TABLE-IN) 16) (= (MOVE-COST TABLE-IN MACHINE-A) 16)
-   (= (MOVE-COST MACHINE-B TABLE-IN) 18) (= (MOVE-COST TABLE-IN MACHINE-B) 18)
-   (= (MOVE-COST MACHINE-B MACHINE-B) 1000)
-   (= (MOVE-COST MACHINE-A MACHINE-A) 1000) (= (MOVE-COST TABLE2 TABLE2) 1000)
-   (= (MOVE-COST TRAY-C TRAY-C) 1000) (= (MOVE-COST TRAY-B TRAY-B) 1000)
-   (= (MOVE-COST TRAY-A TRAY-A) 1000) (= (MOVE-COST TABLE-OUT TABLE-OUT) 1000)
-   (= (MOVE-COST TABLE-IN TABLE-IN) 1000)
-   ;; this is awful
-   ;; see make-distances.lisp
+   ;; (make-dists2  '(table-in
+   ;; 		   tray-a
+   ;; 		   machine-a
+   ;; 		   tray-b
+   ;; 		   table2
+   ;; 		   tray-c
+   ;; 		   machine-b
+   ;; 		   table-out))
+
+   (= (MOVE-COST TABLE-IN TRAY-A) 2) 
+   (= (MOVE-COST TRAY-A TABLE-IN) 2) 
+   (ADJACENT TABLE-IN TRAY-A) 
+   (ADJACENT TRAY-A TABLE-IN) 
+   (= (MOVE-COST TRAY-A MACHINE-A) 4) 
+   (= (MOVE-COST MACHINE-A TRAY-A) 4) 
+   (ADJACENT TRAY-A MACHINE-A) 
+   (ADJACENT MACHINE-A TRAY-A) 
+   (= (MOVE-COST MACHINE-A TRAY-B) 1) 
+   (= (MOVE-COST TRAY-B MACHINE-A) 1) 
+   (ADJACENT MACHINE-A TRAY-B) 
+   (ADJACENT TRAY-B MACHINE-A) 
+   (= (MOVE-COST TRAY-B TABLE2) 3) 
+   (= (MOVE-COST TABLE2 TRAY-B) 3) 
+   (ADJACENT TRAY-B TABLE2) 
+   (ADJACENT TABLE2 TRAY-B) 
+   (= (MOVE-COST TABLE2 TRAY-C) 2) 
+   (= (MOVE-COST TRAY-C TABLE2) 2) 
+   (ADJACENT TABLE2 TRAY-C) 
+   (ADJACENT TRAY-C TABLE2) 
+   (= (MOVE-COST TRAY-C MACHINE-B) 1) 
+   (= (MOVE-COST MACHINE-B TRAY-C) 1) 
+   (ADJACENT TRAY-C MACHINE-B) 
+   (ADJACENT MACHINE-B TRAY-C) 
+   (= (MOVE-COST MACHINE-B TABLE-OUT) 1) 
+   (= (MOVE-COST TABLE-OUT MACHINE-B) 1) 
+   (ADJACENT MACHINE-B TABLE-OUT) 
+   (ADJACENT TABLE-OUT MACHINE-B) 
+   (= (MOVE-COST TABLE-IN MACHINE-A) 1000) 
+   (= (MOVE-COST MACHINE-A TABLE-IN) 1000) 
+   (= (MOVE-COST TABLE-IN TRAY-B) 1000) 
+   (= (MOVE-COST TRAY-B TABLE-IN) 1000) 
+   (= (MOVE-COST TABLE-IN TABLE2) 1000) 
+   (= (MOVE-COST TABLE2 TABLE-IN) 1000) 
+   (= (MOVE-COST TABLE-IN TRAY-C) 1000) 
+   (= (MOVE-COST TRAY-C TABLE-IN) 1000) 
+   (= (MOVE-COST TABLE-IN MACHINE-B) 1000) 
+   (= (MOVE-COST MACHINE-B TABLE-IN) 1000) 
+   (= (MOVE-COST TABLE-IN TABLE-OUT) 1000) 
+   (= (MOVE-COST TABLE-OUT TABLE-IN) 1000) 
+   (= (MOVE-COST TRAY-A TRAY-B) 1000) 
+   (= (MOVE-COST TRAY-B TRAY-A) 1000) 
+   (= (MOVE-COST TRAY-A TABLE2) 1000) 
+   (= (MOVE-COST TABLE2 TRAY-A) 1000) 
+   (= (MOVE-COST TRAY-A TRAY-C) 1000) 
+   (= (MOVE-COST TRAY-C TRAY-A) 1000) 
+   (= (MOVE-COST TRAY-A MACHINE-B) 1000) 
+   (= (MOVE-COST MACHINE-B TRAY-A) 1000) 
+   (= (MOVE-COST TRAY-A TABLE-OUT) 1000) 
+   (= (MOVE-COST TABLE-OUT TRAY-A) 1000) 
+   (= (MOVE-COST MACHINE-A TABLE2) 1000) 
+   (= (MOVE-COST TABLE2 MACHINE-A) 1000) 
+   (= (MOVE-COST MACHINE-A TRAY-C) 1000) 
+   (= (MOVE-COST TRAY-C MACHINE-A) 1000) 
+   (= (MOVE-COST MACHINE-A MACHINE-B) 1000) 
+   (= (MOVE-COST MACHINE-B MACHINE-A) 1000) 
+   (= (MOVE-COST MACHINE-A TABLE-OUT) 1000) 
+   (= (MOVE-COST TABLE-OUT MACHINE-A) 1000) 
+   (= (MOVE-COST TRAY-B TRAY-C) 1000) 
+   (= (MOVE-COST TRAY-C TRAY-B) 1000) 
+   (= (MOVE-COST TRAY-B MACHINE-B) 1000) 
+   (= (MOVE-COST MACHINE-B TRAY-B) 1000) 
+   (= (MOVE-COST TRAY-B TABLE-OUT) 1000) 
+   (= (MOVE-COST TABLE-OUT TRAY-B) 1000) 
+   (= (MOVE-COST TABLE2 MACHINE-B) 1000) 
+   (= (MOVE-COST MACHINE-B TABLE2) 1000) 
+   (= (MOVE-COST TABLE2 TABLE-OUT) 1000) 
+   (= (MOVE-COST TABLE-OUT TABLE2) 1000) 
+   (= (MOVE-COST TRAY-C TABLE-OUT) 1000) 
+   (= (MOVE-COST TABLE-OUT TRAY-C) 1000) 
+   (= (MOVE-COST TABLE-IN TABLE-IN) 1000) 
+   (= (MOVE-COST TRAY-A TRAY-A) 1000) 
+   (= (MOVE-COST MACHINE-A MACHINE-A) 1000) 
+   (= (MOVE-COST TRAY-B TRAY-B) 1000) 
+   (= (MOVE-COST TABLE2 TABLE2) 1000) 
+   (= (MOVE-COST TRAY-C TRAY-C) 1000) 
+   (= (MOVE-COST MACHINE-B MACHINE-B) 1000) 
+   (= (MOVE-COST TABLE-OUT TABLE-OUT) 1000) 
    
    ;; conveyor attributes
    (connected carry-in table-in)   ; !!! do not remove this
    (connected table-out carry-out) ; !!! do not remove this
 
-   ;; job attributes
-   (job-available-at attatch-a table-in)
-   (job-available-at screw-a machine-a)
-   (job-available-at attatch-b table2)
-   (job-available-at attatch-c table2)
-   (job-available-at screw-c machine-b)
-   ;; job attributes
-   (uses attatch-a part-a)
-   (uses attatch-b part-b)
-   (uses attatch-c part-c)
-   ;; linear job ordering
-   (depends nothing-done attatch-a)
-   (depends attatch-a screw-a)
-   (depends screw-a attatch-b)
-   (depends attatch-b attatch-c)
-   (depends attatch-c screw-c)
+   ;; job and component attributes
 
-   (= (job-cost attatch-a) 5)
-   (= (job-cost attatch-b) 5)
-   (= (job-cost attatch-c) 5)
-   (= (job-cost screw-a) 5)
-   (= (job-cost screw-c) 5)
+   ;; (make-linear-jobs
+   ;;  '((attatch-a table-in part-a tray-a)
+   ;;    (screw-a machine-a)
+   ;;    (attatch-b table2 part-b tray-b)
+   ;;    (attatch-c table2 part-c tray-c)
+   ;;    (screw-c machine-b)))
+
+   (= (JOB-COST NOTHING-DONE) 0) 
+   (JOB-AVAILABLE-AT ATTATCH-A TABLE-IN) 
+   (DEPENDS NOTHING-DONE ATTATCH-A) 
+   (= (JOB-COST ATTATCH-A) 18) 
+   (USES ATTATCH-A PART-A) 
+   (AT PART-A TRAY-A) 
+   (JOB-AVAILABLE-AT SCREW-A MACHINE-A) 
+   (DEPENDS ATTATCH-A SCREW-A) 
+   (= (JOB-COST SCREW-A) 18) 
+   (JOB-AVAILABLE-AT ATTATCH-B TABLE2) 
+   (DEPENDS SCREW-A ATTATCH-B) 
+   (= (JOB-COST ATTATCH-B) 13) 
+   (USES ATTATCH-B PART-B) 
+   (AT PART-B TRAY-B) 
+   (JOB-AVAILABLE-AT ATTATCH-C TABLE2) 
+   (DEPENDS ATTATCH-B ATTATCH-C) 
+   (= (JOB-COST ATTATCH-C) 28) 
+   (USES ATTATCH-C PART-C) 
+   (AT PART-C TRAY-C) 
+   (JOB-AVAILABLE-AT SCREW-C MACHINE-B) 
+   (DEPENDS ATTATCH-C SCREW-C) 
+   (= (JOB-COST SCREW-C) 38) 
    
    ;;;;;;;;;;;;;;;; INITIAL STATES ;;;;;;;;;;;;;;;;
    ;; 
    ;;;; Bases ;;;;;;;;;
    ;; 
    ;; All bases are at CARRY-IN
-   (at b1 carry-in)
    ;; Base and jobs. All bases must have finished NOTHING-DONE
-   (finished nothing-done b1)
 
-   ;;;; Components ;;;;;;;;
-   ;; 
-   ;; Explain where each type of components is placed.
-   (at part-a tray-a)
-   (at part-b tray-b)
-   (at part-c tray-c)
+   ;; (make-initial-bases '(b1))
+   (AT B1 CARRY-IN) 
+   (FINISHED NOTHING-DONE B1) 
 
    ;;;; Arms ;;;;;;;;;;;;;;;;
-   ;; 
-   ;; Initially it can be anywhere, but I suggest you to keep
-   ;; them collision-free.
-
-   ;; in cell-assembly-anywhere domain, initial position is not needed
-   ;; (at arm table-out)
-   ;; 
-   ;; Arm presence. The number of these clause would be exactly the
-   ;; same as that of arms.
-   ;; (arm-present table-out)
-   ;; 
-   ;; All arms should be free.
    (free arm))
   (:goal (and
 	  ;; In the goal state, all bases should be at CARRY-OUT
-	  (at b1 carry-out)
-	  
 	  ;; Also, all base should already passed the last job.
-	  (finished screw-c b1)
-	  ))
+	  ;; (make-goal-bases '(b1) 'screw-c)
+	  (AT B1 CARRY-OUT) 
+	  (FINISHED SCREW-C B1)))
   (:metric minimize (total-cost)))

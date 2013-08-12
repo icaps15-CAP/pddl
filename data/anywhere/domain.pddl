@@ -28,6 +28,7 @@
    ;; arm attributes
    (reachable ?arm - arm ?to - position)
    ;; position attributes
+   (adjacent ?from ?to - position)
    (connected ?from ?to - position) ;; by conveyor
    ;; job attributes
    (depends ?prev-job ?job - job)
@@ -116,13 +117,13 @@
 	   :parameters (?arm - arm ?from - position ?to - position)
 	   :precondition (and (at ?arm ?from)
 			      (not (arm-present ?to))
+			      (adjacent ?from ?to)
 			      (reachable ?arm ?to))
 	   :effect (and (at ?arm ?to)
 			(arm-present ?to)
 			(not (at ?arm ?from))
 			(not (arm-present ?from))
-			;; (increase (total-cost) (move-cost ?from ?to)) ;; !! removed
-			))
+			(increase (total-cost) (move-cost ?from ?to))))
   
   ;; acquire arm mutex
   (:action eject-base
