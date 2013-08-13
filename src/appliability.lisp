@@ -3,12 +3,25 @@
 (use-syntax :annot)
 
 @export
-@doc "Signalled when the match conflict accured and start backtracking."
+@doc "Signalled when the match conflict has occured and start backtracking."
 (define-condition assignment-error (error)
   ((state :initarg :state :reader state)
    (variable :initarg :variable)
    (assignment :initarg :assignment)
-   (old-assignment :initarg :old-assignment)))
+   (old-assignment :initarg :old-assignment))
+  (:report
+   (lambda (c s)
+     (describe c s))))
+
+@export
+@doc "Signalled when the matching state is not found."
+(define-condition state-not-found (condition)
+  ((predicate :initarg :predicate)
+   (matches :initarg :matches))
+  (:report
+   (lambda (c s)
+     (describe c s))))
+
 
 @export
 @doc "STATES : `list' of `pddl-atomic-state' .
@@ -150,6 +163,8 @@ Values are (success-p remaining-states new-matches used-states)."
 	(values success (append diffs remaining-states)
 		new-matches new-used-states)))))
 
+
+
 (defun %apply-rec-pruned (unmatched pred matches unused used-states)
   (destructuring-bind (s . rest) unmatched
     (if-let ((new-matches
@@ -161,7 +176,9 @@ Values are (success-p remaining-states new-matches used-states)."
       (values t (append unused rest) new-matches (cons s used-states))
       (if rest
 	  (%apply-rec-pruned rest pred matches (cons s unused) used-states)
-	  nil))))
+	  (signal 'state-not-found
+		:predicate pred
+		:matches matches)))))
 
 @export
 (defun %try-match (p s matches) ;; predicate, state, match-set(plist).

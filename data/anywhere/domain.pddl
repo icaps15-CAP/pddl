@@ -67,7 +67,8 @@
 			      (not (base-present ?to)))
 	   :effect (and (at ?base ?to)
 			(not (at ?base ?from))
-			(base-present ?to)))
+			(base-present ?to)
+			(increase (total-cost) (loading-cost))))
 
   (:action slide-base-out
 	   ;; Slide Base: Uses a slide device to move a base. 
@@ -79,7 +80,8 @@
 			      (connected ?from ?to))
 	   :effect (and (at ?base ?to)
 			(not (at ?base ?from))
-			(not (base-present ?from))))
+			(not (base-present ?from))
+			(increase (total-cost) (loading-cost))))
 
   
   (:action assemble-with-machine
@@ -167,7 +169,8 @@
 			;; !! added for the concurrency.
 			;; !! the arm moves to the position unconditionally.
 			
-			(not (free ?arm))))
+			(not (free ?arm))
+			(increase (total-cost) (loading-cost))))
 
   ;; release arm mutex
   (:action set-base

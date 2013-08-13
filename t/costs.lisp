@@ -78,19 +78,6 @@
 
 (test (read-all-problem-and-plans :depends-on costs)
   (handler-bind ((found-in-dictionary #'muffle-warning))
-    (let ((*domain* cell-assembly-cost))
-      (parse-file (data "costs/model2b2c.pddl"))
-      (parse-file (data "costs/model2b3c.pddl"))
-      (parse-file (data "costs/model2b4c.pddl"))
-
-      (parse-file (data "costs/model2b1c2.pddl"))
-      (parse-file (data "costs/model2b3c2.pddl")))
-
-    (parse-file (data "anywhere/domain.pddl"))
-    (let ((*domain* cell-assembly-anywhere))
-      (parse-file (data "costs/model2b1a.pddl"))
-      (parse-file (data "costs/model2b3a.pddl")))
-
     (flet ((read-many (problem pathstr)
 	     (iter (for i from 1)
 		   (for sym = (concatenate-symbols
@@ -99,19 +86,28 @@
 		   (while (probe-file path))
 		   (setf (symbol-value sym)
 			 (pddl-plan
-			  :domain cell-assembly-cost
+			  :domain *domain*
 			  :problem problem
 			  :path path))
 		   (export sym))))
-      (read-many cell-assembly-with-cost-p1
-		 "costs/model2b1c.plan.~a")
-      (read-many cell-assembly-with-cost-p3
-		 "costs/model2b3c.plan.~a")
-      
-      (read-many cell-assembly-with-cost-p1.1
-		 "costs/model2b1c2.plan.~a")
-      (read-many cell-assembly-with-cost-p3.1
-		 "costs/model2b3c2.plan.~a"))))
+      (let ((*domain* cell-assembly-cost))
+	(parse-file (data "costs/model2b2c.pddl"))
+	(parse-file (data "costs/model2b3c.pddl"))
+	(parse-file (data "costs/model2b4c.pddl"))
+
+	(parse-file (data "costs/model2b1c2.pddl"))
+	(parse-file (data "costs/model2b3c2.pddl"))
+	(read-many cell-assembly-with-cost-p1 "costs/model2b1c.plan.~a")
+	(read-many cell-assembly-with-cost-p3 "costs/model2b3c.plan.~a")
+	(read-many cell-assembly-with-cost-p1.1 "costs/model2b1c2.plan.~a")
+	(read-many cell-assembly-with-cost-p3.1 "costs/model2b3c2.plan.~a"))
+
+      (parse-file (data "anywhere/domain.pddl"))
+      (let ((*domain* cell-assembly-anywhere))
+	(parse-file (data "anywhere/model2b1a.pddl"))
+	(parse-file (data "anywhere/model2b3a.pddl"))
+	(read-many cell-assembly-anywhere-p1 "anywhere/model2b1a.plan.~a")
+	(read-many cell-assembly-anywhere-p3 "anywhere/model2b3a.plan.~a")))))
 
 
 
