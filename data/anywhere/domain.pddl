@@ -1,4 +1,4 @@
-(define (domain cell-assembly-anywhere)
+(define (domain cell-assembly-cost)
   (:requirements :strips :typing
 		 :negative-preconditions
 		 :action-costs)
@@ -28,7 +28,6 @@
    ;; arm attributes
    (reachable ?arm - arm ?to - position)
    ;; position attributes
-   (adjacent ?from ?to - position)
    (connected ?from ?to - position) ;; by conveyor
    ;; job attributes
    (depends ?prev-job ?job - job)
@@ -56,7 +55,53 @@
 
    (move-cost ?from ?to - position) - number)
 
-  ;; arm is irrelevant
+  (:action move-arm
+	   ;;   Moves the arm (?arm) from the source
+	   ;; (?from) to the destination (?to). The occupied and not-
+	   ;; occupied propositions enforce a mutual exclusion con-
+	   ;; straint so that only one arm can occupy any given location
+	   ;; at a time.
+	   :parameters (?arm - arm ?from - position ?to - position)
+	   :precondition (and (at ?arm ?from)
+			      (not (arm-present ?to))
+			      (reachable ?arm ?to))
+	   :effect (and (at ?arm ?to)
+			(arm-present ?to)
+			(not (at ?arm ?from))
+			(not (arm-present ?from))
+			(increase (total-cost) (move-cost ?from ?to))))
+  
+  (:action eject-base
+	   ;; Eject Base: Uses an arm (?arm) to grasp and pick up a
+	   ;; base (?base) from a machine or a table (?pos). Resets
+	   ;; the mutual exclusion constraint enforcing the rule that
+	   ;; at most 1 base can be at a location (notbaseplaced ?pos)
+	   :parameters (?base - base ?arm - arm ?pos - table)
+	   :precondition (and (at ?base ?pos)
+			      (at ?arm ?pos)
+			      (free ?arm))
+	   :effect (and (hold ?arm ?base)
+			(not (free ?arm))
+			(not (base-present ?pos))
+			(not (at ?base ?pos))
+			(increase (total-cost) (loading-cost))))
+  
+  (:action set-base
+	   ;; Set Base: Commands an arm (?arm) that is holding
+	   ;; a particular base (?base) to set the base on a machine
+	   ;; or table (?pos). Each machine/table has a mutual
+	   ;; exclusion constraint ensuring at most 1 base is placed
+	   ;; on it (notbaseplaced).
+	   :parameters (?base - base ?arm - arm ?pos - table)
+	   :precondition (and (hold ?arm ?base)
+			      (at ?arm ?pos)
+			      (not (base-present ?pos)))
+	   :effect (and (at ?base ?pos)
+			(free ?arm)
+			(not (hold ?arm ?base))
+			(base-present ?pos)
+			(increase (total-cost) (loading-cost))))
+
   (:action slide-base-in
 	   ;; Slide Base: Uses a slide device to move a base. 
 	   ;; MOD : CARRY-IN device only.
@@ -67,8 +112,7 @@
 			      (not (base-present ?to)))
 	   :effect (and (at ?base ?to)
 			(not (at ?base ?from))
-			(base-present ?to)
-			(increase (total-cost) (loading-cost))))
+			(base-present ?to)))
 
   (:action slide-base-out
 	   ;; Slide Base: Uses a slide device to move a base. 
@@ -80,9 +124,22 @@
 			      (connected ?from ?to))
 	   :effect (and (at ?base ?to)
 			(not (at ?base ?from))
-			(not (base-present ?from))
-			(increase (total-cost) (loading-cost))))
-
+			(not (base-present ?from))))
+  
+  (:action pickup-component
+	   ;; Pick Parts by Arm: Use an arm (?arm) to pick up a part
+	   ;; (?part). The part will later be used by a BaseAssem-
+	   ;; blePickedPartsXByArm action (see below).
+	   ;; 
+	   ;; NOTE: basically, we assume there are unlimited number of
+	   ;; components in trays. That's why this action lacks the
+	   ;; delete effect on the place of the component.
+	   :parameters (?component - component ?arm - arm ?pos - tray)
+	   :precondition (and (free ?arm)
+			      (at ?arm ?pos)
+			      (at ?component ?pos))
+	   :effect (and (hold ?arm ?component)
+			(not (free ?arm))))
   
   (:action assemble-with-machine
 	   ;; Base Assemble by Machine: Use a machine (?pos) to
@@ -108,94 +165,7 @@
 			  (finished ?prev-job ?base))
 	   :effect (and (finished ?job ?base)
 			(increase (total-cost) (job-cost ?job))))
-  
-  ;; requires arm in use
-  (:action move-arm
-	   ;;   Moves the arm (?arm) from the source
-	   ;; (?from) to the destination (?to). The occupied and not-
-	   ;; occupied propositions enforce a mutual exclusion con-
-	   ;; straint so that only one arm can occupy any given location
-	   ;; at a time.
-	   :parameters (?arm - arm ?from - position ?to - position)
-	   :precondition (and (at ?arm ?from)
-			      (not (arm-present ?to))
-			      (adjacent ?from ?to)
-			      (reachable ?arm ?to))
-	   :effect (and (at ?arm ?to)
-			(arm-present ?to)
-			(not (at ?arm ?from))
-			(not (arm-present ?from))
-			(increase (total-cost) (move-cost ?from ?to))))
-  
-  ;; acquire arm mutex
-  (:action eject-base
-	   ;; Eject Base: Uses an arm (?arm) to grasp and pick up a
-	   ;; base (?base) from a machine or a table (?pos). Resets
-	   ;; the mutual exclusion constraint enforcing the rule that
-	   ;; at most 1 base can be at a location (notbaseplaced ?pos)
-	   :parameters (?base - base ?arm - arm ?pos - table)
-	   :precondition (and (at ?base ?pos)
-			      ;;(at ?arm ?pos) ;; !! removed for the concurrency
-			      (free ?arm))
-	   :effect (and (hold ?arm ?base)
-			
-			(at ?arm ?pos)
-			(arm-present ?pos)
-			;; !! added for the concurrency.
-			;; !! the arm moves to the position unconditionally.
 
-			(not (free ?arm))
-			(not (base-present ?pos))
-			(not (at ?base ?pos))
-			(increase (total-cost) (loading-cost))))
-  
-  ;; acquire arm mutex
-  (:action pickup-component
-	   ;; Pick Parts by Arm: Use an arm (?arm) to pick up a part
-	   ;; (?part). The part will later be used by a BaseAssem-
-	   ;; blePickedPartsXByArm action (see below).
-	   ;; 
-	   ;; NOTE: basically, we assume there are unlimited number of
-	   ;; components in trays. That's why this action lacks the
-	   ;; delete effect on the place of the component.
-	   :parameters (?component - component ?arm - arm ?pos - tray)
-	   :precondition (and (free ?arm)
-			      ;;(at ?arm ?pos) ;; !! removed for the concurrency
-			      (at ?component ?pos))
-	   :effect (and (hold ?arm ?component)
-			
-			(at ?arm ?pos)
-			(arm-present ?pos)
-			;; !! added for the concurrency.
-			;; !! the arm moves to the position unconditionally.
-			
-			(not (free ?arm))
-			(increase (total-cost) (loading-cost))))
-
-  ;; release arm mutex
-  (:action set-base
-	   ;; Set Base: Commands an arm (?arm) that is holding
-	   ;; a particular base (?base) to set the base on a machine
-	   ;; or table (?pos). Each machine/table has a mutual
-	   ;; exclusion constraint ensuring at most 1 base is placed
-	   ;; on it (notbaseplaced).
-	   :parameters (?base - base ?arm - arm ?pos - table)
-	   :precondition (and (hold ?arm ?base)
-			      (at ?arm ?pos)
-			      (not (base-present ?pos)))
-	   :effect (and (at ?base ?pos)
-			(free ?arm)
-			
-			(not (at ?arm ?pos))
-			(not (arm-present ?pos))
-			;; !! added for the concurrency.
-			;; !! the arm moves to the position unconditionally.
-			
-			(not (hold ?arm ?base))
-			(base-present ?pos)
-			(increase (total-cost) (loading-cost))))
-  
-  ;; release arm mutex
   (:action assemble-with-arm
 	   ;; Base Assemble Picked Parts by Arm: Uses an arm
 	   ;; (?arm) to attach a part (?part) to a base.
@@ -220,12 +190,6 @@
 			  (finished ?prev-job ?base))
 	   :effect (and (finished ?job ?base)
 			(free ?arm)
-			
-			(not (at ?arm ?pos))
-			(not (arm-present ?pos))
-			;; !! added for the concurrency.
-			;; !! the arm moves to the position unconditionally.
-			
 			(not (hold ?arm ?component))
 			(increase (total-cost) (job-cost ?job)))))
 

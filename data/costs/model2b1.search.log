@@ -1,0 +1,624 @@
+Dispatcher selected state size 1.
+This is a nonunit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.00311024s
+Discovered 55 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+112 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+33 initial landmarks, 2 goal landmarks
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.00327939s
+Discovered 55 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+112 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+33 initial landmarks, 2 goal landmarks
+Starting search: lazy_greedy(list(hff1, hlm1), preferred = list(hff1, hlm1), cost_type = 1, reopen_closed = false)
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 22/22 [g=0, 1 evaluated, 0 expanded, t=0.01s]
+Best heuristic value: 21/21 [g=1, 3 evaluated, 2 expanded, t=0.01s]
+Best heuristic value: 21/20 [g=5, 17 evaluated, 15 expanded, t=0.01s]
+Best heuristic value: 20/20 [g=6, 18 evaluated, 16 expanded, t=0.01s]
+Best heuristic value: 20/19 [g=9, 23 evaluated, 21 expanded, t=0.01s]
+Best heuristic value: 18/19 [g=9, 24 evaluated, 22 expanded, t=0.01s]
+Best heuristic value: 18/18 [g=10, 26 evaluated, 24 expanded, t=0.01s]
+Best heuristic value: 17/17 [g=11, 31 evaluated, 29 expanded, t=0.01s]
+Best heuristic value: 16/17 [g=12, 32 evaluated, 30 expanded, t=0.01s]
+Best heuristic value: 15/17 [g=13, 35 evaluated, 32 expanded, t=0.01s]
+Best heuristic value: 14/17 [g=19, 69 evaluated, 55 expanded, t=0.01s]
+Best heuristic value: 14/16 [g=21, 72 evaluated, 58 expanded, t=0.01s]
+Best heuristic value: 13/16 [g=23, 82 evaluated, 66 expanded, t=0.01s]
+Best heuristic value: 13/14 [g=25, 85 evaluated, 69 expanded, t=0.01s]
+Best heuristic value: 12/14 [g=30, 92 evaluated, 75 expanded, t=0.01s]
+Best heuristic value: 12/12 [g=31, 93 evaluated, 76 expanded, t=0.01s]
+Best heuristic value: 10/12 [g=35, 98 evaluated, 81 expanded, t=0.01s]
+Best heuristic value: 10/11 [g=36, 99 evaluated, 82 expanded, t=0.01s]
+Best heuristic value: 9/11 [g=40, 106 evaluated, 89 expanded, t=0.01s]
+Best heuristic value: 8/9 [g=41, 107 evaluated, 90 expanded, t=0.01s]
+Best heuristic value: 7/8 [g=45, 112 evaluated, 95 expanded, t=0.01s]
+Best heuristic value: 6/7 [g=46, 114 evaluated, 97 expanded, t=0.01s]
+Best heuristic value: 6/6 [g=47, 115 evaluated, 98 expanded, t=0.01s]
+Best heuristic value: 5/5 [g=48, 116 evaluated, 99 expanded, t=0.01s]
+Best heuristic value: 4/5 [g=50, 120 evaluated, 102 expanded, t=0.01s]
+Best heuristic value: 3/4 [g=52, 124 evaluated, 105 expanded, t=0.01s]
+Best heuristic value: 3/3 [g=54, 126 evaluated, 107 expanded, t=0.01s]
+Best heuristic value: 2/2 [g=55, 127 evaluated, 108 expanded, t=0.01s]
+Best heuristic value: 1/1 [g=56, 128 evaluated, 109 expanded, t=0.01s]
+Solution found!
+Actual search time: 0s [t=0.01s]
+slide-base-in b-0 carry-in table-in (1)
+move-arm arm table-in table1 (1)
+move-arm arm table1 screw-machine-a (1)
+move-arm arm screw-machine-a tray-a (1)
+pickup-component part-a arm tray-a (1)
+move-arm arm tray-a screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+move-arm arm table1 table-in (1)
+assemble-with-arm part-a attatch-a nothing-done b-0 arm table-in (2)
+eject-base b-0 arm table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+move-arm arm screw-machine-c tray-c (1)
+move-arm arm tray-c tray-b (1)
+move-arm arm tray-b tray-a (1)
+move-arm arm tray-a screw-machine-a (1)
+set-base b-0 arm screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+assemble-with-machine b-0 screw-machine-a screw-a attatch-a (3)
+move-arm arm table1 screw-machine-a (1)
+eject-base b-0 arm screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+set-base b-0 arm table1 (1)
+move-arm arm table1 table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+move-arm arm screw-machine-c tray-c (1)
+move-arm arm tray-c tray-b (1)
+pickup-component part-b arm tray-b (1)
+move-arm arm tray-b tray-c (1)
+move-arm arm tray-c screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+move-arm arm table-out table-in (1)
+move-arm arm table-in table1 (1)
+assemble-with-arm part-b attatch-b screw-a b-0 arm table1 (3)
+move-arm arm table1 table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+move-arm arm screw-machine-c tray-c (1)
+pickup-component part-c arm tray-c (1)
+move-arm arm tray-c screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+move-arm arm table-out table-in (1)
+move-arm arm table-in table1 (1)
+assemble-with-arm part-c attatch-c attatch-b b-0 arm table1 (2)
+eject-base b-0 arm table1 (1)
+move-arm arm table1 table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+set-base b-0 arm screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+assemble-with-machine b-0 screw-machine-c screw-c attatch-c (3)
+move-arm arm table-out screw-machine-c (1)
+eject-base b-0 arm screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+set-base b-0 arm table-out (1)
+slide-base-out b-0 table-out carry-out (1)
+Plan length: 57 step(s).
+Plan cost: 65
+Initial state h value: 22/22.
+Expanded 110 state(s).
+Reopened 0 state(s).
+Evaluated 129 state(s).
+Evaluations: 258
+Generated 293 state(s).
+Dead ends: 18 state(s).
+Best solution cost so far: 65
+Solution found - keep searching
+Starting search: lazy_greedy(list(hff2, hlm2), preferred = list(hff2, hlm2), reopen_closed = false)
+Conducting lazy best first search, (real) bound = 65
+Best heuristic value: 52/52 [g=0, 1 evaluated, 0 expanded, t=0.01s]
+Switch from bucket-based to heap-based queue at key = 102, num_pushes = 70
+Best heuristic value: 51/52 [g=1, 2 evaluated, 1 expanded, t=0.01s]
+Best heuristic value: 50/50 [g=1, 3 evaluated, 2 expanded, t=0.01s]
+Best heuristic value: 49/50 [g=2, 4 evaluated, 3 expanded, t=0.01s]
+Best heuristic value: 48/48 [g=5, 18 evaluated, 15 expanded, t=0.01s]
+Best heuristic value: 46/48 [g=6, 19 evaluated, 16 expanded, t=0.01s]
+Best heuristic value: 46/46 [g=8, 22 evaluated, 19 expanded, t=0.01s]
+Best heuristic value: 43/45 [g=10, 24 evaluated, 21 expanded, t=0.01s]
+Best heuristic value: 42/43 [g=11, 25 evaluated, 22 expanded, t=0.01s]
+Best heuristic value: 40/41 [g=12, 30 evaluated, 27 expanded, t=0.01s]
+Best heuristic value: 39/41 [g=13, 31 evaluated, 28 expanded, t=0.01s]
+Best heuristic value: 37/41 [g=14, 34 evaluated, 30 expanded, t=0.01s]
+Best heuristic value: 33/39 [g=22, 69 evaluated, 54 expanded, t=0.02s]
+Best heuristic value: 33/37 [g=24, 72 evaluated, 57 expanded, t=0.02s]
+Best heuristic value: 32/37 [g=25, 80 evaluated, 63 expanded, t=0.02s]
+Best heuristic value: 31/37 [g=26, 82 evaluated, 65 expanded, t=0.02s]
+Best heuristic value: 31/33 [g=27, 83 evaluated, 66 expanded, t=0.02s]
+Best heuristic value: 30/33 [g=32, 91 evaluated, 73 expanded, t=0.02s]
+Best heuristic value: 28/29 [g=33, 92 evaluated, 74 expanded, t=0.02s]
+Best heuristic value: 23/29 [g=40, 98 evaluated, 80 expanded, t=0.02s]
+Best heuristic value: 23/25 [g=41, 99 evaluated, 81 expanded, t=0.02s]
+Best heuristic value: 21/23 [g=45, 106 evaluated, 88 expanded, t=0.02s]
+Best heuristic value: 19/21 [g=46, 107 evaluated, 89 expanded, t=0.02s]
+Best heuristic value: 16/18 [g=51, 111 evaluated, 93 expanded, t=0.02s]
+Best heuristic value: 14/16 [g=52, 113 evaluated, 95 expanded, t=0.02s]
+Best heuristic value: 14/14 [g=53, 114 evaluated, 96 expanded, t=0.02s]
+Best heuristic value: 12/12 [g=54, 115 evaluated, 97 expanded, t=0.02s]
+Best heuristic value: 10/12 [g=56, 119 evaluated, 100 expanded, t=0.02s]
+Best heuristic value: 6/8 [g=60, 123 evaluated, 103 expanded, t=0.02s]
+Best heuristic value: 6/6 [g=62, 125 evaluated, 105 expanded, t=0.02s]
+Best heuristic value: 4/4 [g=63, 126 evaluated, 106 expanded, t=0.02s]
+Best heuristic value: 2/2 [g=64, 127 evaluated, 107 expanded, t=0.02s]
+Completely explored state space -- no solution!
+Actual search time: 0.04s [t=0.05s]
+Initial state h value: 52/52.
+Expanded 350 state(s).
+Reopened 0 state(s).
+Evaluated 459 state(s).
+Evaluations: 918
+Generated 919 state(s).
+Dead ends: 109 state(s).
+Best solution cost so far: 65
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 5)
+Conducting lazy best first search, (real) bound = 65
+Best heuristic value: 52/52 [g=0, 1 evaluated, 0 expanded, t=0.05s]
+Best heuristic value: 51/52 [g=1, 2 evaluated, 1 expanded, t=0.05s]
+Best heuristic value: 50/50 [g=1, 3 evaluated, 2 expanded, t=0.05s]
+Best heuristic value: 49/50 [g=2, 4 evaluated, 3 expanded, t=0.05s]
+Best heuristic value: 48/48 [g=5, 15 evaluated, 13 expanded, t=0.05s]
+Best heuristic value: 46/48 [g=6, 16 evaluated, 14 expanded, t=0.05s]
+Best heuristic value: 46/46 [g=8, 20 evaluated, 18 expanded, t=0.05s]
+Best heuristic value: 43/45 [g=10, 23 evaluated, 21 expanded, t=0.05s]
+Best heuristic value: 42/43 [g=11, 24 evaluated, 22 expanded, t=0.05s]
+Best heuristic value: 40/41 [g=12, 27 evaluated, 25 expanded, t=0.05s]
+Best heuristic value: 39/41 [g=13, 28 evaluated, 26 expanded, t=0.05s]
+Best heuristic value: 37/41 [g=14, 31 evaluated, 28 expanded, t=0.05s]
+Best heuristic value: 33/39 [g=22, 66 evaluated, 52 expanded, t=0.06s]
+Best heuristic value: 33/37 [g=24, 69 evaluated, 55 expanded, t=0.06s]
+Best heuristic value: 32/37 [g=25, 77 evaluated, 61 expanded, t=0.06s]
+Best heuristic value: 31/37 [g=26, 79 evaluated, 63 expanded, t=0.06s]
+Best heuristic value: 31/33 [g=27, 80 evaluated, 64 expanded, t=0.06s]
+Best heuristic value: 30/33 [g=32, 88 evaluated, 71 expanded, t=0.06s]
+Best heuristic value: 28/29 [g=33, 89 evaluated, 72 expanded, t=0.06s]
+Best heuristic value: 23/29 [g=40, 96 evaluated, 79 expanded, t=0.06s]
+Best heuristic value: 23/25 [g=41, 97 evaluated, 80 expanded, t=0.06s]
+Best heuristic value: 21/23 [g=45, 104 evaluated, 87 expanded, t=0.06s]
+Best heuristic value: 19/21 [g=46, 105 evaluated, 88 expanded, t=0.06s]
+Best heuristic value: 16/18 [g=51, 109 evaluated, 92 expanded, t=0.06s]
+Best heuristic value: 14/16 [g=52, 111 evaluated, 94 expanded, t=0.06s]
+Best heuristic value: 14/14 [g=53, 112 evaluated, 95 expanded, t=0.06s]
+Best heuristic value: 12/12 [g=54, 113 evaluated, 96 expanded, t=0.06s]
+Best heuristic value: 10/12 [g=56, 117 evaluated, 99 expanded, t=0.06s]
+Best heuristic value: 6/8 [g=60, 121 evaluated, 102 expanded, t=0.06s]
+Best heuristic value: 6/6 [g=62, 123 evaluated, 104 expanded, t=0.06s]
+Best heuristic value: 4/4 [g=63, 124 evaluated, 105 expanded, t=0.06s]
+Best heuristic value: 2/2 [g=64, 125 evaluated, 106 expanded, t=0.06s]
+Solution found!
+Actual search time: 0.01s [t=0.06s]
+slide-base-in b-0 carry-in table-in (1)
+move-arm arm table-in table1 (1)
+move-arm arm table1 screw-machine-a (1)
+move-arm arm screw-machine-a tray-a (1)
+pickup-component part-a arm tray-a (1)
+move-arm arm tray-a screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+move-arm arm table1 table-in (1)
+assemble-with-arm part-a attatch-a nothing-done b-0 arm table-in (2)
+eject-base b-0 arm table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+move-arm arm screw-machine-c tray-c (1)
+move-arm arm tray-c tray-b (1)
+move-arm arm tray-b tray-a (1)
+move-arm arm tray-a screw-machine-a (1)
+set-base b-0 arm screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+assemble-with-machine b-0 screw-machine-a screw-a attatch-a (3)
+move-arm arm table1 screw-machine-a (1)
+eject-base b-0 arm screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+set-base b-0 arm table1 (1)
+move-arm arm table1 table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+move-arm arm screw-machine-c tray-c (1)
+move-arm arm tray-c tray-b (1)
+pickup-component part-b arm tray-b (1)
+move-arm arm tray-b tray-c (1)
+move-arm arm tray-c screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+move-arm arm table-out table-in (1)
+move-arm arm table-in table1 (1)
+assemble-with-arm part-b attatch-b screw-a b-0 arm table1 (3)
+move-arm arm table1 table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+move-arm arm screw-machine-c tray-c (1)
+pickup-component part-c arm tray-c (1)
+move-arm arm tray-c screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+move-arm arm table-out table-in (1)
+move-arm arm table-in table1 (1)
+assemble-with-arm part-c attatch-c attatch-b b-0 arm table1 (2)
+eject-base b-0 arm table1 (1)
+move-arm arm table1 table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+set-base b-0 arm screw-machine-c (1)
+assemble-with-machine b-0 screw-machine-c screw-c attatch-c (3)
+eject-base b-0 arm screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+set-base b-0 arm table-out (1)
+slide-base-out b-0 table-out carry-out (1)
+Plan length: 55 step(s).
+Plan cost: 63
+Initial state h value: 52/52.
+Expanded 111 state(s).
+Reopened 4 state(s).
+Evaluated 130 state(s).
+Evaluations: 260
+Generated 297 state(s).
+Dead ends: 18 state(s).
+Best solution cost so far: 63
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 3)
+Conducting lazy best first search, (real) bound = 63
+Best heuristic value: 52/52 [g=0, 1 evaluated, 0 expanded, t=0.06s]
+Best heuristic value: 51/52 [g=1, 2 evaluated, 1 expanded, t=0.06s]
+Best heuristic value: 50/50 [g=1, 3 evaluated, 2 expanded, t=0.06s]
+Best heuristic value: 49/50 [g=2, 4 evaluated, 3 expanded, t=0.06s]
+Best heuristic value: 48/48 [g=5, 17 evaluated, 15 expanded, t=0.06s]
+Best heuristic value: 46/48 [g=6, 18 evaluated, 16 expanded, t=0.06s]
+Best heuristic value: 46/46 [g=8, 22 evaluated, 20 expanded, t=0.06s]
+Best heuristic value: 43/45 [g=10, 25 evaluated, 23 expanded, t=0.06s]
+Best heuristic value: 42/43 [g=11, 26 evaluated, 24 expanded, t=0.06s]
+Best heuristic value: 40/41 [g=12, 29 evaluated, 27 expanded, t=0.07s]
+Best heuristic value: 39/41 [g=13, 30 evaluated, 28 expanded, t=0.07s]
+Best heuristic value: 37/41 [g=14, 33 evaluated, 30 expanded, t=0.07s]
+Best heuristic value: 33/39 [g=18, 76 evaluated, 62 expanded, 2 reopened, t=0.07s]
+Best heuristic value: 33/37 [g=20, 79 evaluated, 65 expanded, 2 reopened, t=0.07s]
+Best heuristic value: 32/37 [g=21, 87 evaluated, 71 expanded, 2 reopened, t=0.07s]
+Best heuristic value: 31/37 [g=22, 89 evaluated, 73 expanded, 2 reopened, t=0.07s]
+Best heuristic value: 31/33 [g=23, 90 evaluated, 74 expanded, 2 reopened, t=0.07s]
+Best heuristic value: 30/33 [g=28, 98 evaluated, 81 expanded, 2 reopened, t=0.07s]
+Best heuristic value: 28/29 [g=29, 99 evaluated, 82 expanded, 2 reopened, t=0.07s]
+Best heuristic value: 23/29 [g=36, 107 evaluated, 90 expanded, 3 reopened, t=0.08s]
+Best heuristic value: 23/25 [g=37, 108 evaluated, 91 expanded, 3 reopened, t=0.08s]
+Best heuristic value: 21/23 [g=41, 121 evaluated, 103 expanded, 3 reopened, t=0.08s]
+Best heuristic value: 19/21 [g=42, 122 evaluated, 104 expanded, 3 reopened, t=0.08s]
+Best heuristic value: 16/18 [g=47, 126 evaluated, 108 expanded, 3 reopened, t=0.08s]
+Best heuristic value: 14/16 [g=48, 128 evaluated, 110 expanded, 3 reopened, t=0.08s]
+Best heuristic value: 14/14 [g=49, 129 evaluated, 111 expanded, 3 reopened, t=0.08s]
+Best heuristic value: 12/12 [g=50, 130 evaluated, 112 expanded, 3 reopened, t=0.08s]
+Best heuristic value: 10/12 [g=52, 134 evaluated, 115 expanded, 3 reopened, t=0.08s]
+Best heuristic value: 6/8 [g=56, 138 evaluated, 118 expanded, 3 reopened, t=0.08s]
+Best heuristic value: 6/6 [g=58, 140 evaluated, 120 expanded, 3 reopened, t=0.08s]
+Best heuristic value: 4/4 [g=59, 141 evaluated, 121 expanded, 3 reopened, t=0.08s]
+Best heuristic value: 2/2 [g=60, 142 evaluated, 122 expanded, 3 reopened, t=0.08s]
+Solution found!
+Actual search time: 0.02s [t=0.08s]
+slide-base-in b-0 carry-in table-in (1)
+move-arm arm table-in table1 (1)
+move-arm arm table1 screw-machine-a (1)
+move-arm arm screw-machine-a tray-a (1)
+pickup-component part-a arm tray-a (1)
+move-arm arm tray-a screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+move-arm arm table1 table-in (1)
+assemble-with-arm part-a attatch-a nothing-done b-0 arm table-in (2)
+eject-base b-0 arm table-in (1)
+move-arm arm table-in table1 (1)
+move-arm arm table1 screw-machine-a (1)
+set-base b-0 arm screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+assemble-with-machine b-0 screw-machine-a screw-a attatch-a (3)
+move-arm arm table1 screw-machine-a (1)
+eject-base b-0 arm screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+set-base b-0 arm table1 (1)
+move-arm arm table1 table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+move-arm arm screw-machine-c tray-c (1)
+move-arm arm tray-c tray-b (1)
+pickup-component part-b arm tray-b (1)
+move-arm arm tray-b tray-c (1)
+move-arm arm tray-c screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+move-arm arm table-out table-in (1)
+move-arm arm table-in table1 (1)
+assemble-with-arm part-b attatch-b screw-a b-0 arm table1 (3)
+move-arm arm table1 table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+move-arm arm screw-machine-c tray-c (1)
+pickup-component part-c arm tray-c (1)
+move-arm arm tray-c screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+move-arm arm table-out table-in (1)
+move-arm arm table-in table1 (1)
+assemble-with-arm part-c attatch-c attatch-b b-0 arm table1 (2)
+eject-base b-0 arm table1 (1)
+move-arm arm table1 table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+set-base b-0 arm screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+assemble-with-machine b-0 screw-machine-c screw-c attatch-c (3)
+move-arm arm table-out screw-machine-c (1)
+eject-base b-0 arm screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+set-base b-0 arm table-out (1)
+slide-base-out b-0 table-out carry-out (1)
+Plan length: 53 step(s).
+Plan cost: 61
+Initial state h value: 52/52.
+Expanded 123 state(s).
+Reopened 3 state(s).
+Evaluated 143 state(s).
+Evaluations: 286
+Generated 327 state(s).
+Dead ends: 19 state(s).
+Best solution cost so far: 61
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 2)
+Conducting lazy best first search, (real) bound = 61
+Best heuristic value: 52/52 [g=0, 1 evaluated, 0 expanded, t=0.08s]
+Best heuristic value: 51/52 [g=1, 2 evaluated, 1 expanded, t=0.08s]
+Best heuristic value: 50/50 [g=1, 3 evaluated, 2 expanded, t=0.08s]
+Best heuristic value: 49/50 [g=2, 4 evaluated, 3 expanded, t=0.08s]
+Best heuristic value: 48/48 [g=5, 17 evaluated, 15 expanded, t=0.08s]
+Best heuristic value: 46/48 [g=6, 18 evaluated, 16 expanded, t=0.08s]
+Best heuristic value: 46/46 [g=8, 22 evaluated, 20 expanded, t=0.08s]
+Best heuristic value: 43/45 [g=10, 25 evaluated, 23 expanded, t=0.08s]
+Best heuristic value: 42/43 [g=11, 26 evaluated, 24 expanded, t=0.08s]
+Best heuristic value: 40/41 [g=12, 29 evaluated, 27 expanded, t=0.08s]
+Best heuristic value: 39/41 [g=13, 30 evaluated, 28 expanded, t=0.08s]
+Best heuristic value: 37/41 [g=14, 33 evaluated, 30 expanded, t=0.08s]
+Best heuristic value: 33/39 [g=18, 76 evaluated, 62 expanded, 2 reopened, t=0.08s]
+Best heuristic value: 33/37 [g=20, 79 evaluated, 65 expanded, 2 reopened, t=0.08s]
+Best heuristic value: 32/37 [g=21, 85 evaluated, 70 expanded, 2 reopened, t=0.08s]
+Best heuristic value: 31/37 [g=22, 87 evaluated, 72 expanded, 2 reopened, t=0.08s]
+Best heuristic value: 31/33 [g=23, 88 evaluated, 73 expanded, 2 reopened, t=0.08s]
+Best heuristic value: 29/33 [g=26, 99 evaluated, 84 expanded, 2 reopened, t=0.08s]
+Best heuristic value: 28/29 [g=29, 126 evaluated, 101 expanded, 2 reopened, t=0.09s]
+Best heuristic value: 23/29 [g=32, 149 evaluated, 122 expanded, 13 reopened, t=0.09s]
+Best heuristic value: 23/25 [g=33, 150 evaluated, 123 expanded, 13 reopened, t=0.09s]
+Best heuristic value: 21/25 [g=37, 163 evaluated, 135 expanded, 13 reopened, t=0.09s]
+Best heuristic value: 21/23 [g=37, 172 evaluated, 141 expanded, 13 reopened, t=0.09s]
+Best heuristic value: 19/21 [g=38, 173 evaluated, 142 expanded, 13 reopened, t=0.09s]
+Best heuristic value: 16/18 [g=43, 177 evaluated, 146 expanded, 13 reopened, t=0.09s]
+Best heuristic value: 14/16 [g=44, 179 evaluated, 148 expanded, 13 reopened, t=0.09s]
+Best heuristic value: 14/14 [g=45, 180 evaluated, 149 expanded, 13 reopened, t=0.09s]
+Best heuristic value: 12/12 [g=46, 181 evaluated, 150 expanded, 13 reopened, t=0.09s]
+Best heuristic value: 10/12 [g=48, 185 evaluated, 153 expanded, 13 reopened, t=0.09s]
+Best heuristic value: 6/8 [g=52, 189 evaluated, 156 expanded, 13 reopened, t=0.09s]
+Best heuristic value: 6/6 [g=54, 191 evaluated, 158 expanded, 13 reopened, t=0.09s]
+Best heuristic value: 4/4 [g=55, 192 evaluated, 159 expanded, 13 reopened, t=0.09s]
+Best heuristic value: 2/2 [g=56, 193 evaluated, 160 expanded, 13 reopened, t=0.09s]
+Solution found!
+Actual search time: 0.01s [t=0.09s]
+slide-base-in b-0 carry-in table-in (1)
+move-arm arm table-in table1 (1)
+move-arm arm table1 screw-machine-a (1)
+move-arm arm screw-machine-a tray-a (1)
+pickup-component part-a arm tray-a (1)
+move-arm arm tray-a screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+move-arm arm table1 table-in (1)
+assemble-with-arm part-a attatch-a nothing-done b-0 arm table-in (2)
+eject-base b-0 arm table-in (1)
+move-arm arm table-in table1 (1)
+move-arm arm table1 screw-machine-a (1)
+set-base b-0 arm screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+assemble-with-machine b-0 screw-machine-a screw-a attatch-a (3)
+move-arm arm table1 screw-machine-a (1)
+eject-base b-0 arm screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+set-base b-0 arm table1 (1)
+move-arm arm table1 screw-machine-a (1)
+move-arm arm screw-machine-a tray-a (1)
+move-arm arm tray-a tray-b (1)
+pickup-component part-b arm tray-b (1)
+move-arm arm tray-b tray-a (1)
+move-arm arm tray-a screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+assemble-with-arm part-b attatch-b screw-a b-0 arm table1 (3)
+move-arm arm table1 table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+move-arm arm screw-machine-c tray-c (1)
+pickup-component part-c arm tray-c (1)
+move-arm arm tray-c screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+move-arm arm table-out table-in (1)
+move-arm arm table-in table1 (1)
+assemble-with-arm part-c attatch-c attatch-b b-0 arm table1 (2)
+eject-base b-0 arm table1 (1)
+move-arm arm table1 table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+set-base b-0 arm screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+assemble-with-machine b-0 screw-machine-c screw-c attatch-c (3)
+move-arm arm table-out screw-machine-c (1)
+eject-base b-0 arm screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+set-base b-0 arm table-out (1)
+slide-base-out b-0 table-out carry-out (1)
+Plan length: 49 step(s).
+Plan cost: 57
+Initial state h value: 52/52.
+Expanded 161 state(s).
+Reopened 13 state(s).
+Evaluated 194 state(s).
+Evaluations: 388
+Generated 433 state(s).
+Dead ends: 32 state(s).
+Best solution cost so far: 57
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 1)
+Conducting lazy best first search, (real) bound = 57
+Best heuristic value: 52/52 [g=0, 1 evaluated, 0 expanded, t=0.09s]
+Best heuristic value: 51/52 [g=1, 2 evaluated, 1 expanded, t=0.09s]
+Best heuristic value: 50/50 [g=1, 3 evaluated, 2 expanded, t=0.09s]
+Best heuristic value: 49/50 [g=2, 4 evaluated, 3 expanded, t=0.09s]
+Best heuristic value: 48/48 [g=5, 24 evaluated, 22 expanded, t=0.09s]
+Best heuristic value: 46/48 [g=6, 25 evaluated, 23 expanded, t=0.09s]
+Best heuristic value: 46/46 [g=8, 40 evaluated, 36 expanded, t=0.09s]
+Best heuristic value: 43/45 [g=10, 71 evaluated, 59 expanded, t=0.09s]
+Best heuristic value: 42/43 [g=11, 72 evaluated, 60 expanded, t=0.09s]
+Best heuristic value: 40/41 [g=12, 76 evaluated, 64 expanded, t=0.1s]
+Best heuristic value: 39/41 [g=13, 77 evaluated, 65 expanded, t=0.1s]
+Best heuristic value: 37/41 [g=14, 80 evaluated, 67 expanded, t=0.1s]
+Best heuristic value: 33/39 [g=18, 137 evaluated, 107 expanded, t=0.1s]
+Best heuristic value: 33/37 [g=20, 143 evaluated, 112 expanded, t=0.1s]
+Best heuristic value: 32/37 [g=21, 151 evaluated, 119 expanded, t=0.1s]
+Best heuristic value: 31/37 [g=22, 153 evaluated, 121 expanded, t=0.1s]
+Best heuristic value: 31/33 [g=23, 155 evaluated, 123 expanded, t=0.1s]
+Best heuristic value: 29/33 [g=24, 189 evaluated, 153 expanded, 12 reopened, t=0.11s]
+Best heuristic value: 28/29 [g=25, 231 evaluated, 176 expanded, 15 reopened, t=0.11s]
+Best heuristic value: 23/29 [g=30, 251 evaluated, 192 expanded, 16 reopened, t=0.12s]
+Best heuristic value: 23/25 [g=31, 252 evaluated, 193 expanded, 16 reopened, t=0.12s]
+Best heuristic value: 21/25 [g=35, 266 evaluated, 206 expanded, 16 reopened, t=0.12s]
+Best heuristic value: 21/23 [g=35, 273 evaluated, 212 expanded, 16 reopened, t=0.12s]
+Best heuristic value: 19/21 [g=36, 274 evaluated, 213 expanded, 16 reopened, t=0.12s]
+Best heuristic value: 16/18 [g=41, 290 evaluated, 225 expanded, 17 reopened, t=0.12s]
+Best heuristic value: 14/16 [g=42, 293 evaluated, 228 expanded, 17 reopened, t=0.12s]
+Best heuristic value: 14/14 [g=43, 294 evaluated, 229 expanded, 17 reopened, t=0.12s]
+Best heuristic value: 12/12 [g=44, 295 evaluated, 230 expanded, 17 reopened, t=0.12s]
+Best heuristic value: 10/12 [g=46, 301 evaluated, 234 expanded, 17 reopened, t=0.12s]
+Best heuristic value: 8/8 [g=49, 306 evaluated, 238 expanded, 17 reopened, t=0.12s]
+Best heuristic value: 6/8 [g=50, 308 evaluated, 240 expanded, 17 reopened, t=0.12s]
+Best heuristic value: 6/6 [g=50, 309 evaluated, 241 expanded, 17 reopened, t=0.12s]
+Best heuristic value: 4/4 [g=51, 310 evaluated, 242 expanded, 17 reopened, t=0.12s]
+Best heuristic value: 2/2 [g=52, 311 evaluated, 243 expanded, 17 reopened, t=0.12s]
+Solution found!
+Actual search time: 0.03s [t=0.12s]
+slide-base-in b-0 carry-in table-in (1)
+move-arm arm table-in table1 (1)
+move-arm arm table1 screw-machine-a (1)
+move-arm arm screw-machine-a tray-a (1)
+pickup-component part-a arm tray-a (1)
+move-arm arm tray-a screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+move-arm arm table1 table-in (1)
+assemble-with-arm part-a attatch-a nothing-done b-0 arm table-in (2)
+eject-base b-0 arm table-in (1)
+move-arm arm table-in table1 (1)
+move-arm arm table1 screw-machine-a (1)
+set-base b-0 arm screw-machine-a (1)
+assemble-with-machine b-0 screw-machine-a screw-a attatch-a (3)
+eject-base b-0 arm screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+set-base b-0 arm table1 (1)
+move-arm arm table1 screw-machine-a (1)
+move-arm arm screw-machine-a tray-a (1)
+move-arm arm tray-a tray-b (1)
+pickup-component part-b arm tray-b (1)
+move-arm arm tray-b tray-a (1)
+move-arm arm tray-a screw-machine-a (1)
+move-arm arm screw-machine-a table1 (1)
+assemble-with-arm part-b attatch-b screw-a b-0 arm table1 (3)
+move-arm arm table1 table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+move-arm arm screw-machine-c tray-c (1)
+pickup-component part-c arm tray-c (1)
+move-arm arm tray-c screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+move-arm arm table-out table-in (1)
+move-arm arm table-in table1 (1)
+assemble-with-arm part-c attatch-c attatch-b b-0 arm table1 (2)
+eject-base b-0 arm table1 (1)
+move-arm arm table1 table-in (1)
+move-arm arm table-in table-out (1)
+move-arm arm table-out screw-machine-c (1)
+set-base b-0 arm screw-machine-c (1)
+assemble-with-machine b-0 screw-machine-c screw-c attatch-c (3)
+eject-base b-0 arm screw-machine-c (1)
+move-arm arm screw-machine-c table-out (1)
+set-base b-0 arm table-out (1)
+slide-base-out b-0 table-out carry-out (1)
+Plan length: 45 step(s).
+Plan cost: 53
+Initial state h value: 52/52.
+Expanded 244 state(s).
+Reopened 17 state(s).
+Evaluated 312 state(s).
+Evaluations: 624
+Generated 669 state(s).
+Dead ends: 67 state(s).
+Best solution cost so far: 53
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 1)
+Conducting lazy best first search, (real) bound = 53
+Best heuristic value: 52/52 [g=0, 1 evaluated, 0 expanded, t=0.12s]
+Best heuristic value: 51/52 [g=1, 2 evaluated, 1 expanded, t=0.12s]
+Best heuristic value: 50/50 [g=1, 3 evaluated, 2 expanded, t=0.12s]
+Best heuristic value: 49/50 [g=2, 4 evaluated, 3 expanded, t=0.12s]
+Best heuristic value: 48/48 [g=5, 24 evaluated, 22 expanded, t=0.12s]
+Best heuristic value: 46/48 [g=6, 25 evaluated, 23 expanded, t=0.12s]
+Best heuristic value: 46/46 [g=8, 40 evaluated, 36 expanded, t=0.12s]
+Best heuristic value: 43/45 [g=10, 71 evaluated, 59 expanded, t=0.12s]
+Best heuristic value: 42/43 [g=11, 72 evaluated, 60 expanded, t=0.12s]
+Best heuristic value: 40/41 [g=12, 76 evaluated, 64 expanded, t=0.12s]
+Best heuristic value: 39/41 [g=13, 77 evaluated, 65 expanded, t=0.12s]
+Best heuristic value: 37/41 [g=14, 80 evaluated, 67 expanded, t=0.12s]
+Best heuristic value: 33/39 [g=18, 137 evaluated, 107 expanded, t=0.13s]
+Best heuristic value: 33/37 [g=20, 143 evaluated, 112 expanded, t=0.13s]
+Best heuristic value: 32/37 [g=21, 151 evaluated, 119 expanded, t=0.13s]
+Best heuristic value: 31/37 [g=22, 153 evaluated, 121 expanded, t=0.13s]
+Best heuristic value: 31/33 [g=23, 155 evaluated, 123 expanded, t=0.13s]
+Best heuristic value: 29/33 [g=24, 189 evaluated, 153 expanded, 12 reopened, t=0.13s]
+Best heuristic value: 28/29 [g=25, 231 evaluated, 176 expanded, 15 reopened, t=0.14s]
+Best heuristic value: 23/29 [g=30, 251 evaluated, 192 expanded, 16 reopened, t=0.14s]
+Best heuristic value: 23/25 [g=31, 252 evaluated, 193 expanded, 16 reopened, t=0.14s]
+Best heuristic value: 21/25 [g=35, 266 evaluated, 206 expanded, 16 reopened, t=0.14s]
+Best heuristic value: 21/23 [g=35, 273 evaluated, 212 expanded, 16 reopened, t=0.14s]
+Best heuristic value: 19/21 [g=36, 274 evaluated, 213 expanded, 16 reopened, t=0.14s]
+Best heuristic value: 16/18 [g=41, 290 evaluated, 225 expanded, 17 reopened, t=0.14s]
+Best heuristic value: 14/16 [g=42, 293 evaluated, 228 expanded, 17 reopened, t=0.14s]
+Best heuristic value: 14/14 [g=43, 294 evaluated, 229 expanded, 17 reopened, t=0.14s]
+Best heuristic value: 12/12 [g=44, 295 evaluated, 230 expanded, 17 reopened, t=0.14s]
+Best heuristic value: 10/12 [g=46, 301 evaluated, 234 expanded, 17 reopened, t=0.14s]
+Best heuristic value: 8/8 [g=49, 306 evaluated, 238 expanded, 17 reopened, t=0.14s]
+Best heuristic value: 6/8 [g=50, 308 evaluated, 240 expanded, 17 reopened, t=0.14s]
+Best heuristic value: 6/6 [g=50, 309 evaluated, 241 expanded, 17 reopened, t=0.14s]
+Best heuristic value: 4/4 [g=51, 310 evaluated, 242 expanded, 17 reopened, t=0.14s]
+Best heuristic value: 2/2 [g=52, 311 evaluated, 243 expanded, 17 reopened, t=0.14s]
+Completely explored state space -- no solution!
+Actual search time: 0.04s [t=0.16s]
+Initial state h value: 52/52.
+Expanded 372 state(s).
+Reopened 23 state(s).
+Evaluated 481 state(s).
+Evaluations: 962
+Generated 981 state(s).
+Dead ends: 109 state(s).
+Best solution cost so far: 53
+No solution found - keep searching
+Actual search time: 0.15s [t=0.16s]
+Cumulative statistics:
+Expanded 1471 state(s).
+Reopened 60 state(s).
+Evaluated 1848 state(s).
+Evaluations: 3696
+Generated 3919 state(s).
+Dead ends: 0 state(s).
+Search time: 0.15s
+Total time: 0.16s
+Solution found.
+Peak memory: 4612 KB

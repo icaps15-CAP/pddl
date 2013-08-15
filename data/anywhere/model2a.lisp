@@ -1,5 +1,15 @@
 
 (in-package :pddl.builder)
+
+(make-reachable 'arm '(table-in
+		       tray-a
+		       machine-a
+		       tray-b
+		       table2
+		       tray-c
+		       machine-b
+		       table-out))
+
 (make-reachable 'arm '(table-in
 		       tray-a
 		       machine-a

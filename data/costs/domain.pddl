@@ -28,6 +28,7 @@
    ;; arm attributes
    (reachable ?arm - arm ?to - position)
    ;; position attributes
+   (adjacent ?from ?to - position)
    (connected ?from ?to - position) ;; by conveyor
    ;; job attributes
    (depends ?prev-job ?job - job)
@@ -62,7 +63,8 @@
 	   ;; straint so that only one arm can occupy any given location
 	   ;; at a time.
 	   :parameters (?arm - arm ?from - position ?to - position)
-	   :precondition (and (at ?arm ?from)
+	   :precondition (and (adjacent ?from ?to)
+			      (at ?arm ?from)
 			      (not (arm-present ?to))
 			      (reachable ?arm ?to))
 	   :effect (and (at ?arm ?to)
@@ -112,7 +114,8 @@
 			      (not (base-present ?to)))
 	   :effect (and (at ?base ?to)
 			(not (at ?base ?from))
-			(base-present ?to)))
+			(base-present ?to)
+			(increase (total-cost) (loading-cost))))
 
   (:action slide-base-out
 	   ;; Slide Base: Uses a slide device to move a base. 
@@ -124,7 +127,8 @@
 			      (connected ?from ?to))
 	   :effect (and (at ?base ?to)
 			(not (at ?base ?from))
-			(not (base-present ?from))))
+			(not (base-present ?from))
+			(increase (total-cost) (loading-cost))))
   
   (:action pickup-component
 	   ;; Pick Parts by Arm: Use an arm (?arm) to pick up a part
@@ -139,7 +143,8 @@
 			      (at ?arm ?pos)
 			      (at ?component ?pos))
 	   :effect (and (hold ?arm ?component)
-			(not (free ?arm))))
+			(not (free ?arm))
+			(increase (total-cost) (loading-cost))))
   
   (:action assemble-with-machine
 	   ;; Base Assemble by Machine: Use a machine (?pos) to
