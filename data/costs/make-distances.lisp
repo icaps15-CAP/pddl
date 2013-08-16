@@ -2,11 +2,13 @@
 (require :iterate)
 (require :alexandria)
 (require :guicho-utilities)
+(ql:quickload :aflab1)
 (defpackage pddl.builder
   (:use :cl
 	:guicho-utilities
 	:iterate
-	:alexandria))
+	:alexandria
+	:guicho-a*))
 (in-package :pddl.builder)
 
 (defun print-list (lst)
@@ -19,11 +21,91 @@
 		(ensure-list arms)
 		(ensure-list positions))))
 
-(defun make-dists2 (position-tree randomness)
-  (%add-many-costs
-   (%get-adjacency position-tree)
-   (remove-duplicates (flatten position-tree))
-   randomness))
+(defun make-dists (position-tree)
+  (multiple-value-bind (a index-hash)
+      (%get-costs
+       (%get-adjacency position-tree)
+       (remove-duplicates (flatten position-tree)))
+    (%build-dists a index-hash)))
+
+(defclass symbol-node (searchable-bidirectional-node)
+  ((sym :type symbol :initarg :sym :accessor sym)
+   (complementary-edge-class :initform 'symbol-edge)))
+
+(defmethod print-object ((n symbol-node) s)
+  (print-unreadable-object (n s :type t)
+    (format s "~w ~w" :sym (sym n))))
+
+(defclass symbol-edge (searchable-edge)
+  ((complementary-node-class :initform 'symbol-node)))
+
+(defmethod generic-eq ((s1 symbol-node) (s2 symbol-node))
+  (eq (sym s1) (sym s2)))
+
+(defmethod heuristic-cost-between ((s1 symbol-node) (s2 symbol-node))
+  0 ;; dijkstra search
+  )
+
+(defmethod cost ((e symbol-edge))
+  1)
+
+(defun %get-costs (adjacencies positions)
+  (let ((a (make-array (list (length positions)
+			     (length positions))
+		       :element-type 'fixnum))
+	(index-hash (make-hash-table)))
+    (iter (for p in positions)
+	  (for i from 0)
+	  (setf (gethash p index-hash) i))
+    
+    (let ((node-hash (make-hash-table)))
+      (dolist (p positions)
+	(setf (gethash p node-hash)
+	      (make-instance 'symbol-node :sym p)))
+      (dolist (pair adjacencies)
+	(destructuring-bind (p q) pair
+	  (connect (gethash p node-hash)
+		   (gethash q node-hash))))
+      (dolist (p1 positions)
+	(dolist (p2 positions)
+	  (setf (aref a
+		      (gethash p1 index-hash)
+		      (gethash p2 index-hash))
+		(iter (for node
+			   initially
+			   (a*-search (gethash p1 node-hash)
+				      (gethash p2 node-hash))
+			   then (parent node))
+		      (until (eq (sym node) p1))
+		      ;; (format t "~%going backward... ~w" node)
+		      (counting (cost node)))))))
+    (values a
+	    index-hash
+	    (sort (hash-table-alist index-hash) #'< :key #'cdr))))
+
+(defun %build-dists (a index-hash)
+  (iter
+    outer
+    (for (p i) in-hashtable index-hash)
+    (iter (for (q j) in-hashtable index-hash)
+	  (in outer
+	      (collect
+		  `(= (move-cost ,p ,q)
+		      ,(if (= i j)
+			   1000
+			   (1+ (aref a i j)))))))))
+
+
+(defun make-adjacency (a b randomness)
+  (let ((dist (if (plusp randomness)
+		  (1+ (random randomness)) 1)))
+    (list 
+	  `(= (move-cost ,b ,a) ,dist)
+	  `(adjacent ,a ,b)
+	  `(adjacent ,b ,a))))
+
+(defun make-non-adjacency (a b)
+  (list `(= (move-cost ,a ,b) 1000)))
 
 (defun %get-adjacency (position-tree)
   (let ((acc nil))
@@ -50,35 +132,6 @@
 	       (symbol (error "illegal argument"))))))
      position-tree)
     acc))
-
-(defun %add-many-costs (adjacencies positions randomness)
-  (let ((acc-yes nil)
-	(acc-no nil))
-    (map-combinations
-     (lambda (rest)
-       (if (or (find rest adjacencies :test #'equalp)
-	       (find (reverse rest) adjacencies :test #'equalp))
-	   (appendf acc-yes (make-adjacency 
-			     (first rest)
-			     (second rest)
-			     randomness))
-	   (appendf acc-no
-		    (apply #'make-non-adjacency rest)
-		    (apply #'make-non-adjacency (reverse rest)))))
-     positions :length 2)
-    (dolist (p positions (append acc-yes acc-no))
-      (appendf acc-no (make-non-adjacency p p)))))
-
-(defun make-adjacency (a b randomness)
-  (let ((dist (if (plusp randomness)
-		  (1+ (random randomness)) 1)))
-    (list `(= (move-cost ,a ,b) ,dist)
-	  `(= (move-cost ,b ,a) ,dist)
-	  `(adjacent ,a ,b)
-	  `(adjacent ,b ,a))))
-
-(defun make-non-adjacency (a b)
-  (list `(= (move-cost ,a ,b) 1000)))
 
 (defun make-linear-jobs (jobspecs &optional
 			 (lower-limit 1)
@@ -122,33 +175,3 @@
      (dolist (base (ensure-list base-names) (nreverse acc))
        (push `(at ,base carry-out) acc)
        (push `(finished ,last-job ,base) acc)))))
-
-
-;; ;; preserve tree structure
-;; (defun make-dists (position-tree)
-;;   (walk-tree
-;;    (let ((prev nil))
-;;      (lambda (branch cont)
-;;        (if prev
-;; 	   (typecase branch
-;; 	     (list
-;; 	      (list*
-;; 	       (make-adjacency (first prev) (car branch))
-;; 	       (prog2
-;; 		   (push (car branch) prev)
-;; 		   (funcall cont (cdr branch))
-;; 		 (pop prev))))
-;; 	     (symbol
-;; 	      (prog1 
-;; 		  (make-adjacency (first prev) branch)
-;; 		(setf (car prev) branch))))
-;; 	   ;; first layer
-;; 	   (typecase branch
-;; 	     (list
-;; 	      (prog2
-;; 		  (push (car branch) prev)
-;; 		  (funcall cont (cdr branch))
-;; 		(pop prev)))
-;; 	     (symbol (error "illegal argument"))))))
-;;    position-tree))
-

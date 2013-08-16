@@ -28,7 +28,6 @@
    ;; arm attributes
    (reachable ?arm - arm ?to - position)
    ;; position attributes
-   (adjacent ?from ?to - position)
    (connected ?from ?to - position) ;; by conveyor
    ;; job attributes
    (depends ?prev-job ?job - job)
@@ -63,8 +62,7 @@
 	   ;; straint so that only one arm can occupy any given location
 	   ;; at a time.
 	   :parameters (?arm - arm ?from - position ?to - position)
-	   :precondition (and (adjacent ?from ?to)
-			      (at ?arm ?from)
+	   :precondition (and (at ?arm ?from)
 			      (not (arm-present ?to))
 			      (reachable ?arm ?to))
 	   :effect (and (at ?arm ?to)

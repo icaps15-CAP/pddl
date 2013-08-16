@@ -70,20 +70,19 @@
 		   tray-c))
 
 	;; position attributes
-	,@(make-dists2  '(table-in
-			  gasket-machine
-			  table1
-			  screw-machine-a
-			  tray-b
-			  oiling-machine
-			  tray-c
-			  screw-machine-c
-			  table2
-			  inspection-machine
-			  table-out
-			  tray-a
-			  table-in)
-			0)
+	,@(make-dists  '(table-in
+			 gasket-machine
+			 table1
+			 screw-machine-a
+			 tray-b
+			 oiling-machine
+			 tray-c
+			 screw-machine-c
+			 table2
+			 inspection-machine
+			 table-out
+			 tray-a
+			 table-in))
 	
 	;; conveyor attributes
 	(connected carry-in table-in)   ; !!! do not remove this
