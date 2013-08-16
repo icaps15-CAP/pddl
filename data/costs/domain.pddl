@@ -64,6 +64,26 @@
 	   :parameters (?arm - arm ?from - position ?to - position)
 	   :precondition (and (at ?arm ?from)
 			      (not (arm-present ?to))
+			      (free ?arm)
+			      (reachable ?arm ?to))
+	   :effect (and (at ?arm ?to)
+			(arm-present ?to)
+			(not (at ?arm ?from))
+			(not (arm-present ?from))
+			(increase (total-cost) (move-cost ?from ?to))))
+
+  (:action move-arm-holding
+	   ;;   Moves the arm (?arm) from the source
+	   ;; (?from) to the destination (?to). The occupied and not-
+	   ;; occupied propositions enforce a mutual exclusion con-
+	   ;; straint so that only one arm can occupy any given location
+	   ;; at a time.
+	   :parameters (?arm - arm
+		        ?from - position ?to - position
+			?thing - holdable)
+	   :precondition (and (at ?arm ?from)
+			      (not (arm-present ?to))
+			      (hold ?arm ?thing)
 			      (reachable ?arm ?to))
 	   :effect (and (at ?arm ?to)
 			(arm-present ?to)
