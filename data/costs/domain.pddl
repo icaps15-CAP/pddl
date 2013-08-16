@@ -1,4 +1,4 @@
-(define (domain cell-assembly-cost)
+(define (domain cell-assembly)
   (:requirements :strips :typing
 		 :negative-preconditions
 		 :action-costs)

@@ -1,15 +1,21 @@
 
 (in-package :pddl.builder)
 
+(defun write-model2b (max)
+  (iter (for i from 1 to max)
+	(write-model #'model2b
+		     #'(lambda (i)
+			 (format nil "model2b~a.pddl" i))
+		     i)))
 
 (defun model2b (basenum)
   (let ((bases (iter (for i below basenum)
 		     (collect
 		      (concatenate-symbols 'b i)))))
     `(define (problem ,(concatenate-symbols
-			'cell-assembly-model2b-p
+			'cell-assembly-model2b
 			basenum))
-	 (:domain cell-assembly-cost)
+	 (:domain cell-assembly)
        (:objects arm - arm
 		 ,@bases - base
 		 part-a

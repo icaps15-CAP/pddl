@@ -1,25 +1,22 @@
 
-(require :iterate)
-(require :alexandria)
-(require :guicho-utilities)
-(ql:quickload :aflab1)
 (defpackage pddl.builder
   (:use :cl
 	:guicho-utilities
 	:iterate
 	:alexandria
-	:guicho-a*))
+	:guicho-a*)
+  (:export :write-model :model2a :model2b
+	   :write-model2a :write-model2b))
 (in-package :pddl.builder)
 
 (defun print-list (lst)
   (dolist (r lst lst)
     (print r)))
 (defun make-reachable (arms positions)
-  (print-list
-   (map-product (lambda (arm position)
-		  `(reachable ,arm ,position))
-		(ensure-list arms)
-		(ensure-list positions))))
+  (map-product (lambda (arm position)
+		 `(reachable ,arm ,position))
+	       (ensure-list arms)
+	       (ensure-list positions)))
 
 (defun make-dists (position-tree)
   (multiple-value-bind (a index-hash)
@@ -164,14 +161,12 @@
 
 (defun make-initial-bases (base-names)
   (let ((acc nil))
-    (print-list
-     (dolist (base (ensure-list base-names) (nreverse acc))
-       (push `(at ,base carry-in) acc)
-       (push `(finished nothing-done ,base) acc)))))
+    (dolist (base (ensure-list base-names) (nreverse acc))
+      (push `(at ,base carry-in) acc)
+      (push `(finished nothing-done ,base) acc))))
 
 (defun make-goal-bases (base-names last-job)
   (let ((acc nil))
-    (print-list
-     (dolist (base (ensure-list base-names) (nreverse acc))
-       (push `(at ,base carry-out) acc)
-       (push `(finished ,last-job ,base) acc)))))
+    (dolist (base (ensure-list base-names) (nreverse acc))
+      (push `(at ,base carry-out) acc)
+      (push `(finished ,last-job ,base) acc))))

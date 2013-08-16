@@ -1,15 +1,29 @@
 
 (in-package :pddl.builder)
 
+(defun write-model (modelfn pathnamefn basenum)
+  (with-open-file (s (funcall pathnamefn basenum)
+		     :direction :output
+		     :if-exists :supersede
+		     :if-does-not-exist :create)
+    (let ((*package* (find-package :pddl.builder)))
+      (write (funcall modelfn basenum) :stream s))))
+
+(defun write-model2a (max)
+  (iter (for i from 1 to max)
+	(write-model #'model2a
+		     #'(lambda (i)
+			 (format nil "model2a~a.pddl" i))
+		     i)))
 
 (defun model2a (basenum)
   (let ((bases (iter (for i below basenum)
 		     (collect
-		      (concatenate-symbols 'b i)))))
+			 (concatenate-symbols 'b i)))))
     `(define (problem ,(concatenate-symbols
-			'cell-assembly-model2a-p
+			'cell-assembly-model2a
 			basenum))
-	 (:domain cell-assembly-cost)
+       (:domain cell-assembly)
        (:objects arm1
 		 arm2 - arm
 		 ,@bases - base
