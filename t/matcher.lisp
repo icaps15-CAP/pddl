@@ -47,6 +47,29 @@
 	 (init *problem*)
 	 (action *domain* :drive)))))
 
+(test (appliability-not)
+  (finishes
+    (define (domain appliability-not)
+      (:predicates (true ?a))
+      (:action should-not-appliable
+	       :parameters (?x)
+	       :precondition (and (not (true ?x)))
+	       :effect nil)))
+  (finishes
+    (define (problem appliability-not-prob)
+      (:domain appliability-not)
+      (:objects a b c)
+      (:init (true a)
+	     (true b)
+	     (true c))))
+  (is-false
+   (appliable (init appliability-not-prob)
+	      (pddl-intermediate-action
+	       :name 'should-not-appliable
+	       :domain appliability-not
+	       :problem appliability-not-prob
+	       :parameters (list (object appliability-not-prob 'a))))))
+
 (test (apply-action :depends-on appliability)
   (let ((aa (pddl-intermediate-action
 	     :name 'drive

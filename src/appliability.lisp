@@ -143,8 +143,7 @@ Values are (success-p remaining-states new-matches used-states)."
 
 (defun %apply-not-rec (states pred matches used-states)
   (multiple-value-match
-      (ignore-errors
-	(%apply-clause-rec states pred matches used-states))
+	(%apply-clause-rec states pred matches used-states)
     (((not nil) _ _)
      nil)
     (()
