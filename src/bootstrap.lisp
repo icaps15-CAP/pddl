@@ -32,12 +32,12 @@
 (defmacro define (type &body body)
   (ematch type
     ((list 'domain name)
-     `(progn
-	(defparameter ,name ,(parse-domain-def name body))
+     `(eval-when (:compile-toplevel :load-toplevel :execute)
+	(defparameter ,name (parse-domain-def ',name ',body))
 	',name))
     ((list 'problem name)
-     `(progn
-	(defparameter ,name ,(parse-problem-def name body))
+     `(eval-when (:compile-toplevel :load-toplevel :execute)
+	(defparameter ,name (parse-problem-def ',name ',body))
 	',name))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -64,7 +64,7 @@
   (let* (;; these special variables are used in
 	 ;; the initialization of subclause objects.
 	 (*domain* (parse-domain body))
-	 (*problem* (pddl-problem :name name)))
+	 (*problem* (pddl-problem :name name :domain *domain*)))
     (macrolet ((body-problem (accessor)
 		 `(setf (,accessor *problem*)
 			(,(concatenate-symbols 'parse accessor) body))))
