@@ -33,9 +33,11 @@
 @export
 (defgeneric object (problem designator))
 (defmethod object ((problem pddl-problem) (name symbol))
-  (find name (objects problem) :key #'name))
+  (object problem (symbol-name name)))
 (defmethod object ((problem pddl-problem) (name string))
-  (find name (objects problem) :key (compose #'symbol-name #'name)))
+  (find-if (lambda (o)
+	     (string= name (symbol-name (name o))))
+	   (objects problem)))
 
 
 (define-pddl-class pddl-metric (pddl-problem-slot)

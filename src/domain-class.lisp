@@ -46,15 +46,13 @@
 @doc "find the action specified by the designator."
 (defgeneric action (pddl-domain designator))
 (defmethod action ((dom pddl-domain) (designator symbol))
-  (find-if (lambda (action)
-	     (string= (symbol-name (name action))
-		      (symbol-name designator)))
-	   (actions dom)))
+  (action dom (symbol-name designator)))
 (defmethod action ((dom pddl-domain) (designator string))
-  (find-if (lambda (action)
-	     (string= (symbol-name (name action))
-		      designator))
-	   (actions dom)))
+  (or (find-if (lambda (action)
+		 (string= (symbol-name (name action))
+			  designator))
+	       (actions dom))
+      (signal "no such action found! : ~a" designator)))
 
 @export
 @doc "find the predicate specified by the designator."
