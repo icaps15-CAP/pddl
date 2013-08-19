@@ -15,7 +15,15 @@
   (lambda (objects)
     (handler-bind ((not-found-in-dictionary
 		    #'intern-variable))
-      (typed-objects objects 'pddl-object))))
+      (parse-typed-list
+       objects
+       nil
+       (lambda (name &optional typesym)
+	 (pddl-object
+	  :name name
+	  :type (if typesym
+		    (find-if (curry #'%eqname1 typesym) (types *domain*))
+		    *pddl-primitive-object-type*)))))))
 
 (define-clause-getter init :init
   (lambda (init-descriptions)

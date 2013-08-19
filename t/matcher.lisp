@@ -63,23 +63,27 @@
 	     (true b)
 	     (true c))))
   (is-false
-   (appliable (init appliability-not-prob)
-	      (pddl-intermediate-action
-	       :name 'should-not-appliable
-	       :domain appliability-not
-	       :problem appliability-not-prob
-	       :parameters (list (object appliability-not-prob 'a))))))
+   (let* ((*domain* appliability-not)
+	  (*problem* appliability-not-prob))
+     (appliable (init appliability-not-prob)
+		(pddl-intermediate-action
+		 :name 'should-not-appliable
+		 :domain appliability-not
+		 :problem appliability-not-prob
+		 :parameters (list (object appliability-not-prob 'a)))))))
 
 (test (apply-action :depends-on appliability)
-  (let ((aa (pddl-intermediate-action
-	     :name 'drive
-	     :domain depot
-	     :problem depotprob1818
-	     :parameters (list
-			  (object depotprob1818 'truck1)
-			  (object depotprob1818 'depot0)
-			  (object depotprob1818 'distributor1))))
-	(inits (init depotprob1818)))
+  (let* ((*domain* depot)
+	 (*problem* depotprob1818)
+	 (aa (pddl-intermediate-action
+	      :name 'drive
+	      :domain depot
+	      :problem depotprob1818
+	      :parameters (list
+			   (object depotprob1818 'truck1)
+			   (object depotprob1818 'depot0)
+			   (object depotprob1818 'distributor1))))
+	 (inits (init depotprob1818)))
     (is (appliable inits aa))
     (let ((new-states (apply-actual-action aa inits)))
       (is-false (null new-states))
