@@ -17,6 +17,19 @@
 (define-pddl-class pddl-problem-slot (pddl-domain-slot)
   (problem))
 
+@export
+(defgeneric related-to (designator parametrized))
+
+
+(defmethod related-to (designator (parametrized pddl-problem-slot))
+  (call-next-method
+   (object (problem parametrized) designator)
+   parametrized))
+(defmethod related-to ((designator pddl-object)
+		       (parametrized pddl-parametrized-object))
+  (some (curry #'eqname designator)
+	(parameters parametrized)))
+
 (defmethod initialize-instance :after ((o pddl-problem-slot)
 				       &key (problem *problem*))
   (setf (problem o) problem))

@@ -26,7 +26,8 @@
 (test (read-all-problem-and-plans)
   (handler-bind ((found-in-dictionary #'muffle-warning))
     (finishes
-      (parse-file (data "costs/domain.pddl")))
+      (export (parse-file (data "costs/domain.pddl"))))
+    
     
     (let ((*domain* cell-assembly))
       (read-many-problems

@@ -215,7 +215,7 @@
 @doc "Returns a plist 
   (<pddl-variable> <pddl-object> <pddl-variable> <pddl-object> ...)
 meaning it is a valid assignment of an object to a variable in an action."
-(defgeneric match-set (source))
+(defgeneric match-set (actual-action))
 (defmethod match-set ((aa pddl-intermediate-action))
   (let ((set nil)
 	(a (action (domain aa) aa)))

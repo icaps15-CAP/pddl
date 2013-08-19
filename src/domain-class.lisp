@@ -74,8 +74,13 @@
 (defun arity (thing)
   (length (parameters thing)))
 
-(define-pddl-class pddl-predicate (pddl-domain-slot namable)
+(define-pddl-class pddl-parametrized-object ()
   ((parameters :type pddl-variable)))
+
+(define-pddl-class pddl-predicate (pddl-domain-slot
+				   pddl-parametrized-object
+				   namable)
+  ())
 
 #+sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
@@ -88,6 +93,7 @@
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (define-pddl-class pddl-variable (pddl-domain-slot namable)
     (type)))
+
 
 (define-pddl-class pddl-type (pddl-variable)
   ())
@@ -140,9 +146,9 @@
 
 
 (define-pddl-class pddl-action (pddl-domain-slot
+				pddl-parametrized-object
 				namable)
-  ((parameters :type pddl-variable)
-   precondition
+  (precondition
    effect
    add-list
    delete-list
