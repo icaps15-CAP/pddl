@@ -3,10 +3,11 @@
 
 @export
 (defun apply-actual-action (actual-action states)
-  (apply-action
-   (action (domain actual-action) actual-action)
-   (match-set actual-action)
-   states))
+  (let ((*problem* (problem actual-action)))
+    (apply-action
+     (action (domain actual-action) actual-action)
+     (match-set actual-action)
+     states)))
 
 @export
 (defun apply-action (action match-set states)
@@ -23,7 +24,8 @@
 	  (mapcar #'sxhash (parameters action))
 	  match-set
 	  (mapcar #'sxhash match-set))
-  (let ((new-states (copy-list states)))
+  (let ((new-states (copy-list states))
+	(*domain* (domain action)))
     (setf new-states (%apply-delete-effect action match-set new-states))
     (setf new-states (%apply-add-effect action match-set new-states))
     (setf new-states (%apply-assign-ops action match-set new-states))

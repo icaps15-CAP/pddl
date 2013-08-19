@@ -181,7 +181,9 @@
 				       &rest args)
   @ignore args
   (let ((set (match-set aa))
-	(a (action (domain aa) aa)))
+	(*domain* (domain aa))
+	(*problem* (problem aa))
+	(a (action *domain* aa)))
     (with-slots (effect precondition) aa
       (setf effect
 	    (walk-tree 
