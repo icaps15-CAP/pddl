@@ -63,6 +63,9 @@
   (find-if (lambda (o)
 	     (string= name (symbol-name (name o))))
 	   (objects problem)))
+(defmethod object ((problem pddl-problem) (object pddl-object))
+  (when (member object (objects problem))
+    object))
 
 
 (define-pddl-class pddl-metric (pddl-problem-slot)
