@@ -189,7 +189,8 @@ then it is always used. The reference is determined by the EQNAME."
 @export
 (defun parse-atomic-state (desc)
   (change-class (parse-atomic-formula desc)
-		'pddl-atomic-state))
+		'pddl-atomic-state
+		:problem *problem*))
 
 @export
 @doc "Parsing description for precondition."

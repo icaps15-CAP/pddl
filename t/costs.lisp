@@ -7,11 +7,11 @@
 	(while (probe-file path))
 	(for sym = (concatenate-symbols
 		    (name problem) i))
-	(setf (symbol-value sym)
-	      (pddl-plan
-	       :domain *domain*
-	       :problem problem
-	       :path path))
+	(for plan = (pddl-plan
+		     :domain *domain*
+		     :problem problem
+		     :path path))
+	(setf (symbol-value sym) plan)
 	(export sym)))
 
 (defun read-many-problems (problempath-fn planpath-fn)

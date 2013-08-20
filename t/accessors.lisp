@@ -30,3 +30,16 @@
     (is (= 1 (length (add-list a)))
 	"(length (add-list a)) should be 1,~%~
          but (add-list a) was ~a ." (add-list a))))
+
+
+(test (accessors-prob :depends-on parse-problem)
+  (dolist (o (objects depotprob1818))
+    (is (domain o) depot)
+    (when (typep o 'pddl-object)
+      (is (problem o) depotprob1818))))
+
+(test (states :depends-on accessors-prob)
+  
+  (dolist (o (init depotprob1818))
+    (is (domain o) depot)
+    (is (problem o) depotprob1818)))
