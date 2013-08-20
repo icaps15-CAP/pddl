@@ -36,16 +36,23 @@
 (defgeneric related-to (designator parametrized))
 
 
-(defmethod related-to (designator (parametrized pddl-problem-slot))
-  (call-next-method
+(defmethod related-to ((designator symbol)
+		       (parametrized pddl-problem-slot))
+  (related-to
    (object (problem parametrized) designator)
    parametrized))
 (defmethod related-to ((designator pddl-object)
 		       (parametrized pddl-parametrized-object))
   (some (curry #'eqname designator)
 	(parameters parametrized)))
-(defmethod related-to (designator
-		       parametrized)
+
+
+(defmethod related-to :around (designator parametrized)
+  (if (next-method-p)
+      (call-next-method)
+      nil))
+
+(defmethod related-to (designator parametrized)
   nil)
 
 @export
