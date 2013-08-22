@@ -35,22 +35,35 @@
 @export
 (defgeneric related-to (designator parametrized))
 
+(defmethod related-to (designator (list list))
+  (mapcar (curry #'related-to designator) list))
+
+(defmethod related-to ((designator string)
+		       (parametrized pddl-problem-slot))
+  (related-to
+   (object (problem parametrized) string)
+   parametrized))
 
 (defmethod related-to ((designator symbol)
 		       (parametrized pddl-problem-slot))
   (related-to
    (object (problem parametrized) designator)
    parametrized))
+
 (defmethod related-to ((designator pddl-object)
 		       (parametrized pddl-parametrized-object))
-  (some (curry #'eqname designator)
-	(parameters parametrized)))
+  (let ((same (curry #'eqname designator))
+	(params (parameters parametrized)))
+    (when (some same params)
+      (remove-if same params))))
 
-
-(defmethod related-to :around (designator parametrized)
-  (if (next-method-p)
-      (call-next-method)
-      nil))
+;; same
+(defmethod related-to ((designator pddl-constant)
+		       (parametrized pddl-parametrized-object))
+  (let ((same (curry #'eqname designator))
+	(params (parameters parametrized)))
+    (when (some same params)
+      (remove-if same params))))
 
 (defmethod related-to (designator parametrized)
   nil)
