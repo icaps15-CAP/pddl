@@ -1,41 +1,20 @@
 (in-package :pddl-test)
 (in-suite :pddl)
 
-(defun read-many-plans (problem planname-fn)
-  (iter (for i from 1)
-	(for path = (funcall planname-fn i))
-	(while (probe-file path))
-	(for sym = (concatenate-symbols
-		    (name problem) i))
-	(for plan = (pddl-plan
-		     :domain *domain*
-		     :problem problem
-		     :path path))
-	(setf (symbol-value sym) plan)
-	(export sym)))
-
-(defun read-many-problems (problempath-fn planpath-fn)
-  (iter (for i from 1)
-	(for path = (funcall problempath-fn i))
-	(while (probe-file path))
-	(for sym = (parse-file path))
-	(read-many-plans (symbol-value sym)
-			 (curry planpath-fn i))
-	(export sym)))
+(defvar CELL-ASSEMBLY)
+(defvar CELL-ASSEMBLY-MODEL2B-1)
+(defvar CELL-ASSEMBLY-MODEL2B-1-6)
 
 (test (read-all-problem-and-plans)
   (handler-bind ((found-in-dictionary #'muffle-warning))
     (finishes
-      (export (parse-file (data "costs/domain.pddl"))))
-    
-    
-    (let ((*domain* cell-assembly))
-      (read-many-problems
-       (lambda (i) (data (format nil "costs/model2b~a.pddl" i)))
-       (lambda (i j) (data (format nil "costs/model2b~a.plan.~a" i j))))
-      (read-many-problems
-       (lambda (i) (data (format nil "costs/model2a~a.pddl" i)))
-       (lambda (i j) (data (format nil "costs/model2a~a.plan.~a" i j)))))))
+      (parse-file (data "costs/domain.pddl"))
+      (let ((*domain* cell-assembly))
+	(parse-file (data (format nil "costs/model2b~a.pddl" 1)))
+	(let ((*problem* cell-assembly-model2b-1))
+	  (setf cell-assembly-model2b-1-6
+		(pddl-plan
+		 :path (data (format nil "costs/model2b~a.plan.~a" 1 6)))))))))
 
 (test (costs :depends-on read-all-problem-and-plans)
   (handler-bind ((found-in-dictionary #'muffle-warning))

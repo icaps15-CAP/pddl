@@ -65,4 +65,10 @@
                                :fill-pointer t)))
           (setf (fill-pointer seq) (read-sequence seq stream))
           seq)))
-  :in-order-to ((test-op (load-op pddl-test))))
+  :in-order-to ((test-op (load-op :pddl-test))))
+
+
+(defmethod asdf:perform ((op asdf:test-op)
+			 (system (eql (asdf:find-system :pddl))))
+  (funcall (find-symbol "RUN!" (find-package :fiveam)) :pddl)
+  t)

@@ -2,6 +2,9 @@
 (in-package :pddl-test)
 (in-suite :pddl)
 
+(defvar APPLIABILITY-NOT)
+(defvar APPLIABILITY-NOT-PROB)
+
 (test (appliability :depends-on (and predicate accessors))
   (let* ((*domain* depot)
 	 (*problem* depotprob1818)

@@ -40,7 +40,6 @@
 (defvar depot-actions)
 (defvar plan)
 (defvar env)
-(export '(depot depotprob1818))
 
 (test parse-typed-list
 

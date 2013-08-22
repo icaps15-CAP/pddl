@@ -20,6 +20,5 @@
 		 (:file :accessors)
 		 (:file :matcher)
 		 (:file :writer)
-		 (:file :costs)
-		 (:file :run-test))))
+		 (:file :costs))))
   :perform (load-op :after (op c) (asdf:clear-system c)))

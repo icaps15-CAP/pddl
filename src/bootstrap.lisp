@@ -17,7 +17,6 @@
   (let (results)
     (tagbody
      start
-       (print results)
        (handler-bind ((end-of-file
 		       (lambda (c)
 			 @ignore c
