@@ -46,6 +46,9 @@
 (defmethod cost ((e symbol-edge))
   1)
 
+(defmethod generate-nodes ((s symbol-node))
+  nil)
+
 (defun %get-costs (adjacencies positions)
   (let ((a (make-array (list (length positions)
 			     (length positions))

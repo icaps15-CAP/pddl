@@ -7,13 +7,13 @@
    (available ?x)
    (clear ?x)
    (place ?x)
-   (locatable ?x)
-   (depot ?x)
-   (distributor ?x)
+   (locatable ?x) ;; 惑わすためのニセ述語?
+   (depot ?x) ;; 惑わすためのニセ述語?
+   (distributor ?x) ;; 惑わすための偽述語? typing 無しのドメイン用?
    (truck ?x)
    (hoist ?x)
    (surface ?x)
-   (pallet ?x)
+   (pallet ?x) ;; 惑わすためのニセ述語?
    (crate ?x))
   
   (:action drive

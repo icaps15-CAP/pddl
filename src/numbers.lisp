@@ -134,13 +134,16 @@ clause in the domain description.
 		  ,(%function-state-compiler
 		    (parse-f-head head) matches states)))))))))))
 
-(defun place (op matches states)
+@export
+(defun assign-op-place (op matches states)
   (funcall (place-function op) matches states))
-(defun new-value (op matches states)
+@export
+(defun assign-op-new-value (op matches states)
   (funcall (value-function op) matches states))
+@export
 (defun apply-assign-op (op matches states)
-  (setf (value (place op matches states))
-	(new-value op matches states)))
+  (setf (value (assign-op-place op matches states))
+	(assign-op-new-value op matches states)))
 
 @export
 (defun parse-metric-body (body)
