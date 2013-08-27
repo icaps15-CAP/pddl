@@ -25,6 +25,9 @@
 (define-pddl-class namable ()
   (name))
 
+(defmethod name ((sym symbol))
+  sym)
+
 (define-pddl-class pddl-domain-slot ()
   (domain))
 
