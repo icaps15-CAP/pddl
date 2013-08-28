@@ -14,6 +14,15 @@
   (append (constants (domain p))
 	  (call-next-method)))
 
+@export
+(defun objects/const (pddl-problem)
+  @type pddl-problem pddl-problem
+  (slot-value pddl-problem 'objects))
+@export
+(defun (setf objects/const) (new-value pddl-problem)
+  @type pddl-problem pddl-problem
+  (setf (slot-value pddl-problem 'objects) new-value))
+
 (define-pddl-class pddl-problem-slot (pddl-domain-slot)
   (problem))
 
