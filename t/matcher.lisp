@@ -5,7 +5,7 @@
 (defvar APPLIABILITY-NOT)
 (defvar APPLIABILITY-NOT-PROB)
 
-(test (appliability :depends-on (and predicate accessors))
+(test (applicability :depends-on (and predicate accessors))
   (let* ((*domain* depot)
 	 (*problem* depotprob1818)
 	 (p (predicate *domain* :at))
@@ -46,36 +46,36 @@
 	(signals assignment-error
 	  (%try-match p s2 matches))))
     
-    (is (appliable
+    (is (applicable
 	 (init *problem*)
 	 (action *domain* :drive)))))
 
-(test (appliability-not)
+(test (applicability-not)
   (finishes
-    (define (domain appliability-not)
+    (define (domain applicability-not)
       (:predicates (true ?a))
-      (:action should-not-appliable
+      (:action should-not-applicable
 	       :parameters (?x)
 	       :precondition (and (not (true ?x)))
 	       :effect nil)))
   (finishes
-    (define (problem appliability-not-prob)
-      (:domain appliability-not)
+    (define (problem applicability-not-prob)
+      (:domain applicability-not)
       (:objects a b c)
       (:init (true a)
 	     (true b)
 	     (true c))))
   (is-false
-   (let* ((*domain* appliability-not)
-	  (*problem* appliability-not-prob))
-     (appliable (init appliability-not-prob)
+   (let* ((*domain* applicability-not)
+	  (*problem* applicability-not-prob))
+     (applicable (init applicability-not-prob)
 		(pddl-intermediate-action
-		 :name 'should-not-appliable
-		 :domain appliability-not
-		 :problem appliability-not-prob
-		 :parameters (list (object appliability-not-prob 'a)))))))
+		 :name 'should-not-applicable
+		 :domain applicability-not
+		 :problem applicability-not-prob
+		 :parameters (list (object applicability-not-prob 'a)))))))
 
-(test (apply-action :depends-on appliability)
+(test (apply-action :depends-on applicability)
   (let* ((*domain* depot)
 	 (*problem* depotprob1818)
 	 (aa (pddl-intermediate-action
@@ -87,7 +87,7 @@
 			   (object depotprob1818 'depot0)
 			   (object depotprob1818 'distributor1))))
 	 (inits (init depotprob1818)))
-    (is (appliable inits aa))
+    (is (applicable inits aa))
     (let ((new-states (apply-actual-action aa inits)))
       (is-false (null new-states))
       (handler-bind ((warning #'muffle-warning))

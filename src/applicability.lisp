@@ -31,9 +31,9 @@ supported requirements:
 returns (values t remained-states matches used-states)
 where remained-states are the states which did not appear in the precond
 and used-states are those which did."
-(defgeneric appliable (states action))
+(defgeneric applicable (states action))
 
-(defmethod appliable ((states list) (action pddl-action))
+(defmethod applicable ((states list) (action pddl-action))
   (handler-bind ((assignment-error
 		  (lambda (c)
 		    (invoke-restart
@@ -44,7 +44,7 @@ and used-states are those which did."
 		       nil
 		       nil)))
 
-(defmethod appliable ((states list) (aa pddl-actual-action))
+(defmethod applicable ((states list) (aa pddl-actual-action))
   (handler-bind 
       ((assignment-error
 	(lambda (c)

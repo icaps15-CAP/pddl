@@ -46,7 +46,7 @@
 		 
 		 (:file :plan-reader)
 		 
-		 (:file :appliability)
+		 (:file :applicability)
 		 (:file :apply-action)
 		 (:file :goal-check)
 
