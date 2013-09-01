@@ -105,7 +105,7 @@
   @ignore s
   `(define (problem ,(print-pddl-object (name o)))
      (:domain ,(print-pddl-object (name (domain o))))
-     (:objects ,@(mappend #'print-pddl-object (objects o)))
+     (:objects ,@(mappend #'print-pddl-object (objects/const o)))
      (:init ,@(print-pddl-object (init o)))
      (:goal ,(print-pddl-object (goal o)))
      ;; (:metric ,(print-pddl-object (metric o)))
@@ -139,7 +139,9 @@
 (defmethod print-pddl-object ((o pddl-function-state) &optional s)
   @ignore s
   (let ((*print-type-p* nil))
-    `(= ,(value o) ,(print-pddl-object (body o)))))
+    `(= (,(print-pddl-object (name o))
+	  ,@(mappend #'print-pddl-object (parameters o)))
+	,(value o))))
 
 
 (defmethod print-pddl-object ((o pddl-variable) &optional s)
