@@ -22,6 +22,7 @@ rm -f output
 rm -f output.sas
 rm -f sas_plan.*
 rm -f plan_numbers_and_cost
+rm -f downward.tmp.*
 
 SAS=$PROBLEM_NAME.sas
 SAS_PLUS=$PROBLEM_NAME.sasp
