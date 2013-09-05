@@ -108,7 +108,7 @@
      (:objects ,@(mappend #'print-pddl-object (objects/const o)))
      (:init ,@(print-pddl-object (init o)))
      (:goal ,(print-pddl-object (goal o)))
-     ;; (:metric ,(print-pddl-object (metric o)))
+     ,(print-pddl-object (metric o))
      ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -166,4 +166,10 @@
   @ignore s
   `(,(print-pddl-object (name o))
      ,@(mappend #'print-pddl-object (parameters o))))
+
+(defmethod print-pddl-object ((o pddl-metric) &optional s)
+  @ignore s
+  `(:metric
+    ,(print-pddl-object (optimization o))
+    ,(print-pddl-object (metric-spec o))))
 

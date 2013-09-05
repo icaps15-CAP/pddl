@@ -91,7 +91,7 @@
 
 
 (define-pddl-class pddl-metric (pddl-problem-slot)
-  (optimization metric-function))
+  (optimization metric-function metric-spec))
 
 (define-pddl-class pddl-function-state (pddl-function)
   (value body))

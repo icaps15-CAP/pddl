@@ -151,6 +151,7 @@ clause in the domain description.
     ((list (and optimization (or 'maximize 'minimize)) metric-f-exp)
      (pddl-metric
       :optimization optimization
+      :metric-spec metric-f-exp
       :metric-function
       (with-gensyms (states)
 	(compile
