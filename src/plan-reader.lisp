@@ -65,6 +65,7 @@
 
 @export
 (defun simulate-plan (env &optional function)
+  (reinitialize-instance env)
   (handler-case
       (if (functionp function)
 	  (iter (setf env (proceed env))
