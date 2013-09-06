@@ -100,10 +100,10 @@
 		 "truck1 moved to the wrong position ~A" where))))))))
 
 (test (simulate-plan :depends-on apply-action)
-  (let ((plan (pddl-plan :domain depot
-			 :problem depotprob1818 
-			 :actions depot-actions)))
-    (setf env (pddl-environment :plan plan
+  (let ((*plan* (pddl-plan :domain depot
+                           :problem depotprob1818 
+                           :actions *depot-actions*)))
+    (setf *env* (pddl-environment :plan *plan*
 				:domain depot
 				:problem depotprob1818))
     
@@ -111,9 +111,9 @@
 	 (lambda (aa)
 	   (is (domain aa) depot)
 	   (is (problem aa) depotprob1818))
-	 (actions plan))
+	 (actions *plan*))
     (let ((last-env (handler-bind ((warning #'muffle-warning))
-		      (simulate-plan env))))
+		      (simulate-plan *env*))))
       (map nil
 	 (lambda (s)
 	   (is (domain s) depot)
