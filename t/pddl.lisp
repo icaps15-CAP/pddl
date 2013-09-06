@@ -67,10 +67,10 @@
   ;; depot
   (is (typep (symbol-value *domain-sym*) 'pddl-domain)))
 
-(test (parse-domain-airport :depends-on parse-domain)
-  ;; airport-adl
-  (handler-bind ((found-in-dictionary #'muffle-warning))
-    (finishes (parse-file (data "airport-adl/domain.pddl")))))
+;; (test (parse-domain-airport :depends-on parse-domain)
+;;   ;; airport-adl
+;;   (handler-bind ((found-in-dictionary #'muffle-warning))
+;;     (finishes (parse-file (data "airport-adl/domain.pddl")))))
 
 (test (parse-problem :depends-on parse-domain)
   (handler-bind ((found-in-dictionary #'muffle-warning))
@@ -78,10 +78,10 @@
   ;; depotprob1818 
   (is (typep (symbol-value *problem-sym*) 'pddl-problem)))
 
-(test (parse-problem-airport :depends-on parse-problem)
-  ;; airport 
-  (handler-bind ((found-in-dictionary #'muffle-warning))
-    (finishes (parse-file (data "airport-adl/p01-airport1-p1.pddl")))))
+;; (test (parse-problem-airport :depends-on parse-problem)
+;;   ;; airport 
+;;   (handler-bind ((found-in-dictionary #'muffle-warning))
+;;     (finishes (parse-file (data "airport-adl/p01-airport1-p1.pddl")))))
 
 (test (parse-plan :depends-on parse-problem)
   (handler-bind ((found-in-dictionary #'muffle-warning))
