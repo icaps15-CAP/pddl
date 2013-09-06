@@ -51,7 +51,7 @@
 (defmethod related-to ((designator string)
 		       (parametrized pddl-problem-slot))
   (related-to
-   (object (problem parametrized) string)
+   (object (problem parametrized) designator)
    parametrized))
 
 (defmethod related-to ((designator symbol)
