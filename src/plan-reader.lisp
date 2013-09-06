@@ -35,6 +35,12 @@
 				       (problem
 					(or *problem*
 					    (and plan (problem plan)))))
+  (assert (typep (or domain 
+                     *domain*
+                     (and plan (domain plan))) 'pddl-domain))
+  (assert (typep (or problem 
+                     *problem*
+                     (and plan (problem plan))) 'pddl-problem))
   (setf (domain env) domain
 	(problem env) problem)
   (cond
