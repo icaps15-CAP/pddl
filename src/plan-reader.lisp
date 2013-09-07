@@ -106,31 +106,33 @@
       (states env)))))
 
 @export
-(defun parse-plan (pathname *domain* *problem*)
-  (with-open-file (s pathname)
-    (flet ((instantiate (plan-description index)
-	     (ematch plan-description
-	       ((list* action-name arguments)
-		(assert (action *domain* action-name) nil
-			"action-name ~A not found in ~A"
-			action-name *domain*)
-		(pddl-intermediate-action
-		 :name action-name
-		 :domain *domain*
-		 :problem *problem*
-		 :index index
-		 :parameters
-		 (mapcar (curry #'object *problem*) ;; namesym -> object
-			 arguments))))))
-      (iter (for plan-description in (%parse-plan-rec s nil))
-	    (for index from 1)
-	    (with plan = (list (problem-initial-action *problem*)))
-	    (push (instantiate plan-description index) plan)
-	    (finally
-	     (return
-	       (nreverse
-		(cons (problem-goal-action *problem* (1+ index))
-		      plan))))))))
+(defun parse-plan (pathname domain problem)
+  (let ((*domain* domain)
+        (*problem* problem))
+    (with-open-file (s pathname)
+      (flet ((instantiate (plan-description index)
+               (ematch plan-description
+                 ((list* action-name arguments)
+                  (assert (action *domain* action-name) nil
+                          "action-name ~A not found in ~A"
+                          action-name *domain*)
+                  (pddl-intermediate-action
+                   :name action-name
+                   :domain *domain*
+                   :problem *problem*
+                   :index index
+                   :parameters
+                   (mapcar (curry #'object *problem*) ;; namesym -> object
+                           arguments))))))
+        (iter (for plan-description in (%parse-plan-rec s nil))
+              (for index from 1)
+              (with plan = (list (problem-initial-action *problem*)))
+              (push (instantiate plan-description index) plan)
+              (finally
+               (return
+                 (nreverse
+                  (cons (problem-goal-action *problem* (1+ index))
+                        plan)))))))))
 
 (defun %parse-plan-rec (s acc)
   (if-let ((read (read s nil)))
