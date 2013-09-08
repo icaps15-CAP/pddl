@@ -16,7 +16,7 @@
 		       :domain *domain*
 		       :problem problem
 		       :path path))
-	  (setf (symbol-value sym) plan)
+          (eval `(defparameter ,sym ,plan))
 	  (export sym)))
 
   (defun read-many-problems (problempath-fn planpath-fn)
