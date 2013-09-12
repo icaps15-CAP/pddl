@@ -27,8 +27,8 @@ rm -f downward.tmp.*
 SAS=$PROBLEM_NAME.sas
 SAS_PLUS=$PROBLEM_NAME.sasp
 FD_DIR=~/repos/downward
-OPTIONS="ipc seq-sat-lama-2011"
-HEURISTIC= #--heuristic
+# OPTIONS="ipc seq-sat-lama-2011"
+OPTIONS="--search astar(lmcut())"
 
 TRANSLATE=$FD_DIR/src/translate/translate.py
 PREPROCESS=$FD_DIR/src/preprocess/preprocess # < OUTPUT.SAS
@@ -69,16 +69,29 @@ mv output $SAS_PLUS
 $SEARCH < $SAS_PLUS >& $PROBLEM_NAME.search.log
 ERROR=$?
 
-mv elapsed.time $PROBLEM_NAME.time
-mv plan_numbers_and_cost $PROBLEM_NAME.cost
+if [ -e elapsed.time ]
+then 
+    mv elapsed.time $PROBLEM_NAME.time
+fi
 
 echo $'\x1b[34;1m'---- process $PPID finished ----------------------------
 echo Result:
+
 for plan in $(ls sas_plan.*)
 do
     mv $plan $PROBLEM_NAME.plan.${plan##*.}
     echo $PROBLEM_NAME.plan.${plan##*.}
 done
+if [ -e sas_plan ]
+then
+    mv sas_plan $PROBLEM_NAME.plan
+    echo $PROBLEM_NAME.plan
+fi
+if [ -e plan_numbers_and_cost ]
+then 
+    cat plan_numbers_and_cost
+    mv plan_numbers_and_cost $PROBLEM_NAME.cost
+fi
 echo --------------------------------------------------------$'\x1b[0m'
 
 exit $ERROR
