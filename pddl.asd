@@ -24,8 +24,7 @@
                :optima
                :iterate
                :alexandria
-               :cl-syntax-annot
-               :anaphora)
+               :cl-syntax-annot)
   :components ((:module "src"
 		:serial t
                 :components
