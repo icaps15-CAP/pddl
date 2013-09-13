@@ -1,0 +1,179 @@
+Dispatcher selected state size 1.
+This is a nonunit task.
+Simplifying transitions... done!
+Conducting lazy best first search, (real) bound = 2147483647
+Initializing landmark cut heuristic...
+Best heuristic value: 89 [g=0, 1 evaluated, 0 expanded, t=0.04s]
+Best heuristic value: 88 [g=1, 3 evaluated, 1 expanded, t=0.04s]
+Best heuristic value: 86 [g=7, 95 evaluated, 74 expanded, t=0.15s]
+Best heuristic value: 85 [g=11, 124 evaluated, 101 expanded, t=0.19s]
+Best heuristic value: 84 [g=13, 470 evaluated, 390 expanded, 63 reopened, t=0.62s]
+Best heuristic value: 80 [g=16, 477 evaluated, 397 expanded, 63 reopened, t=0.64s]
+Best heuristic value: 79 [g=22, 563 evaluated, 473 expanded, 64 reopened, t=0.74s]
+Best heuristic value: 78 [g=25, 652 evaluated, 553 expanded, 95 reopened, t=0.85s]
+Best heuristic value: 76 [g=26, 1516 evaluated, 1275 expanded, 408 reopened, t=1.87s]
+Best heuristic value: 75 [g=33, 3661 evaluated, 3061 expanded, 1028 reopened, t=4.39s]
+Best heuristic value: 74 [g=38, 3855 evaluated, 3236 expanded, 1094 reopened, t=4.62s]
+Best heuristic value: 71 [g=36, 4024 evaluated, 3379 expanded, 1117 reopened, t=4.81s]
+Best heuristic value: 69 [g=45, 7437 evaluated, 6205 expanded, 2150 reopened, t=8.67s]
+Best heuristic value: 68 [g=46, 7438 evaluated, 6206 expanded, 2150 reopened, t=8.68s]
+Best heuristic value: 67 [g=57, 24175 evaluated, 19663 expanded, 8324 reopened, t=27.04s]
+Best heuristic value: 65 [g=56, 31230 evaluated, 25454 expanded, 10593 reopened, t=34.96s]
+Best heuristic value: 64 [g=62, 32656 evaluated, 26691 expanded, 11119 reopened, t=36.55s]
+Best heuristic value: 60 [g=65, 32659 evaluated, 26694 expanded, 11119 reopened, t=36.55s]
+Best heuristic value: 57 [g=69, 32674 evaluated, 26709 expanded, 11119 reopened, t=36.57s]
+Best heuristic value: 56 [g=70, 32675 evaluated, 26710 expanded, 11119 reopened, t=36.57s]
+Best heuristic value: 55 [g=74, 32692 evaluated, 26727 expanded, 11119 reopened, t=36.59s]
+Best heuristic value: 54 [g=85, 35180 evaluated, 28988 expanded, 11705 reopened, t=39.38s]
+Best heuristic value: 53 [g=88, 35831 evaluated, 29574 expanded, 11866 reopened, t=40.06s]
+Best heuristic value: 50 [g=86, 40874 evaluated, 33697 expanded, 13151 reopened, t=45.55s]
+Best heuristic value: 48 [g=98, 89549 evaluated, 74986 expanded, 28568 reopened, t=98.95s]
+Best heuristic value: 47 [g=99, 89550 evaluated, 74987 expanded, 28568 reopened, t=98.95s]
+Best heuristic value: 45 [g=105, 102951 evaluated, 86171 expanded, 32916 reopened, t=113.15s]
+Best heuristic value: 44 [g=109, 159724 evaluated, 133788 expanded, 54156 reopened, t=173.32s]
+Best heuristic value: 43 [g=114, 159810 evaluated, 133870 expanded, 54169 reopened, t=173.4s]
+Best heuristic value: 42 [g=114, 159812 evaluated, 133872 expanded, 54169 reopened, t=173.4s]
+Best heuristic value: 41 [g=119, 159988 evaluated, 134037 expanded, 54197 reopened, t=173.58s]
+Best heuristic value: 38 [g=122, 159994 evaluated, 134043 expanded, 54197 reopened, t=173.59s]
+Best heuristic value: 37 [g=131, 272348 evaluated, 231166 expanded, 99561 reopened, t=293.4s]
+Best heuristic value: 36 [g=136, 281202 evaluated, 238736 expanded, 103036 reopened, t=302.73s]
+Best heuristic value: 32 [g=142, 369893 evaluated, 316412 expanded, 140810 reopened, t=397.78s]
+Best heuristic value: 31 [g=153, 488915 evaluated, 420389 expanded, 191879 reopened, t=527.67s]
+Best heuristic value: 30 [g=156, 488934 evaluated, 420407 expanded, 191879 reopened, t=527.7s]
+Best heuristic value: 29 [g=156, 488944 evaluated, 420415 expanded, 191879 reopened, t=527.7s]
+Best heuristic value: 28 [g=157, 488945 evaluated, 420416 expanded, 191879 reopened, t=527.7s]
+Best heuristic value: 27 [g=158, 488946 evaluated, 420417 expanded, 191879 reopened, t=527.7s]
+Best heuristic value: 26 [g=165, 594521 evaluated, 514237 expanded, 238719 reopened, t=641.96s]
+Best heuristic value: 25 [g=167, 594524 evaluated, 514240 expanded, 238719 reopened, t=641.96s]
+Best heuristic value: 24 [g=168, 594525 evaluated, 514241 expanded, 238719 reopened, t=641.97s]
+Best heuristic value: 23 [g=175, 657087 evaluated, 569761 expanded, 263635 reopened, t=705.89s]
+Best heuristic value: 22 [g=177, 663015 evaluated, 575552 expanded, 267517 reopened, t=711.22s]
+Best heuristic value: 21 [g=175, 663021 evaluated, 575558 expanded, 267517 reopened, t=711.23s]
+Best heuristic value: 20 [g=179, 663035 evaluated, 575572 expanded, 267517 reopened, t=711.23s]
+Best heuristic value: 17 [g=183, 663082 evaluated, 575619 expanded, 267523 reopened, t=711.27s]
+Best heuristic value: 15 [g=189, 663120 evaluated, 575657 expanded, 267523 reopened, t=711.3s]
+Best heuristic value: 14 [g=190, 663121 evaluated, 575658 expanded, 267523 reopened, t=711.3s]
+Best heuristic value: 13 [g=193, 663133 evaluated, 575670 expanded, 267523 reopened, t=711.31s]
+Best heuristic value: 11 [g=195, 663135 evaluated, 575672 expanded, 267523 reopened, t=711.31s]
+Best heuristic value: 10 [g=199, 663148 evaluated, 575685 expanded, 267523 reopened, t=711.31s]
+Best heuristic value: 8 [g=201, 663149 evaluated, 575686 expanded, 267523 reopened, t=711.31s]
+Best heuristic value: 5 [g=205, 663167 evaluated, 575704 expanded, 267523 reopened, t=711.32s]
+Best heuristic value: 4 [g=206, 663168 evaluated, 575705 expanded, 267523 reopened, t=711.32s]
+Best heuristic value: 2 [g=208, 663169 evaluated, 575706 expanded, 267523 reopened, t=711.32s]
+Best heuristic value: 1 [g=209, 663170 evaluated, 575707 expanded, 267523 reopened, t=711.32s]
+Solution found!
+Actual search time: 711.29s [t=711.32s]
+slide-base-in b-1 carry-in table-in (1)
+move-arm arm1 tray-a table-in (2)
+eject-base b-1 arm1 table-in (1)
+slide-base-in b-0 carry-in table-in (1)
+move-arm-holding arm1 table-in gasket-machine b-1 (2)
+set-base b-1 arm1 gasket-machine (1)
+assemble-with-machine b-1 gasket-machine insert-gasket nothing-done (3)
+eject-base b-1 arm1 gasket-machine (1)
+move-arm-holding arm1 gasket-machine table1 b-1 (2)
+set-base b-1 arm1 table1 (1)
+move-arm arm1 table1 tray-a (4)
+pickup-component part-a arm1 tray-a (1)
+move-arm-holding arm1 tray-a table1 part-a (4)
+assemble-with-arm part-a attatch-a insert-gasket b-1 arm1 table1 (3)
+move-arm arm1 table1 table-in (3)
+eject-base b-0 arm1 table-in (1)
+move-arm-holding arm1 table-in gasket-machine b-0 (2)
+set-base b-0 arm1 gasket-machine (1)
+assemble-with-machine b-0 gasket-machine insert-gasket nothing-done (3)
+move-arm arm2 oiling-machine table1 (4)
+eject-base b-1 arm2 table1 (1)
+move-arm-holding arm2 table1 screw-machine-a b-1 (2)
+set-base b-1 arm2 screw-machine-a (1)
+assemble-with-machine b-1 screw-machine-a screw-a attatch-a (3)
+eject-base b-1 arm2 screw-machine-a (1)
+move-arm-holding arm2 screw-machine-a oiling-machine b-1 (3)
+set-base b-1 arm2 oiling-machine (1)
+assemble-with-machine b-1 oiling-machine oil-cylinder screw-a (3)
+eject-base b-1 arm2 oiling-machine (1)
+move-arm-holding arm2 oiling-machine table2 b-1 (4)
+set-base b-1 arm2 table2 (1)
+move-arm arm2 table2 tray-b (5)
+pickup-component part-b arm2 tray-b (1)
+move-arm-holding arm2 tray-b table2 part-b (5)
+assemble-with-arm part-b attatch-b oil-cylinder b-1 arm2 table2 (2)
+move-arm arm2 table2 tray-c (3)
+eject-base b-0 arm1 gasket-machine (1)
+pickup-component part-c arm2 tray-c (1)
+move-arm-holding arm1 gasket-machine table1 b-0 (2)
+set-base b-0 arm1 table1 (1)
+move-arm-holding arm2 tray-c table2 part-c (3)
+move-arm arm1 table1 tray-a (4)
+pickup-component part-a arm1 tray-a (1)
+move-arm-holding arm1 tray-a table1 part-a (4)
+assemble-with-arm part-a attatch-a insert-gasket b-0 arm1 table1 (3)
+assemble-with-arm part-c attatch-c attatch-b b-1 arm2 table2 (3)
+eject-base b-1 arm2 table2 (1)
+move-arm-holding arm2 table2 screw-machine-c b-1 (2)
+set-base b-1 arm2 screw-machine-c (1)
+assemble-with-machine b-1 screw-machine-c screw-c attatch-c (2)
+eject-base b-1 arm2 screw-machine-c (1)
+move-arm arm1 table1 table-out (5)
+move-arm-holding arm2 screw-machine-c table2 b-1 (2)
+set-base b-1 arm2 table2 (1)
+move-arm arm2 table2 table1 (7)
+eject-base b-0 arm2 table1 (1)
+move-arm-holding arm2 table1 screw-machine-a b-0 (2)
+set-base b-0 arm2 screw-machine-a (1)
+assemble-with-machine b-0 screw-machine-a screw-a attatch-a (3)
+eject-base b-0 arm2 screw-machine-a (1)
+move-arm-holding arm2 screw-machine-a oiling-machine b-0 (3)
+set-base b-0 arm2 oiling-machine (1)
+assemble-with-machine b-0 oiling-machine oil-cylinder screw-a (3)
+move-arm arm1 table-out table2 (3)
+eject-base b-1 arm1 table2 (1)
+move-arm-holding arm1 table2 inspection-machine b-1 (2)
+set-base b-1 arm1 inspection-machine (1)
+assemble-with-machine b-1 inspection-machine inspect-base screw-c (3)
+eject-base b-1 arm1 inspection-machine (1)
+eject-base b-0 arm2 oiling-machine (1)
+move-arm-holding arm2 oiling-machine table2 b-0 (4)
+set-base b-0 arm2 table2 (1)
+move-arm arm2 table2 tray-b (5)
+pickup-component part-b arm2 tray-b (1)
+move-arm-holding arm2 tray-b tray-c part-b (3)
+move-arm-holding arm2 tray-c table2 part-b (3)
+assemble-with-arm part-b attatch-b oil-cylinder b-0 arm2 table2 (2)
+move-arm arm2 table2 tray-c (3)
+pickup-component part-c arm2 tray-c (1)
+move-arm-holding arm1 inspection-machine table-out b-1 (2)
+set-base b-1 arm1 table-out (1)
+move-arm-holding arm2 tray-c table2 part-c (3)
+slide-base-out b-1 table-out carry-out (1)
+assemble-with-arm part-c attatch-c attatch-b b-0 arm2 table2 (3)
+eject-base b-0 arm2 table2 (1)
+move-arm-holding arm2 table2 screw-machine-c b-0 (2)
+set-base b-0 arm2 screw-machine-c (1)
+assemble-with-machine b-0 screw-machine-c screw-c attatch-c (2)
+eject-base b-0 arm2 screw-machine-c (1)
+move-arm-holding arm2 screw-machine-c table2 b-0 (2)
+set-base b-0 arm2 table2 (1)
+move-arm arm2 table2 screw-machine-c (2)
+move-arm arm1 table-out table2 (3)
+eject-base b-0 arm1 table2 (1)
+move-arm-holding arm1 table2 inspection-machine b-0 (2)
+set-base b-0 arm1 inspection-machine (1)
+assemble-with-machine b-0 inspection-machine inspect-base screw-c (3)
+eject-base b-0 arm1 inspection-machine (1)
+move-arm-holding arm1 inspection-machine table-out b-0 (2)
+set-base b-0 arm1 table-out (1)
+slide-base-out b-0 table-out carry-out (1)
+Plan length: 101 step(s).
+Plan cost: 210
+Initial state h value: 89.
+Expanded 575708 state(s).
+Reopened 267523 state(s).
+Evaluated 663171 state(s).
+Evaluations: 663171
+Generated 7243070 state(s).
+Dead ends: 87462 state(s).
+Search time: 711.29s
+Total time: 711.32s
+Solution found.
+Peak memory: 69832 KB
