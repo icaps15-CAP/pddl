@@ -119,13 +119,14 @@
 	   :parameters typed-variables
 	   :precondition precond
 	   :effect effect)
-     (let ((*params* (handler-bind ((not-found-in-dictionary
-				     #'intern-variable))
-		       (parse-typed-list typed-variables nil))))
-       (pddl-action :name name
-		    :parameters *params*
-		    :precondition (parse-pre-GD precond)
-		    :effect (parse-effect effect))))))
+     (let ((action-params (handler-bind ((not-found-in-dictionary
+                                          #'intern-variable))
+                            (parse-typed-list typed-variables nil))))
+       (let ((*params* (append action-params (constants *domain*))))
+         (pddl-action :name name
+                      :parameters action-params
+                      :precondition (parse-pre-GD precond)
+                      :effect (parse-effect effect)))))))
 
 (define-action-getter durative-actions :durative-action
   #'parse-durative-action)
