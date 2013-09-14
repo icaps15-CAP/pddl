@@ -6,8 +6,8 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
 (in-package :cl-user)
 (defpackage pddl
   (:use :cl :cl-syntax :optima :alexandria :guicho-utilities
-	:annot.doc :annot.eval-when
-	:iterate)
+        :annot.doc :annot.eval-when
+        :iterate)
   (:import-from :metatilities :defclass*)
   (:shadow :minimize :maximize))
 (in-package :pddl)

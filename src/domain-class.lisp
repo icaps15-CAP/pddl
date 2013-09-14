@@ -6,9 +6,9 @@
 ;;   (let ((c (find-class class-name)))
 ;;     `(eval-when (:load-toplevel :execute)
 ;;        (defpattern ,class-name ,(class-slot-names c)
-;; 	 `(,',class-name
-;; 	      ,@(iter (for slot-name in (class-slot-names c))
-;; 		      (collecting `(,slot-name slot-name))))))))
+;;       `(,',class-name
+;;            ,@(iter (for slot-name in (class-slot-names c))
+;;                    (collecting `(,slot-name slot-name))))))))
 
 ;; (define-class-pattern pddl-domain)
 
@@ -32,7 +32,7 @@
   (domain))
 
 (defmethod initialize-instance :after ((o pddl-domain-slot)
-				       &key (domain *domain*))
+                                       &key (domain *domain*))
   (setf (domain o) domain))
 
 (define-pddl-class pddl-domain (namable)
@@ -52,9 +52,9 @@
   (action dom (symbol-name designator)))
 (defmethod action ((dom pddl-domain) (designator string))
   (or (find-if (lambda (action)
-		 (string= (symbol-name (name action))
-			  designator))
-	       (actions dom))
+                 (string= (symbol-name (name action))
+                          designator))
+               (actions dom))
       (signal "no such action found! : ~a" designator)))
 
 @export
@@ -63,14 +63,14 @@
 
 (defmethod predicate ((dom pddl-domain) (designator symbol))
   (find-if (lambda (predicate)
-	     (string= (symbol-name (name predicate))
-		      (symbol-name designator)))
-	   (predicates dom)))
+             (string= (symbol-name (name predicate))
+                      (symbol-name designator)))
+           (predicates dom)))
 
 (defmethod predicate ((dom pddl-domain) (str string))
   (find-if (lambda (predicate)
-	     (string= str (symbol-name (name predicate))))
-	   (predicates dom)))
+             (string= str (symbol-name (name predicate))))
+           (predicates dom)))
 
 @export
 @doc "returns the number of parameters."
@@ -81,15 +81,15 @@
   ((parameters :type pddl-variable)))
 
 (define-pddl-class pddl-predicate (pddl-domain-slot
-				   pddl-parametrized-object
-				   namable)
+                                   pddl-parametrized-object
+                                   namable)
   ())
 
 #+sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (sb-ext:with-unlocked-packages (:cl)
     (define-pddl-class pddl-variable (pddl-domain-slot
-				      namable)
+                                      namable)
       (type))))
 
 #-sbcl
@@ -109,8 +109,8 @@
 (defun pddl-supertype-p (subtype supertype)
   (or (eq subtype supertype)
       (let ((subtype-1 (pddl-supertype subtype)))
-	(unless (eq subtype subtype-1)
-	  (pddl-supertype-p subtype-1 supertype)))))
+        (unless (eq subtype subtype-1)
+          (pddl-supertype-p subtype-1 supertype)))))
 
 @export
 (defun pddl-typep (object type)
@@ -149,8 +149,8 @@
 
 
 (define-pddl-class pddl-action (pddl-domain-slot
-				pddl-parametrized-object
-				namable)
+                                pddl-parametrized-object
+                                namable)
   (precondition
    effect
    add-list
@@ -164,36 +164,36 @@
   (with-memoising-slot (add-list a)
     (let ((acc nil))
       (walk-tree (lambda (branch cont)
-		   (match branch
-		     ((andp rest)
-		      (funcall cont rest))
-		     ((type pddl-predicate)
-		      (push branch acc))))
-		 (effect a))
+                   (match branch
+                     ((andp rest)
+                      (funcall cont rest))
+                     ((type pddl-predicate)
+                      (push branch acc))))
+                 (effect a))
       acc)))
 
 (defmethod delete-list ((a pddl-action))
   (with-memoising-slot (delete-list a)
     (let ((acc nil))
       (walk-tree (lambda (branch cont)
-		   (match branch
-		     ((andp rest)
-		      (funcall cont rest))
-		     ((notp (and pred (type pddl-predicate)))
-		      (push pred acc))))
-		 (effect a))
+                   (match branch
+                     ((andp rest)
+                      (funcall cont rest))
+                     ((notp (and pred (type pddl-predicate)))
+                      (push pred acc))))
+                 (effect a))
       acc)))
 
 (defmethod assign-ops ((a pddl-action))
   (with-memoising-slot (assign-ops a)
     (let ((acc nil))
       (walk-tree (lambda (branch cont)
-		   (match branch
-		     ((andp rest)
-		      (funcall cont rest))
-		     ((type pddl-assign-op)
-		      (push branch acc))))
-		 (effect a))
+                   (match branch
+                     ((andp rest)
+                      (funcall cont rest))
+                     ((type pddl-assign-op)
+                      (push branch acc))))
+                 (effect a))
       acc)))
 
 

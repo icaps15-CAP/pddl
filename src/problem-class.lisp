@@ -12,7 +12,7 @@
 
 (defmethod objects :around ((p pddl-problem))
   (append (constants (domain p))
-	  (call-next-method)))
+          (call-next-method)))
 
 @export
 (defun objects/const (pddl-problem)
@@ -27,7 +27,7 @@
   (problem))
 
 (defmethod initialize-instance :after ((o pddl-problem-slot)
-				       &key (problem *problem* supplied-p))
+                                       &key (problem *problem* supplied-p))
   (unless (typep problem 'pddl-problem)
     (warn "~{~a = ~a~^ ,~}" 
           `(problem ,problem *problem* ,*problem* supplied-p ,supplied-p)))
@@ -49,29 +49,29 @@
   (mapcar (curry #'related-to designator) list))
 
 (defmethod related-to ((designator string)
-		       (parametrized pddl-problem-slot))
+                       (parametrized pddl-problem-slot))
   (related-to
    (object (problem parametrized) designator)
    parametrized))
 
 (defmethod related-to ((designator symbol)
-		       (parametrized pddl-problem-slot))
+                       (parametrized pddl-problem-slot))
   (related-to
    (object (problem parametrized) designator)
    parametrized))
 
 (defmethod related-to ((designator pddl-object)
-		       (parametrized pddl-parametrized-object))
+                       (parametrized pddl-parametrized-object))
   (let ((same (curry #'eqname designator))
-	(params (parameters parametrized)))
+        (params (parameters parametrized)))
     (when (some same params)
       (remove-if same params))))
 
 ;; same
 (defmethod related-to ((designator pddl-constant)
-		       (parametrized pddl-parametrized-object))
+                       (parametrized pddl-parametrized-object))
   (let ((same (curry #'eqname designator))
-	(params (parameters parametrized)))
+        (params (parameters parametrized)))
     (when (some same params)
       (remove-if same params))))
 
@@ -84,8 +84,8 @@
   (object problem (symbol-name name)))
 (defmethod object ((problem pddl-problem) (name string))
   (find-if (lambda (o)
-	     (string= name (symbol-name (name o))))
-	   (objects problem)))
+             (string= name (symbol-name (name o))))
+           (objects problem)))
 (defmethod object ((problem pddl-problem) (object pddl-object))
   (when (member object (objects problem))
     object))

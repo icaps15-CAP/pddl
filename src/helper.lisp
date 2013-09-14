@@ -6,7 +6,7 @@
   (with-gensyms (arg)
     `(lambda (,arg)
        (match ,arg
-	 ,@clauses))))
+         ,@clauses))))
 
 @export
 (defun not-implemented (what)
@@ -47,29 +47,29 @@
     :name ,name
     :parameters
     (list ,@(mapcar (lambda (varspec)
-		      (match varspec
-			((list* (and obj (not 'quote)) args)
-			 `(and ,obj (pddl-variable ,@args)))
-			(_ `(pddl-variable :name ,varspec))))
-		    rest))))
+                      (match varspec
+                        ((list* (and obj (not 'quote)) args)
+                         `(and ,obj (pddl-variable ,@args)))
+                        (_ `(pddl-variable :name ,varspec))))
+                    rest))))
 
 (defpattern state (name &rest rest)
   `(pddl-atomic-state
     :name ,name
     :parameters
     (list ,@(mapcar (lambda (varspec)
-		      (match varspec
-			((list* (and obj (not 'quote)) args)
-			 `(and ,obj (pddl-object ,@args)))
-			(_ `(pddl-object :name ,varspec))))
-		    rest))))
+                      (match varspec
+                        ((list* (and obj (not 'quote)) args)
+                         `(and ,obj (pddl-object ,@args)))
+                        (_ `(pddl-object :name ,varspec))))
+                    rest))))
 
 
 
 (export '(op orp andp notp
-	  qor
-	  impliesp forallp existsp whenp
-	  var predicate state))
+          qor
+          impliesp forallp existsp whenp
+          var predicate state))
 
 
 (export '(forall exists implies))

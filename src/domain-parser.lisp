@@ -10,15 +10,15 @@
 ;; (:key ... body...)
 (defun find-clause (domain-or-problem-body key)
   (cdr (find-if (lambda (clause) (eq (car clause) key))
-		domain-or-problem-body)))
+                domain-or-problem-body)))
 
 (defmacro define-clause-getter (name key initializer)
   (with-gensyms (cl)
     `(defun ,(concatenate-symbols 'parse name) (unparsed-domain-or-problem)
        (declare (type list unparsed-domain-or-problem))
        (if-let ((,cl (find-clause unparsed-domain-or-problem ,key)))
-	 (funcall ,initializer ,cl)
-	 (warn "~A not found in this PDDL" ',name)))))
+         (funcall ,initializer ,cl)
+         (warn "~A not found in this PDDL" ',name)))))
 
 (define-clause-getter
     requirements :requirements
@@ -26,7 +26,7 @@
 
 (defun typed-objects (typed-list class)
   (mapcar (rcurry #'change-class class)
-	  (parse-typed-list typed-list)))
+          (parse-typed-list typed-list)))
 ;;           ^^-- returns PDDL-VARIABLEs
 
 
@@ -41,55 +41,55 @@
 (defun %parse-types-rec (input parsed-types)
   (let ((delayed-types nil))
     (let ((newly-parsed
-	   (handler-bind ((not-found-in-dictionary #'intern-variable)
-			  (declared-type-not-found
-			   (lambda (c)
-			     (appendf delayed-types (clause c))
-			     (invoke-restart 'skip-this-type))))
-	     (parse-typed-list
-	      input parsed-types
-	      (lambda (name &optional typesym)
-		(pddl-type
-		 :name name
-		 :type (if typesym
-			   (if-let ((type-found
-				     (find-if (curry #'%eqname1 typesym)
-					      parsed-types)))
-			     type-found
-			     ;; this is always handled
-			     (error 'declared-type-not-found))
-			   *pddl-primitive-object-type*)))))))
+           (handler-bind ((not-found-in-dictionary #'intern-variable)
+                          (declared-type-not-found
+                           (lambda (c)
+                             (appendf delayed-types (clause c))
+                             (invoke-restart 'skip-this-type))))
+             (parse-typed-list
+              input parsed-types
+              (lambda (name &optional typesym)
+                (pddl-type
+                 :name name
+                 :type (if typesym
+                           (if-let ((type-found
+                                     (find-if (curry #'%eqname1 typesym)
+                                              parsed-types)))
+                             type-found
+                             ;; this is always handled
+                             (error 'declared-type-not-found))
+                           *pddl-primitive-object-type*)))))))
       (if delayed-types
-	  (%parse-types-rec
-	   delayed-types
-	   (append newly-parsed parsed-types))
-	  (append newly-parsed parsed-types)))))
+          (%parse-types-rec
+           delayed-types
+           (append newly-parsed parsed-types))
+          (append newly-parsed parsed-types)))))
 
 
 (define-clause-getter
     constants :constants
   (lambda (constants)
     (handler-bind ((not-found-in-dictionary
-		    #'intern-variable))
+                    #'intern-variable))
       (parse-typed-list
        constants nil
        (lambda (name &optional typesym)
-	 (pddl-constant 
-	  :name name
-	  :type  (if typesym
-		     (find-if (curry #'%eqname1 typesym) (types *domain*))
-		     *pddl-primitive-object-type*)))))))
+         (pddl-constant 
+          :name name
+          :type  (if typesym
+                     (find-if (curry #'%eqname1 typesym) (types *domain*))
+                     *pddl-primitive-object-type*)))))))
 
 (define-clause-getter 
     predicates :predicates
   (lambda (predicates)
     (handler-bind ((not-found-in-dictionary
-		    (lambda (c)
-		      (if (eq (interning-class c) 'pddl-predicate)
-			  (intern-variable)))))
+                    (lambda (c)
+                      (if (eq (interning-class c) 'pddl-predicate)
+                          (intern-variable)))))
       (mapcar (lambda (predicate-def)
-		(parse-predicate predicate-def nil))
-	      predicates))))
+                (parse-predicate predicate-def nil))
+              predicates))))
 
 (define-clause-getter
     functions :functions
@@ -103,11 +103,11 @@
   (with-gensyms (cls)
     `(progn
        (defun ,(concatenate-symbols 'parse name) (domain)
-	 (if-let ((,cls (remove-if-not
-			 (lambda (clause) (eq (car clause) ,key))
-			 domain)))
-	   (mapcar (compose ,initializer #'cdr) ,cls)
-	   (warn "~A not found in this PDDL" ',name))))))
+         (if-let ((,cls (remove-if-not
+                         (lambda (clause) (eq (car clause) ,key))
+                         domain)))
+           (mapcar (compose ,initializer #'cdr) ,cls)
+           (warn "~A not found in this PDDL" ',name))))))
 
 (define-action-getter actions :action #'parse-action)
 
@@ -116,9 +116,9 @@
 (defun parse-action (action)
   (ematch action
     ((list name
-	   :parameters typed-variables
-	   :precondition precond
-	   :effect effect)
+           :parameters typed-variables
+           :precondition precond
+           :effect effect)
      (let ((action-params (handler-bind ((not-found-in-dictionary
                                           #'intern-variable))
                             (parse-typed-list typed-variables nil))))
@@ -137,17 +137,17 @@
   ;; TODO:: params
   ;; (ematch durative-action
   ;;   ((list name
-  ;; 	   :parameters typed-variables
-  ;; 	   :duration (list '= '?duration f-exp)
-  ;; 	   :condition cond
-  ;; 	   :effect effect)
+  ;;       :parameters typed-variables
+  ;;       :duration (list '= '?duration f-exp)
+  ;;       :condition cond
+  ;;       :effect effect)
   ;;    (let ((params (parse-typed-list typed-variables)))
   ;;      (pddl-durative-action
-  ;;    	:name name
-  ;;    	:parameters params
-  ;;    	:duration f-exp
-  ;;    	:condition (parse-GD cond params)
-  ;;    	:effect (parse-effect effect params)))))
+  ;;            :name name
+  ;;            :parameters params
+  ;;            :duration f-exp
+  ;;            :condition (parse-GD cond params)
+  ;;            :effect (parse-effect effect params)))))
   )
 
 (define-action-getter derived-predicates :derived

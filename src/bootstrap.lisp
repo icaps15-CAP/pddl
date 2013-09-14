@@ -6,11 +6,11 @@
   (tagbody
    parse-start
      (restart-case
-	 (with-open-file (s pddl-pathname)
-	   (return-from parse-file 
-	     (parse-stream s)))
+         (with-open-file (s pddl-pathname)
+           (return-from parse-file 
+             (parse-stream s)))
        (retry-reading-file ()
-	 (go parse-start)))))
+         (go parse-start)))))
 
 @export
 (defun parse-stream (s)
@@ -18,12 +18,12 @@
     (tagbody
      start
        (handler-bind ((end-of-file
-		       (lambda (c)
-			 @ignore c
-			 (return-from parse-stream
-			   (values-list results)))))
-	 (push (eval (read s)) results)
-	 (go start)))))
+                       (lambda (c)
+                         @ignore c
+                         (return-from parse-stream
+                           (values-list results)))))
+         (push (eval (read s)) results)
+         (go start)))))
 
 (export '(domain problem))
 
@@ -32,12 +32,12 @@
   (ematch type
     ((list 'domain name)
      `(eval-when (:compile-toplevel :load-toplevel :execute)
-	(defparameter ,name (parse-domain-def ',name ',body))
-	',name))
+        (defparameter ,name (parse-domain-def ',name ',body))
+        ',name))
     ((list 'problem name)
      `(eval-when (:compile-toplevel :load-toplevel :execute)
-	(defparameter ,name (parse-problem-def ',name ',body))
-	',name))))
+        (defparameter ,name (parse-problem-def ',name ',body))
+        ',name))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; bare parser
@@ -47,8 +47,8 @@
   ;; the initialization of subclause objects.
   (let ((*domain* (pddl-domain :name name)))
     (macrolet ((body-domain (accessor)
-		 `(setf (,accessor *domain*)
-			(,(concatenate-symbols 'parse accessor) body))))
+                 `(setf (,accessor *domain*)
+                        (,(concatenate-symbols 'parse accessor) body))))
       (body-domain requirements)
       (body-domain types)
       (body-domain predicates)
@@ -61,15 +61,15 @@
 
 (defun parse-problem-def (name body)
   (let* (;; these special variables are used in
-	 ;; the initialization of subclause objects.
-	 (*domain* (parse-domain body))
-	 (*problem* (pddl-problem :name name :domain *domain*)))
+         ;; the initialization of subclause objects.
+         (*domain* (parse-domain body))
+         (*problem* (pddl-problem :name name :domain *domain*)))
     (macrolet ((body-problem (accessor)
-		 `(setf (,accessor *problem*)
-			(,(concatenate-symbols 'parse accessor) body))))
+                 `(setf (,accessor *problem*)
+                        (,(concatenate-symbols 'parse accessor) body))))
       (body-problem objects)
       (let ((*params* (objects *problem*)))
-	(body-problem init)
-	(body-problem goal)
-	(body-problem metric)))
+        (body-problem init)
+        (body-problem goal)
+        (body-problem metric)))
     *problem*))
