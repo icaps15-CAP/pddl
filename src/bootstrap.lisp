@@ -1,7 +1,7 @@
 (in-package :pddl)
 (use-syntax :annot)
 
-(defvar *parsing-filename*)
+(defvar *parsing-filename* nil)
 
 @export
 (defun parse-file (pddl-pathname)
