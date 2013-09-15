@@ -4,7 +4,7 @@
 
 ;; metatilities:defclass*
 
-(define-pddl-class pddl-problem (pddl-domain-slot namable)
+(define-pddl-class pddl-problem (pddl-domain-slot pathnamable namable)
   (objects
    init
    goal

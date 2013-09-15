@@ -1,16 +1,19 @@
 (in-package :pddl)
 (use-syntax :annot)
 
+(defvar *parsing-filename*)
+
 @export
 (defun parse-file (pddl-pathname)
-  (tagbody
-   parse-start
-     (restart-case
-         (with-open-file (s pddl-pathname)
-           (return-from parse-file 
-             (parse-stream s)))
-       (retry-reading-file ()
-         (go parse-start)))))
+  (let ((*parsing-filename* pddl-pathname))
+    (tagbody
+     parse-start
+       (restart-case
+           (with-open-file (s pddl-pathname)
+             (return-from parse-file 
+               (parse-stream s)))
+         (retry-reading-file ()
+           (go parse-start))))))
 
 @export
 (defun parse-stream (s)
@@ -57,6 +60,7 @@
       (body-domain actions)
       (body-domain durative-actions)
       (body-domain derived-predicates))
+    (setf (path *domain*) *parsing-filename*)
     *domain*))
 
 (defun parse-problem-def (name body)
@@ -73,4 +77,5 @@
           (body-problem init)
           (body-problem goal)
           (body-problem metric))))
+    (setf (path *problem*) *parsing-filename*)
     *problem*))

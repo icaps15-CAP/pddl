@@ -24,6 +24,8 @@
 
 (define-pddl-class namable ()
   (name))
+(define-pddl-class pathnamable ()
+  (path))
 
 (defmethod name ((sym symbol))
   sym)
@@ -35,7 +37,7 @@
                                        &key (domain *domain*))
   (setf (domain o) domain))
 
-(define-pddl-class pddl-domain (namable)
+(define-pddl-class pddl-domain (pathnamable namable)
   (requirements
    types
    (predicates :initform nil)
@@ -116,6 +118,11 @@
 (defun pddl-typep (object type)
   (pddl-supertype-p (type object) type))
 
+@export
+(defun query-type (domain designator)
+  (find designator (types domain)
+        :key (compose #'string-upcase #'name)
+        :test #'string=))
 
 @eval-always
 @export
@@ -138,8 +145,10 @@
   ((type :initform *pddl-primitive-number-type*)))
 @export
 @doc "find the pddl-function specified by the designator."
-(defun pfunction (domain name)
-  (find name (functions domain) :key #'name))
+(defun query-function (domain name)
+  (find name (functions domain)
+        :key (compose #'string-upcase #'name)
+        :test #'string=))
 
 (define-pddl-class pddl-assign-op (pddl-domain-slot)
   (place-function
