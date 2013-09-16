@@ -75,6 +75,16 @@
            (predicates dom)))
 
 @export
+@doc "returns t if the arguments of pred1 is more specific than
+that of pred2."
+(defun predicate-more-specific-p (pred1 pred2)
+  (and (eqname pred1 pred2)
+       (every #'pddl-supertype-p
+              (mapcar #'type (parameters pred1))
+              (mapcar #'type (parameters pred2)))))
+
+
+@export
 @doc "returns the number of parameters."
 (defun arity (thing)
   (length (parameters thing)))
