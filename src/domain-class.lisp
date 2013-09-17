@@ -83,6 +83,17 @@ that of pred2."
               (mapcar #'type (parameters pred1))
               (mapcar #'type (parameters pred2)))))
 
+@export
+@doc "returns t if the type specifiers of pred1 agrees with that of pred2."
+(defun predicate-agrees-p (pred1 pred2)
+  (and (eqname pred1 pred2)
+       (every #'pddl-supertype-p
+              (mapcar #'type (parameters pred1))
+              (mapcar #'type (parameters pred2)))
+       (every #'pddl-supertype-p
+              (mapcar #'type (parameters pred2))
+              (mapcar #'type (parameters pred1)))))
+
 
 @export
 @doc "returns the number of parameters."
