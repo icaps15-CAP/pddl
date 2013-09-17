@@ -9,7 +9,7 @@
 ;   1 saw
 ; random seed: 592015
 
-(define (problem wood-prob)
+(define (problem wood-prob-14)
   (:domain woodworking)
   (:objects
     grinder0 - grinder
