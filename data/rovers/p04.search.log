@@ -1,0 +1,141 @@
+Dispatcher selected state size 1.
+This is a unit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.000632544s
+Discovered 17 landmarks, of which 1 are disjunctive and 0 are conjunctive 
+16 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+9 initial landmarks, 3 goal landmarks
+Starting search: lazy_greedy(list(hff, hlm), preferred = list(hff, hlm))
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 8/8 [g=0, 1 evaluated, 0 expanded, t=0s]
+Best heuristic value: 7/7 [g=1, 2 evaluated, 1 expanded, t=0s]
+Best heuristic value: 6/6 [g=2, 3 evaluated, 2 expanded, t=0s]
+Best heuristic value: 5/5 [g=3, 4 evaluated, 3 expanded, t=0s]
+Best heuristic value: 4/4 [g=4, 5 evaluated, 4 expanded, t=0s]
+Best heuristic value: 3/3 [g=5, 6 evaluated, 5 expanded, t=0s]
+Best heuristic value: 2/2 [g=6, 7 evaluated, 6 expanded, t=0s]
+Best heuristic value: 1/1 [g=7, 8 evaluated, 7 expanded, t=0s]
+Solution found!
+Actual search time: 0s [t=0s]
+navigate rover1 waypoint2 waypoint1 (1)
+calibrate rover1 camera0 objective0 waypoint1 (1)
+take_image rover1 waypoint1 objective0 camera0 high_res (1)
+communicate_image_data rover1 general objective0 high_res waypoint1 waypoint2 (1)
+sample_rock rover1 rover1store waypoint1 (1)
+communicate_rock_data rover1 general waypoint1 waypoint1 waypoint2 (1)
+sample_soil rover0 rover0store waypoint3 (1)
+communicate_soil_data rover0 general waypoint3 waypoint3 waypoint2 (1)
+Plan length: 8 step(s).
+Plan cost: 8
+Initial state h value: 8/8.
+Expanded 8 state(s).
+Reopened 0 state(s).
+Evaluated 9 state(s).
+Evaluations: 18
+Generated 63 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 8
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff, hlm), preferred = list(hff, hlm), w = 5)
+Conducting lazy best first search, (real) bound = 8
+Best heuristic value: 8/8 [g=0, 1 evaluated, 0 expanded, t=0s]
+Best heuristic value: 7/7 [g=1, 2 evaluated, 1 expanded, t=0s]
+Best heuristic value: 6/6 [g=2, 3 evaluated, 2 expanded, t=0s]
+Best heuristic value: 5/5 [g=3, 4 evaluated, 3 expanded, t=0s]
+Best heuristic value: 4/4 [g=4, 5 evaluated, 4 expanded, t=0s]
+Best heuristic value: 3/3 [g=5, 6 evaluated, 5 expanded, t=0s]
+Best heuristic value: 2/2 [g=6, 7 evaluated, 6 expanded, t=0s]
+Best heuristic value: 1/1 [g=7, 8 evaluated, 7 expanded, t=0s]
+Completely explored state space -- no solution!
+Actual search time: 0.02s [t=0.02s]
+Initial state h value: 8/8.
+Expanded 1535 state(s).
+Reopened 186 state(s).
+Evaluated 1535 state(s).
+Evaluations: 3070
+Generated 11470 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 8
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff, hlm), preferred = list(hff, hlm), w = 3)
+Conducting lazy best first search, (real) bound = 8
+Best heuristic value: 8/8 [g=0, 1 evaluated, 0 expanded, t=0.02s]
+Best heuristic value: 7/7 [g=1, 2 evaluated, 1 expanded, t=0.02s]
+Best heuristic value: 6/6 [g=2, 3 evaluated, 2 expanded, t=0.02s]
+Best heuristic value: 5/5 [g=3, 4 evaluated, 3 expanded, t=0.02s]
+Best heuristic value: 4/4 [g=4, 5 evaluated, 4 expanded, t=0.02s]
+Best heuristic value: 3/3 [g=5, 6 evaluated, 5 expanded, t=0.02s]
+Best heuristic value: 2/2 [g=6, 7 evaluated, 6 expanded, t=0.02s]
+Best heuristic value: 1/1 [g=7, 8 evaluated, 7 expanded, t=0.02s]
+Completely explored state space -- no solution!
+Actual search time: 0.04s [t=0.06s]
+Initial state h value: 8/8.
+Expanded 1465 state(s).
+Reopened 116 state(s).
+Evaluated 1465 state(s).
+Evaluations: 2930
+Generated 11046 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 8
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff, hlm), preferred = list(hff, hlm), w = 2)
+Conducting lazy best first search, (real) bound = 8
+Best heuristic value: 8/8 [g=0, 1 evaluated, 0 expanded, t=0.06s]
+Best heuristic value: 7/7 [g=1, 2 evaluated, 1 expanded, t=0.06s]
+Best heuristic value: 6/6 [g=2, 3 evaluated, 2 expanded, t=0.06s]
+Best heuristic value: 5/5 [g=3, 4 evaluated, 3 expanded, t=0.06s]
+Best heuristic value: 4/4 [g=4, 5 evaluated, 4 expanded, t=0.06s]
+Best heuristic value: 3/3 [g=5, 6 evaluated, 5 expanded, t=0.08s]
+Best heuristic value: 2/2 [g=6, 7 evaluated, 6 expanded, t=0.08s]
+Best heuristic value: 1/1 [g=7, 8 evaluated, 7 expanded, t=0.08s]
+Completely explored state space -- no solution!
+Actual search time: 0.04s [t=0.1s]
+Initial state h value: 8/8.
+Expanded 1376 state(s).
+Reopened 27 state(s).
+Evaluated 1376 state(s).
+Evaluations: 2752
+Generated 10471 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 8
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff, hlm), preferred = list(hff, hlm), w = 1)
+Conducting lazy best first search, (real) bound = 8
+Best heuristic value: 8/8 [g=0, 1 evaluated, 0 expanded, t=0.1s]
+Best heuristic value: 7/7 [g=1, 2 evaluated, 1 expanded, t=0.1s]
+Best heuristic value: 6/6 [g=2, 5 evaluated, 4 expanded, t=0.1s]
+Best heuristic value: 5/5 [g=3, 12 evaluated, 11 expanded, t=0.1s]
+Best heuristic value: 4/4 [g=4, 19 evaluated, 18 expanded, t=0.1s]
+Best heuristic value: 3/3 [g=5, 30 evaluated, 29 expanded, t=0.1s]
+Best heuristic value: 2/2 [g=6, 40 evaluated, 39 expanded, t=0.1s]
+Best heuristic value: 1/1 [g=7, 47 evaluated, 46 expanded, t=0.1s]
+Completely explored state space -- no solution!
+Actual search time: 0.04s [t=0.14s]
+Initial state h value: 8/8.
+Expanded 1349 state(s).
+Reopened 0 state(s).
+Evaluated 1349 state(s).
+Evaluations: 2698
+Generated 10244 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 8
+No solution found - keep searching
+Actual search time: 0.14s [t=0.14s]
+Cumulative statistics:
+Expanded 5733 state(s).
+Reopened 329 state(s).
+Evaluated 5734 state(s).
+Evaluations: 11468
+Generated 43294 state(s).
+Dead ends: 0 state(s).
+Search time: 0.14s
+Total time: 0.14s
+Solution found.
+Peak memory: 3572 KB

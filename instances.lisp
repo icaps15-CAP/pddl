@@ -50,4 +50,19 @@
        (lambda (i j) (data (format nil "costs/model2b~a.plan.~a" i j))))
       (read-many-problems
        (lambda (i) (data (format nil "costs/model2a~a.pddl" i)))
-       (lambda (i j) (data (format nil "costs/model2a~a.plan.~a" i j)))))))
+       (lambda (i j) (data (format nil "costs/model2a~a.plan.~a" i j))))))
+
+  (handler-bind ((warning #'muffle-warning))
+    (export (parse-file (data "woodworking-sat11-strips/domain.pddl")))
+    (let ((*domain* (symbol-value 'woodworking)))
+      (read-many-problems
+       (lambda (i) (data (format nil "woodworking-sat11-strips/p~2,,,'0@a.pddl" i)))
+       (lambda (i j) (data (format nil "woodworking-sat11-strips/p~2,,,'0@a.plan.~a" i j))))))
+  
+  (handler-bind ((warning #'muffle-warning))
+    (export (parse-file (data "rovers/domain.pddl")))
+    (let ((*domain* (symbol-value 'rover)))
+      (read-many-problems
+       (lambda (i) (data (format nil "rovers/p~2,,,'0@a.pddl" i)))
+       (lambda (i j) (data (format nil "rovers/p~2,,,'0@a.plan.~a" i j))))))
+  )
