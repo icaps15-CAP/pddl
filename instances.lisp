@@ -58,6 +58,12 @@
       (read-many-problems
        (lambda (i) (data (format nil "woodworking-sat11-strips/p~2,,,'0@a.pddl" i)))
        (lambda (i j) (data (format nil "woodworking-sat11-strips/p~2,,,'0@a.plan.~a" i j))))))
+  (handler-bind ((warning #'muffle-warning))
+    ;(export (parse-file (data "woodworking-opt11-strips/domain.pddl")))
+    (let ((*domain* (symbol-value 'woodworking)))
+      (read-many-problems
+       (lambda (i) (data (format nil "woodworking-opt11-strips/p~2,,,'0@a.pddl" i)))
+       (lambda (i j) (data (format nil "woodworking-opt11-strips/p~2,,,'0@a.plan.~a" i j))))))
   
   (handler-bind ((warning #'muffle-warning))
     (export (parse-file (data "rovers/domain.pddl")))

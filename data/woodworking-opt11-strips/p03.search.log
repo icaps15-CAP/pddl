@@ -1,0 +1,194 @@
+Dispatcher selected state size 1.
+This is a nonunit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.0245111s
+Discovered 46 landmarks, of which 1 are disjunctive and 0 are conjunctive 
+61 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+20 initial landmarks, 19 goal landmarks
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.0252564s
+Discovered 46 landmarks, of which 1 are disjunctive and 0 are conjunctive 
+62 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+20 initial landmarks, 19 goal landmarks
+Starting search: lazy_greedy(list(hff1, hlm1), preferred = list(hff1, hlm1), cost_type = 1, reopen_closed = false)
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 26/13 [g=0, 1 evaluated, 0 expanded, t=0.06s]
+Best heuristic value: 23/12 [g=1, 2 evaluated, 1 expanded, t=0.06s]
+Best heuristic value: 22/11 [g=2, 3 evaluated, 2 expanded, t=0.06s]
+Best heuristic value: 20/10 [g=3, 4 evaluated, 3 expanded, t=0.06s]
+Best heuristic value: 18/9 [g=4, 5 evaluated, 4 expanded, t=0.06s]
+Best heuristic value: 14/8 [g=5, 6 evaluated, 5 expanded, t=0.06s]
+Best heuristic value: 12/6 [g=6, 7 evaluated, 6 expanded, t=0.06s]
+Best heuristic value: 8/5 [g=7, 8 evaluated, 7 expanded, t=0.06s]
+Best heuristic value: 6/4 [g=8, 9 evaluated, 8 expanded, t=0.06s]
+Best heuristic value: 3/3 [g=9, 12 evaluated, 10 expanded, t=0.06s]
+Best heuristic value: 2/2 [g=10, 13 evaluated, 11 expanded, t=0.06s]
+Best heuristic value: 1/1 [g=11, 14 evaluated, 12 expanded, t=0.06s]
+Solution found!
+Actual search time: 0s [t=0.06s]
+do-saw-medium b1 p0 saw0 mahogany smooth s6 s5 s4 (30)
+do-glaze p0 glazer0 mauve (15)
+do-saw-small b1 p2 saw0 mahogany smooth s4 s3 (30)
+do-glaze p2 glazer0 mauve (10)
+do-saw-medium b1 p3 saw0 mahogany smooth s3 s2 s1 (30)
+do-glaze p3 glazer0 white (15)
+do-saw-medium b1 p1 saw0 mahogany smooth s3 s2 s1 (30)
+do-immersion-varnish p1 immersion-varnisher0 green smooth (10)
+do-saw-large b0 p4 saw0 teak rough s6 s4 s5 s3 (30)
+do-plane p4 planer0 rough natural untreated (30)
+do-immersion-varnish p4 immersion-varnisher0 green smooth (10)
+do-grind p1 grinder0 smooth green varnished colourfragments (30)
+do-grind p1 grinder0 verysmooth natural colourfragments untreated (30)
+do-immersion-varnish p1 immersion-varnisher0 green verysmooth (10)
+Plan length: 14 step(s).
+Plan cost: 310
+Initial state h value: 26/13.
+Expanded 18 state(s).
+Reopened 0 state(s).
+Evaluated 20 state(s).
+Evaluations: 40
+Generated 286 state(s).
+Dead ends: 1 state(s).
+Best solution cost so far: 310
+Solution found - keep searching
+Starting search: lazy_greedy(list(hff2, hlm2), preferred = list(hff2, hlm2), reopen_closed = false)
+Conducting lazy best first search, (real) bound = 310
+Switch from bucket-based to heap-based queue at key = 140, num_pushes = 101
+Best heuristic value: 311/298 [g=0, 1 evaluated, 0 expanded, t=0.06s]
+Best heuristic value: 278/298 [g=30, 2 evaluated, 1 expanded, t=0.06s]
+Best heuristic value: 267/298 [g=40, 3 evaluated, 2 expanded, t=0.06s]
+Best heuristic value: 245/282 [g=70, 5 evaluated, 4 expanded, t=0.06s]
+Best heuristic value: 228/271 [g=80, 6 evaluated, 5 expanded, t=0.06s]
+Best heuristic value: 184/209 [g=110, 9 evaluated, 6 expanded, t=0.06s]
+Best heuristic value: 162/198 [g=120, 11 evaluated, 7 expanded, t=0.06s]
+Best heuristic value: 129/167 [g=150, 13 evaluated, 8 expanded, t=0.06s]
+Best heuristic value: 118/136 [g=180, 15 evaluated, 9 expanded, t=0.06s]
+Best heuristic value: 107/125 [g=190, 17 evaluated, 10 expanded, t=0.06s]
+Best heuristic value: 98/125 [g=220, 19 evaluated, 11 expanded, t=0.06s]
+Best heuristic value: 63/63 [g=220, 21 evaluated, 12 expanded, t=0.06s]
+Best heuristic value: 31/31 [g=235, 22 evaluated, 13 expanded, t=0.06s]
+Best heuristic value: 22/31 [g=265, 23 evaluated, 14 expanded, t=0.06s]
+Best heuristic value: 22/22 [g=305, 45 evaluated, 31 expanded, t=0.08s]
+Solution found!
+Actual search time: 0.06s [t=0.12s]
+do-saw-medium b1 p0 saw0 mahogany smooth s6 s5 s4 (30)
+do-immersion-varnish p0 immersion-varnisher0 mauve smooth (10)
+do-saw-small b0 p2 saw0 teak rough s6 s5 (30)
+do-glaze p2 glazer0 mauve (10)
+do-saw-large b0 p4 saw0 teak rough s6 s4 s5 s3 (30)
+do-plane p4 planer0 rough natural untreated (30)
+do-immersion-varnish p4 immersion-varnisher0 green smooth (10)
+do-saw-medium b1 p1 saw0 mahogany smooth s6 s5 s4 (30)
+do-grind p1 grinder0 smooth natural untreated untreated (30)
+do-immersion-varnish p1 immersion-varnisher0 green verysmooth (10)
+do-saw-medium b1 p3 saw0 mahogany smooth s4 s3 s2 (30)
+do-glaze p3 glazer0 white (15)
+Plan length: 12 step(s).
+Plan cost: 265
+Initial state h value: 311/298.
+Expanded 256 state(s).
+Reopened 0 state(s).
+Evaluated 513 state(s).
+Evaluations: 1026
+Generated 4199 state(s).
+Dead ends: 256 state(s).
+Best solution cost so far: 265
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 5)
+Conducting lazy best first search, (real) bound = 265
+Best heuristic value: 311/391 [g=0, 1 evaluated, 0 expanded, t=0.12s]
+Best heuristic value: 289/350 [g=30, 2 evaluated, 1 expanded, t=0.12s]
+Best heuristic value: 278/334 [g=45, 3 evaluated, 2 expanded, t=0.12s]
+Best heuristic value: 278/324 [g=65, 4 evaluated, 3 expanded, t=0.12s]
+Best heuristic value: 267/313 [g=75, 5 evaluated, 4 expanded, t=0.12s]
+Best heuristic value: 245/282 [g=105, 6 evaluated, 5 expanded, t=0.12s]
+Best heuristic value: 228/271 [g=115, 7 evaluated, 6 expanded, t=0.12s]
+Best heuristic value: 184/209 [g=145, 10 evaluated, 7 expanded, t=0.12s]
+Best heuristic value: 162/198 [g=155, 11 evaluated, 8 expanded, t=0.12s]
+Best heuristic value: 129/167 [g=185, 13 evaluated, 9 expanded, t=0.12s]
+Best heuristic value: 118/136 [g=215, 15 evaluated, 10 expanded, t=0.12s]
+Best heuristic value: 107/125 [g=225, 16 evaluated, 11 expanded, t=0.12s]
+Best heuristic value: 98/125 [g=255, 18 evaluated, 12 expanded, t=0.12s]
+Best heuristic value: 63/63 [g=255, 19 evaluated, 13 expanded, t=0.12s]
+Best heuristic value: 42/42 [g=260, 33 evaluated, 21 expanded, t=0.12s]
+Best heuristic value: 22/42 [g=260, 258 evaluated, 170 expanded, 1 reopened, t=0.16s]
+Best heuristic value: 22/31 [g=260, 62642 evaluated, 55383 expanded, 8949 reopened, t=7.4s]
+Best heuristic value: 11/21 [g=260, 975732 evaluated, 877224 expanded, 276024 reopened, t=121.98s]
+Best heuristic value: 11/11 [g=255, 5880248 evaluated, 5285784 expanded, 2350787 reopened, t=764.12s]
+Solution found!
+Actual search time: 786.6s [t=786.72s]
+do-saw-small b0 p2 saw0 teak rough s6 s5 (30)
+do-glaze p2 glazer0 mauve (10)
+do-saw-medium b1 p1 saw0 mahogany smooth s6 s5 s4 (30)
+do-saw-large b0 p4 saw0 teak rough s6 s4 s5 s3 (30)
+do-plane p4 planer0 rough natural untreated (30)
+do-immersion-varnish p4 immersion-varnisher0 green smooth (10)
+do-grind p1 grinder0 smooth natural untreated untreated (30)
+do-immersion-varnish p1 immersion-varnisher0 green verysmooth (10)
+load-highspeed-saw b1 highspeed-saw0 (30)
+cut-board-medium b1 p0 highspeed-saw0 mahogany smooth s4 s3 s2 (10)
+do-immersion-varnish p0 immersion-varnisher0 mauve smooth (10)
+cut-board-medium b1 p3 highspeed-saw0 mahogany smooth s4 s3 s2 (10)
+do-glaze p3 glazer0 white (15)
+Plan length: 13 step(s).
+Plan cost: 255
+Initial state h value: 311/391.
+Expanded 5451460 state(s).
+Reopened 2400050 state(s).
+Evaluated 6067555 state(s).
+Evaluations: 12135110
+Generated 97122847 state(s).
+Dead ends: 616094 state(s).
+Best solution cost so far: 255
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 3)
+Conducting lazy best first search, (real) bound = 255
+Best heuristic value: 311/391 [g=0, 1 evaluated, 0 expanded, t=786.72s]
+Best heuristic value: 289/350 [g=30, 2 evaluated, 1 expanded, t=786.72s]
+Best heuristic value: 278/334 [g=45, 3 evaluated, 2 expanded, t=786.72s]
+Best heuristic value: 278/324 [g=65, 4 evaluated, 3 expanded, t=786.72s]
+Best heuristic value: 267/313 [g=75, 5 evaluated, 4 expanded, t=786.72s]
+Best heuristic value: 245/282 [g=105, 6 evaluated, 5 expanded, t=786.72s]
+Best heuristic value: 228/271 [g=115, 7 evaluated, 6 expanded, t=786.72s]
+Best heuristic value: 184/209 [g=145, 10 evaluated, 7 expanded, t=786.72s]
+Best heuristic value: 162/198 [g=155, 11 evaluated, 8 expanded, t=786.72s]
+Best heuristic value: 129/167 [g=185, 13 evaluated, 9 expanded, t=786.72s]
+Best heuristic value: 118/136 [g=215, 15 evaluated, 10 expanded, t=786.72s]
+Best heuristic value: 107/125 [g=225, 16 evaluated, 11 expanded, t=786.72s]
+Best heuristic value: 74/74 [g=245, 20 evaluated, 14 expanded, t=786.72s]
+Best heuristic value: 53/73 [g=230, 27 evaluated, 19 expanded, t=786.72s]
+Best heuristic value: 53/53 [g=250, 160 evaluated, 104 expanded, 2 reopened, t=786.74s]
+Best heuristic value: 44/53 [g=250, 179 evaluated, 117 expanded, 2 reopened, t=786.74s]
+Best heuristic value: 39/53 [g=250, 1327 evaluated, 827 expanded, 19 reopened, t=786.88s]
+Best heuristic value: 39/42 [g=250, 23154 evaluated, 19475 expanded, 2289 reopened, t=789.4s]
+Best heuristic value: 22/42 [g=250, 60851 evaluated, 52297 expanded, 8873 reopened, t=793.96s]
+Best heuristic value: 22/38 [g=250, 873434 evaluated, 722923 expanded, 220876 reopened, t=898.38s]
+Best heuristic value: 22/32 [g=250, 897011 evaluated, 745710 expanded, 225270 reopened, t=901.24s]
+Best heuristic value: 22/31 [g=245, 1963872 evaluated, 1644410 expanded, 607989 reopened, t=1043.76s]
+Best heuristic value: 22/22 [g=245, 5748993 evaluated, 4976117 expanded, 2190995 reopened, t=1556s]
+Best heuristic value: 11/11 [g=245, 5755451 evaluated, 4982191 expanded, 2192049 reopened, t=1556.72s]
+/home/asai/repos/downward/src/search/downward: 196 行:  4799 強制終了            "$PLANNER" --heuristic "hlm1,hff1=lm_ff_syn(lm_rhw(
+                    reasonable_orders=true,lm_cost_type=1,cost_type=1))" --heuristic "hlm2,hff2=lm_ff_syn(lm_rhw(
+                    reasonable_orders=true,lm_cost_type=2,cost_type=2))" --search "iterated([
+                    lazy_greedy([hff1,hlm1],preferred=[hff1,hlm1],
+                                cost_type=1,reopen_closed=false),
+                    lazy_greedy([hff2,hlm2],preferred=[hff2,hlm2],
+                                reopen_closed=false),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=5),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=3),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=2),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=1)],
+                    repeat_last=true,continue_on_fail=true)" "$@" < $TEMPFILE
