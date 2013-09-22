@@ -9,6 +9,11 @@
 	   :write-model2a :write-model2b))
 (in-package :pddl.builder)
 
+(defun make-bases (basenum)
+  (iter (for i below basenum)
+        (collect
+            (concatenate-symbols 'b i))))
+
 (defun print-list (lst)
   (dolist (r lst lst)
     (print r)))
@@ -140,7 +145,7 @@
     (let ((prev 'nothing-done))
       (dolist (job jobspecs acc)
 	 (destructuring-bind
-	       (name place &optional component tray)
+	       (name place &optional component/s tray)
 	     job
 	   (push `(job-available-at ,name ,place) acc)
 	   (push `(depends ,prev ,name) acc)
@@ -148,11 +153,12 @@
 		     ,(+ lower-limit
 			 (let ((d (- upper-limit lower-limit)))
 			   (if (plusp d) (random d) 0)))) acc)
-	   (when component
-	     (push `(uses ,name ,component) acc)
+	   (when component/s
 	     (unless tray
-	       (error "which is the tray for ~a ?" component))
-	     (push `(at ,component ,tray) acc))
+	       (error "which is the tray for ~a ?" component/s))
+             (iter (for component in (ensure-list component/s))
+                   (push `(uses ,name ,component) acc)
+                   (push `(at ,component ,tray) acc)))
 	   (setf prev name))))))
 
 (defun make-initial-arms (arms positions)

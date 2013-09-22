@@ -53,6 +53,13 @@
        (lambda (i j) (data (format nil "costs/model2a~a.plan.~a" i j))))))
 
   (handler-bind ((warning #'muffle-warning))
+    (export (parse-file (data "costs-eachparts/domain.pddl")))
+    (let ((*domain* (symbol-value 'cell-assembly)))
+      (read-many-problems
+       (lambda (i) (data (format nil "costs-eachparts/model2a-each-~a.pddl" i)))
+       (lambda (i j) (data (format nil "costs-eachparts/model2a-each-~a.plan.~a" i j))))))
+
+  (handler-bind ((warning #'muffle-warning))
     (export (parse-file (data "woodworking-sat11-strips/domain.pddl")))
     (let ((*domain* (symbol-value 'woodworking)))
       (read-many-problems
