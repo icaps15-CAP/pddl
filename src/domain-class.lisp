@@ -141,9 +141,17 @@ that of pred2."
 
 @export
 (defun query-type (domain designator)
-  (find designator (types domain)
-        :key (compose #'string-upcase #'name)
-        :test #'string=))
+  (if (typep designator 'pddl-type)
+      (handler-return ((unbound-slot
+                        (lambda (c)
+                          @ignore c
+                          (query-type domain (name designator)))))
+        (if (eq domain (domain designator))
+            designator
+            (query-type domain (name designator))))
+      (find designator (types domain)
+            :key (compose #'string-upcase #'name)
+            :test #'string=)))
 
 @eval-always
 @export
