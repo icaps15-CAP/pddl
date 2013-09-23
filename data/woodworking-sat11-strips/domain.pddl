@@ -57,6 +57,7 @@
   ;; varnish : ニス，ワニス.
   ;; 浸すことによって塗装+ニス。
   ;; 大きさによってコストが変わらないみたいだ。
+  ;; smooth でないといけない。
   (:action do-immersion-varnish
            :parameters (?x - part ?m - immersion-varnisher 
                            ?newcolour - acolour ?surface - surface)
@@ -74,6 +75,8 @@
                     (colour ?x ?newcolour)))
 
   ;; スプレーによって塗装+ニス。
+  ;; 効果は do-immersion-varnish と同じ。
+  ;; smooth でないといけない。
   (:action do-spray-varnish
            :parameters (?x - part ?m - spray-varnisher 
                            ?newcolour - acolour ?surface - surface)
@@ -93,6 +96,7 @@
   
 
   ;;〈紙・布・皮などに〉光滑剤を塗る，つやつけをする.
+  ;; smooth でなくてもいい。色+glazed状態
   (:action do-glaze
            :parameters (?x - part ?m - glazer 
                            ?newcolour - acolour)
@@ -108,6 +112,7 @@
                     (colour ?x ?newcolour)))
 
   ;; 削ってverysmoothに。塗装をやり直し。色は消える。
+  ;; 表面は grind-treatment-change に従って順番に変化していく。
   (:action do-grind
            :parameters (?x - part ?m - grinder ?oldsurface - surface
                            ?oldcolour - acolour 
