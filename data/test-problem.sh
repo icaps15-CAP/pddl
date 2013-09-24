@@ -3,20 +3,20 @@
 TIME_LIMIT=1800
 MEMORY_USAGE=1000000
 OPTIONS="ipc seq-sat-lama-2011"
-	
+        
 while getopts ":t:m:o:" opt
 do
     case ${opt} in
-	t) # echo limit execution time under 30 min (same as ICAPS)
-	    TIME_LIMIT=${OPTARG:-$TIME_LIMIT} ;;
-	
-	m) # limit memory usage under 1 GB
-	    MEMORY_USAGE=${OPTARG:-$MEMORY_USAGE} ;;
+        t) # echo limit execution time under 30 min (same as ICAPS)
+            TIME_LIMIT=${OPTARG:-$TIME_LIMIT} ;;
+        
+        m) # limit memory usage under 1 GB
+            MEMORY_USAGE=${OPTARG:-$MEMORY_USAGE} ;;
 
-	o) # specifies the search option
-	    OPTIONS=${OPTARG:-$OPTIONS} ;;
-	
-	* ) echo "unsupported option" ;;
+        o) # specifies the search option
+            OPTIONS=${OPTARG:-$OPTIONS} ;;
+        
+        * ) echo "unsupported option" ;;
     esac
 done
 
@@ -91,9 +91,15 @@ then
     echo Result:
     for plan in $(ls sas_plan.*)
     do
-	mv $plan $PROBLEM_NAME.plan.${plan##*.}
-	echo $PROBLEM_NAME.plan.${plan##*.}
+        mv $plan $PROBLEM_NAME.plan.${plan##*.}
+        echo $PROBLEM_NAME.plan.${plan##*.}
     done
+    cat $PROBLEM_NAME.cost
+elif [[ -e sas_plan ]]
+then
+    echo Result:
+    mv sas_plan $PROBLEM_NAME.plan.1
+    echo $PROBLEM_NAME.plan.1
     cat $PROBLEM_NAME.cost
 else
     echo "Search Failed: No path could be found in the current configuration."

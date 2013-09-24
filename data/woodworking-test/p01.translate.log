@@ -1,0 +1,27 @@
+Parsing...
+Parsing: [0.020s CPU, 0.014s wall-clock]
+Normalizing task... [0.000s CPU, 0.001s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.002s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.020s CPU, 0.023s wall-clock]
+Preparing model... [0.020s CPU, 0.012s wall-clock]
+Generated 198 rules.
+Computing model... [0.020s CPU, 0.020s wall-clock]
+222 relevant atoms
+457 auxiliary atoms
+679 final queue length
+834 total queue pushes
+Completing instantiation... [0.000s CPU, 0.010s wall-clock]
+Instantiating: [0.070s CPU, 0.069s wall-clock]
+No relaxed solution! Generating unsolvable task...
+Translator variables: 1
+Translator derived variables: 0
+Translator facts: 2
+Translator mutex groups: 0
+Translator total mutex groups size: 0
+Translator operators: 0
+Translator task size: 4
+Translator peak memory: 13676 KB
+Writing output... [0.000s CPU, 0.000s wall-clock]
+Done! [0.090s CPU, 0.086s wall-clock]
