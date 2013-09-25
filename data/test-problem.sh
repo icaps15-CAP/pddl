@@ -3,11 +3,15 @@
 TIME_LIMIT=1800
 MEMORY_USAGE=1000000
 OPTIONS="ipc seq-sat-lama-2011"
-        
-while getopts ":t:m:o:" opt
+VERBOSE=false
+
+while getopts ":vt:m:o:" opt
 do
     case ${opt} in
-        t) # echo limit execution time under 30 min (same as ICAPS)
+        v) # increase verbosity: tail -f search.log during the search
+            VERBOSE=true ;; # true
+
+        t) # limit execution time under 30 min (same as ICAPS)
             TIME_LIMIT=${OPTARG:-$TIME_LIMIT} ;;
         
         m) # limit memory usage under 1 GB
@@ -16,11 +20,18 @@ do
         o) # specifies the search option
             OPTIONS=${OPTARG:-$OPTIONS} ;;
         
-        * ) echo "unsupported option" ;;
+        \?) OPT_ERROR=1; break;;
+        * ) echo "unsupported option $opt" ;;
     esac
 done
 
 shift $(($OPTIND - 1))
+
+
+if [ $OPT_ERROR ]; then      # option error
+  echo >&2 "usage: $0 [-ab] [-c arg1] [-d arg2] ..."
+  exit 1
+fi
 
 ulimit -m $MEMORY_USAGE
 ulimit -t $TIME_LIMIT
@@ -67,6 +78,17 @@ echo --------------------------------------------------------$'\x1b[0m'
 
 TMPDIR=`mktemp -d`
 pushd $TMPDIR
+
+touch $PROBLEM_NAME.translate.log
+touch $PROBLEM_NAME.preprocess.log
+touch $PROBLEM_NAME.search.log
+if $VERBOSE
+then
+    # tail -f $PROBLEM_NAME.translate.log &
+    # tail -f $PROBLEM_NAME.preprocess.log &
+    tail -f $PROBLEM_NAME.search.log &
+fi
+
 
 $TRANSLATE $DOMAIN $PDDL >& $PROBLEM_NAME.translate.log
 echo Translation Finished
