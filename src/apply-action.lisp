@@ -68,6 +68,8 @@
            (iter (for param in (parameters effect-pred))
                  (collecting
                   (or (getf match-set param)
+                      (when (typep param 'pddl-constant)
+                        param)
                       (error "failed to find a parameter in match-set!~%~
                               match:~a~%~
                               parameter:~a" match-set param)))))
