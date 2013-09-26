@@ -60,6 +60,19 @@
       (signal "no such action found! : ~a" designator)))
 
 @export
+@doc "find a constant specified by the designator."
+(defgeneric constant (pddl-domain designator))
+(defmethod constant ((dom pddl-domain) (designator symbol))
+  (constant dom (symbol-name designator)))
+(defmethod constant ((dom pddl-domain) (designator string))
+  (or (find-if (lambda (action)
+                 (string= (symbol-name (name action))
+                          designator))
+               (constants dom))
+      (signal "no such constant found! : ~a" designator)))
+
+
+@export
 @doc "find the predicate specified by the designator."
 (defgeneric predicate (pddl-domain designator))
 
