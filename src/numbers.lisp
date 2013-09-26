@@ -164,11 +164,13 @@ clause in the domain description.
   (compile-f-exp-body
    body
    (lambda (head)
-     (let ((pddl-fn (parse-f-head head)))
+     (let ((fn (parse-f-head head)))
+       (dolist (p (parameters fn))
+         (assert (typep p 'pddl-object)))
        (%function-state-compiler
-        pddl-fn
+        fn
         (iter (for o-name in (cdr head))
-              (for p in (parameters pddl-fn))
+              (for p in (parameters fn))
               (collecting p)
               (collecting (object *problem* o-name)))
         states)))))
@@ -194,9 +196,14 @@ clause in the domain description.
     (_ (funcall getter body))))
 
 @export
+@doc "parses a fluent form like (plane-cost ?plane) and
+returns a ppdl-function object like (plane-cost ?obj) which is
+defined in the :functions clause of the domain description.
+
+The secondary value is a plist which maps between arguments e.g. ?plane to ?obj."
 (defun parse-f-head (head)
   (ematch head
-    ((and name (type symbol))
+    ((and name (type symbol)) ; unary variable is allowed according to PDDL3.0
      (if-let ((fn (find-if (curry #'%eqname1 name)
                            (functions *domain*))))
        (progn
@@ -210,21 +217,28 @@ clause in the domain description.
               :interning-class 'pddl-function
               :name name)))
     ((list* name arguments)
-     (if-let ((fn (find-if (curry #'%eqname1 name)
-                           (functions *domain*))))
-       (progn
-         (assert (= (length arguments)
-                    (length (parameters fn)))
-                 nil
-                 "Invalid number of arguments ~_~A, ~_~
+     (ematch (find-if (curry #'%eqname1 name)
+                      (functions *domain*))
+       ((and fn (pddl-function name parameters type))
+        (assert (= (length arguments)
+                   (length parameters))
+                nil
+                "Invalid number of arguments ~_~A, ~_~
                   expected to be ~A in ~A"
-                 (length arguments)
-                 (length (parameters fn)) fn)
-         fn)
-       (error 'not-found-in-dictionary
-              :pddl-form head
-              :interning-class 'pddl-function
-              :name name)))))
+                (length arguments)
+                (length parameters) fn)
+        (pddl-function :name name
+                       :parameters
+                       (mapcar
+                        (lambda (sym)
+                          (pddl-variable :name sym :type *pddl-primitive-object-type*))
+                        arguments)
+                       :type type))
+       (nil
+        (error 'not-found-in-dictionary
+               :pddl-form head
+               :interning-class 'pddl-function
+               :name name))))))
 
 @export
 (defun parse-f-comp (f-comp)
