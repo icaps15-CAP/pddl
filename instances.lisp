@@ -1,7 +1,12 @@
 (in-package :cl-user)
-(defpackage pddl.instances
-  (:use :cl :iterate :pddl :guicho-utilities :alexandria)
-  (:shadowing-import-from :pddl :minimize :maximize))
+
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (handler-bind ((sb-int:package-at-variance
+                  (lambda (c)
+                    (muffle-warning c))))
+    (defpackage pddl.instances
+      (:use :cl :iterate :pddl :guicho-utilities :alexandria)
+      (:shadowing-import-from :pddl :minimize :maximize))))
 
 (in-package :pddl.instances)
 
