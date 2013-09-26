@@ -195,6 +195,7 @@
                     (surface-condition ?p ?surface)
                     (colour ?p natural)
                     (treatment ?p untreated)
+                    (not (boardsize ?b ?size_before))
                     (boardsize ?b ?size_after)))
 
   ;; 中くらいに切る。
@@ -219,6 +220,7 @@
                     (surface-condition ?p ?surface)
                     (colour ?p natural)
                     (treatment ?p untreated)
+                    (not (boardsize ?b ?size_before))
                     (boardsize ?b ?size_after)))
 
   (:action cut-board-large
@@ -243,6 +245,7 @@
                     (surface-condition ?p ?surface)
                     (colour ?p natural)
                     (treatment ?p untreated)
+                    (not (boardsize ?b ?size_before))
                     (boardsize ?b ?size_after)))
 
   ;; 手で板を切り出す。板が大きかろうが小さかろうが30かかる
@@ -268,6 +271,7 @@
                     (surface-condition ?p ?surface)
                     (colour ?p natural) 
                     (treatment ?p untreated)
+                    (not (boardsize ?b ?size_before))
                     (boardsize ?b ?size_after)))
 
   (:action do-saw-medium
@@ -291,6 +295,7 @@
                     (surface-condition ?p ?surface)
                     (colour ?p natural) 
                     (treatment ?p untreated)
+                    (not (boardsize ?b ?size_before))
                     (boardsize ?b ?size_after)))
 
   (:action do-saw-large
@@ -315,5 +320,6 @@
                     (surface-condition ?p ?surface)
                     (colour ?p natural) 
                     (treatment ?p untreated)
+                    (not (boardsize ?b ?size_before))
                     (boardsize ?b ?size_after)))
   )
