@@ -1,7 +1,7 @@
 ;; Woodworking
 ;;
 
-(define (domain woodworking)
+(define (domain woodworking-loop)
   (:requirements :typing :action-costs)
   (:types
    ;; 色、木材種別、木材、機械

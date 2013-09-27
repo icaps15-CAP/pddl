@@ -41,7 +41,7 @@
 
 (defun make-it (howmany)
   (template-by-number
-   'wood-loop-1
+   (concatenate-symbols 'wood-loop howmany)
    1 1 1
    1 1 1 1
    3 3
@@ -161,7 +161,7 @@
                  board-inits
                  )
   `(define (problem ,name)
-    (:domain woodworking)
+    (:domain woodworking-loop)
     (:objects ,@grinders - grinder
               ,@glazers - glazer
               ,@immersion-varnishers - immersion-varnisher
@@ -196,3 +196,8 @@
      )
     (:metric minimize (total-cost))
     ))
+
+;; execution
+
+(iter (for n in '(1 4 16 64 256 2014))
+      (write-it n))

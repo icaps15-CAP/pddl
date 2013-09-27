@@ -10,7 +10,7 @@
 ; random seed: 370348
 
 (define (problem wood-prob-opt-1)
-  (:domain woodworking)
+  (:domain woodworking-loop)
   (:objects
     grinder0 - grinder
     glazer0 - glazer
