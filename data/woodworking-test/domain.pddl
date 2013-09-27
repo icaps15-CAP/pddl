@@ -9,7 +9,7 @@
    ;; 表面状態 ワニスなどの状態
    surface treatmentstatus
    ;; 板のサイズ規格、パーツサイズ規格
-   aboardsize apartsize - object
+   apartsize - object
    highspeed-saw glazer grinder immersion-varnisher
    planer saw spray-varnisher - machine
    board part - woodobj)
@@ -34,9 +34,7 @@
 
    ;; 木の種類。
    (wood ?obj - woodobj ?wood - awood)
-   (boardsize ?board - board ?size - aboardsize)
-   (goalsize ?part - part ?size - apartsize)
-   (boardsize-successor ?size1 ?size2 - aboardsize)
+   (goalsize ?p - part ?size - apartsize)
 
    (in-highspeed-saw ?b - board ?m - highspeed-saw)
    (empty ?m - highspeed-saw)
@@ -178,15 +176,13 @@
   ;; 
   (:action cut-board-small
            :parameters (?b - board ?p - part ?m - highspeed-saw ?w - awood
-                           ?surface - surface ?size_before ?size_after - aboardsize)
+                           ?surface - surface)
            :precondition (and
                           (unused ?p)
                           (goalsize ?p small)
                           (in-highspeed-saw ?b ?m)
                           (wood ?b ?w)
-                          (surface-condition ?b ?surface)
-                          (boardsize ?b ?size_before)
-                          (boardsize-successor ?size_after ?size_before))
+                          (surface-condition ?b ?surface))
            :effect (and
                     (increase (total-cost) 10)
                     (not (unused ?p))
@@ -194,24 +190,18 @@
                     (wood ?p ?w)
                     (surface-condition ?p ?surface)
                     (colour ?p natural)
-                    (treatment ?p untreated)
-                    (not (boardsize ?b ?size_before))
-                    (boardsize ?b ?size_after)))
+                    (treatment ?p untreated)))
 
   ;; 中くらいに切る。
   (:action cut-board-medium
            :parameters (?b - board ?p - part ?m - highspeed-saw ?w - awood
-                           ?surface - surface 
-                           ?size_before ?s1 ?size_after - aboardsize)
+                           ?surface - surface)
            :precondition (and
                           (unused ?p)
                           (goalsize ?p medium)
                           (in-highspeed-saw ?b ?m)
                           (wood ?b ?w)
-                          (surface-condition ?b ?surface)
-                          (boardsize ?b ?size_before)
-                          (boardsize-successor ?size_after ?s1)
-                          (boardsize-successor ?s1 ?size_before))
+                          (surface-condition ?b ?surface))
            :effect (and
                     (increase (total-cost) 10)
                     (not (unused ?p))
@@ -219,24 +209,17 @@
                     (wood ?p ?w)
                     (surface-condition ?p ?surface)
                     (colour ?p natural)
-                    (treatment ?p untreated)
-                    (not (boardsize ?b ?size_before))
-                    (boardsize ?b ?size_after)))
+                    (treatment ?p untreated)))
 
   (:action cut-board-large
            :parameters (?b - board ?p - part ?m - highspeed-saw ?w - awood
-                           ?surface - surface 
-                           ?size_before ?s1 ?s2 ?size_after - aboardsize)
+                           ?surface - surface)
            :precondition (and
                           (unused ?p)
                           (goalsize ?p large)
                           (in-highspeed-saw ?b ?m)
                           (wood ?b ?w)
-                          (surface-condition ?b ?surface)
-                          (boardsize ?b ?size_before)
-                          (boardsize-successor ?size_after ?s1)
-                          (boardsize-successor ?s1 ?s2)
-                          (boardsize-successor ?s2 ?size_before))
+                          (surface-condition ?b ?surface))
            :effect (and
                     (increase (total-cost) 10)
                     (not (unused ?p))
@@ -244,9 +227,7 @@
                     (wood ?p ?w)
                     (surface-condition ?p ?surface)
                     (colour ?p natural)
-                    (treatment ?p untreated)
-                    (not (boardsize ?b ?size_before))
-                    (boardsize ?b ?size_after)))
+                    (treatment ?p untreated)))
 
   ;; 手で板を切り出す。板が大きかろうが小さかろうが30かかる
   ;; 板の大きさは小さくなる。(size_after になる)
@@ -254,15 +235,13 @@
   ;; largeを切りだそうとすると板が3段階小さくなる。
   (:action do-saw-small
            :parameters (?b - board ?p - part ?m - saw ?w - awood
-                           ?surface - surface ?size_before ?size_after - aboardsize) 
+                           ?surface - surface) 
            :precondition (and 
                           (unused ?p)
                           (goalsize ?p small)
                           (available ?b)
                           (wood ?b ?w)
-                          (surface-condition ?b ?surface)
-                          (boardsize ?b ?size_before)
-                          (boardsize-successor ?size_after ?size_before))
+                          (surface-condition ?b ?surface))
            :effect (and
                     (increase (total-cost) 30)
                     (not (unused ?p))
@@ -270,23 +249,17 @@
                     (wood ?p ?w)
                     (surface-condition ?p ?surface)
                     (colour ?p natural) 
-                    (treatment ?p untreated)
-                    (not (boardsize ?b ?size_before))
-                    (boardsize ?b ?size_after)))
+                    (treatment ?p untreated)))
 
   (:action do-saw-medium
            :parameters (?b - board ?p - part ?m - saw ?w - awood
-                           ?surface - surface 
-                           ?size_before ?s1 ?size_after - aboardsize) 
+                           ?surface - surface) 
            :precondition (and 
                           (unused ?p)
                           (goalsize ?p medium)
                           (available ?b)
                           (wood ?b ?w)
-                          (surface-condition ?b ?surface)
-                          (boardsize ?b ?size_before)
-                          (boardsize-successor ?size_after ?s1)
-                          (boardsize-successor ?s1 ?size_before))
+                          (surface-condition ?b ?surface))
            :effect (and
                     (increase (total-cost) 30)
                     (not (unused ?p))
@@ -294,24 +267,17 @@
                     (wood ?p ?w)
                     (surface-condition ?p ?surface)
                     (colour ?p natural) 
-                    (treatment ?p untreated)
-                    (not (boardsize ?b ?size_before))
-                    (boardsize ?b ?size_after)))
+                    (treatment ?p untreated)))
 
   (:action do-saw-large
            :parameters (?b - board ?p - part ?m - saw ?w - awood
-                           ?surface - surface 
-                           ?size_before ?s1 ?s2 ?size_after - aboardsize) 
+                           ?surface - surface) 
            :precondition (and 
                           (unused ?p)
                           (goalsize ?p large)
                           (available ?b)
                           (wood ?b ?w)
-                          (surface-condition ?b ?surface)
-                          (boardsize ?b ?size_before)
-                          (boardsize-successor ?size_after ?s1)
-                          (boardsize-successor ?s1 ?s2)
-                          (boardsize-successor ?s2 ?size_before))
+                          (surface-condition ?b ?surface))
            :effect (and
                     (increase (total-cost) 30)
                     (not (unused ?p))
@@ -319,7 +285,5 @@
                     (wood ?p ?w)
                     (surface-condition ?p ?surface)
                     (colour ?p natural) 
-                    (treatment ?p untreated)
-                    (not (boardsize ?b ?size_before))
-                    (boardsize ?b ?size_after)))
+                    (treatment ?p untreated)))
   )

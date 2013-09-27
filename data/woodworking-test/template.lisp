@@ -63,7 +63,6 @@
      @ignorable parts
      @ignorable colors
      @ignorable woods
-     (pprint (list parts colors woods))
      (iter (for p in parts)
            (appending
             `((unused ,p)
@@ -87,12 +86,10 @@
      @ignorable boards
      @ignorable woods
      @ignorable boardsizes
-     (pprint (list boards woods boardsizes))
      (iter (for b in boards)
            (for i from 0)
            (appending
-            `((boardsize ,b ,(lastcar boardsizes))
-              (wood ,b ,(nth i woods))
+            `((wood ,b ,(nth i woods))
               (surface-condition ,b rough)
               (available ,b)))))))
 
@@ -175,8 +172,7 @@
               ,@colors - acolour
               ,@woods - awood
               ,@parts - part
-              ,@boards - board
-              ,@boardsizes - aboardsize ) ; 0,1,2,3,...
+              ,@boards - board)
     (:init
      (grind-treatment-change varnished colourfragments)
      (grind-treatment-change glazed untreated)
@@ -185,10 +181,6 @@
      (is-smooth smooth)
      (is-smooth verysmooth)
      (= (total-cost) 0)
-
-     ,@(iter (for small in boardsizes)
-             (for big in (cdr boardsizes))
-             (collecting `(boardsize-successor ,small ,big)))
      
      ,@(iter (for pair in has-colors)
              (collect `(has-colour ,@pair)))
