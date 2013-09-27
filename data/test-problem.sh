@@ -1,7 +1,7 @@
 #! /bin/bash
 
 TIME_LIMIT=1800
-MEMORY_USAGE=1000000
+MEMORY_USAGE=2000000
 OPTIONS="ipc seq-sat-lama-2011"
 VERBOSE=false
 
@@ -33,8 +33,7 @@ if [ $OPT_ERROR ]; then      # option error
   exit 1
 fi
 
-ulimit -m $MEMORY_USAGE
-ulimit -t $TIME_LIMIT
+ulimit -v $MEMORY_USAGE -t $TIME_LIMIT
 
 PDDL=$(realpath $1)
 DOMAIN=$(realpath $2)

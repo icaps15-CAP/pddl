@@ -31,12 +31,12 @@
 (defun many-objects (n name)
   (mapcar (curry #'concatenate-symbols name) (iota n)))
 
-(defun write-it (howmany)
-  (with-open-file (s (format nil "wood-test-~a.pddl" howmany)
+(defun write-it (prefix template howmany)
+  (with-open-file (s (format nil "~a-~a.pddl" prefix howmany)
                      :direction :output
                      :if-exists :supersede
                      :if-does-not-exist :create)
-    (write (make-it howmany) :stream s)))
+    (write (funcall template howmany) :stream s)))
 
 
 (defun make-it (howmany)
@@ -200,4 +200,4 @@
 ;; execution
 
 (iter (for n in '(1 4 16 64 256 2014))
-      (write-it n))
+      (write-it "wood-test" #'make-it n))
