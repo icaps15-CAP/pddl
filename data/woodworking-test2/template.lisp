@@ -3,7 +3,7 @@
 
 (defun make-it2 (howmany)
   (template-by-number
-   (concatenate-symbols 'wood-loop howmany)
+   (concatenate-symbols 'wood-loop2 howmany)
    1 1 1
    1 1 1 1
    3 3
@@ -58,4 +58,4 @@
               (available ,b)))))))
 
 (iter (for n in '(1 2 4 16 64 256 1024))
-      (write-it #'make-it2 n))
+      (write-it "wood-test" #'make-it2 n))
