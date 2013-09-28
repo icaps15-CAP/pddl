@@ -1,6 +1,15 @@
 
 (in-package :pddl.builder)
 
+(defun write-models-many (fn &optional (format-control "p~4,,,'0@a.pddl"))
+  (let ((snapshot (make-random-state)))
+    (dolist (i '(1 2 4 16 64 256 1024))
+      (let ((*random-state* (make-random-state snapshot)))
+        (write-model fn
+                     #'(lambda (i)
+                         (format nil format-control i))
+                     i)))))
+
 (defun write-model (modelfn pathnamefn basenum)
   (with-open-file (s (funcall pathnamefn basenum)
 		     :direction :output
@@ -8,13 +17,6 @@
 		     :if-does-not-exist :create)
     (let ((*package* (find-package :pddl.builder)))
       (write (funcall modelfn basenum) :stream s))))
-
-(defun write-model2a (max)
-  (iter (for i from 1 to max)
-	(write-model #'model2a
-		     #'(lambda (i)
-			 (format nil "model2a~a.pddl" i))
-		     i)))
 
 (defun model2a (basenum)
   (let ((bases (iter (for i below basenum)
