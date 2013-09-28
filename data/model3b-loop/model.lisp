@@ -11,8 +11,8 @@
          (:domain cell-assembly)
        (:objects a1 a2 a3 a4 - arm
 		 ,@bases - base
-		 p1 p2 p3 - component
-		 t1 t2 t3 - tray
+		 p1 p2 p3 p4 - component
+		 t1 t2 t3 t4 - tray
 		 tb12 tb23 tb34 - table
 		 m1 m2 m3 m4 - machine
 		 j1 - job
@@ -34,10 +34,10 @@
 	;; arm attributes
 	,@(make-reachable 'a1 '(table-in
                                 t1 tb12 m1))
-	,@(make-reachable 'a2 '(t2 tb23 m2))
-        ,@(make-reachable 'a3 '(table-out
+	,@(make-reachable 'a2 '(tb12 t2 tb23 m2))
+        ,@(make-reachable 'a3 '(tb23 table-out
                                 t3 tb34 m3))
-	,@(make-reachable 'a4 '(t4 m4))
+	,@(make-reachable 'a4 '(t4 tb34 m4))
 
 	;; position attributes
 	,@(make-dists '(table-in m1 t1
