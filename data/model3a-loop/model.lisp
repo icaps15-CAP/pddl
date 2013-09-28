@@ -36,11 +36,11 @@
 	(= (loading-cost) 1) ; !!! do not remove this
 
 	;; arm attributes
-	,@(make-reachable 'arm1 '(table-in
+	,@(make-reachable 'a1 '(table-in
                                   t1 tb-for-p1 tb12 tb13 m3 m5))
-	,@(make-reachable 'arm2 '(table-out
-                                  t2 tb-for-p2 tb12 tb23 m1 m4))
-        ,@(make-reachable 'arm3 '(t3 tb-for-p3 tb13 tb23 m2 m6))
+	,@(make-reachable 'a2 '(t2 tb-for-p2 tb12 tb23 m1 m4))
+        ,@(make-reachable 'a3 '(table-out
+                                  t3 tb-for-p3 tb13 tb23 m2 m6))
 
 	;; position attributes
 	,@(make-dists  '(table-in m3
@@ -78,7 +78,7 @@
 	,@(make-initial-bases bases)
 
    ;;;; Arms ;;;;;;;;;;;;;;;;
-	,@(make-initial-arms '(arm1 arm2 arm3)
+	,@(make-initial-arms '(a1 a2 a3)
 			     '(t1 m4 tb23)))
        (:goal (and
 	       ,@(make-goal-bases bases 'j9)
