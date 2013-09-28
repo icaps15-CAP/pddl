@@ -1,0 +1,151 @@
+Dispatcher selected state size 1.
+This is a nonunit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.000566907s
+Discovered 8 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+11 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+4 initial landmarks, 2 goal landmarks
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.000707331s
+Discovered 8 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+11 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+4 initial landmarks, 2 goal landmarks
+Starting search: lazy_greedy(list(hff1, hlm1), preferred = list(hff1, hlm1), cost_type = 1, reopen_closed = false)
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 4/3 [g=0, 1 evaluated, 0 expanded, t=0s]
+Best heuristic value: 2/2 [g=1, 2 evaluated, 1 expanded, t=0s]
+Best heuristic value: 1/1 [g=2, 3 evaluated, 2 expanded, t=0s]
+Solution found!
+Actual search time: 0s [t=0s]
+do-plane part-0 planer-0 rough color-1 varnished (10)
+do-immersion-varnish part-0 immersion-varnisher-0 color-0 smooth (10)
+do-grind part-0 grinder-0 smooth color-0 varnished colourfragments (15)
+do-grind part-0 grinder-0 verysmooth natural colourfragments untreated (15)
+do-immersion-varnish part-0 immersion-varnisher-0 color-0 verysmooth (10)
+Plan length: 5 step(s).
+Plan cost: 60
+Initial state h value: 4/3.
+Expanded 5 state(s).
+Reopened 0 state(s).
+Evaluated 6 state(s).
+Evaluations: 12
+Generated 13 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 60
+Solution found - keep searching
+Starting search: lazy_greedy(list(hff2, hlm2), preferred = list(hff2, hlm2), reopen_closed = false)
+Conducting lazy best first search, (real) bound = 60
+Best heuristic value: 49/38 [g=0, 1 evaluated, 0 expanded, t=0s]
+Best heuristic value: 27/27 [g=10, 2 evaluated, 1 expanded, t=0s]
+Best heuristic value: 16/16 [g=20, 3 evaluated, 2 expanded, t=0s]
+Best heuristic value: 11/16 [g=35, 4 evaluated, 3 expanded, t=0s]
+Best heuristic value: 11/11 [g=25, 5 evaluated, 4 expanded, t=0s]
+Solution found!
+Actual search time: 0s [t=0s]
+do-plane part-0 planer-0 rough color-1 varnished (10)
+do-grind part-0 grinder-0 smooth natural untreated untreated (15)
+do-immersion-varnish part-0 immersion-varnisher-0 color-0 verysmooth (10)
+Plan length: 3 step(s).
+Plan cost: 35
+Initial state h value: 49/38.
+Expanded 5 state(s).
+Reopened 0 state(s).
+Evaluated 6 state(s).
+Evaluations: 12
+Generated 13 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 35
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 5)
+Conducting lazy best first search, (real) bound = 35
+Best heuristic value: 49/38 [g=0, 1 evaluated, 0 expanded, t=0s]
+Best heuristic value: 27/27 [g=10, 2 evaluated, 1 expanded, t=0s]
+Best heuristic value: 16/16 [g=20, 3 evaluated, 2 expanded, t=0s]
+Best heuristic value: 11/11 [g=25, 4 evaluated, 3 expanded, t=0s]
+Completely explored state space -- no solution!
+Actual search time: 0s [t=0s]
+Initial state h value: 49/38.
+Expanded 8 state(s).
+Reopened 0 state(s).
+Evaluated 8 state(s).
+Evaluations: 16
+Generated 19 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 35
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 3)
+Conducting lazy best first search, (real) bound = 35
+Best heuristic value: 49/38 [g=0, 1 evaluated, 0 expanded, t=0s]
+Best heuristic value: 27/27 [g=10, 2 evaluated, 1 expanded, t=0s]
+Best heuristic value: 16/16 [g=20, 3 evaluated, 2 expanded, t=0s]
+Best heuristic value: 11/11 [g=25, 4 evaluated, 3 expanded, t=0s]
+Completely explored state space -- no solution!
+Actual search time: 0s [t=0s]
+Initial state h value: 49/38.
+Expanded 8 state(s).
+Reopened 0 state(s).
+Evaluated 8 state(s).
+Evaluations: 16
+Generated 19 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 35
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 2)
+Conducting lazy best first search, (real) bound = 35
+Best heuristic value: 49/38 [g=0, 1 evaluated, 0 expanded, t=0s]
+Best heuristic value: 27/27 [g=10, 2 evaluated, 1 expanded, t=0s]
+Best heuristic value: 16/16 [g=20, 3 evaluated, 2 expanded, t=0s]
+Best heuristic value: 11/11 [g=25, 4 evaluated, 3 expanded, t=0s]
+Completely explored state space -- no solution!
+Actual search time: 0s [t=0s]
+Initial state h value: 49/38.
+Expanded 8 state(s).
+Reopened 0 state(s).
+Evaluated 8 state(s).
+Evaluations: 16
+Generated 19 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 35
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 1)
+Conducting lazy best first search, (real) bound = 35
+Best heuristic value: 49/38 [g=0, 1 evaluated, 0 expanded, t=0s]
+Best heuristic value: 27/27 [g=10, 2 evaluated, 1 expanded, t=0s]
+Best heuristic value: 16/16 [g=20, 3 evaluated, 2 expanded, t=0s]
+Best heuristic value: 11/11 [g=25, 4 evaluated, 3 expanded, t=0s]
+Completely explored state space -- no solution!
+Actual search time: 0s [t=0s]
+Initial state h value: 49/38.
+Expanded 8 state(s).
+Reopened 0 state(s).
+Evaluated 8 state(s).
+Evaluations: 16
+Generated 19 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 35
+No solution found - keep searching
+Actual search time: 0s [t=0s]
+Cumulative statistics:
+Expanded 42 state(s).
+Reopened 0 state(s).
+Evaluated 44 state(s).
+Evaluations: 88
+Generated 102 state(s).
+Dead ends: 0 state(s).
+Search time: 0s
+Total time: 0s
+Solution found.
+Peak memory: 3688 KB

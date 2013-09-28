@@ -1,0 +1,10 @@
+Parsing... Traceback (most recent call last):
+  File "/home/asai/repos/downward/src/translate/translate.py", line 665, in <module>
+    main()
+  File "/home/asai/repos/downward/src/translate/translate.py", line 643, in main
+    task = pddl.open()
+  File "/home/asai/repos/downward/src/translate/pddl/pddl_file.py", line 55, in open
+    return tasks.Task.parse(domain_pddl, task_pddl)
+  File "/home/asai/repos/downward/src/translate/pddl/tasks.py", line 44, in parse
+    assert domain_name == task_domain_name
+AssertionError
