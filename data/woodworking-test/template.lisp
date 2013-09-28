@@ -199,5 +199,5 @@
 
 ;; execution
 
-(iter (for n in '(1 4 16 64 256 2014))
+(iter (for n in '(1 4 16 64 256 1024))
       (write-it "wood-test" #'make-it n))
