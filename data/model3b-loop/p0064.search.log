@@ -1,0 +1,60 @@
+Dispatcher selected state size 1.
+This is a nonunit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 14.9935s
+Discovered 2684 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+21100 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+1257 initial landmarks, 128 goal landmarks
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 15.8621s
+Discovered 2684 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+21100 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+1257 initial landmarks, 128 goal landmarks
+Starting search: lazy_greedy(list(hff1, hlm1), preferred = list(hff1, hlm1), cost_type = 1, reopen_closed = false)
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 1427/1424 [g=0, 1 evaluated, 0 expanded, t=31.2s]
+Best heuristic value: 1427/1423 [g=1, 2 evaluated, 1 expanded, t=31.2s]
+Best heuristic value: 1426/1423 [g=2, 3 evaluated, 2 expanded, t=31.2s]
+Best heuristic value: 1425/1423 [g=3, 4 evaluated, 3 expanded, t=31.21s]
+Best heuristic value: 1425/1422 [g=4, 6 evaluated, 5 expanded, t=31.22s]
+Best heuristic value: 1424/1422 [g=4, 9 evaluated, 8 expanded, t=31.24s]
+Best heuristic value: 1424/1421 [g=5, 13 evaluated, 12 expanded, t=31.26s]
+Best heuristic value: 1423/1421 [g=7, 79 evaluated, 78 expanded, t=31.59s]
+Best heuristic value: 1423/1420 [g=8, 148 evaluated, 147 expanded, t=31.94s]
+Best heuristic value: 1423/1419 [g=9, 162 evaluated, 161 expanded, t=32.01s]
+Best heuristic value: 1422/1419 [g=10, 170 evaluated, 169 expanded, t=32.05s]
+Best heuristic value: 1421/1419 [g=13, 275 evaluated, 270 expanded, t=32.59s]
+Best heuristic value: 1421/1417 [g=14, 285 evaluated, 280 expanded, t=32.64s]
+Best heuristic value: 1420/1417 [g=18, 5662 evaluated, 5390 expanded, t=62.07s]
+Best heuristic value: 1420/1415 [g=19, 5673 evaluated, 5401 expanded, t=62.13s]
+Best heuristic value: 1419/1415 [g=26, 31066 evaluated, 27451 expanded, t=210.13s]
+Best heuristic value: 1419/1413 [g=27, 31073 evaluated, 27458 expanded, t=210.17s]
+Best heuristic value: 1418/1413 [g=35, 96224 evaluated, 83996 expanded, t=632.7s]
+Best heuristic value: 1418/1411 [g=36, 96232 evaluated, 84004 expanded, t=632.76s]
+Best heuristic value: 1417/1411 [g=44, 183599 evaluated, 163595 expanded, t=1290.44s]
+Best heuristic value: 1417/1409 [g=45, 183606 evaluated, 163602 expanded, t=1290.48s]
+/home/asai/repos/downward/src/search/downward: 196 行:  3477 強制終了            "$PLANNER" --heuristic "hlm1,hff1=lm_ff_syn(lm_rhw(
+                    reasonable_orders=true,lm_cost_type=1,cost_type=1))" --heuristic "hlm2,hff2=lm_ff_syn(lm_rhw(
+                    reasonable_orders=true,lm_cost_type=2,cost_type=2))" --search "iterated([
+                    lazy_greedy([hff1,hlm1],preferred=[hff1,hlm1],
+                                cost_type=1,reopen_closed=false),
+                    lazy_greedy([hff2,hlm2],preferred=[hff2,hlm2],
+                                reopen_closed=false),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=5),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=3),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=2),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=1)],
+                    repeat_last=true,continue_on_fail=true)" "$@" < $TEMPFILE

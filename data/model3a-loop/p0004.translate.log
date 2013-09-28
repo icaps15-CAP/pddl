@@ -1,0 +1,53 @@
+Parsing... [0.010s CPU, 0.010s wall-clock]
+Normalizing task... [0.000s CPU, 0.001s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.001s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.010s CPU, 0.007s wall-clock]
+Preparing model... [0.000s CPU, 0.005s wall-clock]
+Generated 68 rules.
+Computing model... [0.070s CPU, 0.068s wall-clock]
+1367 relevant atoms
+2302 auxiliary atoms
+3669 final queue length
+5456 total queue pushes
+Completing instantiation... [0.230s CPU, 0.232s wall-clock]
+Instantiating: [0.310s CPU, 0.315s wall-clock]
+Computing fact groups...
+Finding invariants...
+15 initial candidates
+Finding invariants: [0.010s CPU, 0.006s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+158 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.001s wall-clock]
+Computing fact groups: [0.010s CPU, 0.009s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.010s CPU, 0.006s wall-clock]
+Translating task: [0.080s CPU, 0.083s wall-clock]
+120 implied effects removed
+756 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+17 propositions removed
+Detecting unreachable propositions: [0.020s CPU, 0.016s wall-clock]
+Translator variables: 154
+Translator derived variables: 0
+Translator facts: 320
+Translator mutex groups: 3
+Translator total mutex groups size: 18
+Translator operators: 987
+Translator task size: 7780
+Translator peak memory: 49016 KB
+Writing output... [0.020s CPU, 0.016s wall-clock]
+Done! [0.460s CPU, 0.458s wall-clock]

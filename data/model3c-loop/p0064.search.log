@@ -1,0 +1,85 @@
+Dispatcher selected state size 1.
+This is a nonunit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 94.1441s
+Discovered 3401 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+28719 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+1586 initial landmarks, 128 goal landmarks
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 50.4167s
+Discovered 3401 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+28719 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+1586 initial landmarks, 128 goal landmarks
+Starting search: lazy_greedy(list(hff1, hlm1), preferred = list(hff1, hlm1), cost_type = 1, reopen_closed = false)
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 1815/2010 [g=0, 1 evaluated, 0 expanded, t=145.36s]
+Best heuristic value: 1815/2009 [g=1, 2 evaluated, 1 expanded, t=145.37s]
+Best heuristic value: 1814/2009 [g=2, 3 evaluated, 2 expanded, t=145.38s]
+Best heuristic value: 1813/2009 [g=3, 4 evaluated, 3 expanded, t=145.39s]
+Best heuristic value: 1813/2008 [g=4, 6 evaluated, 5 expanded, t=145.41s]
+Best heuristic value: 1812/2008 [g=4, 9 evaluated, 8 expanded, t=145.44s]
+Best heuristic value: 1812/2007 [g=5, 15 evaluated, 14 expanded, t=145.51s]
+Best heuristic value: 1811/2007 [g=6, 20 evaluated, 19 expanded, t=145.56s]
+Best heuristic value: 1811/2006 [g=6, 25 evaluated, 24 expanded, t=145.61s]
+Best heuristic value: 1810/2006 [g=8, 141 evaluated, 139 expanded, t=146.78s]
+Best heuristic value: 1809/2006 [g=11, 534 evaluated, 495 expanded, t=153.79s]
+Best heuristic value: 1809/2004 [g=12, 548 evaluated, 509 expanded, t=154.06s]
+Best heuristic value: 1808/2004 [g=13, 698 evaluated, 650 expanded, t=156.85s]
+Best heuristic value: 1807/2004 [g=15, 864 evaluated, 807 expanded, t=159.77s]
+Best heuristic value: 1807/2003 [g=15, 7262 evaluated, 6458 expanded, t=266.93s]
+Best heuristic value: 1807/2002 [g=17, 7442 evaluated, 6618 expanded, t=270.32s]
+Best heuristic value: 1806/2001 [g=20, 8579 evaluated, 7603 expanded, t=292.73s]
+Best heuristic value: 1805/2001 [g=21, 8586 evaluated, 7610 expanded, t=292.87s]
+Best heuristic value: 1804/2001 [g=23, 8627 evaluated, 7647 expanded, t=293.67s]
+Best heuristic value: 1803/2001 [g=25, 8681 evaluated, 7696 expanded, t=294.75s]
+Best heuristic value: 1803/2000 [g=27, 8719 evaluated, 7731 expanded, t=295.5s]
+Best heuristic value: 1802/2000 [g=27, 8726 evaluated, 7738 expanded, t=295.64s]
+Best heuristic value: 1801/2000 [g=29, 8827 evaluated, 7831 expanded, t=297.58s]
+Best heuristic value: 1801/1999 [g=30, 8831 evaluated, 7835 expanded, t=297.63s]
+Best heuristic value: 1801/1997 [g=31, 8840 evaluated, 7844 expanded, t=297.74s]
+Best heuristic value: 1800/1997 [g=32, 8989 evaluated, 7984 expanded, t=299.51s]
+Best heuristic value: 1800/1996 [g=34, 9247 evaluated, 8223 expanded, t=302.59s]
+Best heuristic value: 1800/1995 [g=37, 11303 evaluated, 10046 expanded, t=326.95s]
+Best heuristic value: 1799/1995 [g=38, 11305 evaluated, 10048 expanded, t=326.97s]
+Best heuristic value: 1798/1995 [g=39, 11321 evaluated, 10064 expanded, t=327.16s]
+Best heuristic value: 1798/1994 [g=41, 11365 evaluated, 10104 expanded, t=327.69s]
+Best heuristic value: 1797/1994 [g=42, 12369 evaluated, 10945 expanded, t=339.75s]
+Best heuristic value: 1797/1993 [g=43, 12370 evaluated, 10946 expanded, t=339.77s]
+Best heuristic value: 1796/1993 [g=43, 12385 evaluated, 10961 expanded, t=339.95s]
+Best heuristic value: 1796/1992 [g=45, 12430 evaluated, 11002 expanded, t=340.49s]
+Best heuristic value: 1795/1992 [g=45, 12445 evaluated, 11017 expanded, t=340.68s]
+Best heuristic value: 1794/1992 [g=47, 12537 evaluated, 11101 expanded, t=341.79s]
+Best heuristic value: 1794/1991 [g=48, 12556 evaluated, 11119 expanded, t=342.03s]
+Best heuristic value: 1794/1989 [g=49, 12557 evaluated, 11120 expanded, t=342.04s]
+Best heuristic value: 1793/1989 [g=50, 33345 evaluated, 28816 expanded, t=662.1s]
+Best heuristic value: 1792/1989 [g=51, 33364 evaluated, 28834 expanded, t=662.42s]
+Best heuristic value: 1792/1988 [g=54, 36211 evaluated, 31391 expanded, t=699.33s]
+Best heuristic value: 1792/1987 [g=55, 36222 evaluated, 31402 expanded, t=699.48s]
+Best heuristic value: 1791/1987 [g=54, 57003 evaluated, 49536 expanded, t=918.16s]
+Best heuristic value: 1790/1987 [g=55, 57017 evaluated, 49550 expanded, t=918.28s]
+Best heuristic value: 1790/1986 [g=58, 59739 evaluated, 51984 expanded, t=941.38s]
+/home/asai/repos/downward/src/search/downward: 196 行:  3658 強制終了            "$PLANNER" --heuristic "hlm1,hff1=lm_ff_syn(lm_rhw(
+                    reasonable_orders=true,lm_cost_type=1,cost_type=1))" --heuristic "hlm2,hff2=lm_ff_syn(lm_rhw(
+                    reasonable_orders=true,lm_cost_type=2,cost_type=2))" --search "iterated([
+                    lazy_greedy([hff1,hlm1],preferred=[hff1,hlm1],
+                                cost_type=1,reopen_closed=false),
+                    lazy_greedy([hff2,hlm2],preferred=[hff2,hlm2],
+                                reopen_closed=false),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=5),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=3),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=2),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=1)],
+                    repeat_last=true,continue_on_fail=true)" "$@" < $TEMPFILE

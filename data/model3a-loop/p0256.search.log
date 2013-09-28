@@ -1,0 +1,47 @@
+Dispatcher selected state size 2.
+This is a nonunit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 856.611s
+Discovered 11832 landmarks, of which 1 are disjunctive and 0 are conjunctive 
+76574 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+5672 initial landmarks, 512 goal landmarks
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 591.124s
+Discovered 11832 landmarks, of which 1 are disjunctive and 0 are conjunctive 
+76574 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+5672 initial landmarks, 512 goal landmarks
+Starting search: lazy_greedy(list(hff1, hlm1), preferred = list(hff1, hlm1), cost_type = 1, reopen_closed = false)
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 6160/6675 [g=0, 1 evaluated, 0 expanded, t=1452.06s]
+Best heuristic value: 6160/6674 [g=1, 2 evaluated, 1 expanded, t=1452.12s]
+Best heuristic value: 6160/6673 [g=2, 7 evaluated, 6 expanded, t=1452.34s]
+Best heuristic value: 6159/6673 [g=1, 10 evaluated, 9 expanded, t=1452.46s]
+Best heuristic value: 6158/6673 [g=5, 605 evaluated, 581 expanded, t=1475.04s]
+Best heuristic value: 6158/6672 [g=6, 606 evaluated, 582 expanded, t=1475.08s]
+Best heuristic value: 6158/6671 [g=6, 611 evaluated, 587 expanded, t=1475.3s]
+Best heuristic value: 6157/6671 [g=10, 10039 evaluated, 9947 expanded, t=1752.44s]
+/home/asai/repos/downward/src/search/downward: 196 行:  3565 強制終了            "$PLANNER" --heuristic "hlm1,hff1=lm_ff_syn(lm_rhw(
+                    reasonable_orders=true,lm_cost_type=1,cost_type=1))" --heuristic "hlm2,hff2=lm_ff_syn(lm_rhw(
+                    reasonable_orders=true,lm_cost_type=2,cost_type=2))" --search "iterated([
+                    lazy_greedy([hff1,hlm1],preferred=[hff1,hlm1],
+                                cost_type=1,reopen_closed=false),
+                    lazy_greedy([hff2,hlm2],preferred=[hff2,hlm2],
+                                reopen_closed=false),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=5),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=3),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=2),
+                    lazy_wastar([hff2,hlm2],preferred=[hff2,hlm2],w=1)],
+                    repeat_last=true,continue_on_fail=true)" "$@" < $TEMPFILE
