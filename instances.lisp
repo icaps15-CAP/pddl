@@ -5,16 +5,26 @@
                   (lambda (c)
                     (muffle-warning c))))
     (defpackage pddl.instances
-      (:use :cl :iterate :pddl :guicho-utilities :alexandria)
+      (:use :cl :iterate :pddl :guicho-utilities :alexandria
+            :cl-ppcre :osicat)
       (:shadowing-import-from :pddl :minimize :maximize))))
 
 (in-package :pddl.instances)
 
+(defun find-by-regex (regex)
+  (let (acc)
+    (walk-directory
+     (asdf:system-relative-pathname :pddl "data/")
+     (lambda (path)
+       (push (absolute-pathname path) acc))
+     :test
+     (lambda (path)
+       (scan regex (princ-to-string (absolute-pathname path)))))
+    acc))
 
-(defun read-many-plans (problem planname-fn)
-  (iter (for i from 1)
-        (for path = (funcall planname-fn i))
-        (while (probe-file path))
+(defun read-many-plans (problem planname-regex)
+  (iter (for path in (find-by-regex planname-regex))
+        (for i from 1)
         (for sym = (concatenate-symbols
                     (name problem) i))
         (for plan = (pddl-plan
@@ -24,13 +34,10 @@
         (eval `(defparameter ,sym ,plan))
         (export sym)))
 
-(defun read-many-problems (problempath-fn planpath-fn)
-  (iter (for i from 1)
-        (for path = (funcall problempath-fn i))
-        (while (probe-file path))
+(defun read-many-problems (problempath-regex planpath-regex)
+  (iter (for path in (find-by-regex problempath-regex))
         (for sym = (parse-file path))
-        (read-many-plans (symbol-value sym)
-                         (curry planpath-fn i))
+        (read-many-plans (symbol-value sym) planpath-regex)
         (export sym)))
 
 (defun data (name)
@@ -39,6 +46,7 @@
    (asdf:system-relative-pathname :pddl "data/")))
 
 (defun all (domain &rest args)
+  (format t "~&; loading ~a~&" domain)
   (handler-bind ((warning #'muffle-warning))
     (let ((sym (parse-file (data domain))))
       (export sym)
@@ -47,32 +55,36 @@
 
 (defun all2 (args)
   (when args
+    (format t "~&; loading ~a~&; and     ~a"
+            (first args)            
+            (second args))
     (read-many-problems
-     (lambda (i) (data (format nil (first args) i)))
-     (lambda (i j) (data (format nil (second args) i j))))
+     (first args)
+     (second args))
     (all2 (nthcdr 2 args))))
 
 (all "domain.pddl"
-     "pfile~a"
-     "pfile~a.plan.~a")
+     "pfile[0-9]*$"
+     "pfile[0-9]*.plan.[0-9]*")
 (all "costs/domain.pddl"
-     "costs/model2b~a.pddl"
-     "costs/model2b~a.plan.~a"
-     "costs/model2a~a.pddl"
-     "costs/model2a~a.plan.~a")
+     "costs/model2[ab][0-9]*.pddl"
+     "costs/model2[ab][0-9]*.plan.[0-9]*"
+     "model[23][a-c]-loop/p[0-9]*.pddl"
+     "model[23][a-c]-loop/p[0-9]*.plan.[0-9]*")
 (all "costs-eachparts/domain.pddl"
-     "costs-eachparts/model2a-each-~a.pddl"
-     "costs-eachparts/model2a-each-~a.plan.~a")
+     "costs-eachparts/model2a-each-[0-9]*.pddl"
+     "costs-eachparts/model2a-each-[0-9]*.plan.[0-9]*")
 (all "woodworking-sat11-strips/domain.pddl"
-     "woodworking-sat11-strips/p~2,,,'0@a.pddl"
-     "woodworking-sat11-strips/p~2,,,'0@a.plan.~a"
-     "woodworking-opt11-strips/p~2,,,'0@a.pddl"
-     "woodworking-opt11-strips/p~2,,,'0@a.plan.~a")
+     "woodworking-(sat|opt)11-strips/p[0-9]*.pddl"
+     "woodworking-(sat|opt)11-strips/p[0-9]*.plan.[0-9]*")
+(all "woodworking-test/domain.pddl"
+     "woodworking-test2?/wood-test-[0-9]*.pddl"
+     "woodworking-test2?/wood-test-[0-9]*.plan.[0-9]*")
 (all "satellite-typed/domain.pddl"
-     "satellite-typed/p~2,,,'0@a.pddl"
-     "satellite-typed/p~2,,,'0@a.plan.~a"
-     "satellite-typed-loop/p~2,,,'0@a.pddl"
-     "satellite-typed-loop/p~2,,,'0@a.plan.~a")
+     "satellite-typed/p[0-9]*.pddl"
+     "satellite-typed/p[0-9]*.plan.[0-9]*"
+     "satellite-typed-loop/satellite-loop-[0-9]*.pddl"
+     "satellite-typed-loop/satellite-loop-[0-9]*.plan.[0-9]*")
 (all "rovers/domain.pddl"
-     "rovers/p~2,,,'0@a.pddl"
-     "rovers/p~2,,,'0@a.plan.~a")
+     "rovers/p[0-9]*.pddl"
+     "rovers/p[0-9]*.plan.[0-9]*")
