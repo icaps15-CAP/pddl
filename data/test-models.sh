@@ -1,8 +1,13 @@
 #! /bin/bash
 
 SCRIPT=$(realpath test-problem.sh)
-for pddl in $(ls $1)
+
+pushd ${1##*/}
+echo ${1##*/}
+for pddl in $(ls $2*.pddl)
 do
+    echo $pddl
     $SCRIPT $pddl
 done
+popd
 

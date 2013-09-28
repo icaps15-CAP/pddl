@@ -29,14 +29,21 @@ shift $(($OPTIND - 1))
 
 
 if [ $OPT_ERROR ]; then      # option error
-  echo >&2 "usage: $0 [-ab] [-c arg1] [-d arg2] ..."
+  echo >&2 "usage: $0 [-v] [-t TIME-LIMIT] [-m MEMORY-LIMIT] [-o FD-OPTIONS] ..."
   exit 1
 fi
 
 ulimit -v $MEMORY_USAGE -t $TIME_LIMIT
 
 PDDL=$(realpath $1)
-DOMAIN=$(realpath $2)
+
+if [[ $2 != "" ]]
+then
+    DOMAIN=$(realpath $2)
+else
+    DOMAIN=$(realpath domain.pddl)
+fi
+
 
 if [[ $PDDL =~ .*\.pddl ]]
 then
