@@ -22,6 +22,14 @@
    (lambda (c s)
      (describe c s))))
 
+@export
+@doc "Signalled when a state violates the negative condition."
+(define-condition negative-condition-matched (condition)
+  ((predicate :initarg :predicate)
+   (matches :initarg :matches))
+  (:report
+   (lambda (c s)
+     (describe c s))))
 
 @export
 @doc "STATES : `list' of `pddl-atomic-state' .
@@ -145,7 +153,9 @@ Values are (success-p remaining-states new-matches used-states)."
   (multiple-value-match
         (%apply-clause-rec states pred matches used-states)
     (((not nil) _ _)
-     nil)
+     (signal 'negative-condition-matched
+             :predicate pred
+             :matches matches))
     (()
      (values t states matches used-states))))
 
