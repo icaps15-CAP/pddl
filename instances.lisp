@@ -65,13 +65,13 @@
 (all "costs/domain.pddl"
      "costs/model2[ab][0-9]*.pddl"     
      "model[23][a-c]-loop/p[0-9]*.pddl")
-(all "costs-eachparts/domain.pddl"
-     "costs-eachparts/model2a-each-[0-9]*.pddl")
-(all "woodworking-sat11-strips/domain.pddl"
-     "woodworking-(sat|opt)11-strips/p[0-9]*.pddl")
+;; (all "costs-eachparts/domain.pddl"
+;;      "costs-eachparts/model2a-each-[0-9]*.pddl")
+;; (all "woodworking-sat11-strips/domain.pddl"
+;;      "woodworking-(sat|opt)11-strips/p[0-9]*.pddl")
 (all "woodworking-test-tempo-converted/domain.pddl"
      "woodworking-test2?-tempo-converted/wood-test-tempo-[0-9]*.pddl")
 (all "satellite-typed-loop/domain.pddl"
      "satellite-typed-loop/satellite-loop-[0-9]*.pddl")
-(all "rovers/domain.pddl"
-     "rovers/p[0-9]*.pddl")
+;; (all "rovers/domain.pddl"
+;;      "rovers/p[0-9]*.pddl")
