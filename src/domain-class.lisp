@@ -89,7 +89,11 @@
 
 @export
 @doc "returns t if the arguments of pred1 is more specific than
-that of pred2."
+that of pred2. a predicate p1 is more specific than p2 when:
+
+1. (eqname p1 p2)
+2. each parameter of p1 has more specific types than its p2 counterpart.
+"
 (defun predicate-more-specific-p (pred1 pred2)
   (and (eqname pred1 pred2)
        (every #'pddl-supertype-p
