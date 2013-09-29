@@ -60,8 +60,7 @@
              (on_board ?i ?s)
              (supports ?i ?m)
              (power_on ?i)
-             (pointing ?s ?d)
-             (power_on ?i))
+             (pointing ?s ?d))
  :effect
 	 (have_image ?d ?m))
 
