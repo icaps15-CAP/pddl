@@ -89,8 +89,10 @@
 
 @export
 (defun cost (env)
-  (funcall (metric-function (metric (problem env)))
-           (states env)))
+  (if-let ((metric (metric (problem env))))
+    (funcall (metric-function metric)
+             (states env))
+    (1- (index env))))
 
 
 @export
