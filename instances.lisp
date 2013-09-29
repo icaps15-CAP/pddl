@@ -22,8 +22,9 @@
        (scan regex (princ-to-string (absolute-pathname path)))))
     acc))
 
-(defun read-many-plans (problem planname-regex)
-  (iter (for path in (find-by-regex planname-regex))
+(defun read-many-plans (problem plans)
+  (iter (for path in plans)
+        (format t "~&; loading ~a~&" path)
         (for i from 1)
         (for sym = (concatenate-symbols
                     (name problem) i))
@@ -34,10 +35,11 @@
         (eval `(defparameter ,sym ,plan))
         (export sym)))
 
-(defun read-many-problems (problempath-regex planpath-regex)
+(defun read-many-problems (problempath-regex)
   (iter (for path in (find-by-regex problempath-regex))
+        (format t "~&; loading ~a~&" path)
         (for sym = (parse-file path))
-        (read-many-plans (symbol-value sym) planpath-regex)
+        (read-many-plans (symbol-value sym) (problem->plans path))
         (export sym)))
 
 (defun data (name)
@@ -51,40 +53,25 @@
     (let ((sym (parse-file (data domain))))
       (export sym)
       (let ((*domain* (symbol-value sym)))
-        (all2 args)))))
+        (mapcar #'read-many-problems args)))))
 
-(defun all2 (args)
-  (when args
-    (format t "~&; loading ~a~&; and     ~a"
-            (first args)            
-            (second args))
-    (read-many-problems
-     (first args)
-     (second args))
-    (all2 (nthcdr 2 args))))
+(defun problem->plans (problem-path)
+  (register-groups-bind (prefix)
+      ("^(.*)pddl$" (princ-to-string (absolute-pathname problem-path)))
+    (find-by-regex (format nil "~aplan.[0-9]*" prefix))))
 
 (all "domain.pddl"
-     "pfile[0-9]*$"
-     "pfile[0-9]*.plan.[0-9]*")
+     "pfile[0-9]*$")
 (all "costs/domain.pddl"
-     "costs/model2[ab][0-9]*.pddl"
-     "costs/model2[ab][0-9]*.plan.[0-9]*"
-     "model[23][a-c]-loop/p[0-9]*.pddl"
-     "model[23][a-c]-loop/p[0-9]*.plan.[0-9]*")
+     "costs/model2[ab][0-9]*.pddl"     
+     "model[23][a-c]-loop/p[0-9]*.pddl")
 (all "costs-eachparts/domain.pddl"
-     "costs-eachparts/model2a-each-[0-9]*.pddl"
-     "costs-eachparts/model2a-each-[0-9]*.plan.[0-9]*")
+     "costs-eachparts/model2a-each-[0-9]*.pddl")
 (all "woodworking-sat11-strips/domain.pddl"
-     "woodworking-(sat|opt)11-strips/p[0-9]*.pddl"
-     "woodworking-(sat|opt)11-strips/p[0-9]*.plan.[0-9]*")
-(all "woodworking-test/domain.pddl"
-     "woodworking-test2?/wood-test-[0-9]*.pddl"
-     "woodworking-test2?/wood-test-[0-9]*.plan.[0-9]*")
-(all "satellite-typed/domain.pddl"
-     "satellite-typed/p[0-9]*.pddl"
-     "satellite-typed/p[0-9]*.plan.[0-9]*"
-     "satellite-typed-loop/satellite-loop-[0-9]*.pddl"
-     "satellite-typed-loop/satellite-loop-[0-9]*.plan.[0-9]*")
+     "woodworking-(sat|opt)11-strips/p[0-9]*.pddl")
+(all "woodworking-test-tempo-converted/domain.pddl"
+     "woodworking-test2?-tempo-converted/wood-test-tempo-[0-9]*.pddl")
+(all "satellite-typed-loop/domain.pddl"
+     "satellite-typed-loop/satellite-loop-[0-9]*.pddl")
 (all "rovers/domain.pddl"
-     "rovers/p[0-9]*.pddl"
-     "rovers/p[0-9]*.plan.[0-9]*")
+     "rovers/p[0-9]*.pddl")
