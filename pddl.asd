@@ -32,11 +32,12 @@
 		 (:file :specials)
 		 (:file :generics)
 		 (:file :helper)
-		 (:file :equality)
-		 (:file :parsers)
 		 
 		 (:file :domain-class)
 		 (:file :problem-class)
+		 (:file :equality)
+		 (:file :parsers)
+
 		 (:file :domain-parser)
 		 (:file :problem-parser)
 		 (:file :bootstrap)

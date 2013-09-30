@@ -23,29 +23,28 @@
      (define-constructor ,name)))
 
 (define-pddl-class namable ()
-  (name))
+  ((name :type symbol)))
 (define-pddl-class pathnamable ()
-  (path))
+  ((path :type pathname)))
 
-(defmethod name ((sym symbol))
-  sym)
+(declaim (ftype (function (namable) symbol) name))
 
+(define-pddl-class pddl-domain (pathnamable namable)
+  ((requirements :type list)
+   (types :type list)
+   (predicates :type list :initform nil)
+   (constants :type list)
+   (functions :type list)
+   (actions :type list)
+   (durative-actions :type list)
+   (derived-predicates :type list)))
+
+(declaim (ftype (function (pddl-domain-slot) pddl-domain) domain))
 (define-pddl-class pddl-domain-slot ()
-  (domain))
-
+  ((domain :type pddl-domain)))
 (defmethod initialize-instance :after ((o pddl-domain-slot)
                                        &key (domain *domain*))
   (setf (domain o) domain))
-
-(define-pddl-class pddl-domain (pathnamable namable)
-  (requirements
-   types
-   (predicates :initform nil)
-   constants
-   functions
-   actions
-   durative-actions
-   derived-predicates))
 
 @export
 @doc "find the action specified by the designator."
@@ -87,6 +86,10 @@
              (string= str (symbol-name (name predicate))))
            (predicates dom)))
 
+(declaim (ftype (function (t) list) parameters))
+(define-pddl-class pddl-parametrized-object ()
+  ((parameters :type list)))
+
 @export
 @doc "returns t if the arguments of pred1 is more specific than
 that of pred2. a predicate p1 is more specific than p2 when:
@@ -116,9 +119,6 @@ that of pred2. a predicate p1 is more specific than p2 when:
 @doc "returns the number of parameters."
 (defun arity (thing)
   (length (parameters thing)))
-
-(define-pddl-class pddl-parametrized-object ()
-  ((parameters :type pddl-variable)))
 
 (define-pddl-class pddl-predicate (pddl-domain-slot
                                    pddl-parametrized-object
