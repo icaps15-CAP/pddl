@@ -172,7 +172,7 @@ do
         if ls sas_plan* &> /dev/null
         then # パスが一つでもあれば終了
             echo "PID ($$): Reached the SOFT limit. Path found, $FD_PID terminated" >&2
-            killchildren $FD_PID
+            killchildren $TIMEOUT_PID
             break
         else # なければ hard limit に至るまで続行
             echo "PID ($$): Reached the SOFT limit. Continue searching..." >&2
