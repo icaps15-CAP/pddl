@@ -38,13 +38,13 @@ done
 shift $(($OPTIND - 1))
 
 if [ $OPT_ERROR ]; then      # option error
-  echo >&2 "usage: [-v] [-t SOFT_TIME_LIMIT] [-T HARD_TIME_LIMIT] [-m MEMORY_LIMIT] [-o FD_OPTIONS] problemfile [domainfile]"
+  echo "usage: [-v] [-t SOFT_TIME_LIMIT] [-T HARD_TIME_LIMIT] [-m MEMORY_LIMIT] [-o FD_OPTIONS] problemfile [domainfile]" >&2
   exit 1
 fi
 
 if [ $SOFT_TIME_LIMIT -gt $HARD_TIME_LIMIT ]
 then
-    echo >&2 "soft time limit should be smaller than hard limit"
+    echo "soft time limit should be smaller than hard limit" >&2
     exit 1
 fi
 
@@ -115,15 +115,15 @@ then
 fi
 
 
-$TRANSLATE $DOMAIN $PDDL >& $PROBLEM_NAME.translate.log
+$TRANSLATE $DOMAIN $PDDL &> $PROBLEM_NAME.translate.log
 echo Translation Finished
 mv output.sas $SAS
-for groups in $(ls *.groups)
+for groups in $(ls *.groups 2> /dev/null)
 do
     mv $groups $PROBLEM_NAME.$groups
 done
 
-$PREPROCESS < $SAS >& $PROBLEM_NAME.preprocess.log
+$PREPROCESS < $SAS &> $PROBLEM_NAME.preprocess.log
 echo Preprocessing Finished
 mv output $SAS_PLUS
 
@@ -131,7 +131,7 @@ FD_STATUS=$(mktemp)
 TIMEOUT_STATUS=$(mktemp)
 
 coproc FD {
-    $SEARCH < $SAS_PLUS >& $PROBLEM_NAME.search.log
+    $SEARCH < $SAS_PLUS &> $PROBLEM_NAME.search.log
     echo $? > $FD_STATUS
 }
 coproc TIMEOUT {
@@ -159,10 +159,10 @@ do
         break
     elif [[ $(cat $TIMEOUT_STATUS) == t ]]
     then
-        if ls sas_plan* > /dev/null
+        if ls sas_plan* &> /dev/null
         then
             echo "PID ($$): Reached the SOFT limit. Path found, $FD_PID terminated" >&2
-            pkill -15 -P $FD_PID
+            pkill -9 -P $FD_PID
             break
         else
             echo "PID ($$): Reached the SOFT limit. Continue searching..." >&2
