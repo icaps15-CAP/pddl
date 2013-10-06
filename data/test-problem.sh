@@ -127,26 +127,50 @@ $PREPROCESS < $SAS >& $PROBLEM_NAME.preprocess.log
 echo Preprocessing Finished
 mv output $SAS_PLUS
 
-$SEARCH < $SAS_PLUS >& $PROBLEM_NAME.search.log &
-FD_PID=$!
-checker=$(mktemp)
-chmod +x $checker
-echo "while kill -0 $FD_PID > /dev/null 2> /dev/null ; do sleep 1; done; exit 0;" > $checker
-if ( timeout $SOFT_TIME_LIMIT $checker )
+FD_STATUS=$(mktemp)
+TIMEOUT_STATUS=$(mktemp)
+
+coproc FD {
+    $SEARCH < $SAS_PLUS >& $PROBLEM_NAME.search.log
+    echo $? > $FD_STATUS
+}
+coproc TIMEOUT {
+    sleep $SOFT_TIME_LIMIT
+    echo t > $TIMEOUT_STATUS
+}
+
+CHECK_INTERVAL=5
+if [ $SOFT_TIME_LIMIT -lt $CHECK_INTERVAL ]
 then
-    echo "test-problem.sh ($$): Search finished normally." >&2
-else
-    if ls sas_plan* > /dev/null
-    then
-        echo "test-problem.sh ($$): Reached the SOFT limit. Path found, $FD_PID terminated" >&2
-        pkill -15 -P $FD_PID
-    else
-        echo "test-problem.sh ($$): Reached the SOFT limit. Continue searching..." >&2
-        wait $FD_PID
-        test $? && echo "test-problem.sh ($$): Reached the HARD limit, $FD_PID terminated" >&2
-    fi
+    CHECK_INTERVAL=$SOFT_TIME_LIMIT
 fi
-rm $checker
+
+while true
+do
+    sleep $CHECK_INTERVAL
+    if [[ $(cat $FD_STATUS) != "" ]]
+    then
+        if [[ $(cat $FD_STATUS) == 0 ]]
+        then
+            echo "PID ($$): Search finished normally." >&2
+        else
+            echo "PID ($$): Reached the HARD limit, $FD_PID terminated" >&2 
+        fi
+        break
+    elif [[ $(cat $TIMEOUT_STATUS) == t ]]
+    then
+        if ls sas_plan* > /dev/null
+        then
+            echo "PID ($$): Reached the SOFT limit. Path found, $FD_PID terminated" >&2
+            pkill -15 -P $FD_PID
+            break
+        else
+            echo "PID ($$): Reached the SOFT limit. Continue searching..." >&2
+        fi
+    fi
+done
+
+rm -f $FD_STATUS $TIMEOUT_STATUS
 
 mv elapsed.time $PROBLEM_NAME.time
 mv plan_numbers_and_cost $PROBLEM_NAME.cost
