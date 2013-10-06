@@ -38,8 +38,8 @@ done
 shift $(($OPTIND - 1))
 
 if [ $OPT_ERROR ]; then      # option error
-  echo "usage: [-v] [-t SOFT_TIME_LIMIT] [-T HARD_TIME_LIMIT] [-m MEMORY_LIMIT] [-o FD_OPTIONS] problemfile [domainfile]" >&2
-  exit 1
+    echo "usage: [-v] [-t SOFT_TIME_LIMIT] [-T HARD_TIME_LIMIT] [-m MEMORY_LIMIT] [-o FD_OPTIONS] problemfile [domainfile]" >&2
+    exit 1
 fi
 
 if [ $SOFT_TIME_LIMIT -gt $HARD_TIME_LIMIT ]
@@ -138,6 +138,9 @@ coproc TIMEOUT {
     sleep $SOFT_TIME_LIMIT
     echo t > $TIMEOUT_STATUS
 }
+echo "Script  Process $$"
+echo "FD      Process $FD_PID"
+echo "TIMEOUT Process $TIMEOUT_PID"
 
 CHECK_INTERVAL=5
 if [ $SOFT_TIME_LIMIT -lt $CHECK_INTERVAL ]
@@ -162,7 +165,7 @@ do
         if ls sas_plan* &> /dev/null
         then
             echo "PID ($$): Reached the SOFT limit. Path found, $FD_PID terminated" >&2
-            pkill -9 -P $FD_PID
+            pkill -9 -g $FD_PID
             break
         else
             echo "PID ($$): Reached the SOFT limit. Continue searching..." >&2
