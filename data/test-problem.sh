@@ -159,6 +159,7 @@ do
         else
             echo "PID ($$): Reached the HARD limit, $FD_PID terminated" >&2 
         fi
+        pkill -9 -g $TIMEOUT_PID
         break
     elif [[ $(cat $TIMEOUT_STATUS) == t ]]
     then
