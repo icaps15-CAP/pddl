@@ -165,14 +165,14 @@ do
         else # ulimit による強制終了
             echo "PID ($$): Reached the HARD limit, $FD_PID terminated" >&2 
         fi
-        killchildren $FD_PID
+        killchildren $TIMEOUT_PID
         break
     elif [[ $(cat $TIMEOUT_STATUS) == t ]] # soft timeout
     then
         if ls sas_plan* &> /dev/null
         then # パスが一つでもあれば終了
             echo "PID ($$): Reached the SOFT limit. Path found, $FD_PID terminated" >&2
-            killchildren $TIMEOUT_PID
+            killchildren $FD_PID
             break
         else # なければ hard limit に至るまで続行
             echo "PID ($$): Reached the SOFT limit. Continue searching..." >&2
