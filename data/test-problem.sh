@@ -1,5 +1,11 @@
 #! /bin/bash
 
+REALPATH=$(which realpath)
+if [[ $REALPATH == "" ]]
+then
+    REALPATH="readlink -e "
+fi
+
 SOFT_TIME_LIMIT=0.1
 HARD_TIME_LIMIT=1800
 MEMORY_USAGE=2000000
@@ -45,13 +51,13 @@ fi
 
 ulimit -v $MEMORY_USAGE -t $HARD_TIME_LIMIT
 
-PDDL=$(realpath $1)
+PDDL=$($REALPATH $1)
 
 if [[ $2 != "" ]]
 then
-    DOMAIN=$(realpath $2)
+    DOMAIN=$($REALPATH $2)
 else
-    DOMAIN=$(realpath domain.pddl)
+    DOMAIN=$($REALPATH domain.pddl)
 fi
 
 
