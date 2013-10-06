@@ -6,10 +6,10 @@ then
     REALPATH="readlink -e "
 fi
 
-SOFT_TIME_LIMIT=5
-HARD_TIME_LIMIT=1800
-MEMORY_USAGE=2000000
-OPTIONS="ipc seq-sat-lama-2011"
+export SOFT_TIME_LIMIT=1795
+export HARD_TIME_LIMIT=1800
+export MEMORY_USAGE=2000000
+export OPTIONS="ipc seq-sat-lama-2011"
 VERBOSE=false
 
 while getopts ":vst:T:m:o:" opt
@@ -48,35 +48,27 @@ then
     exit 1
 fi
 
-
-ulimit -v $MEMORY_USAGE -t $HARD_TIME_LIMIT
-
-PDDL=$($REALPATH $1)
+export PDDL=$($REALPATH $1)
 
 if [[ $2 != "" ]]
 then
-    DOMAIN=$($REALPATH $2)
+    export DOMAIN=$($REALPATH $2)
 else
-    DOMAIN=$($REALPATH domain.pddl)
+    export DOMAIN=$($REALPATH domain.pddl)
 fi
-
 
 if [[ $PDDL =~ .*\.pddl ]]
 then
-    PROBLEM_NAME=${PDDL%.pddl}
+    export PROBLEM_NAME=${PDDL%.pddl}
 elif [[ $PDDL =~ .*pfile.* ]]
 then
     # pfile1 etc...
-    PROBLEM_NAME=$PDDL
+    export PROBLEM_NAME=$PDDL
 fi  
 
-SAS=$PROBLEM_NAME.sas
-SAS_PLUS=$PROBLEM_NAME.sasp
+export SAS=$PROBLEM_NAME.sas
+export SAS_PLUS=$PROBLEM_NAME.sasp
 FD_DIR=~/repos/downward
-
-# lm_ff_syn = LAMA/FF synergy
-# '--heuristic "hlm=lmcut(lm_rhw(reasonable_orders=true,lm_cost_type=2,cost_type=2))"
-#          --search "lazy_wastar([hlm],preferred=[hlm],w=2)"'
 
 rm -f $PROBLEM_NAME.time
 rm -f $PROBLEM_NAME.cost
@@ -85,10 +77,10 @@ rm -f $PROBLEM_NAME.plan*
 rm -f $SAS
 rm -f $SAS_PLUS
 
-TRANSLATE=$FD_DIR/src/translate/translate.py
-PREPROCESS=$FD_DIR/src/preprocess/preprocess # < OUTPUT.SAS
+export TRANSLATE=$FD_DIR/src/translate/translate.py
+export PREPROCESS=$FD_DIR/src/preprocess/preprocess # < OUTPUT.SAS
 SEARCH_DIR=$FD_DIR/src/search
-SEARCH="$SEARCH_DIR/downward $OPTIONS"
+export SEARCH="$SEARCH_DIR/downward $OPTIONS"
 
 echo $'\x1b[34;1m'---- process $PPID started -----------------------------
 echo "MAX MEM(MB):          $MEMORY_USAGE"
@@ -114,30 +106,30 @@ then
     tail -f $PROBLEM_NAME.search.log &
 fi
 
+export FD_STATUS=$(mktemp)
+export TIMEOUT_STATUS=$(mktemp)
 
-$TRANSLATE $DOMAIN $PDDL &> $PROBLEM_NAME.translate.log
-echo Translation Finished
-mv output.sas $SAS
-for groups in $(ls *.groups 2> /dev/null)
-do
-    mv $groups $PROBLEM_NAME.$groups
-done
-
-$PREPROCESS < $SAS &> $PROBLEM_NAME.preprocess.log
-echo Preprocessing Finished
-mv output $SAS_PLUS
-
-FD_STATUS=$(mktemp)
-TIMEOUT_STATUS=$(mktemp)
+# no coproc... BUGGY full of shit
 
 coproc FD {
-    $SEARCH < $SAS_PLUS &> $PROBLEM_NAME.search.log
+    ulimit -v $MEMORY_USAGE -t $HARD_TIME_LIMIT
+    
+    $TRANSLATE $DOMAIN $PDDL &> $PROBLEM_NAME.translate.log
+    echo Translation Finished
+
+    $PREPROCESS < output.sas &> $PROBLEM_NAME.preprocess.log
+    echo Preprocessing Finished
+
+    $SEARCH < output &> $PROBLEM_NAME.search.log
+
     echo $? > $FD_STATUS
 }
+
 coproc TIMEOUT {
     sleep $SOFT_TIME_LIMIT
     echo t > $TIMEOUT_STATUS
 }
+
 echo "Script  Process $$"
 echo "FD      Process $FD_PID"
 echo "TIMEOUT Process $TIMEOUT_PID"
@@ -148,27 +140,41 @@ then
     CHECK_INTERVAL=$SOFT_TIME_LIMIT
 fi
 
+killchildren () {
+    parents[0]=$1
+    while [ ${#parents[@]} -gt 0 ]
+    do
+        echo parents : ${parents[@]}
+        children=($(pgrep -P ${parents[0]}))
+        pgrep -P ${parents[0]} -l
+        echo children : ${children[@]}
+        kill ${parents[0]}
+        unset parents[0]
+        parents=("${parents[@]}" "${children[@]}")
+    done
+}
+
 while true
 do
     sleep $CHECK_INTERVAL
-    if [[ $(cat $FD_STATUS) != "" ]]
+    if [[ $(cat $FD_STATUS) != "" ]] # 何か書き込まれている = FDが終了
     then
-        if [[ $(cat $FD_STATUS) == 0 ]]
+        if [[ $(cat $FD_STATUS) == 0 ]] # 正常終了
         then
             echo "PID ($$): Search finished normally." >&2
-        else
+        else # ulimit による強制終了
             echo "PID ($$): Reached the HARD limit, $FD_PID terminated" >&2 
         fi
-        pkill -9 -g $TIMEOUT_PID
+        killchildren $FD_PID
         break
-    elif [[ $(cat $TIMEOUT_STATUS) == t ]]
+    elif [[ $(cat $TIMEOUT_STATUS) == t ]] # soft timeout
     then
         if ls sas_plan* &> /dev/null
-        then
+        then # パスが一つでもあれば終了
             echo "PID ($$): Reached the SOFT limit. Path found, $FD_PID terminated" >&2
-            pkill -9 -g $FD_PID
+            killchildren $FD_PID
             break
-        else
+        else # なければ hard limit に至るまで続行
             echo "PID ($$): Reached the SOFT limit. Continue searching..." >&2
         fi
     fi
@@ -176,6 +182,12 @@ done
 
 rm -f $FD_STATUS $TIMEOUT_STATUS
 
+mv output.sas $SAS
+for groups in $(ls *.groups 2> /dev/null)
+do
+    mv $groups $PROBLEM_NAME.$groups
+done
+mv output $SAS_PLUS
 mv elapsed.time $PROBLEM_NAME.time
 mv plan_numbers_and_cost $PROBLEM_NAME.cost
 
