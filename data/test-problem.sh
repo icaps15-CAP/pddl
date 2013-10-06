@@ -1,25 +1,29 @@
 #! /bin/bash
 
-TIME_LIMIT=1800
+SOFT_TIME_LIMIT=0.1
+HARD_TIME_LIMIT=1800
 MEMORY_USAGE=2000000
 OPTIONS="ipc seq-sat-lama-2011"
 VERBOSE=false
 
-while getopts ":vt:m:o:" opt
+while getopts ":vst:T:m:o:" opt
 do
     case ${opt} in
-        v) # increase verbosity: tail -f search.log during the search
+        v)  # increase verbosity: tail -f search.log during the search
             VERBOSE=true ;; # true
-
-        t) # limit execution time under 30 min (same as ICAPS)
-            TIME_LIMIT=${OPTARG:-$TIME_LIMIT} ;;
-        
-        m) # limit memory usage under 1 GB
+        t)  # soft limit of the downward execution time
+            # if no path was found when the time reached the limit
+            # continues to search until the hard limit is reached.
+            # if the path was already found then finishes
+            # default value is 0 sec, which means it uses the hard limit by default
+            SOFT_TIME_LIMIT=${OPTARG:-$SOFT_TIME_LIMIT} ;;
+        T)  # hard limit of the downward execution time
+            # default value is 30 min (same as ICAPS)
+            HARD_TIME_LIMIT=${OPTARG:-$HARD_TIME_LIMIT} ;;
+        m)  # limit memory usage under 1 GB
             MEMORY_USAGE=${OPTARG:-$MEMORY_USAGE} ;;
-
-        o) # specifies the search option
+        o)  # specifies the search option
             OPTIONS=${OPTARG:-$OPTIONS} ;;
-        
         \?) OPT_ERROR=1; break;;
         * ) echo "unsupported option $opt" ;;
     esac
@@ -27,13 +31,19 @@ done
 
 shift $(($OPTIND - 1))
 
-
 if [ $OPT_ERROR ]; then      # option error
-  echo >&2 "usage: $0 [-v] [-t TIME-LIMIT] [-m MEMORY-LIMIT] [-o FD-OPTIONS] ..."
+  echo >&2 "usage: [-v] [-t SOFT_TIME_LIMIT] [-T HARD_TIME_LIMIT] [-m MEMORY_LIMIT] [-o FD_OPTIONS] problemfile [domainfile]"
   exit 1
 fi
 
-ulimit -v $MEMORY_USAGE -t $TIME_LIMIT
+if [ $SOFT_TIME_LIMIT -gt $HARD_TIME_LIMIT ]
+then
+    echo >&2 "soft time limit should be smaller than hard limit"
+    exit 1
+fi
+
+
+ulimit -v $MEMORY_USAGE -t $HARD_TIME_LIMIT
 
 PDDL=$(realpath $1)
 
@@ -75,14 +85,17 @@ SEARCH_DIR=$FD_DIR/src/search
 SEARCH="$SEARCH_DIR/downward $OPTIONS"
 
 echo $'\x1b[34;1m'---- process $PPID started -----------------------------
-echo "MAX MEM(MB):    $MEMORY_USAGE"
-echo "MAX TIME(sec):  $TIME_LIMIT"
-echo "PROBLEM_NAME:   $PROBLEM_NAME"
-echo "DOMAIN:         $DOMAIN"
-echo "SEARCH COMMAND: $SEARCH"
+echo "MAX MEM(MB):          $MEMORY_USAGE"
+echo "SOFT TIME LIMIT(sec): $SOFT_TIME_LIMIT"
+echo "HARD TIME LIMIT(sec): $HARD_TIME_LIMIT"
+echo "PROBLEM_NAME:         $PROBLEM_NAME"
+echo "DOMAIN:               $DOMAIN"
+echo "SEARCH COMMAND:       $SEARCH"
 echo --------------------------------------------------------$'\x1b[0m'
 
 TMPDIR=`mktemp -d`
+trap "rm -rfv $TMPDIR" SIGINT
+trap "rm -rfv $TMPDIR" EXIT
 pushd $TMPDIR
 
 touch $PROBLEM_NAME.translate.log
@@ -108,7 +121,26 @@ $PREPROCESS < $SAS >& $PROBLEM_NAME.preprocess.log
 echo Preprocessing Finished
 mv output $SAS_PLUS
 
-$SEARCH < $SAS_PLUS >& $PROBLEM_NAME.search.log
+$SEARCH < $SAS_PLUS >& $PROBLEM_NAME.search.log &
+FD_PID=$!
+checker=$(mktemp)
+chmod +x $checker
+echo "while kill -0 $FD_PID > /dev/null 2> /dev/null ; do sleep 1; done; exit 0;" > $checker
+if ( timeout $SOFT_TIME_LIMIT $checker )
+then
+    echo "test-problem.sh ($$): Search finished normally." >&2
+else
+    if ls sas_plan* > /dev/null
+    then
+        echo "test-problem.sh ($$): Reached the SOFT limit. Path found, $FD_PID terminated" >&2
+        pkill -15 -P $FD_PID
+    else
+        echo "test-problem.sh ($$): Reached the SOFT limit. Continue searching..." >&2
+        wait $FD_PID
+        test $? && echo "test-problem.sh ($$): Reached the HARD limit, $FD_PID terminated" >&2
+    fi
+fi
+rm $checker
 
 mv elapsed.time $PROBLEM_NAME.time
 mv plan_numbers_and_cost $PROBLEM_NAME.cost
@@ -135,8 +167,5 @@ fi
 echo --------------------------------------------------------$'\x1b[0m'
 
 popd
-
-trap "rm -rfv $TMPDIR" SIGINT
-trap "rm -rfv $TMPDIR" EXIT
 
 exit
