@@ -44,7 +44,7 @@ fi
 
 if [ $SOFT_TIME_LIMIT -gt $HARD_TIME_LIMIT ]
 then
-    echo "soft time limit should be smaller than hard limit" >&2
+    echo "the soft time limit should be less than equal to the hard limit" >&2
     exit 1
 fi
 
