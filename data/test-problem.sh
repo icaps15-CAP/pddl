@@ -121,9 +121,11 @@ descendants () {
 }
 
 killDescendants (){
-    for PID in $1
+    echo $*
+    for PID in $*
     do
-        kill $PID
+        echo killing : $(ps -e | grep $PID)
+        kill $PID 
     done
 }
 
@@ -159,7 +161,8 @@ fi
 
 FD_DESCENDANTS=$(descendants $FD_PID)
 TIMEOUT_DESCENDANTS=$(descendants $TIMEOUT_PID)
-
+echo $FD_DESCENDANTS
+echo $TIMEOUT_DESCENDANTS
 while true
 do
     sleep $CHECK_INTERVAL
