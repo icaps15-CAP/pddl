@@ -189,6 +189,8 @@ done
 
 killDescendants $FD_DESCENDANTS
 killDescendants $TIMEOUT_DESCENDANTS
+pkill -9 -P 1 downward
+pkill -9 -P 1 downward
 
 rm -f $FD_STATUS $TIMEOUT_STATUS
 
