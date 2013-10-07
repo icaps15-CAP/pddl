@@ -109,7 +109,24 @@ fi
 export FD_STATUS=$(mktemp)
 export TIMEOUT_STATUS=$(mktemp)
 
-# no coproc... BUGGY full of shit
+descendants () {
+    parents[0]=$1
+    while [ ${#parents[@]} -gt 0 ]
+    do
+        echo ${parents[0]}
+        children=($(pgrep -P ${parents[0]}))
+        unset parents[0]
+        parents=("${parents[@]}" "${children[@]}")
+    done
+}
+
+killDescendants (){
+    for PID in $1
+    do
+        kill $PID
+    done
+}
+
 
 coproc FD {
     ulimit -v $MEMORY_USAGE -t $HARD_TIME_LIMIT
@@ -140,19 +157,8 @@ then
     CHECK_INTERVAL=$SOFT_TIME_LIMIT
 fi
 
-killchildren () {
-    parents[0]=$1
-    while [ ${#parents[@]} -gt 0 ]
-    do
-        echo parents : ${parents[@]}
-        children=($(pgrep -P ${parents[0]}))
-        pgrep -P ${parents[0]} -l
-        echo children : ${children[@]}
-        kill ${parents[0]}
-        unset parents[0]
-        parents=("${parents[@]}" "${children[@]}")
-    done
-}
+FD_DESCENDANTS=$(descendants $FD_PID)
+TIMEOUT_DESCENDANTS=$(descendants $TIMEOUT_PID)
 
 while true
 do
@@ -165,20 +171,21 @@ do
         else # ulimit による強制終了
             echo "PID ($$): Reached the HARD limit, $FD_PID terminated" >&2 
         fi
-        killchildren $TIMEOUT_PID
         break
     elif [[ $(cat $TIMEOUT_STATUS) == t ]] # soft timeout
     then
         if ls sas_plan* &> /dev/null
         then # パスが一つでもあれば終了
             echo "PID ($$): Reached the SOFT limit. Path found, $FD_PID terminated" >&2
-            killchildren $FD_PID
             break
         else # なければ hard limit に至るまで続行
             echo "PID ($$): Reached the SOFT limit. Continue searching..." >&2
         fi
     fi
 done
+
+killDescendants $FD_DESCENDANTS
+killDescendants $TIMEOUT_DESCENDANTS
 
 rm -f $FD_STATUS $TIMEOUT_STATUS
 
