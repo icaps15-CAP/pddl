@@ -28,6 +28,7 @@
                (on_board ?i - camera ?r - rover)
                (channel_free ?l - lander))
   
+  ;; 移動
   (:action navigate
            :parameters (?x - rover ?y - waypoint ?z - waypoint) 
            :precondition (and (can_traverse ?x ?y ?z)
@@ -37,6 +38,7 @@
            :effect (and (not (at ?x ?y))
                         (at ?x ?z)))
 
+  ;; 土をカゴに入れる
   (:action sample_soil
            :parameters (?x - rover ?s - store ?p - waypoint)
            :precondition (and (at ?x ?p)
@@ -49,6 +51,7 @@
                         (have_soil_analysis ?x ?p)
                         (not (at_soil_sample ?p))))
 
+  ;; 石をカゴに入れる 内容は土と同じ
   (:action sample_rock
            :parameters (?x - rover ?s - store ?p - waypoint)
            :precondition (and (at ?x ?p)
@@ -61,12 +64,14 @@
                         (have_rock_analysis ?x ?p)
                         (not (at_rock_sample ?p))))
 
+  ;; かごの中身を捨てる
   (:action drop
            :parameters (?x - rover ?y - store)
            :precondition (and (store_of ?y ?x)
                               (full ?y))
            :effect (and (not (full ?y)) (empty ?y)))
 
+  ;; カメラの焦点を合わせる
   (:action calibrate
            :parameters (?r - rover ?i - camera ?t - objective ?w - waypoint)
            :precondition (and (equipped_for_imaging ?r)
@@ -76,6 +81,7 @@
                               (on_board ?i ?r))
            :effect (calibrated ?i ?r))
 
+  ;; 写真を取る
   (:action take_image
            :parameters (?r - rover ?p - waypoint ?o - objective ?i - camera ?m - mode)
            :precondition (and (calibrated ?i ?r)
@@ -87,6 +93,7 @@
            :effect (and (have_image ?r ?o ?m)
                         (not (calibrated ?i ?r))))
 
+  ;; データを送信
   (:action communicate_soil_data
            :parameters (?r - rover ?l - lander ?p - waypoint ?x - waypoint ?y - waypoint)
            :precondition (and (at ?r ?x)
@@ -97,9 +104,7 @@
                               (channel_free ?l))
            :effect (and (not (available ?r))
                         (not (channel_free ?l))
-                        (channel_free ?l)
-                        (communicated_soil_data ?p)
-                        (available ?r)))
+                        (communicated_soil_data ?p)))
 
   (:action communicate_rock_data
            :parameters (?r - rover ?l - lander ?p - waypoint ?x - waypoint ?y - waypoint)
@@ -111,9 +116,7 @@
                               (channel_free ?l))
            :effect (and (not (available ?r))
                         (not (channel_free ?l))
-                        (channel_free ?l)
-                        (communicated_rock_data ?p)
-                        (available ?r)))
+                        (communicated_rock_data ?p)))
 
   (:action communicate_image_data
            :parameters (?r - rover ?l - lander ?o - objective ?m - mode ?x - waypoint ?y - waypoint)
@@ -125,20 +128,12 @@
                               (channel_free ?l))
            :effect (and (not (available ?r))
                         (not (channel_free ?l))
-                        (channel_free ?l)
-                        (communicated_image_data ?o ?m)
-                        (available ?r)))
+                        (communicated_image_data ?o ?m)))
 
-  (:action communication_end
+  (:action end_communication
            :parameters (?r - rover ?l - lander ?o - objective ?m - mode ?x - waypoint ?y - waypoint)
            :precondition (and (at ?r ?x)
                               (at_lander ?l ?y)
-                              (have_image ?r ?o ?m)
-                              (visible ?x ?y)
-                              (available ?r)
-                              (channel_free ?l))
-           :effect (and (not (available ?r))
-                        (not (channel_free ?l))
-                        (channel_free ?l)
-                        (communicated_image_data ?o ?m)
+                              (visible ?x ?y))
+           :effect (and (channel_free ?l)
                         (available ?r))))
