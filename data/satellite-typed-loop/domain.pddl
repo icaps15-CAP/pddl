@@ -60,7 +60,7 @@
              (on_board ?i ?s)
              (supports ?i ?m)
              (power_on ?i)
-             (pointing ?s ?d))
+             (pointing ?s ?d)) ; removed a duplicated power_on
  :effect
 	 (have_image ?d ?m))
 

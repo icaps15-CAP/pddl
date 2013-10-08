@@ -1,0 +1,145 @@
+Dispatcher selected state size 1.
+This is a nonunit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.00718646s
+Discovered 21 landmarks, of which 2 are disjunctive and 0 are conjunctive 
+33 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+11 initial landmarks, 5 goal landmarks
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.0274039s
+Discovered 21 landmarks, of which 2 are disjunctive and 0 are conjunctive 
+39 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+11 initial landmarks, 5 goal landmarks
+Starting search: lazy_greedy(list(hff1, hlm1), preferred = list(hff1, hlm1), cost_type = 1, reopen_closed = false)
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 10/8 [g=0, 1 evaluated, 0 expanded, t=0.04s]
+Best heuristic value: 10/7 [g=1, 2 evaluated, 1 expanded, t=0.04s]
+Best heuristic value: 5/6 [g=2, 3 evaluated, 2 expanded, t=0.04s]
+Best heuristic value: 5/5 [g=3, 4 evaluated, 3 expanded, t=0.04s]
+Best heuristic value: 3/2 [g=4, 5 evaluated, 4 expanded, t=0.04s]
+Best heuristic value: 3/1 [g=5, 6 evaluated, 5 expanded, t=0.05s]
+Solution found!
+Actual search time: 0.01s [t=0.05s]
+do-saw-medium board-0 part-0 saw-0 wood-0 rough (30)
+do-saw-medium-end board-0 part-0 saw-0 wood-0 rough (0)
+do-plane part-0 planer-0 rough natural untreated (20)
+do-plane-end part-0 planer-0 rough natural untreated (0)
+do-immersion-varnish part-0 immersion-varnisher-0 color-0 smooth (0)
+do-immersion-varnish-end part-0 immersion-varnisher-0 color-0 smooth (0)
+Plan length: 6 step(s).
+Plan cost: 50
+Initial state h value: 10/8.
+Expanded 6 state(s).
+Reopened 0 state(s).
+Evaluated 7 state(s).
+Evaluations: 14
+Generated 30 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 50
+Solution found - keep searching
+Starting search: lazy_greedy(list(hff2, hlm2), preferred = list(hff2, hlm2), reopen_closed = false)
+Conducting lazy best first search, (real) bound = 50
+Switch from bucket-based to heap-based queue at key = 149, num_pushes = 92
+Best heuristic value: 30/56 [g=0, 1 evaluated, 0 expanded, t=0.05s]
+Best heuristic value: 30/25 [g=30, 2 evaluated, 1 expanded, t=0.05s]
+Best heuristic value: 25/24 [g=30, 3 evaluated, 2 expanded, t=0.05s]
+Completely explored state space -- no solution!
+Actual search time: 0s [t=0.05s]
+Initial state h value: 30/56.
+Expanded 17 state(s).
+Reopened 0 state(s).
+Evaluated 21 state(s).
+Evaluations: 42
+Generated 61 state(s).
+Dead ends: 4 state(s).
+Best solution cost so far: 50
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 5)
+Conducting lazy best first search, (real) bound = 50
+Best heuristic value: 30/56 [g=0, 1 evaluated, 0 expanded, t=0.06s]
+Best heuristic value: 30/25 [g=30, 2 evaluated, 1 expanded, t=0.06s]
+Best heuristic value: 25/24 [g=30, 3 evaluated, 2 expanded, t=0.06s]
+Completely explored state space -- no solution!
+Actual search time: 0s [t=0.06s]
+Initial state h value: 30/56.
+Expanded 17 state(s).
+Reopened 0 state(s).
+Evaluated 21 state(s).
+Evaluations: 42
+Generated 61 state(s).
+Dead ends: 4 state(s).
+Best solution cost so far: 50
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 3)
+Conducting lazy best first search, (real) bound = 50
+Best heuristic value: 30/56 [g=0, 1 evaluated, 0 expanded, t=0.06s]
+Best heuristic value: 30/25 [g=30, 2 evaluated, 1 expanded, t=0.06s]
+Best heuristic value: 25/24 [g=30, 3 evaluated, 2 expanded, t=0.06s]
+Completely explored state space -- no solution!
+Actual search time: 0.01s [t=0.07s]
+Initial state h value: 30/56.
+Expanded 17 state(s).
+Reopened 0 state(s).
+Evaluated 21 state(s).
+Evaluations: 42
+Generated 61 state(s).
+Dead ends: 4 state(s).
+Best solution cost so far: 50
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 2)
+Conducting lazy best first search, (real) bound = 50
+Best heuristic value: 30/56 [g=0, 1 evaluated, 0 expanded, t=0.07s]
+Best heuristic value: 30/25 [g=30, 2 evaluated, 1 expanded, t=0.07s]
+Best heuristic value: 25/24 [g=30, 3 evaluated, 2 expanded, t=0.07s]
+Completely explored state space -- no solution!
+Actual search time: 0s [t=0.07s]
+Initial state h value: 30/56.
+Expanded 17 state(s).
+Reopened 0 state(s).
+Evaluated 21 state(s).
+Evaluations: 42
+Generated 61 state(s).
+Dead ends: 4 state(s).
+Best solution cost so far: 50
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 1)
+Conducting lazy best first search, (real) bound = 50
+Best heuristic value: 30/56 [g=0, 1 evaluated, 0 expanded, t=0.07s]
+Best heuristic value: 30/25 [g=30, 2 evaluated, 1 expanded, t=0.07s]
+Best heuristic value: 25/24 [g=30, 3 evaluated, 2 expanded, t=0.07s]
+Completely explored state space -- no solution!
+Actual search time: 0.01s [t=0.08s]
+Initial state h value: 30/56.
+Expanded 17 state(s).
+Reopened 0 state(s).
+Evaluated 21 state(s).
+Evaluations: 42
+Generated 61 state(s).
+Dead ends: 4 state(s).
+Best solution cost so far: 50
+No solution found - keep searching
+Actual search time: 0.04s [t=0.08s]
+Cumulative statistics:
+Expanded 91 state(s).
+Reopened 0 state(s).
+Evaluated 112 state(s).
+Evaluations: 224
+Generated 335 state(s).
+Dead ends: 0 state(s).
+Search time: 0.04s
+Total time: 0.08s
+Solution found.
+Peak memory: 4860 KB

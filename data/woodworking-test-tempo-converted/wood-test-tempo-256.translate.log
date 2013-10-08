@@ -1,0 +1,53 @@
+Parsing... [0.270s CPU, 0.277s wall-clock]
+Normalizing task... [0.020s CPU, 0.023s wall-clock]
+Instantiating...
+Generating Datalog program... [0.040s CPU, 0.039s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.110s CPU, 0.107s wall-clock]
+Preparing model... [0.270s CPU, 0.269s wall-clock]
+Generated 260 rules.
+Computing model... [21.250s CPU, 21.253s wall-clock]
+39563 relevant atoms
+90262 auxiliary atoms
+129825 final queue length
+185645 total queue pushes
+Completing instantiation... [56.610s CPU, 56.611s wall-clock]
+Instantiating: [79.240s CPU, 79.243s wall-clock]
+Computing fact groups...
+Finding invariants...
+70 initial candidates
+Finding invariants: [0.270s CPU, 0.264s wall-clock]
+Checking invariant weight... [0.020s CPU, 0.023s wall-clock]
+Instantiating groups... [0.020s CPU, 0.016s wall-clock]
+Collecting mutex groups... [0.100s CPU, 0.088s wall-clock]
+Choosing groups...
+15123 uncovered facts
+Choosing groups: [0.060s CPU, 0.066s wall-clock]
+Building translation key... [0.790s CPU, 0.792s wall-clock]
+Computing fact groups: [3.330s CPU, 3.320s wall-clock]
+Building STRIPS to SAS dictionary... [3.520s CPU, 3.526s wall-clock]
+Building dictionary for full mutex groups... [0.310s CPU, 0.313s wall-clock]
+Building mutex information...
+Building mutex information: [0.330s CPU, 0.317s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.001s wall-clock]
+Processing axioms: [1.490s CPU, 1.496s wall-clock]
+Translating task: [23.060s CPU, 23.060s wall-clock]
+0 implied effects removed
+771 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+13 propositions removed
+Detecting unreachable propositions: [6.580s CPU, 6.592s wall-clock]
+Translator variables: 15118
+Translator derived variables: 0
+Translator facts: 30241
+Translator mutex groups: 1
+Translator total mutex groups size: 7
+Translator operators: 23052
+Translator task size: 269947
+Translator peak memory: 280016 KB
+Writing output... [8.600s CPU, 8.602s wall-clock]
+Done! [127.820s CPU, 127.832s wall-clock]

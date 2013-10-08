@@ -1,0 +1,9 @@
+Building causal graph...
+The causal graph is not acyclic.
+99333 variables of 99341 necessary
+0 of 1 mutex groups necessary.
+174080 of 174092 operators necessary.
+0 of 0 axiom rules necessary.
+Building domain transition graphs...
+solveable in poly time 0
+Building successor generator...

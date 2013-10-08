@@ -1,0 +1,489 @@
+Dispatcher selected state size 1.
+This is a nonunit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.0783806s
+Discovered 54 landmarks, of which 4 are disjunctive and 0 are conjunctive 
+68 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+34 initial landmarks, 12 goal landmarks
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.0414519s
+Discovered 54 landmarks, of which 4 are disjunctive and 0 are conjunctive 
+68 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+34 initial landmarks, 12 goal landmarks
+Starting search: lazy_greedy(list(hff1, hlm1), preferred = list(hff1, hlm1), cost_type = 1, reopen_closed = false)
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 20/24 [g=0, 1 evaluated, 0 expanded, t=0.2s]
+Best heuristic value: 20/23 [g=1, 2 evaluated, 1 expanded, t=0.2s]
+Best heuristic value: 18/22 [g=2, 3 evaluated, 2 expanded, t=0.2s]
+Best heuristic value: 18/21 [g=3, 4 evaluated, 3 expanded, t=0.2s]
+Best heuristic value: 16/20 [g=4, 5 evaluated, 4 expanded, t=0.2s]
+Best heuristic value: 16/19 [g=5, 6 evaluated, 5 expanded, t=0.2s]
+Best heuristic value: 14/18 [g=6, 7 evaluated, 6 expanded, t=0.2s]
+Best heuristic value: 14/17 [g=7, 8 evaluated, 7 expanded, t=0.2s]
+Best heuristic value: 12/16 [g=8, 9 evaluated, 8 expanded, t=0.2s]
+Best heuristic value: 12/15 [g=9, 10 evaluated, 9 expanded, t=0.2s]
+Best heuristic value: 10/14 [g=10, 11 evaluated, 10 expanded, t=0.2s]
+Best heuristic value: 10/13 [g=11, 12 evaluated, 11 expanded, t=0.2s]
+Best heuristic value: 8/12 [g=12, 13 evaluated, 12 expanded, t=0.2s]
+Best heuristic value: 8/11 [g=13, 14 evaluated, 13 expanded, t=0.2s]
+Best heuristic value: 6/10 [g=14, 15 evaluated, 14 expanded, t=0.2s]
+Best heuristic value: 6/9 [g=15, 16 evaluated, 15 expanded, t=0.2s]
+Best heuristic value: 4/8 [g=16, 17 evaluated, 16 expanded, t=0.2s]
+Best heuristic value: 4/7 [g=17, 30 evaluated, 29 expanded, t=0.21s]
+Best heuristic value: 3/6 [g=18, 31 evaluated, 30 expanded, t=0.21s]
+Best heuristic value: 3/5 [g=25, 61 evaluated, 60 expanded, t=0.21s]
+Best heuristic value: 2/4 [g=26, 62 evaluated, 61 expanded, t=0.21s]
+Best heuristic value: 2/3 [g=33, 81 evaluated, 80 expanded, t=0.22s]
+Best heuristic value: 1/2 [g=34, 82 evaluated, 81 expanded, t=0.22s]
+Best heuristic value: 1/1 [g=41, 92 evaluated, 91 expanded, t=0.22s]
+Solution found!
+Actual search time: 0.02s [t=0.22s]
+do-plane part-0 planer-0 rough color-1 varnished (10)
+do-plane-end part-0 planer-0 rough color-1 varnished (0)
+do-immersion-varnish part-0 immersion-varnisher-0 color-0 smooth (0)
+do-immersion-varnish-end part-0 immersion-varnisher-0 color-0 smooth (0)
+do-plane part-1 planer-0 rough color-1 varnished (10)
+do-plane-end part-1 planer-0 rough color-1 varnished (0)
+do-immersion-varnish part-1 immersion-varnisher-0 color-0 smooth (0)
+do-immersion-varnish-end part-1 immersion-varnisher-0 color-0 smooth (0)
+do-plane part-2 planer-0 rough color-1 varnished (10)
+do-plane-end part-2 planer-0 rough color-1 varnished (0)
+do-immersion-varnish part-2 immersion-varnisher-0 color-0 smooth (0)
+do-immersion-varnish-end part-2 immersion-varnisher-0 color-0 smooth (0)
+do-plane part-3 planer-0 rough color-1 varnished (10)
+do-plane-end part-3 planer-0 rough color-1 varnished (0)
+do-grind part-3 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-3 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-3 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-3 immersion-varnisher-0 color-0 verysmooth (0)
+do-grind part-0 grinder-0 smooth color-0 varnished colourfragments (15)
+do-grind-end part-0 grinder-0 smooth color-0 varnished colourfragments (0)
+do-plane part-0 planer-0 verysmooth natural colourfragments (10)
+do-plane-end part-0 planer-0 verysmooth natural colourfragments (0)
+do-grind part-0 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-0 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-0 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-0 immersion-varnisher-0 color-0 verysmooth (0)
+do-grind part-1 grinder-0 smooth color-0 varnished colourfragments (15)
+do-grind-end part-1 grinder-0 smooth color-0 varnished colourfragments (0)
+do-plane part-1 planer-0 verysmooth natural colourfragments (10)
+do-plane-end part-1 planer-0 verysmooth natural colourfragments (0)
+do-grind part-1 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-1 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-1 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-1 immersion-varnisher-0 color-0 verysmooth (0)
+do-grind part-2 grinder-0 smooth color-0 varnished colourfragments (15)
+do-grind-end part-2 grinder-0 smooth color-0 varnished colourfragments (0)
+do-plane part-2 planer-0 verysmooth natural colourfragments (10)
+do-plane-end part-2 planer-0 verysmooth natural colourfragments (0)
+do-grind part-2 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-2 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-2 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-2 immersion-varnisher-0 color-0 verysmooth (0)
+Plan length: 42 step(s).
+Plan cost: 175
+Initial state h value: 20/24.
+Expanded 92 state(s).
+Reopened 0 state(s).
+Evaluated 93 state(s).
+Evaluations: 186
+Generated 542 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 175
+Solution found - keep searching
+Starting search: lazy_greedy(list(hff2, hlm2), preferred = list(hff2, hlm2), reopen_closed = false)
+Conducting lazy best first search, (real) bound = 175
+Best heuristic value: 60/124 [g=0, 1 evaluated, 0 expanded, t=0.22s]
+Best heuristic value: 51/113 [g=10, 2 evaluated, 1 expanded, t=0.22s]
+Best heuristic value: 48/112 [g=10, 3 evaluated, 2 expanded, t=0.22s]
+Best heuristic value: 48/111 [g=10, 4 evaluated, 3 expanded, t=0.22s]
+Best heuristic value: 46/110 [g=10, 5 evaluated, 4 expanded, t=0.22s]
+Best heuristic value: 37/99 [g=20, 6 evaluated, 5 expanded, t=0.22s]
+Best heuristic value: 34/98 [g=20, 7 evaluated, 6 expanded, t=0.22s]
+Best heuristic value: 34/97 [g=20, 8 evaluated, 7 expanded, t=0.22s]
+Best heuristic value: 32/96 [g=20, 9 evaluated, 8 expanded, t=0.22s]
+Best heuristic value: 23/85 [g=30, 10 evaluated, 9 expanded, t=0.22s]
+Best heuristic value: 20/84 [g=30, 11 evaluated, 10 expanded, t=0.22s]
+Best heuristic value: 20/83 [g=30, 12 evaluated, 11 expanded, t=0.22s]
+Best heuristic value: 18/82 [g=30, 13 evaluated, 12 expanded, t=0.22s]
+Best heuristic value: 8/71 [g=40, 14 evaluated, 13 expanded, t=0.22s]
+Best heuristic value: 6/70 [g=40, 15 evaluated, 14 expanded, t=0.22s]
+Best heuristic value: 6/69 [g=40, 16 evaluated, 15 expanded, t=0.22s]
+Best heuristic value: 4/68 [g=40, 17 evaluated, 16 expanded, t=0.22s]
+Best heuristic value: 4/66 [g=55, 18 evaluated, 17 expanded, t=0.22s]
+Best heuristic value: 4/65 [g=55, 19 evaluated, 18 expanded, t=0.22s]
+Best heuristic value: 4/63 [g=70, 23 evaluated, 22 expanded, t=0.23s]
+Best heuristic value: 4/62 [g=70, 26 evaluated, 25 expanded, t=0.23s]
+Best heuristic value: 4/60 [g=85, 31 evaluated, 30 expanded, t=0.23s]
+Best heuristic value: 4/59 [g=85, 34 evaluated, 33 expanded, t=0.23s]
+Best heuristic value: 4/57 [g=100, 39 evaluated, 38 expanded, t=0.23s]
+Best heuristic value: 4/56 [g=100, 46 evaluated, 45 expanded, t=0.23s]
+Best heuristic value: 4/54 [g=55, 51 evaluated, 50 expanded, t=0.23s]
+Best heuristic value: 4/53 [g=55, 52 evaluated, 51 expanded, t=0.23s]
+Best heuristic value: 4/52 [g=55, 53 evaluated, 52 expanded, t=0.23s]
+Best heuristic value: 3/51 [g=55, 54 evaluated, 53 expanded, t=0.23s]
+Best heuristic value: 3/49 [g=70, 55 evaluated, 54 expanded, t=0.23s]
+Best heuristic value: 3/48 [g=70, 56 evaluated, 55 expanded, t=0.23s]
+Best heuristic value: 3/46 [g=85, 60 evaluated, 59 expanded, t=0.23s]
+Best heuristic value: 3/45 [g=85, 62 evaluated, 61 expanded, t=0.23s]
+Best heuristic value: 3/43 [g=100, 66 evaluated, 65 expanded, t=0.23s]
+Best heuristic value: 3/42 [g=100, 71 evaluated, 70 expanded, t=0.23s]
+Best heuristic value: 3/31 [g=125, 101 evaluated, 100 expanded, t=0.24s]
+Best heuristic value: 3/30 [g=125, 102 evaluated, 101 expanded, t=0.24s]
+Best heuristic value: 3/29 [g=125, 103 evaluated, 102 expanded, t=0.24s]
+Best heuristic value: 2/28 [g=125, 104 evaluated, 103 expanded, t=0.24s]
+Best heuristic value: 2/17 [g=150, 119 evaluated, 118 expanded, t=0.24s]
+Best heuristic value: 2/16 [g=150, 120 evaluated, 119 expanded, t=0.25s]
+Best heuristic value: 2/15 [g=150, 121 evaluated, 120 expanded, t=0.25s]
+Best heuristic value: 1/14 [g=150, 122 evaluated, 121 expanded, t=0.25s]
+Best heuristic value: 1/3 [g=150, 5013 evaluated, 5012 expanded, t=1.53s]
+Best heuristic value: 1/2 [g=150, 5014 evaluated, 5013 expanded, t=1.53s]
+Best heuristic value: 1/1 [g=150, 5015 evaluated, 5014 expanded, t=1.53s]
+Solution found!
+Actual search time: 1.31s [t=1.53s]
+do-plane part-0 planer-0 rough color-1 varnished (10)
+do-plane-end part-0 planer-0 rough color-1 varnished (0)
+do-immersion-varnish part-0 immersion-varnisher-0 color-0 smooth (0)
+do-immersion-varnish-end part-0 immersion-varnisher-0 color-0 smooth (0)
+do-plane part-1 planer-0 rough color-1 varnished (10)
+do-plane-end part-1 planer-0 rough color-1 varnished (0)
+do-immersion-varnish part-1 immersion-varnisher-0 color-0 smooth (0)
+do-immersion-varnish-end part-1 immersion-varnisher-0 color-0 smooth (0)
+do-plane part-2 planer-0 rough color-1 varnished (10)
+do-plane-end part-2 planer-0 rough color-1 varnished (0)
+do-grind part-2 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-2 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-2 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-2 immersion-varnisher-0 color-0 verysmooth (0)
+do-grind part-0 grinder-0 smooth color-0 varnished colourfragments (15)
+do-grind-end part-0 grinder-0 smooth color-0 varnished colourfragments (0)
+do-grind part-1 grinder-0 smooth color-0 varnished colourfragments (15)
+do-grind-end part-1 grinder-0 smooth color-0 varnished colourfragments (0)
+do-plane part-0 planer-0 verysmooth natural colourfragments (10)
+do-plane-end part-0 planer-0 verysmooth natural colourfragments (0)
+do-grind part-0 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-0 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-0 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-0 immersion-varnisher-0 color-0 verysmooth (0)
+do-plane part-1 planer-0 verysmooth natural colourfragments (10)
+do-plane-end part-1 planer-0 verysmooth natural colourfragments (0)
+do-plane part-3 planer-0 rough color-1 varnished (10)
+do-grind part-1 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-1 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-1 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-1 immersion-varnisher-0 color-0 verysmooth (0)
+do-plane-end part-3 planer-0 rough color-1 varnished (0)
+do-grind part-3 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-3 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-3 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-3 immersion-varnisher-0 color-0 verysmooth (0)
+Plan length: 36 step(s).
+Plan cost: 150
+Initial state h value: 60/124.
+Expanded 5015 state(s).
+Reopened 0 state(s).
+Evaluated 5016 state(s).
+Evaluations: 10032
+Generated 35329 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 150
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 5)
+Conducting lazy best first search, (real) bound = 150
+Best heuristic value: 60/124 [g=0, 1 evaluated, 0 expanded, t=1.54s]
+Best heuristic value: 51/113 [g=10, 2 evaluated, 1 expanded, t=1.54s]
+Best heuristic value: 48/112 [g=10, 3 evaluated, 2 expanded, t=1.54s]
+Best heuristic value: 48/111 [g=10, 4 evaluated, 3 expanded, t=1.54s]
+Best heuristic value: 46/110 [g=10, 5 evaluated, 4 expanded, t=1.54s]
+Best heuristic value: 37/99 [g=20, 6 evaluated, 5 expanded, t=1.54s]
+Best heuristic value: 34/98 [g=20, 7 evaluated, 6 expanded, t=1.54s]
+Best heuristic value: 34/97 [g=20, 8 evaluated, 7 expanded, t=1.54s]
+Best heuristic value: 32/96 [g=20, 9 evaluated, 8 expanded, t=1.54s]
+Best heuristic value: 23/85 [g=30, 10 evaluated, 9 expanded, t=1.54s]
+Best heuristic value: 20/84 [g=30, 11 evaluated, 10 expanded, t=1.54s]
+Best heuristic value: 20/83 [g=30, 12 evaluated, 11 expanded, t=1.54s]
+Best heuristic value: 18/82 [g=30, 13 evaluated, 12 expanded, t=1.54s]
+Best heuristic value: 8/71 [g=40, 14 evaluated, 13 expanded, t=1.54s]
+Best heuristic value: 6/70 [g=40, 15 evaluated, 14 expanded, t=1.54s]
+Best heuristic value: 6/69 [g=40, 16 evaluated, 15 expanded, t=1.54s]
+Best heuristic value: 4/68 [g=40, 17 evaluated, 16 expanded, t=1.54s]
+Best heuristic value: 4/66 [g=55, 18 evaluated, 17 expanded, t=1.54s]
+Best heuristic value: 4/65 [g=55, 19 evaluated, 18 expanded, t=1.54s]
+Best heuristic value: 4/54 [g=55, 33 evaluated, 32 expanded, t=1.54s]
+Best heuristic value: 4/53 [g=55, 34 evaluated, 33 expanded, t=1.54s]
+Best heuristic value: 4/52 [g=55, 35 evaluated, 34 expanded, t=1.54s]
+Best heuristic value: 3/51 [g=55, 36 evaluated, 35 expanded, t=1.55s]
+Best heuristic value: 3/49 [g=70, 38 evaluated, 37 expanded, t=1.55s]
+Best heuristic value: 3/48 [g=70, 40 evaluated, 39 expanded, t=1.55s]
+Best heuristic value: 3/46 [g=85, 49 evaluated, 48 expanded, t=1.55s]
+Best heuristic value: 3/45 [g=85, 50 evaluated, 49 expanded, t=1.55s]
+Best heuristic value: 3/43 [g=100, 80 evaluated, 79 expanded, t=1.55s]
+Best heuristic value: 3/42 [g=100, 82 evaluated, 81 expanded, t=1.55s]
+Best heuristic value: 3/37 [g=95, 522 evaluated, 521 expanded, t=1.65s]
+Best heuristic value: 3/36 [g=95, 523 evaluated, 522 expanded, t=1.65s]
+Best heuristic value: 3/35 [g=95, 524 evaluated, 523 expanded, t=1.65s]
+Best heuristic value: 2/34 [g=95, 525 evaluated, 524 expanded, t=1.65s]
+Best heuristic value: 2/32 [g=110, 527 evaluated, 526 expanded, t=1.65s]
+Best heuristic value: 2/31 [g=110, 529 evaluated, 528 expanded, t=1.65s]
+Best heuristic value: 2/29 [g=125, 539 evaluated, 538 expanded, t=1.65s]
+Best heuristic value: 2/28 [g=125, 540 evaluated, 539 expanded, t=1.65s]
+Best heuristic value: 2/20 [g=135, 899 evaluated, 898 expanded, t=1.73s]
+Best heuristic value: 2/19 [g=135, 900 evaluated, 899 expanded, t=1.73s]
+Best heuristic value: 2/18 [g=135, 902 evaluated, 901 expanded, t=1.73s]
+Best heuristic value: 1/17 [g=135, 904 evaluated, 903 expanded, t=1.73s]
+Best heuristic value: 1/15 [g=125, 2591 evaluated, 2590 expanded, 434 reopened, t=2.15s]
+Best heuristic value: 1/14 [g=125, 2592 evaluated, 2591 expanded, 434 reopened, t=2.15s]
+Best heuristic value: 1/3 [g=125, 10467 evaluated, 10466 expanded, 2353 reopened, t=4.36s]
+Best heuristic value: 1/2 [g=125, 10469 evaluated, 10468 expanded, 2354 reopened, t=4.36s]
+Best heuristic value: 1/1 [g=125, 10471 evaluated, 10470 expanded, 2355 reopened, t=4.36s]
+Solution found!
+Actual search time: 2.83s [t=4.36s]
+do-plane part-0 planer-0 rough color-1 varnished (10)
+do-plane-end part-0 planer-0 rough color-1 varnished (0)
+do-immersion-varnish part-0 immersion-varnisher-0 color-0 smooth (0)
+do-immersion-varnish-end part-0 immersion-varnisher-0 color-0 smooth (0)
+do-plane part-1 planer-0 rough color-1 varnished (10)
+do-plane-end part-1 planer-0 rough color-1 varnished (0)
+do-plane part-2 planer-0 rough color-1 varnished (10)
+do-plane-end part-2 planer-0 rough color-1 varnished (0)
+do-plane part-3 planer-0 rough color-1 varnished (10)
+do-plane-end part-3 planer-0 rough color-1 varnished (0)
+do-grind part-1 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-1 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-1 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-1 immersion-varnisher-0 color-0 verysmooth (0)
+do-grind part-2 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-2 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-2 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-2 immersion-varnisher-0 color-0 verysmooth (0)
+do-grind part-3 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-3 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-3 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-3 immersion-varnisher-0 color-0 verysmooth (0)
+do-grind part-0 grinder-0 smooth color-0 varnished colourfragments (15)
+do-grind-end part-0 grinder-0 smooth color-0 varnished colourfragments (0)
+do-plane part-0 planer-0 verysmooth natural colourfragments (10)
+do-plane-end part-0 planer-0 verysmooth natural colourfragments (0)
+do-grind part-0 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-0 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-0 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-0 immersion-varnisher-0 color-0 verysmooth (0)
+Plan length: 30 step(s).
+Plan cost: 125
+Initial state h value: 60/124.
+Expanded 10472 state(s).
+Reopened 2356 state(s).
+Evaluated 10473 state(s).
+Evaluations: 20946
+Generated 72447 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 125
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 3)
+Conducting lazy best first search, (real) bound = 125
+Best heuristic value: 60/124 [g=0, 1 evaluated, 0 expanded, t=4.36s]
+Best heuristic value: 51/113 [g=10, 2 evaluated, 1 expanded, t=4.36s]
+Best heuristic value: 48/112 [g=10, 3 evaluated, 2 expanded, t=4.36s]
+Best heuristic value: 48/111 [g=10, 4 evaluated, 3 expanded, t=4.36s]
+Best heuristic value: 46/110 [g=10, 5 evaluated, 4 expanded, t=4.37s]
+Best heuristic value: 37/99 [g=20, 6 evaluated, 5 expanded, t=4.37s]
+Best heuristic value: 34/98 [g=20, 7 evaluated, 6 expanded, t=4.37s]
+Best heuristic value: 34/97 [g=20, 8 evaluated, 7 expanded, t=4.37s]
+Best heuristic value: 32/96 [g=20, 9 evaluated, 8 expanded, t=4.37s]
+Best heuristic value: 23/85 [g=30, 10 evaluated, 9 expanded, t=4.37s]
+Best heuristic value: 20/84 [g=30, 11 evaluated, 10 expanded, t=4.37s]
+Best heuristic value: 20/83 [g=30, 12 evaluated, 11 expanded, t=4.37s]
+Best heuristic value: 18/82 [g=30, 13 evaluated, 12 expanded, t=4.37s]
+Best heuristic value: 8/71 [g=40, 14 evaluated, 13 expanded, t=4.37s]
+Best heuristic value: 6/70 [g=40, 15 evaluated, 14 expanded, t=4.37s]
+Best heuristic value: 6/69 [g=40, 16 evaluated, 15 expanded, t=4.37s]
+Best heuristic value: 4/68 [g=40, 17 evaluated, 16 expanded, t=4.37s]
+Best heuristic value: 4/66 [g=55, 18 evaluated, 17 expanded, t=4.37s]
+Best heuristic value: 4/65 [g=55, 19 evaluated, 18 expanded, t=4.37s]
+Best heuristic value: 4/54 [g=55, 29 evaluated, 28 expanded, t=4.38s]
+Best heuristic value: 4/53 [g=55, 30 evaluated, 29 expanded, t=4.38s]
+Best heuristic value: 4/52 [g=55, 31 evaluated, 30 expanded, t=4.38s]
+Best heuristic value: 3/51 [g=55, 32 evaluated, 31 expanded, t=4.38s]
+Best heuristic value: 3/49 [g=70, 34 evaluated, 33 expanded, t=4.38s]
+Best heuristic value: 3/48 [g=70, 36 evaluated, 35 expanded, t=4.38s]
+Best heuristic value: 3/46 [g=85, 74 evaluated, 73 expanded, t=4.39s]
+Best heuristic value: 3/45 [g=85, 76 evaluated, 75 expanded, t=4.39s]
+Best heuristic value: 3/43 [g=100, 172 evaluated, 171 expanded, t=4.41s]
+Best heuristic value: 3/42 [g=100, 174 evaluated, 173 expanded, t=4.41s]
+Best heuristic value: 3/37 [g=70, 529 evaluated, 528 expanded, 41 reopened, t=4.49s]
+Best heuristic value: 3/36 [g=70, 530 evaluated, 529 expanded, 41 reopened, t=4.49s]
+Best heuristic value: 3/35 [g=70, 531 evaluated, 530 expanded, 41 reopened, t=4.49s]
+Best heuristic value: 2/34 [g=70, 532 evaluated, 531 expanded, 41 reopened, t=4.49s]
+Best heuristic value: 2/32 [g=85, 533 evaluated, 532 expanded, 41 reopened, t=4.49s]
+Best heuristic value: 2/31 [g=85, 534 evaluated, 533 expanded, 41 reopened, t=4.49s]
+Best heuristic value: 2/29 [g=100, 570 evaluated, 569 expanded, 43 reopened, t=4.5s]
+Best heuristic value: 2/28 [g=100, 572 evaluated, 571 expanded, 43 reopened, t=4.5s]
+Best heuristic value: 2/20 [g=110, 816 evaluated, 815 expanded, 47 reopened, t=4.55s]
+Best heuristic value: 2/19 [g=110, 818 evaluated, 817 expanded, 47 reopened, t=4.55s]
+Best heuristic value: 2/18 [g=110, 820 evaluated, 819 expanded, 47 reopened, t=4.55s]
+Best heuristic value: 1/17 [g=110, 822 evaluated, 821 expanded, 47 reopened, t=4.55s]
+Best heuristic value: 1/15 [g=100, 5297 evaluated, 5296 expanded, 761 reopened, t=5.64s]
+Best heuristic value: 1/14 [g=100, 5298 evaluated, 5297 expanded, 761 reopened, t=5.65s]
+Best heuristic value: 1/3 [g=100, 15430 evaluated, 15429 expanded, 5068 reopened, t=8.44s]
+Best heuristic value: 1/2 [g=100, 15431 evaluated, 15430 expanded, 5068 reopened, t=8.44s]
+Best heuristic value: 1/1 [g=100, 15432 evaluated, 15431 expanded, 5068 reopened, t=8.44s]
+Solution found!
+Actual search time: 4.08s [t=8.44s]
+do-plane part-0 planer-0 rough color-1 varnished (10)
+do-plane-end part-0 planer-0 rough color-1 varnished (0)
+do-plane part-1 planer-0 rough color-1 varnished (10)
+do-plane-end part-1 planer-0 rough color-1 varnished (0)
+do-plane part-2 planer-0 rough color-1 varnished (10)
+do-plane-end part-2 planer-0 rough color-1 varnished (0)
+do-plane part-3 planer-0 rough color-1 varnished (10)
+do-plane-end part-3 planer-0 rough color-1 varnished (0)
+do-grind part-0 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-0 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-0 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-0 immersion-varnisher-0 color-0 verysmooth (0)
+do-grind part-1 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-1 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-1 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-1 immersion-varnisher-0 color-0 verysmooth (0)
+do-grind part-2 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-2 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-2 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-2 immersion-varnisher-0 color-0 verysmooth (0)
+do-grind part-3 grinder-0 smooth natural untreated untreated (15)
+do-grind-end part-3 grinder-0 smooth natural untreated untreated (0)
+do-immersion-varnish part-3 immersion-varnisher-0 color-0 verysmooth (0)
+do-immersion-varnish-end part-3 immersion-varnisher-0 color-0 verysmooth (0)
+Plan length: 24 step(s).
+Plan cost: 100
+Initial state h value: 60/124.
+Expanded 15432 state(s).
+Reopened 5068 state(s).
+Evaluated 15433 state(s).
+Evaluations: 30866
+Generated 105804 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 100
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 2)
+Conducting lazy best first search, (real) bound = 100
+Best heuristic value: 60/124 [g=0, 1 evaluated, 0 expanded, t=8.44s]
+Best heuristic value: 51/113 [g=10, 2 evaluated, 1 expanded, t=8.44s]
+Best heuristic value: 48/112 [g=10, 3 evaluated, 2 expanded, t=8.44s]
+Best heuristic value: 48/111 [g=10, 4 evaluated, 3 expanded, t=8.44s]
+Best heuristic value: 46/110 [g=10, 5 evaluated, 4 expanded, t=8.44s]
+Best heuristic value: 37/99 [g=20, 6 evaluated, 5 expanded, t=8.44s]
+Best heuristic value: 34/98 [g=20, 7 evaluated, 6 expanded, t=8.44s]
+Best heuristic value: 34/97 [g=20, 8 evaluated, 7 expanded, t=8.44s]
+Best heuristic value: 32/96 [g=20, 9 evaluated, 8 expanded, t=8.44s]
+Best heuristic value: 23/85 [g=30, 10 evaluated, 9 expanded, t=8.44s]
+Best heuristic value: 20/84 [g=30, 11 evaluated, 10 expanded, t=8.44s]
+Best heuristic value: 20/83 [g=30, 12 evaluated, 11 expanded, t=8.44s]
+Best heuristic value: 18/82 [g=30, 13 evaluated, 12 expanded, t=8.44s]
+Best heuristic value: 8/71 [g=40, 14 evaluated, 13 expanded, t=8.44s]
+Best heuristic value: 6/70 [g=40, 15 evaluated, 14 expanded, t=8.44s]
+Best heuristic value: 6/69 [g=40, 16 evaluated, 15 expanded, t=8.44s]
+Best heuristic value: 4/68 [g=40, 17 evaluated, 16 expanded, t=8.44s]
+Best heuristic value: 4/66 [g=55, 18 evaluated, 17 expanded, t=8.44s]
+Best heuristic value: 4/65 [g=55, 19 evaluated, 18 expanded, t=8.44s]
+Best heuristic value: 4/54 [g=55, 29 evaluated, 28 expanded, t=8.45s]
+Best heuristic value: 4/53 [g=55, 30 evaluated, 29 expanded, t=8.45s]
+Best heuristic value: 4/52 [g=55, 31 evaluated, 30 expanded, t=8.45s]
+Best heuristic value: 3/51 [g=55, 32 evaluated, 31 expanded, t=8.45s]
+Best heuristic value: 3/49 [g=70, 34 evaluated, 33 expanded, t=8.45s]
+Best heuristic value: 3/48 [g=70, 36 evaluated, 35 expanded, t=8.45s]
+Best heuristic value: 3/46 [g=85, 79 evaluated, 78 expanded, t=8.46s]
+Best heuristic value: 3/45 [g=85, 80 evaluated, 79 expanded, t=8.46s]
+Best heuristic value: 3/37 [g=70, 220 evaluated, 219 expanded, 2 reopened, t=8.49s]
+Best heuristic value: 3/36 [g=70, 222 evaluated, 221 expanded, 2 reopened, t=8.49s]
+Best heuristic value: 3/35 [g=70, 223 evaluated, 222 expanded, 2 reopened, t=8.49s]
+Best heuristic value: 2/34 [g=70, 224 evaluated, 223 expanded, 2 reopened, t=8.49s]
+Best heuristic value: 2/32 [g=85, 225 evaluated, 224 expanded, 2 reopened, t=8.49s]
+Best heuristic value: 2/31 [g=85, 226 evaluated, 225 expanded, 2 reopened, t=8.49s]
+Best heuristic value: 2/20 [g=85, 1657 evaluated, 1656 expanded, 133 reopened, t=8.81s]
+Best heuristic value: 2/19 [g=85, 1658 evaluated, 1657 expanded, 133 reopened, t=8.81s]
+Best heuristic value: 2/18 [g=85, 1659 evaluated, 1658 expanded, 133 reopened, t=8.81s]
+Best heuristic value: 1/17 [g=85, 1660 evaluated, 1659 expanded, 133 reopened, t=8.81s]
+Completely explored state space -- no solution!
+Actual search time: 142.06s [t=150.5s]
+Initial state h value: 60/124.
+Expanded 275591 state(s).
+Reopened 6850 state(s).
+Evaluated 275591 state(s).
+Evaluations: 551182
+Generated 1353371 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 100
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 1)
+Conducting lazy best first search, (real) bound = 100
+Best heuristic value: 60/124 [g=0, 1 evaluated, 0 expanded, t=150.5s]
+Best heuristic value: 51/113 [g=10, 2 evaluated, 1 expanded, t=150.5s]
+Best heuristic value: 48/112 [g=10, 3 evaluated, 2 expanded, t=150.5s]
+Best heuristic value: 48/111 [g=10, 4 evaluated, 3 expanded, t=150.5s]
+Best heuristic value: 46/110 [g=10, 5 evaluated, 4 expanded, t=150.5s]
+Best heuristic value: 37/99 [g=20, 6 evaluated, 5 expanded, t=150.5s]
+Best heuristic value: 34/98 [g=20, 7 evaluated, 6 expanded, t=150.5s]
+Best heuristic value: 34/97 [g=20, 8 evaluated, 7 expanded, t=150.5s]
+Best heuristic value: 32/96 [g=20, 9 evaluated, 8 expanded, t=150.5s]
+Best heuristic value: 23/85 [g=30, 10 evaluated, 9 expanded, t=150.5s]
+Best heuristic value: 20/84 [g=30, 11 evaluated, 10 expanded, t=150.5s]
+Best heuristic value: 20/83 [g=30, 12 evaluated, 11 expanded, t=150.51s]
+Best heuristic value: 18/82 [g=30, 13 evaluated, 12 expanded, t=150.51s]
+Best heuristic value: 8/71 [g=40, 14 evaluated, 13 expanded, t=150.51s]
+Best heuristic value: 6/70 [g=40, 15 evaluated, 14 expanded, t=150.51s]
+Best heuristic value: 6/69 [g=40, 16 evaluated, 15 expanded, t=150.51s]
+Best heuristic value: 4/68 [g=40, 17 evaluated, 16 expanded, t=150.51s]
+Best heuristic value: 4/66 [g=55, 18 evaluated, 17 expanded, t=150.51s]
+Best heuristic value: 4/65 [g=55, 19 evaluated, 18 expanded, t=150.51s]
+Best heuristic value: 4/54 [g=55, 36 evaluated, 35 expanded, t=150.52s]
+Best heuristic value: 4/53 [g=55, 37 evaluated, 36 expanded, t=150.52s]
+Best heuristic value: 4/52 [g=55, 38 evaluated, 37 expanded, t=150.52s]
+Best heuristic value: 3/51 [g=55, 39 evaluated, 38 expanded, t=150.52s]
+Best heuristic value: 3/49 [g=70, 41 evaluated, 40 expanded, t=150.52s]
+Best heuristic value: 3/48 [g=70, 43 evaluated, 42 expanded, t=150.52s]
+Best heuristic value: 3/37 [g=70, 399 evaluated, 398 expanded, t=150.65s]
+Best heuristic value: 3/36 [g=70, 401 evaluated, 400 expanded, t=150.66s]
+Best heuristic value: 3/35 [g=70, 402 evaluated, 401 expanded, t=150.66s]
+Best heuristic value: 2/34 [g=70, 404 evaluated, 403 expanded, t=150.66s]
+Best heuristic value: 2/32 [g=85, 414 evaluated, 413 expanded, t=150.66s]
+Best heuristic value: 2/31 [g=85, 418 evaluated, 417 expanded, t=150.66s]
+Best heuristic value: 2/20 [g=85, 3320 evaluated, 3319 expanded, t=151.93s]
+Best heuristic value: 2/19 [g=85, 3321 evaluated, 3320 expanded, t=151.94s]
+Best heuristic value: 2/18 [g=85, 3322 evaluated, 3321 expanded, t=151.94s]
+Best heuristic value: 1/17 [g=85, 3323 evaluated, 3322 expanded, t=151.94s]
+Completely explored state space -- no solution!
+Actual search time: 175.13s [t=325.63s]
+Initial state h value: 60/124.
+Expanded 270265 state(s).
+Reopened 1524 state(s).
+Evaluated 270265 state(s).
+Evaluations: 540530
+Generated 1320673 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 100
+No solution found - keep searching
+Actual search time: 325.43s [t=325.63s]
+Cumulative statistics:
+Expanded 576867 state(s).
+Reopened 15798 state(s).
+Evaluated 576871 state(s).
+Evaluations: 1153742
+Generated 2888166 state(s).
+Dead ends: 0 state(s).
+Search time: 325.43s
+Total time: 325.63s
+Solution found.
+Peak memory: 331652 KB
