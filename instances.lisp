@@ -78,4 +78,4 @@
 (export
  (defun load-rovers ()
    (all "rovers/domain.pddl"
-        "rovers/p[0-9]*.pddl")))
+        "rovers/p0[0-9].pddl"))) ;; ignore problems whose number is more than 10
