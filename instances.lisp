@@ -73,5 +73,8 @@
      "woodworking-test2?-tempo-converted/wood-test-tempo-[0-9]*.pddl")
 (all "satellite-typed-loop/domain.pddl"
      "satellite-typed-loop/satellite-loop-[0-9]*.pddl")
-;; (all "rovers/domain.pddl"
-;;      "rovers/p[0-9]*.pddl")
+
+(export
+ (defun load-rovers ()
+   (all "rovers/domain.pddl"
+        "rovers/p[0-9]*.pddl")))
