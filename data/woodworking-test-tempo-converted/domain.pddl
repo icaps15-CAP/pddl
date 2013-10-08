@@ -40,7 +40,7 @@
 
    (immersion-varnishing-now ?x - part ?m - immersion-varnisher 
                              ?newcolour - acolour ?surface - surface)
-   (spray-varnishing-now ?x - part ?m - immersion-varnisher 
+   (spray-varnishing-now ?x - part ?m - spray-varnisher 
                          ?newcolour - acolour ?surface - surface)
    (glazing-now ?x - part ?m - glazer 
                 ?newcolour - acolour)
