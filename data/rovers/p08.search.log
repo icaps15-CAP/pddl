@@ -1,0 +1,146 @@
+Dispatcher selected state size 1.
+This is a unit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.0298683s
+Discovered 35 landmarks, of which 13 are disjunctive and 0 are conjunctive 
+43 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+14 initial landmarks, 8 goal landmarks
+Starting search: lazy_greedy(list(hff, hlm), preferred = list(hff, hlm))
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 21/21 [g=0, 1 evaluated, 0 expanded, t=0.07s]
+Best heuristic value: 20/21 [g=1, 2 evaluated, 1 expanded, t=0.07s]
+Best heuristic value: 19/21 [g=2, 3 evaluated, 2 expanded, t=0.07s]
+Best heuristic value: 19/20 [g=1, 4 evaluated, 3 expanded, t=0.07s]
+Best heuristic value: 18/20 [g=3, 7 evaluated, 6 expanded, t=0.07s]
+Best heuristic value: 18/19 [g=2, 16 evaluated, 15 expanded, t=0.07s]
+Best heuristic value: 17/19 [g=4, 21 evaluated, 20 expanded, t=0.08s]
+Best heuristic value: 17/18 [g=3, 28 evaluated, 27 expanded, t=0.08s]
+Best heuristic value: 16/18 [g=5, 35 evaluated, 34 expanded, t=0.08s]
+Best heuristic value: 16/17 [g=4, 40 evaluated, 39 expanded, t=0.08s]
+Best heuristic value: 15/17 [g=6, 49 evaluated, 48 expanded, t=0.08s]
+Best heuristic value: 15/16 [g=7, 58 evaluated, 57 expanded, t=0.08s]
+Best heuristic value: 14/16 [g=7, 64 evaluated, 63 expanded, t=0.08s]
+Best heuristic value: 14/15 [g=9, 76 evaluated, 75 expanded, t=0.08s]
+Best heuristic value: 13/15 [g=8, 79 evaluated, 78 expanded, t=0.08s]
+Best heuristic value: 13/14 [g=11, 94 evaluated, 93 expanded, t=0.08s]
+Best heuristic value: 12/14 [g=12, 98 evaluated, 97 expanded, t=0.08s]
+Best heuristic value: 12/13 [g=13, 103 evaluated, 102 expanded, t=0.08s]
+Best heuristic value: 11/13 [g=13, 105 evaluated, 104 expanded, t=0.08s]
+Best heuristic value: 11/12 [g=14, 108 evaluated, 107 expanded, t=0.08s]
+Best heuristic value: 10/12 [g=15, 116 evaluated, 115 expanded, t=0.08s]
+Best heuristic value: 10/11 [g=16, 124 evaluated, 123 expanded, t=0.08s]
+Best heuristic value: 9/11 [g=16, 130 evaluated, 129 expanded, t=0.08s]
+Best heuristic value: 9/10 [g=17, 133 evaluated, 132 expanded, t=0.08s]
+Best heuristic value: 9/9 [g=18, 143 evaluated, 142 expanded, t=0.09s]
+Best heuristic value: 8/9 [g=17, 146 evaluated, 145 expanded, t=0.09s]
+Best heuristic value: 8/8 [g=20, 159 evaluated, 158 expanded, t=0.09s]
+Best heuristic value: 7/8 [g=19, 164 evaluated, 163 expanded, t=0.09s]
+Best heuristic value: 7/7 [g=22, 173 evaluated, 172 expanded, t=0.09s]
+Best heuristic value: 6/7 [g=21, 180 evaluated, 179 expanded, t=0.09s]
+Best heuristic value: 6/6 [g=24, 185 evaluated, 184 expanded, t=0.09s]
+Best heuristic value: 5/6 [g=25, 193 evaluated, 192 expanded, t=0.09s]
+Best heuristic value: 4/5 [g=26, 197 evaluated, 196 expanded, t=0.09s]
+Best heuristic value: 4/4 [g=27, 201 evaluated, 200 expanded, t=0.09s]
+Best heuristic value: 3/4 [g=28, 203 evaluated, 202 expanded, t=0.09s]
+Best heuristic value: 3/3 [g=29, 209 evaluated, 208 expanded, t=0.09s]
+Best heuristic value: 2/3 [g=30, 211 evaluated, 210 expanded, t=0.09s]
+Best heuristic value: 2/2 [g=31, 215 evaluated, 214 expanded, t=0.09s]
+Best heuristic value: 1/2 [g=32, 218 evaluated, 217 expanded, t=0.09s]
+Best heuristic value: 1/1 [g=33, 219 evaluated, 218 expanded, t=0.09s]
+Solution found!
+Actual search time: 0.03s [t=0.09s]
+navigate rover3 waypoint3 waypoint4 (1)
+sample_rock rover3 rover3store waypoint4 (1)
+calibrate rover1 camera2 objective0 waypoint2 (1)
+navigate rover0 waypoint2 waypoint0 (1)
+navigate rover0 waypoint0 waypoint1 (1)
+sample_soil rover0 rover0store waypoint1 (1)
+drop rover3 rover3store (1)
+communicate_rock_data rover3 general waypoint4 waypoint4 waypoint0 (1)
+end_communication rover3 general colour waypoint4 waypoint0 (1)
+take_image rover1 waypoint2 objective2 camera2 low_res (1)
+calibrate rover1 camera2 objective0 waypoint2 (1)
+take_image rover1 waypoint2 objective0 camera2 low_res (1)
+calibrate rover1 camera2 objective0 waypoint2 (1)
+take_image rover1 waypoint2 objective0 camera2 high_res (1)
+sample_soil rover3 rover3store waypoint4 (1)
+drop rover3 rover3store (1)
+navigate rover3 waypoint4 waypoint3 (1)
+sample_soil rover3 rover3store waypoint3 (1)
+communicate_soil_data rover3 general waypoint4 waypoint3 waypoint0 (1)
+end_communication rover3 general colour waypoint3 waypoint0 (1)
+communicate_soil_data rover3 general waypoint3 waypoint3 waypoint0 (1)
+end_communication rover3 general colour waypoint3 waypoint0 (1)
+communicate_soil_data rover0 general waypoint1 waypoint1 waypoint0 (1)
+end_communication rover3 general colour waypoint3 waypoint0 (1)
+navigate rover2 waypoint2 waypoint5 (1)
+sample_rock rover2 rover2store waypoint5 (1)
+communicate_image_data rover1 general objective2 low_res waypoint2 waypoint0 (1)
+end_communication rover1 general colour waypoint2 waypoint0 (1)
+communicate_image_data rover1 general objective0 low_res waypoint2 waypoint0 (1)
+end_communication rover1 general colour waypoint2 waypoint0 (1)
+navigate rover2 waypoint5 waypoint2 (1)
+communicate_image_data rover1 general objective0 high_res waypoint2 waypoint0 (1)
+end_communication rover3 general colour waypoint3 waypoint0 (1)
+communicate_rock_data rover2 general waypoint5 waypoint2 waypoint0 (1)
+Plan length: 34 step(s).
+Plan cost: 34
+Initial state h value: 21/21.
+Expanded 219 state(s).
+Reopened 0 state(s).
+Evaluated 220 state(s).
+Evaluations: 440
+Generated 5986 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 34
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff, hlm), preferred = list(hff, hlm), w = 5)
+Conducting lazy best first search, (real) bound = 34
+Best heuristic value: 21/21 [g=0, 1 evaluated, 0 expanded, t=0.1s]
+Best heuristic value: 20/21 [g=1, 2 evaluated, 1 expanded, t=0.1s]
+Best heuristic value: 19/21 [g=2, 3 evaluated, 2 expanded, t=0.1s]
+Best heuristic value: 19/20 [g=1, 4 evaluated, 3 expanded, t=0.1s]
+Best heuristic value: 18/20 [g=3, 7 evaluated, 6 expanded, t=0.1s]
+Best heuristic value: 18/19 [g=2, 16 evaluated, 15 expanded, t=0.1s]
+Best heuristic value: 17/19 [g=4, 21 evaluated, 20 expanded, t=0.1s]
+Best heuristic value: 17/18 [g=3, 28 evaluated, 27 expanded, t=0.1s]
+Best heuristic value: 16/18 [g=5, 35 evaluated, 34 expanded, t=0.1s]
+Best heuristic value: 16/17 [g=4, 40 evaluated, 39 expanded, t=0.1s]
+Best heuristic value: 15/17 [g=6, 49 evaluated, 48 expanded, t=0.1s]
+Best heuristic value: 15/16 [g=7, 58 evaluated, 57 expanded, t=0.1s]
+Best heuristic value: 14/16 [g=7, 64 evaluated, 63 expanded, t=0.1s]
+Best heuristic value: 14/15 [g=9, 76 evaluated, 75 expanded, t=0.1s]
+Best heuristic value: 13/15 [g=8, 79 evaluated, 78 expanded, t=0.1s]
+Best heuristic value: 12/15 [g=10, 99 evaluated, 98 expanded, t=0.11s]
+Best heuristic value: 12/14 [g=10, 106 evaluated, 105 expanded, t=0.11s]
+Best heuristic value: 11/14 [g=12, 130 evaluated, 129 expanded, t=0.11s]
+Best heuristic value: 11/13 [g=12, 136 evaluated, 135 expanded, t=0.11s]
+Best heuristic value: 10/13 [g=14, 148 evaluated, 147 expanded, t=0.11s]
+Best heuristic value: 9/13 [g=15, 152 evaluated, 151 expanded, t=0.11s]
+Best heuristic value: 9/12 [g=14, 153 evaluated, 152 expanded, t=0.11s]
+Best heuristic value: 8/12 [g=17, 170 evaluated, 169 expanded, t=0.11s]
+Best heuristic value: 8/11 [g=16, 173 evaluated, 172 expanded, t=0.12s]
+Best heuristic value: 8/10 [g=17, 179 evaluated, 178 expanded, t=0.12s]
+Best heuristic value: 7/10 [g=19, 188 evaluated, 187 expanded, t=0.12s]
+Best heuristic value: 6/9 [g=21, 202 evaluated, 201 expanded, t=0.12s]
+Best heuristic value: 6/8 [g=22, 205 evaluated, 204 expanded, t=0.12s]
+Best heuristic value: 6/7 [g=23, 210 evaluated, 209 expanded, t=0.12s]
+Best heuristic value: 5/7 [g=23, 213 evaluated, 212 expanded, t=0.12s]
+Best heuristic value: 5/6 [g=24, 216 evaluated, 215 expanded, t=0.12s]
+Best heuristic value: 5/5 [g=25, 226 evaluated, 225 expanded, t=0.12s]
+Best heuristic value: 4/5 [g=25, 227 evaluated, 226 expanded, t=0.12s]
+Best heuristic value: 4/4 [g=27, 238 evaluated, 237 expanded, t=0.12s]
+Best heuristic value: 3/3 [g=29, 247 evaluated, 246 expanded, t=0.12s]
+Best heuristic value: 2/2 [g=31, 251 evaluated, 250 expanded, t=0.12s]
+Best heuristic value: 1/1 [g=33, 254 evaluated, 253 expanded, t=0.12s]
+Failed to allocate memory. Released memory buffer.
+Memory limit has been reached.
+Failed to allocate memory. Released memory buffer.
+Memory limit has been reached.

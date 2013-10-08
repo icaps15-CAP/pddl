@@ -1,30 +1,30 @@
-Parsing... [0.020s CPU, 0.028s wall-clock]
+Parsing... [0.030s CPU, 0.068s wall-clock]
 Normalizing task... [0.010s CPU, 0.002s wall-clock]
 Instantiating...
-Generating Datalog program... [0.000s CPU, 0.004s wall-clock]
+Generating Datalog program... [0.000s CPU, 0.006s wall-clock]
 Normalizing Datalog program...
-Normalizing Datalog program: [0.040s CPU, 0.045s wall-clock]
-Preparing model... [0.020s CPU, 0.023s wall-clock]
-Generated 90 rules.
-Computing model... [0.080s CPU, 0.077s wall-clock]
-310 relevant atoms
-417 auxiliary atoms
-727 final queue length
-945 total queue pushes
-Completing instantiation... [0.060s CPU, 0.057s wall-clock]
-Instantiating: [0.200s CPU, 0.209s wall-clock]
+Normalizing Datalog program: [0.040s CPU, 0.064s wall-clock]
+Preparing model... [0.020s CPU, 0.016s wall-clock]
+Generated 94 rules.
+Computing model... [0.030s CPU, 0.036s wall-clock]
+325 relevant atoms
+467 auxiliary atoms
+792 final queue length
+924 total queue pushes
+Completing instantiation... [0.030s CPU, 0.033s wall-clock]
+Instantiating: [0.120s CPU, 0.157s wall-clock]
 Computing fact groups...
 Finding invariants...
 35 initial candidates
-Finding invariants: [0.050s CPU, 0.046s wall-clock]
-Checking invariant weight... [0.000s CPU, 0.002s wall-clock]
-Instantiating groups... [0.000s CPU, 0.002s wall-clock]
-Collecting mutex groups... [0.000s CPU, 0.001s wall-clock]
+Finding invariants: [0.030s CPU, 0.031s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
 Choosing groups...
 38 uncovered facts
 Choosing groups: [0.010s CPU, 0.001s wall-clock]
 Building translation key... [0.000s CPU, 0.002s wall-clock]
-Computing fact groups: [0.060s CPU, 0.057s wall-clock]
+Computing fact groups: [0.040s CPU, 0.039s wall-clock]
 Building STRIPS to SAS dictionary... [0.000s CPU, 0.001s wall-clock]
 Building dictionary for full mutex groups... [0.000s CPU, 0.001s wall-clock]
 Building mutex information...
@@ -32,22 +32,22 @@ Building mutex information: [0.000s CPU, 0.001s wall-clock]
 Translating task...
 Processing axioms...
 Simplifying axioms... [0.000s CPU, 0.001s wall-clock]
-Processing axioms: [0.000s CPU, 0.004s wall-clock]
-Translating task: [0.050s CPU, 0.049s wall-clock]
-116 implied effects removed
+Processing axioms: [0.010s CPU, 0.004s wall-clock]
+Translating task: [0.060s CPU, 0.053s wall-clock]
+0 implied effects removed
 0 effect conditions simplified
 0 implied preconditions added
 Detecting unreachable propositions...
 0 operators removed
-15 propositions removed
-Detecting unreachable propositions: [0.010s CPU, 0.011s wall-clock]
-Translator variables: 44
+9 propositions removed
+Detecting unreachable propositions: [0.000s CPU, 0.009s wall-clock]
+Translator variables: 47
 Translator derived variables: 0
-Translator facts: 91
+Translator facts: 97
 Translator mutex groups: 9
 Translator total mutex groups size: 21
-Translator operators: 144
-Translator task size: 790
-Translator peak memory: 43072 KB
-Writing output... [0.020s CPU, 0.013s wall-clock]
-Done! [0.370s CPU, 0.377s wall-clock]
+Translator operators: 159
+Translator task size: 1101
+Translator peak memory: 43084 KB
+Writing output... [0.010s CPU, 0.004s wall-clock]
+Done! [0.270s CPU, 0.336s wall-clock]
