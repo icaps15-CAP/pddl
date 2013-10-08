@@ -1,5 +1,23 @@
 #! /bin/bash
 
+PARALLEL=false
+
+while getopts ":p" opt
+do
+    case ${opt} in
+        p) PARALLEL=true ;;
+        *) echo "unsupported option $opt" ;;
+    esac
+done
+
+shift $(($OPTIND - 1))
+
+if [ $OPT_ERROR ]; then      # option error
+    echo "usage: [-p] directory prefix" >&2
+    exit 1
+fi
+
+
 echo $0
 echo ${0%%/*}
 SDIR=$(readlink -e ${0%%/*})
@@ -19,7 +37,12 @@ pushd $DIR
 for pddl in $(ls -v $2*.pddl)
 do
     echo $pddl
-    $SCRIPT $pddl
+    if $PARALLEL
+    then
+        $SCRIPT $pddl &
+    else
+        $SCRIPT $pddl        
+    fi
 done
 popd
 

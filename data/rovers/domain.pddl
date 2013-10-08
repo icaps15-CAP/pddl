@@ -131,7 +131,7 @@
                         (communicated_image_data ?o ?m)))
 
   (:action end_communication
-           :parameters (?r - rover ?l - lander ?o - objective ?m - mode ?x - waypoint ?y - waypoint)
+           :parameters (?r - rover ?l - lander ?m - mode ?x - waypoint ?y - waypoint)
            :precondition (and (at ?r ?x)
                               (at_lander ?l ?y)
                               (visible ?x ?y))
