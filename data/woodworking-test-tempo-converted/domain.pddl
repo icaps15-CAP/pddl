@@ -87,6 +87,7 @@
                           (is-smooth ?surface)
                           (treatment ?x untreated))
            :effect (and
+                    (increase (total-cost) 10)
                     (not (idle ?m))
                     (not (available ?x))
                     (not (treatment ?x untreated))
