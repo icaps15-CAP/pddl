@@ -54,7 +54,10 @@
              ((pddl-atomic-state
                :name (eq (name effect-pred))
                :parameters
-               (equalp (mapcar (curry #'getf match-set)
+               (equalp (mapcar (lambda (p)
+                                 (or (getf match-set p)
+                                     (when (typep p 'pddl-constant)
+                                       p)))
                                (parameters effect-pred))))
               t))
            states))))

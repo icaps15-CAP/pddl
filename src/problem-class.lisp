@@ -64,16 +64,14 @@
                        (parametrized pddl-parametrized-object))
   (let ((same (curry #'eqname designator))
         (params (parameters parametrized)))
-    (when (some same params)
-      (remove-if same params))))
+    (some same params)))
 
 ;; same
 (defmethod related-to ((designator pddl-constant)
                        (parametrized pddl-parametrized-object))
   (let ((same (curry #'eqname designator))
         (params (parameters parametrized)))
-    (when (some same params)
-      (remove-if same params))))
+    (some same params)))
 
 (defmethod related-to (designator parametrized)
   nil)
@@ -94,6 +92,6 @@
 (define-pddl-class pddl-metric (pddl-problem-slot)
   (optimization metric-function metric-spec))
 
-(define-pddl-class pddl-function-state (pddl-function)
+(define-pddl-class pddl-function-state (pddl-function pddl-problem-slot)
   (value body))
 

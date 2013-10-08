@@ -53,7 +53,9 @@ clause in the domain description.
             (list 
              ,@(mapcar
                 (lambda (p)
-                  `(eq (%getf-by-name ,matches ,p)))
+                  (if (typep p 'pddl-constant)
+                      `(eq ,p)
+                      `(eq (%getf-by-name ,matches ,p))))
                 (parameters head))))
            t))
         ,states)
