@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# @(#) usage: [-v] [-t SOFT_TIME_LIMIT] [-T HARD_TIME_LIMIT] [-m MEMORY_LIMIT] [-o FD_OPTIONS] problemfile [domainfile]
+
+
 REALPATH=$(which realpath)
 if [[ $REALPATH == "" ]]
 then
@@ -83,7 +86,7 @@ SEARCH_DIR=$FD_DIR/src/search
 export SEARCH="$SEARCH_DIR/downward $OPTIONS"
 
 echo $'\x1b[34;1m'---- process $PPID started -----------------------------
-echo "MAX MEM(MB):          $MEMORY_USAGE"
+echo "MAX MEM(kB):          $MEMORY_USAGE"
 echo "SOFT TIME LIMIT(sec): $SOFT_TIME_LIMIT"
 echo "HARD TIME LIMIT(sec): $HARD_TIME_LIMIT"
 echo "PROBLEM_NAME:         $PROBLEM_NAME"
