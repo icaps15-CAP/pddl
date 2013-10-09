@@ -108,7 +108,8 @@
      (:objects ,@(mappend #'print-pddl-object (objects/const o)))
      (:init ,@(print-pddl-object (init o)))
      (:goal ,(print-pddl-object (goal o)))
-     ,(print-pddl-object (metric o))
+     ,@(when-let ((m (metric o)))
+                 `(,(print-pddl-object m)))
      ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
