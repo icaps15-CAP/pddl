@@ -1,1 +1,1 @@
-/home/guicho/repos/pddl/data/woodworking-test-tempo-converted/domain.pddl
+../woodworking-test-tempo-converted/domain.pddl

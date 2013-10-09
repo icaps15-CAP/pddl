@@ -195,7 +195,7 @@
                     (not (grinding-now ?x ?m ?oldsurface ?oldcolour ?oldtreatment ?newtreatment))
                     (idle ?m)
                     (available ?x)
-                    (surface-condition ?x smooth)
+                    (surface-condition ?x verysmooth)
                     (treatment ?x untreated)
                     (colour ?x natural)))
 

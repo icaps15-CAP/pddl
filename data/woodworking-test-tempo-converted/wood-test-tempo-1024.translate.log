@@ -1,53 +1,14 @@
-Parsing... [0.590s CPU, 0.594s wall-clock]
-Normalizing task... [0.160s CPU, 0.160s wall-clock]
+Parsing... [0.680s CPU, 0.693s wall-clock]
+Normalizing task... [0.050s CPU, 0.043s wall-clock]
 Instantiating...
-Generating Datalog program... [0.180s CPU, 0.181s wall-clock]
+Generating Datalog program... [0.190s CPU, 0.196s wall-clock]
 Normalizing Datalog program...
-Normalizing Datalog program: [0.040s CPU, 0.049s wall-clock]
-Preparing model... [1.030s CPU, 1.037s wall-clock]
+Normalizing Datalog program: [0.080s CPU, 0.084s wall-clock]
+Preparing model... [0.660s CPU, 0.653s wall-clock]
 Generated 260 rules.
-Computing model... [67.550s CPU, 68.307s wall-clock]
-157835 relevant atoms
-360598 auxiliary atoms
-518433 final queue length
-741677 total queue pushes
-Completing instantiation... [766.730s CPU, 770.828s wall-clock]
-Instantiating: [840.160s CPU, 845.044s wall-clock]
-Computing fact groups...
-Finding invariants...
-70 initial candidates
-Finding invariants: [0.910s CPU, 0.902s wall-clock]
-Checking invariant weight... [0.180s CPU, 0.185s wall-clock]
-Instantiating groups... [0.100s CPU, 0.096s wall-clock]
-Collecting mutex groups... [1.050s CPU, 1.056s wall-clock]
-Choosing groups...
-60435 uncovered facts
-Choosing groups: [1.030s CPU, 1.038s wall-clock]
-Building translation key... [4.260s CPU, 4.259s wall-clock]
-Computing fact groups: [23.480s CPU, 23.562s wall-clock]
-Building STRIPS to SAS dictionary... [1.950s CPU, 1.951s wall-clock]
-Building dictionary for full mutex groups... [1.700s CPU, 1.702s wall-clock]
-Building mutex information...
-Building mutex information: [1.850s CPU, 1.843s wall-clock]
-Translating task...
-Processing axioms...
-Simplifying axioms... [0.000s CPU, 0.001s wall-clock]
-Processing axioms: [7.660s CPU, 7.674s wall-clock]
-Translating task: [117.910s CPU, 118.883s wall-clock]
-0 implied effects removed
-3075 effect conditions simplified
-0 implied preconditions added
-Detecting unreachable propositions...
-0 operators removed
-13 propositions removed
-Detecting unreachable propositions: [68.960s CPU, 69.476s wall-clock]
-Translator variables: 60430
-Translator derived variables: 0
-Translator facts: 120865
-Translator mutex groups: 1
-Translator total mutex groups size: 7
-Translator operators: 92172
-Translator task size: 1079419
-Translator peak memory: 984932 KB
-Writing output... [31.030s CPU, 31.332s wall-clock]
-Done! [1101.780s CPU, 1108.643s wall-clock]
+Computing model... [79.910s CPU, 85.435s wall-clock]
+238731 relevant atoms
+527510 auxiliary atoms
+766241 final queue length
+1119533 total queue pushes
+Completing instantiation... 

@@ -2,7 +2,10 @@ Dispatcher selected state size 1.
 This is a nonunit task.
 Simplifying transitions... done!
 Initializing Exploration...
-/home/asai/repos/downward/src/search/downward: 196 行: 26375 強制終了            "$PLANNER" --heuristic "hlm1,hff1=lm_ff_syn(lm_rhw(
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+/home/asai/repos/downward/src/search/downward: 196 行: 26252 強制終了            "$PLANNER" --heuristic "hlm1,hff1=lm_ff_syn(lm_rhw(
                     reasonable_orders=true,lm_cost_type=1,cost_type=1))" --heuristic "hlm2,hff2=lm_ff_syn(lm_rhw(
                     reasonable_orders=true,lm_cost_type=2,cost_type=2))" --search "iterated([
                     lazy_greedy([hff1,hlm1],preferred=[hff1,hlm1],
