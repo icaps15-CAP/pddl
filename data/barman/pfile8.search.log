@@ -1,0 +1,76 @@
+Dispatcher selected state size 1.
+This is a unit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 1.07219s
+Discovered 122 landmarks, of which 2 are disjunctive and 0 are conjunctive 
+228 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+81 initial landmarks, 19 goal landmarks
+Starting search: lazy_greedy(list(hff, hlm), preferred = list(hff, hlm))
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 41/53 [g=0, 1 evaluated, 0 expanded, t=1.84s]
+Best heuristic value: 40/53 [g=1, 2 evaluated, 1 expanded, t=1.85s]
+Best heuristic value: 40/51 [g=1, 5 evaluated, 4 expanded, t=1.85s]
+Best heuristic value: 39/51 [g=3, 31 evaluated, 30 expanded, t=1.91s]
+Best heuristic value: 37/51 [g=4, 33 evaluated, 32 expanded, t=1.91s]
+Best heuristic value: 37/50 [g=6, 40 evaluated, 39 expanded, t=1.93s]
+Best heuristic value: 37/49 [g=6, 43 evaluated, 42 expanded, t=1.93s]
+Best heuristic value: 36/49 [g=9, 60 evaluated, 59 expanded, t=1.97s]
+Best heuristic value: 36/48 [g=11, 70 evaluated, 68 expanded, t=1.99s]
+Best heuristic value: 36/47 [g=11, 73 evaluated, 71 expanded, t=1.99s]
+Best heuristic value: 35/47 [g=14, 90 evaluated, 88 expanded, t=2.03s]
+Best heuristic value: 35/46 [g=14, 101 evaluated, 97 expanded, t=2.07s]
+Best heuristic value: 34/46 [g=19, 124 evaluated, 118 expanded, t=2.12s]
+Best heuristic value: 34/45 [g=20, 126 evaluated, 120 expanded, t=2.12s]
+Best heuristic value: 34/44 [g=21, 132 evaluated, 126 expanded, t=2.13s]
+Best heuristic value: 33/44 [g=24, 152 evaluated, 144 expanded, t=2.18s]
+Best heuristic value: 33/43 [g=25, 154 evaluated, 146 expanded, t=2.18s]
+Best heuristic value: 33/42 [g=26, 160 evaluated, 152 expanded, t=2.19s]
+Best heuristic value: 33/41 [g=28, 176 evaluated, 166 expanded, t=2.22s]
+Best heuristic value: 32/41 [g=29, 177 evaluated, 167 expanded, t=2.23s]
+Best heuristic value: 32/40 [g=31, 220 evaluated, 200 expanded, t=2.3s]
+Best heuristic value: 31/40 [g=33, 242 evaluated, 219 expanded, t=2.34s]
+Best heuristic value: 31/39 [g=34, 244 evaluated, 221 expanded, t=2.34s]
+Best heuristic value: 31/38 [g=39, 374 evaluated, 316 expanded, t=2.59s]
+Best heuristic value: 30/38 [g=40, 376 evaluated, 318 expanded, t=2.59s]
+Best heuristic value: 29/38 [g=43, 395 evaluated, 337 expanded, t=2.63s]
+Best heuristic value: 29/37 [g=47, 679 evaluated, 621 expanded, t=3.53s]
+Best heuristic value: 29/36 [g=49, 686 evaluated, 628 expanded, t=3.55s]
+Best heuristic value: 28/36 [g=51, 705 evaluated, 645 expanded, t=3.6s]
+Best heuristic value: 28/35 [g=52, 707 evaluated, 646 expanded, t=3.6s]
+Best heuristic value: 27/35 [g=56, 792 evaluated, 722 expanded, t=3.89s]
+Best heuristic value: 27/34 [g=57, 793 evaluated, 723 expanded, t=3.9s]
+Best heuristic value: 26/34 [g=66, 1173 evaluated, 1103 expanded, t=5.37s]
+Best heuristic value: 26/33 [g=66, 1181 evaluated, 1111 expanded, t=5.39s]
+Best heuristic value: 25/33 [g=68, 1199 evaluated, 1128 expanded, t=5.42s]
+Best heuristic value: 25/32 [g=69, 1201 evaluated, 1129 expanded, t=5.42s]
+Best heuristic value: 25/31 [g=74, 1327 evaluated, 1235 expanded, t=5.64s]
+Best heuristic value: 24/31 [g=75, 1329 evaluated, 1237 expanded, t=5.64s]
+Best heuristic value: 23/31 [g=78, 1343 evaluated, 1251 expanded, t=5.67s]
+Best heuristic value: 23/30 [g=82, 1717 evaluated, 1625 expanded, t=6.79s]
+Best heuristic value: 23/29 [g=84, 1729 evaluated, 1637 expanded, t=6.82s]
+Best heuristic value: 22/29 [g=86, 1742 evaluated, 1650 expanded, t=6.84s]
+Best heuristic value: 22/28 [g=87, 1743 evaluated, 1651 expanded, t=6.84s]
+Best heuristic value: 22/27 [g=92, 1813 evaluated, 1718 expanded, t=7.22s]
+Best heuristic value: 21/27 [g=93, 1815 evaluated, 1720 expanded, t=7.22s]
+Best heuristic value: 20/27 [g=104, 4365 evaluated, 4267 expanded, t=13.46s]
+Best heuristic value: 20/26 [g=109, 4394 evaluated, 4296 expanded, t=13.53s]
+Best heuristic value: 20/25 [g=110, 4398 evaluated, 4300 expanded, t=13.55s]
+Best heuristic value: 19/25 [g=111, 4400 evaluated, 4302 expanded, t=13.56s]
+Best heuristic value: 18/25 [g=114, 4411 evaluated, 4313 expanded, t=13.59s]
+Best heuristic value: 18/24 [g=128, 5168 evaluated, 5069 expanded, t=16.19s]
+Best heuristic value: 17/24 [g=129, 5170 evaluated, 5071 expanded, t=16.2s]
+/home/asai/repos/downward/src/search/downward: 196 行: 10491 強制終了            "$PLANNER" --heuristic "hlm,hff=lm_ff_syn(lm_rhw(
+                    reasonable_orders=true,lm_cost_type=2,cost_type=2))" --search "iterated([
+                    lazy_greedy([hff,hlm],preferred=[hff,hlm]),
+                    lazy_wastar([hff,hlm],preferred=[hff,hlm],w=5),
+                    lazy_wastar([hff,hlm],preferred=[hff,hlm],w=3),
+                    lazy_wastar([hff,hlm],preferred=[hff,hlm],w=2),
+                    lazy_wastar([hff,hlm],preferred=[hff,hlm],w=1)],
+                    repeat_last=true,continue_on_fail=true)" "$@" < $TEMPFILE

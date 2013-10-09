@@ -6,31 +6,31 @@ Generating landmarks using the RPG/SAS+ approach
 approx. reasonable orders
 approx. obedient reasonable orders
 Removed 0 reasonable or obedient reasonable orders
-Landmarks generation time: 0.0090458s
+Landmarks generation time: 0.0460877s
 Discovered 32 landmarks, of which 4 are disjunctive and 0 are conjunctive 
-72 edges
+75 edges
 Initializing LAMA-FF Synergy Object
 Initializing landmarks count heuristic...
 19 initial landmarks, 3 goal landmarks
 Starting search: lazy_greedy(list(hff, hlm), preferred = list(hff, hlm))
 Conducting lazy best first search, (real) bound = 2147483647
-Best heuristic value: 13/11 [g=0, 1 evaluated, 0 expanded, t=0.03s]
-Best heuristic value: 12/11 [g=1, 2 evaluated, 1 expanded, t=0.03s]
-Best heuristic value: 11/11 [g=5, 13 evaluated, 12 expanded, t=0.03s]
-Best heuristic value: 8/10 [g=6, 16 evaluated, 15 expanded, t=0.03s]
-Best heuristic value: 8/9 [g=7, 17 evaluated, 16 expanded, t=0.03s]
-Best heuristic value: 8/8 [g=9, 31 evaluated, 30 expanded, t=0.03s]
-Best heuristic value: 7/7 [g=10, 33 evaluated, 32 expanded, t=0.03s]
-Best heuristic value: 6/6 [g=11, 35 evaluated, 34 expanded, t=0.03s]
-Best heuristic value: 6/5 [g=12, 36 evaluated, 35 expanded, t=0.03s]
-Best heuristic value: 5/5 [g=22, 320 evaluated, 319 expanded, t=0.07s]
-Best heuristic value: 4/5 [g=23, 324 evaluated, 323 expanded, t=0.07s]
-Best heuristic value: 2/4 [g=27, 339 evaluated, 338 expanded, t=0.07s]
-Best heuristic value: 2/3 [g=28, 341 evaluated, 340 expanded, t=0.07s]
-Best heuristic value: 2/2 [g=30, 343 evaluated, 342 expanded, t=0.07s]
-Best heuristic value: 1/1 [g=31, 344 evaluated, 343 expanded, t=0.07s]
+Best heuristic value: 13/11 [g=0, 1 evaluated, 0 expanded, t=0.1s]
+Best heuristic value: 12/11 [g=1, 2 evaluated, 1 expanded, t=0.1s]
+Best heuristic value: 11/11 [g=5, 13 evaluated, 12 expanded, t=0.11s]
+Best heuristic value: 8/10 [g=6, 16 evaluated, 15 expanded, t=0.11s]
+Best heuristic value: 8/9 [g=7, 17 evaluated, 16 expanded, t=0.11s]
+Best heuristic value: 8/8 [g=9, 31 evaluated, 30 expanded, t=0.12s]
+Best heuristic value: 7/7 [g=10, 33 evaluated, 32 expanded, t=0.12s]
+Best heuristic value: 6/6 [g=11, 35 evaluated, 34 expanded, t=0.12s]
+Best heuristic value: 6/5 [g=12, 36 evaluated, 35 expanded, t=0.12s]
+Best heuristic value: 5/5 [g=22, 320 evaluated, 319 expanded, t=0.27s]
+Best heuristic value: 4/5 [g=23, 324 evaluated, 323 expanded, t=0.27s]
+Best heuristic value: 2/4 [g=27, 339 evaluated, 338 expanded, t=0.27s]
+Best heuristic value: 2/3 [g=28, 341 evaluated, 340 expanded, t=0.27s]
+Best heuristic value: 2/2 [g=30, 343 evaluated, 342 expanded, t=0.28s]
+Best heuristic value: 1/1 [g=31, 344 evaluated, 343 expanded, t=0.28s]
 Solution found!
-Actual search time: 0.04s [t=0.07s]
+Actual search time: 0.18s [t=0.28s]
 grasp left shaker1 (1)
 grasp right shot4 (1)
 leave left shaker1 (1)
@@ -76,22 +76,22 @@ Best solution cost so far: 32
 Solution found - keep searching
 Starting search: lazy_wastar(list(hff, hlm), preferred = list(hff, hlm), w = 5)
 Conducting lazy best first search, (real) bound = 32
-Best heuristic value: 13/11 [g=0, 1 evaluated, 0 expanded, t=0.07s]
-Best heuristic value: 12/11 [g=1, 2 evaluated, 1 expanded, t=0.07s]
-Best heuristic value: 11/11 [g=5, 13 evaluated, 12 expanded, t=0.07s]
-Best heuristic value: 8/10 [g=6, 16 evaluated, 15 expanded, t=0.07s]
-Best heuristic value: 8/9 [g=7, 17 evaluated, 16 expanded, t=0.08s]
-Best heuristic value: 8/8 [g=9, 27 evaluated, 26 expanded, t=0.08s]
-Best heuristic value: 7/7 [g=10, 28 evaluated, 27 expanded, t=0.08s]
-Best heuristic value: 6/6 [g=11, 30 evaluated, 29 expanded, t=0.08s]
-Best heuristic value: 6/5 [g=12, 31 evaluated, 30 expanded, t=0.08s]
-Best heuristic value: 5/5 [g=22, 941 evaluated, 940 expanded, 190 reopened, t=0.19s]
-Best heuristic value: 4/4 [g=25, 963 evaluated, 962 expanded, 194 reopened, t=0.2s]
-Best heuristic value: 4/3 [g=26, 964 evaluated, 963 expanded, 194 reopened, t=0.2s]
-Best heuristic value: 2/2 [g=27, 965 evaluated, 964 expanded, 194 reopened, t=0.2s]
-Best heuristic value: 1/1 [g=28, 966 evaluated, 965 expanded, 194 reopened, t=0.2s]
+Best heuristic value: 13/11 [g=0, 1 evaluated, 0 expanded, t=0.28s]
+Best heuristic value: 12/11 [g=1, 2 evaluated, 1 expanded, t=0.28s]
+Best heuristic value: 11/11 [g=5, 13 evaluated, 12 expanded, t=0.29s]
+Best heuristic value: 8/10 [g=6, 16 evaluated, 15 expanded, t=0.29s]
+Best heuristic value: 8/9 [g=7, 17 evaluated, 16 expanded, t=0.29s]
+Best heuristic value: 8/8 [g=9, 27 evaluated, 26 expanded, t=0.3s]
+Best heuristic value: 7/7 [g=10, 28 evaluated, 27 expanded, t=0.3s]
+Best heuristic value: 6/6 [g=11, 30 evaluated, 29 expanded, t=0.3s]
+Best heuristic value: 6/5 [g=12, 31 evaluated, 30 expanded, t=0.3s]
+Best heuristic value: 5/5 [g=22, 941 evaluated, 940 expanded, 190 reopened, t=0.66s]
+Best heuristic value: 4/4 [g=25, 963 evaluated, 962 expanded, 194 reopened, t=0.66s]
+Best heuristic value: 4/3 [g=26, 964 evaluated, 963 expanded, 194 reopened, t=0.66s]
+Best heuristic value: 2/2 [g=27, 965 evaluated, 964 expanded, 194 reopened, t=0.66s]
+Best heuristic value: 1/1 [g=28, 966 evaluated, 965 expanded, 194 reopened, t=0.66s]
 Solution found!
-Actual search time: 0.13s [t=0.2s]
+Actual search time: 0.38s [t=0.66s]
 grasp left shaker1 (1)
 grasp right shot4 (1)
 leave left shaker1 (1)
@@ -134,22 +134,22 @@ Best solution cost so far: 29
 Solution found - keep searching
 Starting search: lazy_wastar(list(hff, hlm), preferred = list(hff, hlm), w = 3)
 Conducting lazy best first search, (real) bound = 29
-Best heuristic value: 13/11 [g=0, 1 evaluated, 0 expanded, t=0.2s]
-Best heuristic value: 12/11 [g=1, 2 evaluated, 1 expanded, t=0.2s]
-Best heuristic value: 11/11 [g=5, 13 evaluated, 12 expanded, t=0.2s]
-Best heuristic value: 8/10 [g=6, 16 evaluated, 15 expanded, t=0.2s]
-Best heuristic value: 8/9 [g=7, 17 evaluated, 16 expanded, t=0.2s]
-Best heuristic value: 8/8 [g=9, 29 evaluated, 28 expanded, t=0.2s]
-Best heuristic value: 7/7 [g=10, 30 evaluated, 29 expanded, t=0.2s]
-Best heuristic value: 6/6 [g=11, 32 evaluated, 31 expanded, t=0.2s]
-Best heuristic value: 6/5 [g=12, 33 evaluated, 32 expanded, t=0.2s]
-Best heuristic value: 5/5 [g=18, 1401 evaluated, 1400 expanded, 258 reopened, t=0.37s]
-Best heuristic value: 4/4 [g=21, 1416 evaluated, 1415 expanded, 259 reopened, t=0.38s]
-Best heuristic value: 4/3 [g=22, 1417 evaluated, 1416 expanded, 259 reopened, t=0.38s]
-Best heuristic value: 2/2 [g=23, 1418 evaluated, 1417 expanded, 259 reopened, t=0.38s]
-Best heuristic value: 1/1 [g=24, 1419 evaluated, 1418 expanded, 259 reopened, t=0.38s]
+Best heuristic value: 13/11 [g=0, 1 evaluated, 0 expanded, t=0.66s]
+Best heuristic value: 12/11 [g=1, 2 evaluated, 1 expanded, t=0.66s]
+Best heuristic value: 11/11 [g=5, 13 evaluated, 12 expanded, t=0.66s]
+Best heuristic value: 8/10 [g=6, 16 evaluated, 15 expanded, t=0.66s]
+Best heuristic value: 8/9 [g=7, 17 evaluated, 16 expanded, t=0.66s]
+Best heuristic value: 8/8 [g=9, 29 evaluated, 28 expanded, t=0.67s]
+Best heuristic value: 7/7 [g=10, 30 evaluated, 29 expanded, t=0.67s]
+Best heuristic value: 6/6 [g=11, 32 evaluated, 31 expanded, t=0.67s]
+Best heuristic value: 6/5 [g=12, 33 evaluated, 32 expanded, t=0.67s]
+Best heuristic value: 5/5 [g=18, 1401 evaluated, 1400 expanded, 258 reopened, t=1.12s]
+Best heuristic value: 4/4 [g=21, 1416 evaluated, 1415 expanded, 259 reopened, t=1.12s]
+Best heuristic value: 4/3 [g=22, 1417 evaluated, 1416 expanded, 259 reopened, t=1.12s]
+Best heuristic value: 2/2 [g=23, 1418 evaluated, 1417 expanded, 259 reopened, t=1.12s]
+Best heuristic value: 1/1 [g=24, 1419 evaluated, 1418 expanded, 259 reopened, t=1.12s]
 Solution found!
-Actual search time: 0.18s [t=0.38s]
+Actual search time: 0.46s [t=1.12s]
 grasp left shot2 (1)
 fill-shot shot2 ingredient2 left right dispenser2 (1)
 pour-shot-to-clean-shaker shot2 ingredient2 shaker1 left l0 l1 (1)
@@ -188,22 +188,22 @@ Best solution cost so far: 25
 Solution found - keep searching
 Starting search: lazy_wastar(list(hff, hlm), preferred = list(hff, hlm), w = 2)
 Conducting lazy best first search, (real) bound = 25
-Best heuristic value: 13/11 [g=0, 1 evaluated, 0 expanded, t=0.38s]
-Best heuristic value: 12/11 [g=1, 2 evaluated, 1 expanded, t=0.38s]
-Best heuristic value: 11/11 [g=5, 13 evaluated, 12 expanded, t=0.38s]
-Best heuristic value: 8/10 [g=6, 16 evaluated, 15 expanded, t=0.38s]
-Best heuristic value: 8/9 [g=7, 17 evaluated, 16 expanded, t=0.38s]
-Best heuristic value: 8/8 [g=7, 32 evaluated, 31 expanded, 2 reopened, t=0.38s]
-Best heuristic value: 7/7 [g=8, 33 evaluated, 32 expanded, 2 reopened, t=0.38s]
-Best heuristic value: 6/6 [g=9, 35 evaluated, 34 expanded, 2 reopened, t=0.38s]
-Best heuristic value: 6/5 [g=10, 36 evaluated, 35 expanded, 2 reopened, t=0.38s]
-Best heuristic value: 5/5 [g=18, 2658 evaluated, 2657 expanded, 170 reopened, t=0.71s]
-Best heuristic value: 4/4 [g=21, 2668 evaluated, 2667 expanded, 170 reopened, t=0.71s]
-Best heuristic value: 4/3 [g=22, 2669 evaluated, 2668 expanded, 170 reopened, t=0.71s]
-Best heuristic value: 2/2 [g=23, 2670 evaluated, 2669 expanded, 170 reopened, t=0.71s]
-Best heuristic value: 1/1 [g=24, 2671 evaluated, 2670 expanded, 170 reopened, t=0.71s]
+Best heuristic value: 13/11 [g=0, 1 evaluated, 0 expanded, t=1.12s]
+Best heuristic value: 12/11 [g=1, 2 evaluated, 1 expanded, t=1.12s]
+Best heuristic value: 11/11 [g=5, 13 evaluated, 12 expanded, t=1.12s]
+Best heuristic value: 8/10 [g=6, 16 evaluated, 15 expanded, t=1.12s]
+Best heuristic value: 8/9 [g=7, 17 evaluated, 16 expanded, t=1.12s]
+Best heuristic value: 8/8 [g=7, 32 evaluated, 31 expanded, 2 reopened, t=1.13s]
+Best heuristic value: 7/7 [g=8, 33 evaluated, 32 expanded, 2 reopened, t=1.13s]
+Best heuristic value: 6/6 [g=9, 35 evaluated, 34 expanded, 2 reopened, t=1.13s]
+Best heuristic value: 6/5 [g=10, 36 evaluated, 35 expanded, 2 reopened, t=1.13s]
+Best heuristic value: 5/5 [g=18, 2658 evaluated, 2657 expanded, 170 reopened, t=2.14s]
+Best heuristic value: 4/4 [g=21, 2668 evaluated, 2667 expanded, 170 reopened, t=2.14s]
+Best heuristic value: 4/3 [g=22, 2669 evaluated, 2668 expanded, 170 reopened, t=2.14s]
+Best heuristic value: 2/2 [g=23, 2670 evaluated, 2669 expanded, 170 reopened, t=2.14s]
+Best heuristic value: 1/1 [g=24, 2671 evaluated, 2670 expanded, 170 reopened, t=2.14s]
 Solution found!
-Actual search time: 3.49s [t=3.87s]
+Actual search time: 5.7s [t=6.82s]
 grasp right shot4 (1)
 fill-shot shot4 ingredient2 right left dispenser2 (1)
 pour-shot-to-clean-shaker shot4 ingredient2 shaker1 right l0 l1 (1)
@@ -241,25 +241,25 @@ Best solution cost so far: 24
 Solution found - keep searching
 Starting search: lazy_wastar(list(hff, hlm), preferred = list(hff, hlm), w = 1)
 Conducting lazy best first search, (real) bound = 24
-Best heuristic value: 13/11 [g=0, 1 evaluated, 0 expanded, t=3.87s]
-Best heuristic value: 12/11 [g=1, 2 evaluated, 1 expanded, t=3.87s]
-Best heuristic value: 10/11 [g=3, 15 evaluated, 14 expanded, t=3.87s]
-Best heuristic value: 9/10 [g=4, 17 evaluated, 16 expanded, t=3.87s]
-Best heuristic value: 9/9 [g=4, 19 evaluated, 18 expanded, t=3.87s]
-Best heuristic value: 8/9 [g=5, 20 evaluated, 19 expanded, t=3.87s]
-Best heuristic value: 8/8 [g=6, 50 evaluated, 49 expanded, t=3.88s]
-Best heuristic value: 7/8 [g=7, 52 evaluated, 51 expanded, t=3.88s]
-Best heuristic value: 7/7 [g=7, 55 evaluated, 54 expanded, t=3.88s]
-Best heuristic value: 6/6 [g=8, 57 evaluated, 56 expanded, t=3.88s]
-Best heuristic value: 6/5 [g=9, 59 evaluated, 58 expanded, t=3.88s]
-Best heuristic value: 5/5 [g=15, 39292 evaluated, 37148 expanded, 4696 reopened, t=9.05s]
-Best heuristic value: 4/4 [g=20, 46396 evaluated, 43750 expanded, 4796 reopened, t=10s]
-Best heuristic value: 4/3 [g=21, 46401 evaluated, 43755 expanded, 4796 reopened, t=10s]
-Best heuristic value: 2/2 [g=22, 46404 evaluated, 43758 expanded, 4796 reopened, t=10s]
-Best heuristic value: 1/1 [g=23, 46406 evaluated, 43760 expanded, 4796 reopened, t=10s]
+Best heuristic value: 13/11 [g=0, 1 evaluated, 0 expanded, t=6.82s]
+Best heuristic value: 12/11 [g=1, 2 evaluated, 1 expanded, t=6.82s]
+Best heuristic value: 10/11 [g=3, 15 evaluated, 14 expanded, t=6.82s]
+Best heuristic value: 9/10 [g=4, 17 evaluated, 16 expanded, t=6.82s]
+Best heuristic value: 9/9 [g=4, 19 evaluated, 18 expanded, t=6.82s]
+Best heuristic value: 8/9 [g=5, 20 evaluated, 19 expanded, t=6.82s]
+Best heuristic value: 8/8 [g=6, 50 evaluated, 49 expanded, t=6.83s]
+Best heuristic value: 7/8 [g=7, 52 evaluated, 51 expanded, t=6.83s]
+Best heuristic value: 7/7 [g=7, 55 evaluated, 54 expanded, t=6.83s]
+Best heuristic value: 6/6 [g=8, 57 evaluated, 56 expanded, t=6.83s]
+Best heuristic value: 6/5 [g=9, 59 evaluated, 58 expanded, t=6.83s]
+Best heuristic value: 5/5 [g=15, 39292 evaluated, 37148 expanded, 4696 reopened, t=12.13s]
+Best heuristic value: 4/4 [g=20, 46396 evaluated, 43750 expanded, 4796 reopened, t=13.23s]
+Best heuristic value: 4/3 [g=21, 46401 evaluated, 43755 expanded, 4796 reopened, t=13.23s]
+Best heuristic value: 2/2 [g=22, 46404 evaluated, 43758 expanded, 4796 reopened, t=13.23s]
+Best heuristic value: 1/1 [g=23, 46406 evaluated, 43760 expanded, 4796 reopened, t=13.23s]
 Switch from bucket-based to heap-based queue at key = 100, num_pushes = 89
 Completely explored state space -- no solution!
-Actual search time: 58.36s [t=62.23s]
+Actual search time: 71.09s [t=77.91s]
 Initial state h value: 13/11.
 Expanded 331385 state(s).
 Reopened 28831 state(s).
@@ -269,7 +269,7 @@ Generated 1488330 state(s).
 Dead ends: 54240 state(s).
 Best solution cost so far: 24
 No solution found - keep searching
-Actual search time: 62.2s [t=62.23s]
+Actual search time: 77.83s [t=77.92s]
 Cumulative statistics:
 Expanded 359898 state(s).
 Reopened 35322 state(s).
@@ -277,7 +277,8 @@ Evaluated 415298 state(s).
 Evaluations: 830596
 Generated 1634704 state(s).
 Dead ends: 0 state(s).
-Search time: 62.2s
-Total time: 62.23s
+Search time: 77.83s
+Total time: 77.92s
 Solution found.
-Peak memory: 64484 KB
+Peak memory: 109248 KB
+
