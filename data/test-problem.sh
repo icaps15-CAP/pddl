@@ -51,11 +51,12 @@ then
     exit 1
 fi
 
-export PDDL=$($REALPATH $1)
+export PDDL=$(eval $REALPATH $1)
 
-if [[ $2 != "" ]]
+DOMAIN=$(eval echo $2)
+if [[ $DOMAIN != "" ]]
 then
-    export DOMAIN=$($REALPATH $2)
+    export DOMAIN=$($REALPATH $DOMAIN)
 else
     export DOMAIN=$($REALPATH domain.pddl)
 fi
