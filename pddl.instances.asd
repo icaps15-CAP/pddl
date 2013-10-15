@@ -6,5 +6,5 @@
 (defsystem pddl.instances
   :author "guicho"
   :license "LLGPL"
-  :depends-on (:pddl :cl-ppcre :osicat)
+  :depends-on (:pddl :cl-ppcre :osicat :optima)
   :components ((:file :instances)))

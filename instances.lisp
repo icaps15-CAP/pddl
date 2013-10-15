@@ -6,7 +6,9 @@
                     (muffle-warning c))))
     (defpackage pddl.instances
       (:use :cl :iterate :pddl :guicho-utilities :alexandria
+            :optima
             :cl-ppcre :osicat)
+      (:shadow :place)
       (:shadowing-import-from :pddl :minimize :maximize))))
 
 (in-package :pddl.instances)
