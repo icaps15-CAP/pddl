@@ -36,13 +36,16 @@
                      :problem problem
                      :path path))
         (eval `(defparameter ,sym ,plan))
-        (export sym)))
+        (export sym)
+        (collecting plan)))
 
 (defun read-many-problems (problempath-regex)
   (iter (for path in (find-by-regex problempath-regex))
         (format t "~&; loading ~a~&" path)
         (for sym = (parse-file path))
-        (read-many-plans (symbol-value sym) (problem->plans path))
+        (collecting
+         (list* (symbol-value sym)
+                (read-many-plans (symbol-value sym) (problem->plans path))))
         (export sym)))
 
 (defun data (name)
@@ -59,11 +62,12 @@
          (let ((sym (parse-file (data domain))))
            (export sym)
            (let ((*domain* (symbol-value sym)))
-             (mapc #'read-many-problems args))))
+             (list* *domain*
+                    (mappend #'read-many-problems args)))))
         ((typep domain 'pddl-domain)
          (let ((*domain* domain))
-           (mapc #'read-many-problems args)))))
-    nil))
+           (list* *domain*
+                  (mappend #'read-many-problems args))))))))
 
 (defun problem->plans (problem-path)
   (register-groups-bind (prefix)
