@@ -11,10 +11,13 @@
 
 (in-package :pddl.instances)
 
+@doc "bind this variable with LET if you want to change the directory"
+(defvar *data-home* (asdf:system-relative-pathname :pddl "data/"))
+
 (defun find-by-regex (regex)
   (let (acc)
     (walk-directory
-     (asdf:system-relative-pathname :pddl "data/")
+     *data-home*
      (lambda (path)
        (push (absolute-pathname path) acc))
      :test
@@ -45,7 +48,7 @@
 (defun data (name)
   (merge-pathnames
    name
-   (asdf:system-relative-pathname :pddl "data/")))
+   *data-home*))
 
 (defun all (domain &rest args)
   (let ((*package* (find-package :pddl.instances)))
