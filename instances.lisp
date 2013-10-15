@@ -13,8 +13,10 @@
 
 (in-package :pddl.instances)
 
-@doc "bind this variable with LET if you want to change the directory"
-(defvar *data-home* (asdf:system-relative-pathname :pddl "data/"))
+(defvar *data-home*
+  (asdf:system-relative-pathname :pddl "data/")
+  "bind this variable with LET if you want to change the directory")
+(export '*data-home*)
 
 (defun find-by-regex (regex)
   (let (acc)
@@ -55,6 +57,7 @@
    name
    *data-home*))
 
+
 (defun all (domain &rest args)
   (let ((*package* (find-package :pddl.instances)))
     (format t "~&; loading ~a~&" domain)
@@ -70,6 +73,7 @@
          (let ((*domain* domain))
            (list* *domain*
                   (mappend #'read-many-problems args))))))))
+(export 'all)
 
 (defun problem->plans (problem-path)
   (register-groups-bind (prefix)
