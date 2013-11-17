@@ -1,4 +1,4 @@
-(define (problem roverprob4621) (:domain Rover)
+(define (problem roverprob18) (:domain Rover)
 (:objects
 	general - Lander
 	colour high_res low_res - Mode
