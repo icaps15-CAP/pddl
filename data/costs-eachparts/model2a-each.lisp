@@ -18,6 +18,19 @@
 
 (defun model2a-each (basenum)
   (let ((bases (make-bases basenum))
+        (distances (make-dists  '(table-in
+                                  gasket-machine
+                                  table1
+                                  screw-machine-a
+                                  tray-b
+                                  oiling-machine
+                                  tray-c
+                                  screw-machine-c
+                                  table2
+                                  inspection-machine
+                                  table-out
+                                  tray-a
+                                  table-in)))
         (parts (iter (for kind in '(a b c))
                      (collect
                          (iter (for i below basenum)
@@ -85,19 +98,7 @@
 		   tray-c))
 
 	;; position attributes
-	,@(make-dists  '(table-in
-			 gasket-machine
-			 table1
-			 screw-machine-a
-			 tray-b
-			 oiling-machine
-			 tray-c
-			 screw-machine-c
-			 table2
-			 inspection-machine
-			 table-out
-			 tray-a
-			 table-in))
+	,@distances
 	
 	;; conveyor attributes
 	(connected carry-in table-in)   ; !!! do not remove this

@@ -16,6 +16,9 @@
       (labels 
           ((rec (branch s)
              (match branch
+               (nil
+                ;; do nothing
+                )
                ((list* (and key (or :function
                                     :predicates 
                                     :init)) rest)
