@@ -1,9 +1,12 @@
 
 (in-package :pddl.builder)
 
-(defun write-models-many (fn &optional (format-control "p~4,,,'0@a.pddl"))
+(defun write-models-many (fn
+                          &key
+                          (format-control "p~4,,,'0@a.pddl")
+                          (size-list '(1 2 4 16 64 256 1024)))
   (let ((snapshot (make-random-state)))
-    (dolist (i '(1 2 4 16 64 256 1024))
+    (dolist (i size-list)
       (let ((*random-state* (make-random-state snapshot)))
         (write-model fn
                      #'(lambda (i)
