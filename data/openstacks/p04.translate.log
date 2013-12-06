@@ -1,0 +1,53 @@
+Parsing... [0.010s CPU, 0.015s wall-clock]
+Normalizing task... [0.000s CPU, 0.001s wall-clock]
+Instantiating...
+Generating Datalog program... [0.010s CPU, 0.006s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.004s wall-clock]
+Preparing model... [0.020s CPU, 0.016s wall-clock]
+Generated 44 rules.
+Computing model... [0.500s CPU, 0.509s wall-clock]
+11761 relevant atoms
+7809 auxiliary atoms
+19570 final queue length
+33126 total queue pushes
+Completing instantiation... [2.060s CPU, 2.054s wall-clock]
+Instantiating: [2.660s CPU, 2.659s wall-clock]
+Computing fact groups...
+Finding invariants...
+24 initial candidates
+Finding invariants: [0.010s CPU, 0.018s wall-clock]
+Checking invariant weight... [0.020s CPU, 0.020s wall-clock]
+Instantiating groups... [0.050s CPU, 0.043s wall-clock]
+Collecting mutex groups... [0.010s CPU, 0.004s wall-clock]
+Choosing groups...
+600 uncovered facts
+Choosing groups: [0.010s CPU, 0.009s wall-clock]
+Building translation key... [0.010s CPU, 0.006s wall-clock]
+Computing fact groups: [0.130s CPU, 0.132s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.004s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.004s wall-clock]
+Building mutex information...
+Building mutex information: [0.010s CPU, 0.005s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.220s CPU, 0.219s wall-clock]
+Translating task: [1.570s CPU, 1.573s wall-clock]
+0 implied effects removed
+0 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+201 propositions removed
+Detecting unreachable propositions: [0.140s CPU, 0.145s wall-clock]
+Translator variables: 801
+Translator derived variables: 0
+Translator facts: 2201
+Translator mutex groups: 251
+Translator total mutex groups size: 1101
+Translator operators: 9356
+Translator task size: 59657
+Translator peak memory: 98084 KB
+Writing output... [0.170s CPU, 0.166s wall-clock]
+Done! [5.060s CPU, 5.059s wall-clock]

@@ -1,0 +1,15 @@
+Building causal graph...
+The causal graph is not acyclic.
+120 variables of 124 necessary
+0 of 92 mutex groups necessary.
+954 of 958 operators necessary.
+0 of 0 axiom rules necessary.
+Building domain transition graphs...
+solveable in poly time 0
+Building successor generator...
+Preprocessor facts: 300
+Preprocessor derived variables: 0
+Preprocessor task size: 5638
+Writing output...
+done
+
