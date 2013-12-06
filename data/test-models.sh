@@ -1,1 +1,1 @@
-/home/asai/repos/pddl/planner-scripts/test-models.sh
+../planner-scripts/test-models.sh

@@ -1,1 +1,1 @@
-/home/asai/repos/pddl/planner-scripts/test-problem.sh
+../planner-scripts/test-problem.sh

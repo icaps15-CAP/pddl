@@ -1,1 +1,1 @@
-/home/asai/repos/pddl/planner-scripts/clean.sh
+../planner-scripts/clean.sh
