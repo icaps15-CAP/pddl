@@ -1,0 +1,159 @@
+Dispatcher selected state size 1.
+This is a nonunit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.00327267s
+Discovered 14 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+17 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+8 initial landmarks, 5 goal landmarks
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.0012397s
+Discovered 14 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+17 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+8 initial landmarks, 5 goal landmarks
+Starting search: lazy_greedy(list(hff1, hlm1), preferred = list(hff1, hlm1), cost_type = 1, reopen_closed = false)
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 6/5 [g=0, 1 evaluated, 0 expanded, t=0s]
+Best heuristic value: 4/4 [g=1, 2 evaluated, 1 expanded, t=0s]
+Best heuristic value: 3/3 [g=2, 3 evaluated, 2 expanded, t=0s]
+Best heuristic value: 2/2 [g=3, 5 evaluated, 4 expanded, t=0s]
+Best heuristic value: 1/1 [g=4, 7 evaluated, 6 expanded, t=0s]
+Solution found!
+Actual search time: 0s [t=0s]
+do-grind p2 grinder0 verysmooth mauve colourfragments untreated (15)
+do-glaze p2 glazer0 natural (10)
+do-plane p0 planer0 verysmooth blue colourfragments (10)
+do-plane p1 planer0 smooth natural colourfragments (10)
+do-glaze p1 glazer0 natural (10)
+Plan length: 5 step(s).
+Plan cost: 55
+Initial state h value: 6/5.
+Expanded 7 state(s).
+Reopened 0 state(s).
+Evaluated 8 state(s).
+Evaluations: 16
+Generated 56 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 55
+Solution found - keep searching
+Starting search: lazy_greedy(list(hff2, hlm2), preferred = list(hff2, hlm2), reopen_closed = false)
+Conducting lazy best first search, (real) bound = 55
+Best heuristic value: 66/55 [g=0, 1 evaluated, 0 expanded, t=0s]
+Best heuristic value: 44/44 [g=10, 2 evaluated, 1 expanded, t=0s]
+Best heuristic value: 33/33 [g=20, 3 evaluated, 2 expanded, t=0s]
+Best heuristic value: 22/22 [g=30, 4 evaluated, 3 expanded, t=0s]
+Best heuristic value: 11/11 [g=40, 5 evaluated, 4 expanded, t=0s]
+Solution found!
+Actual search time: 0s [t=0s]
+do-plane p2 planer0 verysmooth mauve colourfragments (10)
+do-glaze p2 glazer0 natural (10)
+do-plane p1 planer0 smooth natural colourfragments (10)
+do-glaze p1 glazer0 natural (10)
+do-plane p0 planer0 verysmooth blue colourfragments (10)
+Plan length: 5 step(s).
+Plan cost: 50
+Initial state h value: 66/55.
+Expanded 5 state(s).
+Reopened 0 state(s).
+Evaluated 6 state(s).
+Evaluations: 12
+Generated 34 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 50
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 5)
+Conducting lazy best first search, (real) bound = 50
+Best heuristic value: 66/55 [g=0, 1 evaluated, 0 expanded, t=0s]
+Best heuristic value: 44/44 [g=10, 2 evaluated, 1 expanded, t=0s]
+Best heuristic value: 33/33 [g=20, 3 evaluated, 2 expanded, t=0s]
+Best heuristic value: 22/22 [g=30, 4 evaluated, 3 expanded, t=0s]
+Best heuristic value: 11/11 [g=40, 5 evaluated, 4 expanded, t=0s]
+Completely explored state space -- no solution!
+Actual search time: 0.02s [t=0.02s]
+Initial state h value: 66/55.
+Expanded 317 state(s).
+Reopened 13 state(s).
+Evaluated 317 state(s).
+Evaluations: 634
+Generated 2444 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 50
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 3)
+Conducting lazy best first search, (real) bound = 50
+Best heuristic value: 66/55 [g=0, 1 evaluated, 0 expanded, t=0.02s]
+Best heuristic value: 44/44 [g=10, 2 evaluated, 1 expanded, t=0.02s]
+Best heuristic value: 33/33 [g=20, 3 evaluated, 2 expanded, t=0.02s]
+Best heuristic value: 22/22 [g=30, 4 evaluated, 3 expanded, t=0.02s]
+Best heuristic value: 11/11 [g=40, 5 evaluated, 4 expanded, t=0.02s]
+Completely explored state space -- no solution!
+Actual search time: 0.01s [t=0.03s]
+Initial state h value: 66/55.
+Expanded 317 state(s).
+Reopened 13 state(s).
+Evaluated 317 state(s).
+Evaluations: 634
+Generated 2444 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 50
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 2)
+Conducting lazy best first search, (real) bound = 50
+Best heuristic value: 66/55 [g=0, 1 evaluated, 0 expanded, t=0.03s]
+Best heuristic value: 44/44 [g=10, 2 evaluated, 1 expanded, t=0.03s]
+Best heuristic value: 33/33 [g=20, 3 evaluated, 2 expanded, t=0.03s]
+Best heuristic value: 22/22 [g=30, 4 evaluated, 3 expanded, t=0.03s]
+Best heuristic value: 11/11 [g=40, 5 evaluated, 4 expanded, t=0.03s]
+Completely explored state space -- no solution!
+Actual search time: 0.01s [t=0.04s]
+Initial state h value: 66/55.
+Expanded 314 state(s).
+Reopened 10 state(s).
+Evaluated 314 state(s).
+Evaluations: 628
+Generated 2420 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 50
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 1)
+Conducting lazy best first search, (real) bound = 50
+Best heuristic value: 66/55 [g=0, 1 evaluated, 0 expanded, t=0.04s]
+Best heuristic value: 44/44 [g=10, 2 evaluated, 1 expanded, t=0.04s]
+Best heuristic value: 33/33 [g=20, 3 evaluated, 2 expanded, t=0.04s]
+Best heuristic value: 22/22 [g=30, 4 evaluated, 3 expanded, t=0.04s]
+Best heuristic value: 11/11 [g=40, 5 evaluated, 4 expanded, t=0.04s]
+Completely explored state space -- no solution!
+Actual search time: 0.01s [t=0.05s]
+Initial state h value: 66/55.
+Expanded 312 state(s).
+Reopened 8 state(s).
+Evaluated 312 state(s).
+Evaluations: 624
+Generated 2404 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 50
+No solution found - keep searching
+Actual search time: 0.05s [t=0.05s]
+Cumulative statistics:
+Expanded 1272 state(s).
+Reopened 44 state(s).
+Evaluated 1274 state(s).
+Evaluations: 2548
+Generated 9802 state(s).
+Dead ends: 0 state(s).
+Search time: 0.05s
+Total time: 0.05s
+Solution found.
+Peak memory: 4576 KB
