@@ -5,9 +5,14 @@ import random
 
 _colours = ["black", "white", "red", "green", "blue", "mauve"]
 _woods = ["oak", "pine", "cherry", "teak", "mahogany", "beech", "walnut"]
-_default_machines = {"highspeed-saw":3, "glazer":3, "grinder":3, 
-                    "immersion-varnisher":3, "planer":3, 
-                    "saw":3, "spray-varnisher":3}
+_default_machines = {"highspeed-saw":      3,
+                     "glazer":             3,
+                     "grinder":            3, 
+                     "immersion-varnisher":3,
+                     "planer":             3, 
+                     "saw":                3,
+                     "spray-varnisher":    3
+                     }
 _boardsize_prefix = "s"
 
 class Part(object):
@@ -269,7 +274,7 @@ if __name__ == "__main__":
 
   tasks = [generate_instance(size, wood_factor)
          for wood_factor in [1.2, 1.4]
-         for size in range (20, 120, 3)]
+         for size in range (20, 300, 3)]
   for no, task in enumerate(tasks):
     task.dump(out=open("p%02d.pddl" % (no + 17), "w"))
   # tasks = [generate_instance(size, wood_factor)
