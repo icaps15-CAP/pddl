@@ -157,6 +157,8 @@ clause in the domain description.
   (setf (value (assign-op-place op matches states))
         (assign-op-new-value op matches states)))
 
+(export '(maximize minimize))
+
 @export
 (defun parse-metric-body (body)
   (ematch body
@@ -164,12 +166,15 @@ clause in the domain description.
      (pddl-metric
       :optimization optimization
       :metric-spec metric-f-exp
-      :metric-function
-      (with-gensyms (states)
-        (compile
-         nil
-         `(lambda (,states)
-            (value ,(compile-metric-f-exp metric-f-exp states)))))))))
+      :metric-function (compile-metric-function metric-f-exp)))))
+
+@export
+(defun compile-metric-function (metric-f-exp)
+  (with-gensyms (states)
+    (compile
+     nil
+     `(lambda (,states)
+        (value ,(compile-metric-f-exp metric-f-exp states))))))
 
 @export
 (defun compile-metric-f-exp (body states)

@@ -90,7 +90,9 @@
 
 
 (define-pddl-class pddl-metric (pddl-problem-slot)
-  (optimization metric-function metric-spec))
+  ((optimization :type symbol)
+   (metric-function :type function)
+   (metric-spec :type cons)))
 
 (define-pddl-class pddl-function-state (pddl-function pddl-problem-slot)
   (value body))
