@@ -110,6 +110,7 @@ clause in the domain description.
       :place-function (compile-place-function place)
       :value-function (compile-value-function new-value)))))
 
+@export
 (defun transform-numeric-to-assign (source)
   (ematch source
     ((list 'scale-up place modifier)
