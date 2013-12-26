@@ -19,7 +19,7 @@
                (nil
                 ;; do nothing
                 )
-               ((list* (and key (or :function
+               ((list* (and key (or :functions
                                     :predicates 
                                     :init)) rest)
                 (pprint-newline :mandatory s)
@@ -99,6 +99,7 @@
      (:types ,@(mappend #'print-pddl-object (types o)))
      (:predicates ,@(print-pddl-object (predicates o)))
      (:constants ,@(mappend #'print-pddl-object (constants o)))
+     (:functions ,@(mapcar #'print-pddl-object (functions o)))
      ;; (:functions ,@(print-pddl-object (functions o)))
      ,@(mapcar #'print-pddl-object (actions o))
      ,@(mapcar #'print-pddl-object (durative-actions o))
