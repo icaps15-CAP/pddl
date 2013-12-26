@@ -121,6 +121,9 @@
 (defmethod print-pddl-object ((o symbol) &optional s)
   @ignore s
   (symbol-name o))
+(defmethod print-pddl-object ((o number) &optional s)
+  @ignore s
+  o)
 
 (defmethod print-pddl-object ((o list) &optional s)
   @ignore s
@@ -157,14 +160,15 @@
 
 (defmethod print-pddl-object ((o pddl-assign-op) &optional s)
   @ignore s
-  (%source o))
+  (mapcar #'print-pddl-object (source o)))
 
 (defmethod print-pddl-object ((o pddl-action) &optional s)
   @ignore s
   `(:action ,(print-pddl-object (name o))
             :parameters ,(mappend #'print-pddl-object (parameters o))
             :precondition ,(print-pddl-object (precondition o))
-            :effect ,(print-pddl-object (effect o))))
+            :effect ,(append (print-pddl-object (effect o))
+                             (mapcar #'print-pddl-object (assign-ops o)))))
 
 (defmethod print-pddl-object ((o pddl-actual-action) &optional s)
   @ignore s
