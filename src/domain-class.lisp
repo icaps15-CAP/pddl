@@ -199,7 +199,7 @@ that of pred2. a predicate p1 is more specific than p2 when:
 (define-pddl-class pddl-assign-op (pddl-domain-slot)
   (place-function
    value-function
-   %source))
+   source))
 
 
 

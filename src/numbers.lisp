@@ -102,39 +102,48 @@ clause in the domain description.
 @export
 @doc "This function is meant to be called while parsing the action effect.
 *params* is bound to the action parameters."
-(defun parse-numeric-effect (effect)
-  (ematch effect
-    ((list 'scale-up place modifier)
-     (parse-numeric-effect `(assign ,place (* ,place ,modifier))))
-    ((list 'scale-down place modifier)
-     (parse-numeric-effect `(assign ,place (/ ,place ,modifier))))
-    ((list 'increase place modifier)
-     (parse-numeric-effect `(assign ,place (+ ,place ,modifier))))
-    ((list 'decrease place modifier)
-     (parse-numeric-effect `(assign ,place (- ,place ,modifier))))
+(defun parse-numeric-effect (source)
+  (ematch (transform-numeric-to-assign source)
     ((list 'assign place new-value)
      (pddl-assign-op
-      :%source effect
-      :place-function
-      (with-gensyms (matches states)
-        (compile 
-         nil
-         `(lambda (,matches ,states)
-            (declare (ignorable ,matches))
-            ,(%function-state-compiler
-              (parse-f-head place) matches states))))
-      :value-function
-      (with-gensyms (matches states)
-        (compile 
-         nil
-         `(lambda (,matches ,states)
-            (declare (ignorable ,matches))
-            ,(compile-f-exp-body
-              new-value
-              (lambda (head)
-                `(value
-                  ,(%function-state-compiler
-                    (parse-f-head head) matches states)))))))))))
+      :source source
+      :place-function (compile-place-function place)
+      :value-function (compile-value-function new-value)))))
+
+(defun transform-numeric-to-assign (source)
+  (ematch source
+    ((list 'scale-up place modifier)
+     `(assign ,place (* ,place ,modifier)))
+    ((list 'scale-down place modifier)
+     `(assign ,place (/ ,place ,modifier)))
+    ((list 'increase place modifier)
+     `(assign ,place (+ ,place ,modifier)))
+    ((list 'decrease place modifier)
+     `(assign ,place (- ,place ,modifier)))))
+
+@export
+(defun compile-place-function (place)
+  (with-gensyms (matches states)
+    (compile 
+     nil
+     `(lambda (,matches ,states)
+        (declare (ignorable ,matches))
+        ,(%function-state-compiler
+          (parse-f-head place) matches states)))))
+
+@export
+(defun compile-value-function (new-value)
+  (with-gensyms (matches states)
+    (compile 
+     nil
+     `(lambda (,matches ,states)
+        (declare (ignorable ,matches))
+        ,(compile-f-exp-body
+          new-value
+          (lambda (head)
+            `(value
+              ,(%function-state-compiler
+                (parse-f-head head) matches states))))))))
 
 @export
 (defun assign-op-place (op matches states)
