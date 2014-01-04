@@ -32,7 +32,6 @@
                     (pprint-exit-if-list-exhausted)
                     (write-char #\Space s)
                     (pprint-newline :mandatory s))))
-               
                ((list* (and key (or :objects
                                     :constants
                                     :types
@@ -67,7 +66,6 @@
                     (pprint-exit-if-list-exhausted)
                     (write-char #\Space s)
                     (pprint-newline :mandatory s))))
-               
                ((list* (and op (or "AND" "ASSIGN" "OR" "NOT")) rest)
                 (pprint-logical-block (s rest :prefix "(" :suffix ")")
                   (rec op s)
@@ -78,7 +76,6 @@
                     (pprint-exit-if-list-exhausted)
                     (write-char #\Space s)
                     (pprint-newline :mandatory s))))
-               
                ((list* (type atom) _)
                 (pprint-logical-block (s branch :prefix "(" :suffix ")")
                   (do () (nil)
@@ -116,6 +113,17 @@
                  `(,(print-pddl-object m)))
      ))
 
+(defmethod print-pddl-object ((o pddl-plan) &optional s)
+  @ignore s
+  (ematch o
+    ((pddl-plan actions)
+     (let ((*print-type-p* nil))
+       (reduce #'cons actions
+               :key #'print-pddl-object
+               :from-end t
+               :start 1
+               :end (1- (length actions))
+               :initial-value nil)))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; clauses
 
