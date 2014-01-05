@@ -9,7 +9,7 @@
 ;   3 saw
 ; random seed: 650695
 
-(define (problem wood-prob)
+(define (problem wood-prob-sat-151)
   (:domain woodworking)
   (:objects
     grinder0 grinder1 grinder2 - grinder
