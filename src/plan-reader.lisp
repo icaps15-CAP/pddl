@@ -2,7 +2,7 @@
 (in-package :pddl)
 (use-syntax :annot)
 
-(define-pddl-class pddl-plan (pddl-problem-slot pathnamable)
+(define-pddl-class pddl-plan (pddl-problem-slot pathnamable namable)
   (actions))
 
 (defmethod initialize-instance :after ((env pddl-plan)
