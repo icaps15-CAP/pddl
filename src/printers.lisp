@@ -61,7 +61,7 @@
 (defmethod print-object ((o pddl-assign-op) s)
   (print-ignoring-unbound-slot
     (format s "~@<(ASSIGN ~; ~a ~;)~:>"
-            (%source o))))
+            (source o))))
 
 (defmethod print-object ((o pddl-initial-action) s)
   (print-ignoring-unbound-slot
