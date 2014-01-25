@@ -17,7 +17,7 @@
    (stacks-avail ?s - count)
    (next-count ?s ?ns - count) ;; ?s + 1 = ?ns e.g. (next-count n0 n1)
    )
-  
+  (:functions (total-cost))
   (:action open-new-stack
            :parameters (?open ?more-open - count)
            :precondition

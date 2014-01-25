@@ -41,13 +41,15 @@
                     orders p-count-for-each-o))))
 
 
-(defun openstacks-template (o-p-array)
+(defun openstacks-template (size o-p-array)
   (ematch (array-dimensions o-p-array)
     ((list orders-num products-num)
      (let ((nums (make-prefixed-syms "N" (1+ orders-num))))
        (let ((orders (make-prefixed-syms "O" orders-num))
-             (products (make-prefixed-syms "P" products-num)))
-         `(define (problem openstacks)
+             (products (make-prefixed-syms "P" products-num))
+             (name (concatenate-symbols 'openstacks size)))
+         (format t "~&Generating problem ~a ..." name)
+         `(define (problem ,name)
               (:domain openstacks)
             (:objects ,@nums - count
                       ,@orders - order
@@ -79,6 +81,7 @@
 (defun model-openstacks (size)
   (let ((products (+ 20 (* 10 (1- size)))))
     (openstacks-template
+     size
      (o-p-array products products
                 (float (* 1.5 (/ size products)))))))
 
