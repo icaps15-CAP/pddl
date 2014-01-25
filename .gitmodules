@@ -1,6 +1,6 @@
 [submodule "planner-scripts"]
 	path = planner-scripts
-	url = /home/asai/Dropbox/repos/planner-scripts.git/
+	url = ../../Dropbox/repos/planner-scripts.git
 [submodule "aflab-fabric"]
 	path = aflab-fabric
-	url = /home/asai/Dropbox/repos/aflab-fabric.git/
+	url = ../../Dropbox/repos/aflab-fabric.git
