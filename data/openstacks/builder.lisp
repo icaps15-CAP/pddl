@@ -49,7 +49,7 @@
              (products (make-prefixed-syms "P" products-num)))
          `(define (problem openstacks)
               (:domain openstacks)
-            (:objects ,@(rest nums) - count
+            (:objects ,@nums - count
                       ,@orders - order
                       ,@products - product)
             (:init
