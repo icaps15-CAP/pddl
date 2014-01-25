@@ -1,0 +1,3 @@
+
+this is a woodworking domain minus resource constraint (each board has
+a quantity and the amount of parts that can be cut out are limited)

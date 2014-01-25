@@ -1,0 +1,13 @@
+
+: ./barman-generator.py <num_cocktails> <num_ingredients> <num_shots>
+
+In IPC SEQ-SAT domains, *the number of ingredients are fixed to 4.*
+
+for example,
+
+: pfile06-021.pddl
+
+was generated via
+
+: barman-generator.py 8 4 10
+
