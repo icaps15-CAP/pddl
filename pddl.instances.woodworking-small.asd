@@ -2,4 +2,4 @@
   :author "guicho"
   :license "LLGPL"
   :depends-on (:pddl.instances)
-  :components ((:file "woodworking-small")))
+  :components ((:file "loaders/woodworking-small")))

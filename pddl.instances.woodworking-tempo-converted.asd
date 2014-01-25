@@ -2,4 +2,4 @@
   :author "guicho"
   :license "LLGPL"
   :depends-on (:pddl.instances)
-  :components ((:file "woodworking-tempo-converted")))
+  :components ((:file "loaders/woodworking-tempo-converted")))
