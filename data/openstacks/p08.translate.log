@@ -1,0 +1,53 @@
+Parsing... [0.030s CPU, 0.035s wall-clock]
+Normalizing task... [0.000s CPU, 0.001s wall-clock]
+Instantiating...
+Generating Datalog program... [0.010s CPU, 0.013s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.010s CPU, 0.005s wall-clock]
+Preparing model... [0.040s CPU, 0.040s wall-clock]
+Generated 44 rules.
+Computing model... [2.710s CPU, 2.707s wall-clock]
+48855 relevant atoms
+36043 auxiliary atoms
+84898 final queue length
+140688 total queue pushes
+Completing instantiation... [10.560s CPU, 10.548s wall-clock]
+Instantiating: [13.590s CPU, 13.583s wall-clock]
+Computing fact groups...
+Finding invariants...
+24 initial candidates
+Finding invariants: [0.050s CPU, 0.048s wall-clock]
+Checking invariant weight... [0.050s CPU, 0.053s wall-clock]
+Instantiating groups... [0.140s CPU, 0.139s wall-clock]
+Collecting mutex groups... [0.020s CPU, 0.015s wall-clock]
+Choosing groups...
+2080 uncovered facts
+Choosing groups: [0.030s CPU, 0.033s wall-clock]
+Building translation key... [0.020s CPU, 0.020s wall-clock]
+Computing fact groups: [0.420s CPU, 0.421s wall-clock]
+Building STRIPS to SAS dictionary... [1.880s CPU, 1.883s wall-clock]
+Building dictionary for full mutex groups... [0.020s CPU, 0.019s wall-clock]
+Building mutex information...
+Building mutex information: [0.020s CPU, 0.020s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.740s CPU, 0.733s wall-clock]
+Translating task: [6.420s CPU, 6.423s wall-clock]
+0 implied effects removed
+0 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+361 propositions removed
+Detecting unreachable propositions: [0.670s CPU, 0.671s wall-clock]
+Translator variables: 2441
+Translator derived variables: 0
+Translator facts: 6961
+Translator mutex groups: 451
+Translator total mutex groups size: 2981
+Translator operators: 42030
+Translator task size: 268953
+Translator peak memory: 284340 KB
+Writing output... [0.710s CPU, 0.705s wall-clock]
+Done! [25.150s CPU, 25.158s wall-clock]

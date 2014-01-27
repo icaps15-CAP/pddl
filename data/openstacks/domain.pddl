@@ -1,7 +1,6 @@
 (define (domain openstacks)
     (:requirements :typing :action-costs)
   (:types order product count)
-  (:constants n0 - count)
   (:predicates 
    (howmany-orders-not-started ?p - product ?o-count - count)
    (howmany-products-not-made ?o - order ?p-count - count)
