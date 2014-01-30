@@ -117,9 +117,9 @@
           prefix floors passengers area-size num))
 
 (let ((floors 40) (area-size 10))
-  (iter (for passengers from 70 to 150 by 10)
+  (iter (for passengers from 180 to 400 by 30)
         (for i from 1)
-        (for path = (elevator-filename "large" floors passengers area-size i))
+        (for path = (elevator-filename "xlarge" floors passengers area-size i))
         (print path)
         (with-open-file (s path
                            :direction :output
