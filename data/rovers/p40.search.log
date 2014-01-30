@@ -1,0 +1,719 @@
+Dispatcher selected state size 1.
+This is a unit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 12.5353s
+Discovered 139 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+138 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+70 initial landmarks, 69 goal landmarks
+Starting search: lazy_greedy(list(hff, hlm), preferred = list(hff, hlm))
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 69/208 [g=0, 1 evaluated, 0 expanded, t=14.1s]
+Best heuristic value: 69/207 [g=1, 2 evaluated, 1 expanded, t=14.13s]
+Best heuristic value: 69/206 [g=2, 5 evaluated, 4 expanded, t=14.23s]
+Best heuristic value: 69/205 [g=1, 12 evaluated, 11 expanded, t=14.47s]
+Best heuristic value: 69/204 [g=2, 13 evaluated, 12 expanded, t=14.51s]
+Best heuristic value: 69/203 [g=3, 17 evaluated, 16 expanded, t=14.64s]
+Best heuristic value: 69/202 [g=4, 29 evaluated, 28 expanded, t=15.03s]
+Best heuristic value: 69/201 [g=5, 73 evaluated, 72 expanded, t=16.44s]
+Best heuristic value: 69/199 [g=6, 89 evaluated, 88 expanded, t=16.97s]
+Best heuristic value: 69/198 [g=7, 137 evaluated, 136 expanded, t=18.55s]
+Best heuristic value: 69/196 [g=8, 189 evaluated, 188 expanded, t=20.3s]
+Best heuristic value: 69/195 [g=9, 239 evaluated, 238 expanded, t=21.92s]
+Best heuristic value: 69/194 [g=10, 297 evaluated, 296 expanded, t=23.78s]
+Best heuristic value: 69/193 [g=11, 357 evaluated, 356 expanded, t=25.71s]
+Best heuristic value: 69/192 [g=12, 409 evaluated, 408 expanded, t=27.42s]
+Best heuristic value: 69/191 [g=13, 466 evaluated, 465 expanded, t=29.27s]
+Best heuristic value: 69/190 [g=14, 536 evaluated, 535 expanded, t=31.56s]
+Best heuristic value: 69/189 [g=15, 613 evaluated, 612 expanded, t=34.11s]
+Best heuristic value: 69/188 [g=16, 692 evaluated, 691 expanded, t=36.68s]
+Best heuristic value: 69/187 [g=17, 769 evaluated, 768 expanded, t=39.16s]
+Best heuristic value: 69/186 [g=19, 882 evaluated, 881 expanded, t=42.89s]
+Best heuristic value: 68/185 [g=21, 992 evaluated, 991 expanded, t=46.42s]
+Best heuristic value: 68/184 [g=23, 1048 evaluated, 1047 expanded, t=48.21s]
+Best heuristic value: 67/183 [g=25, 1159 evaluated, 1158 expanded, t=51.8s]
+Best heuristic value: 67/182 [g=27, 1214 evaluated, 1213 expanded, t=53.58s]
+Best heuristic value: 66/181 [g=29, 1323 evaluated, 1322 expanded, t=57.08s]
+Best heuristic value: 66/180 [g=31, 1377 evaluated, 1376 expanded, t=58.8s]
+Best heuristic value: 66/179 [g=32, 1380 evaluated, 1379 expanded, t=58.9s]
+Best heuristic value: 65/178 [g=34, 1486 evaluated, 1485 expanded, t=62.27s]
+Best heuristic value: 64/177 [g=36, 1539 evaluated, 1538 expanded, t=63.95s]
+Best heuristic value: 64/176 [g=38, 1590 evaluated, 1589 expanded, t=65.58s]
+Best heuristic value: 64/175 [g=39, 1596 evaluated, 1595 expanded, t=65.76s]
+Best heuristic value: 64/174 [g=40, 1604 evaluated, 1603 expanded, t=66.01s]
+Best heuristic value: 64/173 [g=42, 1713 evaluated, 1712 expanded, t=69.51s]
+Best heuristic value: 64/172 [g=44, 1824 evaluated, 1823 expanded, t=73.09s]
+Best heuristic value: 64/171 [g=46, 1934 evaluated, 1933 expanded, t=76.62s]
+Best heuristic value: 64/170 [g=48, 2046 evaluated, 2045 expanded, t=80.28s]
+Best heuristic value: 64/169 [g=50, 2161 evaluated, 2160 expanded, t=83.94s]
+Best heuristic value: 64/168 [g=52, 2277 evaluated, 2276 expanded, t=87.64s]
+Best heuristic value: 64/167 [g=54, 2395 evaluated, 2394 expanded, t=91.45s]
+Best heuristic value: 64/166 [g=56, 2517 evaluated, 2516 expanded, t=95.43s]
+Best heuristic value: 64/165 [g=58, 2639 evaluated, 2638 expanded, t=99.35s]
+Best heuristic value: 64/164 [g=60, 2764 evaluated, 2763 expanded, t=103.34s]
+Best heuristic value: 64/163 [g=62, 2881 evaluated, 2880 expanded, t=107.13s]
+Best heuristic value: 64/162 [g=64, 3001 evaluated, 3000 expanded, t=110.98s]
+Best heuristic value: 64/161 [g=66, 3111 evaluated, 3110 expanded, t=114.53s]
+Best heuristic value: 63/161 [g=38, 3186 evaluated, 3185 expanded, t=116.98s]
+Best heuristic value: 63/160 [g=68, 3201 evaluated, 3200 expanded, t=117.46s]
+Best heuristic value: 63/159 [g=70, 3351 evaluated, 3350 expanded, t=122.22s]
+Best heuristic value: 62/158 [g=71, 3353 evaluated, 3352 expanded, t=122.28s]
+Best heuristic value: 61/158 [g=73, 3403 evaluated, 3402 expanded, t=123.81s]
+Best heuristic value: 61/157 [g=73, 3454 evaluated, 3453 expanded, t=125.35s]
+Best heuristic value: 61/156 [g=74, 3508 evaluated, 3507 expanded, t=126.99s]
+Best heuristic value: 60/156 [g=75, 3591 evaluated, 3590 expanded, t=129.47s]
+Best heuristic value: 60/155 [g=76, 3654 evaluated, 3653 expanded, t=131.37s]
+Best heuristic value: 60/154 [g=77, 3656 evaluated, 3655 expanded, t=131.44s]
+Best heuristic value: 59/154 [g=77, 3661 evaluated, 3660 expanded, t=131.58s]
+Best heuristic value: 58/154 [g=79, 3725 evaluated, 3724 expanded, t=133.48s]
+Best heuristic value: 57/154 [g=81, 3815 evaluated, 3814 expanded, t=136.13s]
+Best heuristic value: 57/153 [g=82, 3881 evaluated, 3880 expanded, t=138.08s]
+Best heuristic value: 56/153 [g=83, 3903 evaluated, 3902 expanded, t=138.71s]
+Best heuristic value: 56/152 [g=84, 3967 evaluated, 3966 expanded, t=140.58s]
+Best heuristic value: 55/152 [g=85, 3989 evaluated, 3988 expanded, t=141.24s]
+Best heuristic value: 55/151 [g=86, 4051 evaluated, 4050 expanded, t=143.04s]
+Best heuristic value: 54/151 [g=87, 4073 evaluated, 4072 expanded, t=143.67s]
+Best heuristic value: 54/150 [g=88, 4133 evaluated, 4132 expanded, t=145.41s]
+Best heuristic value: 53/150 [g=89, 4155 evaluated, 4154 expanded, t=146.05s]
+Best heuristic value: 53/149 [g=90, 4213 evaluated, 4212 expanded, t=147.73s]
+Best heuristic value: 52/149 [g=91, 4235 evaluated, 4234 expanded, t=148.37s]
+Best heuristic value: 52/148 [g=92, 4291 evaluated, 4290 expanded, t=150.01s]
+Best heuristic value: 51/148 [g=93, 4313 evaluated, 4312 expanded, t=150.67s]
+Best heuristic value: 51/147 [g=94, 4367 evaluated, 4366 expanded, t=152.23s]
+Best heuristic value: 50/147 [g=95, 4389 evaluated, 4388 expanded, t=152.87s]
+Best heuristic value: 50/146 [g=96, 4441 evaluated, 4440 expanded, t=154.39s]
+Best heuristic value: 49/146 [g=97, 4463 evaluated, 4462 expanded, t=155.02s]
+Best heuristic value: 49/145 [g=98, 4513 evaluated, 4512 expanded, t=156.52s]
+Best heuristic value: 48/145 [g=99, 4535 evaluated, 4534 expanded, t=157.18s]
+Best heuristic value: 48/144 [g=100, 4583 evaluated, 4582 expanded, t=158.58s]
+Best heuristic value: 47/144 [g=101, 4605 evaluated, 4604 expanded, t=159.23s]
+Best heuristic value: 47/143 [g=102, 4651 evaluated, 4650 expanded, t=160.56s]
+Best heuristic value: 46/143 [g=103, 4673 evaluated, 4672 expanded, t=161.18s]
+Best heuristic value: 46/142 [g=104, 4717 evaluated, 4716 expanded, t=162.48s]
+Best heuristic value: 46/141 [g=106, 4798 evaluated, 4797 expanded, t=164.83s]
+Best heuristic value: 46/140 [g=107, 4818 evaluated, 4817 expanded, t=165.41s]
+Best heuristic value: 46/139 [g=109, 4897 evaluated, 4896 expanded, t=167.69s]
+Best heuristic value: 45/138 [g=110, 4901 evaluated, 4900 expanded, t=167.81s]
+Best heuristic value: 44/137 [g=112, 5033 evaluated, 5032 expanded, t=171.55s]
+Best heuristic value: 44/136 [g=115, 5160 evaluated, 5159 expanded, t=175.22s]
+Best heuristic value: 44/135 [g=118, 5324 evaluated, 5323 expanded, t=179.92s]
+Best heuristic value: 44/134 [g=119, 5346 evaluated, 5345 expanded, t=180.53s]
+Best heuristic value: 44/133 [g=120, 5362 evaluated, 5361 expanded, t=180.98s]
+Best heuristic value: 44/132 [g=121, 5382 evaluated, 5381 expanded, t=181.53s]
+Best heuristic value: 43/131 [g=123, 5427 evaluated, 5426 expanded, t=182.74s]
+Best heuristic value: 42/131 [g=125, 5455 evaluated, 5454 expanded, t=183.43s]
+Best heuristic value: 42/130 [g=126, 5487 evaluated, 5486 expanded, t=184.23s]
+Best heuristic value: 42/128 [g=129, 5560 evaluated, 5559 expanded, t=186.01s]
+Best heuristic value: 42/127 [g=131, 5614 evaluated, 5613 expanded, t=187.35s]
+Best heuristic value: 42/126 [g=133, 5734 evaluated, 5733 expanded, t=190.29s]
+Best heuristic value: 42/125 [g=135, 5853 evaluated, 5852 expanded, t=193.23s]
+Best heuristic value: 42/124 [g=137, 5955 evaluated, 5954 expanded, t=195.76s]
+Best heuristic value: 42/123 [g=139, 6043 evaluated, 6042 expanded, t=197.9s]
+Best heuristic value: 42/122 [g=141, 6110 evaluated, 6109 expanded, t=199.53s]
+Best heuristic value: 42/120 [g=143, 6213 evaluated, 6212 expanded, t=202.14s]
+Best heuristic value: 41/120 [g=145, 6251 evaluated, 6250 expanded, t=203.05s]
+Best heuristic value: 41/119 [g=146, 6260 evaluated, 6259 expanded, t=203.27s]
+Best heuristic value: 40/119 [g=148, 6346 evaluated, 6345 expanded, t=205.26s]
+Best heuristic value: 40/118 [g=149, 6363 evaluated, 6362 expanded, t=205.68s]
+Best heuristic value: 39/117 [g=151, 6397 evaluated, 6396 expanded, t=206.48s]
+Best heuristic value: 39/116 [g=153, 6526 evaluated, 6525 expanded, t=209.53s]
+Best heuristic value: 39/115 [g=156, 6598 evaluated, 6597 expanded, t=211.23s]
+Best heuristic value: 39/114 [g=157, 6606 evaluated, 6605 expanded, t=211.42s]
+Best heuristic value: 38/114 [g=159, 6669 evaluated, 6668 expanded, t=212.92s]
+Best heuristic value: 38/113 [g=160, 6677 evaluated, 6676 expanded, t=213.11s]
+Best heuristic value: 38/112 [g=161, 6730 evaluated, 6729 expanded, t=214.33s]
+Best heuristic value: 38/111 [g=162, 6745 evaluated, 6744 expanded, t=214.67s]
+Best heuristic value: 37/111 [g=164, 6820 evaluated, 6819 expanded, t=216.49s]
+Best heuristic value: 37/110 [g=165, 6831 evaluated, 6830 expanded, t=216.76s]
+Best heuristic value: 36/110 [g=167, 6900 evaluated, 6899 expanded, t=218.43s]
+Best heuristic value: 36/109 [g=168, 6913 evaluated, 6912 expanded, t=218.74s]
+Best heuristic value: 35/108 [g=170, 6941 evaluated, 6940 expanded, t=219.43s]
+Best heuristic value: 35/107 [g=174, 7025 evaluated, 7024 expanded, t=221.48s]
+Best heuristic value: 35/106 [g=176, 7209 evaluated, 7208 expanded, t=225.79s]
+Best heuristic value: 35/105 [g=178, 7331 evaluated, 7330 expanded, t=228.7s]
+Best heuristic value: 35/104 [g=180, 7358 evaluated, 7357 expanded, t=229.33s]
+Best heuristic value: 35/102 [g=184, 7422 evaluated, 7421 expanded, t=230.81s]
+Best heuristic value: 35/101 [g=187, 7494 evaluated, 7493 expanded, t=232.5s]
+Best heuristic value: 35/100 [g=188, 7504 evaluated, 7503 expanded, t=232.73s]
+Best heuristic value: 35/99 [g=189, 7514 evaluated, 7513 expanded, t=232.96s]
+Best heuristic value: 34/99 [g=191, 7551 evaluated, 7550 expanded, t=233.81s]
+Best heuristic value: 34/98 [g=192, 7557 evaluated, 7556 expanded, t=233.93s]
+Best heuristic value: 33/98 [g=194, 7588 evaluated, 7587 expanded, t=234.66s]
+Best heuristic value: 33/97 [g=195, 7594 evaluated, 7593 expanded, t=234.79s]
+Best heuristic value: 32/97 [g=197, 7624 evaluated, 7623 expanded, t=235.48s]
+Best heuristic value: 32/96 [g=198, 7630 evaluated, 7629 expanded, t=235.61s]
+Best heuristic value: 31/96 [g=200, 7658 evaluated, 7657 expanded, t=236.27s]
+Best heuristic value: 31/95 [g=201, 7668 evaluated, 7667 expanded, t=236.48s]
+Best heuristic value: 30/94 [g=203, 7689 evaluated, 7688 expanded, t=236.98s]
+Best heuristic value: 30/93 [g=207, 7781 evaluated, 7780 expanded, t=239.11s]
+Best heuristic value: 30/92 [g=209, 7813 evaluated, 7812 expanded, t=239.89s]
+Best heuristic value: 30/91 [g=211, 7835 evaluated, 7834 expanded, t=240.4s]
+Best heuristic value: 30/90 [g=212, 7842 evaluated, 7841 expanded, t=240.57s]
+Best heuristic value: 29/89 [g=215, 7925 evaluated, 7924 expanded, t=242.62s]
+Best heuristic value: 28/88 [g=218, 7997 evaluated, 7996 expanded, t=244.38s]
+Best heuristic value: 28/87 [g=220, 8027 evaluated, 8026 expanded, t=245.1s]
+Best heuristic value: 27/86 [g=221, 8031 evaluated, 8030 expanded, t=245.2s]
+Best heuristic value: 27/85 [g=224, 8209 evaluated, 8208 expanded, t=249.69s]
+Best heuristic value: 27/84 [g=226, 8270 evaluated, 8269 expanded, t=251.24s]
+Best heuristic value: 26/83 [g=227, 8274 evaluated, 8273 expanded, t=251.33s]
+Best heuristic value: 26/82 [g=231, 8468 evaluated, 8467 expanded, t=256.26s]
+Best heuristic value: 26/81 [g=234, 8536 evaluated, 8535 expanded, t=257.98s]
+Best heuristic value: 25/80 [g=236, 8563 evaluated, 8562 expanded, t=258.63s]
+Best heuristic value: 25/79 [g=243, 8770 evaluated, 8769 expanded, t=264.05s]
+Best heuristic value: 24/78 [g=245, 8786 evaluated, 8785 expanded, t=264.44s]
+Best heuristic value: 24/76 [g=247, 8905 evaluated, 8904 expanded, t=267.61s]
+Best heuristic value: 24/75 [g=250, 8944 evaluated, 8943 expanded, t=268.56s]
+Best heuristic value: 23/74 [g=252, 8973 evaluated, 8972 expanded, t=269.29s]
+Best heuristic value: 23/73 [g=256, 9099 evaluated, 9098 expanded, t=272.49s]
+Best heuristic value: 23/70 [g=261, 9450 evaluated, 9449 expanded, t=281.43s]
+Best heuristic value: 23/69 [g=265, 9491 evaluated, 9490 expanded, t=282.42s]
+Best heuristic value: 23/68 [g=267, 9508 evaluated, 9507 expanded, t=282.86s]
+Best heuristic value: 23/67 [g=269, 9577 evaluated, 9576 expanded, t=284.58s]
+Best heuristic value: 23/65 [g=271, 9595 evaluated, 9594 expanded, t=285.03s]
+Best heuristic value: 22/65 [g=273, 9628 evaluated, 9627 expanded, t=285.83s]
+Best heuristic value: 22/64 [g=274, 9634 evaluated, 9633 expanded, t=285.98s]
+Best heuristic value: 21/64 [g=275, 9653 evaluated, 9652 expanded, t=286.44s]
+Best heuristic value: 21/63 [g=277, 9699 evaluated, 9698 expanded, t=287.5s]
+Best heuristic value: 20/62 [g=279, 9717 evaluated, 9716 expanded, t=287.91s]
+Best heuristic value: 19/62 [g=281, 9736 evaluated, 9735 expanded, t=288.39s]
+Best heuristic value: 19/61 [g=286, 9817 evaluated, 9816 expanded, t=290.29s]
+Best heuristic value: 19/60 [g=287, 9819 evaluated, 9818 expanded, t=290.33s]
+Best heuristic value: 19/59 [g=288, 9821 evaluated, 9820 expanded, t=290.38s]
+Best heuristic value: 18/58 [g=290, 9836 evaluated, 9835 expanded, t=290.66s]
+Best heuristic value: 18/57 [g=293, 9926 evaluated, 9925 expanded, t=292.92s]
+Best heuristic value: 18/56 [g=306, 10343 evaluated, 10342 expanded, t=303.27s]
+Best heuristic value: 18/55 [g=308, 10367 evaluated, 10366 expanded, t=303.79s]
+Best heuristic value: 18/53 [g=310, 10384 evaluated, 10383 expanded, t=304.19s]
+Best heuristic value: 17/53 [g=312, 10399 evaluated, 10398 expanded, t=304.49s]
+Best heuristic value: 17/52 [g=313, 10407 evaluated, 10406 expanded, t=304.67s]
+Best heuristic value: 16/51 [g=315, 10422 evaluated, 10421 expanded, t=304.98s]
+Best heuristic value: 15/50 [g=317, 10439 evaluated, 10438 expanded, t=305.39s]
+Best heuristic value: 15/49 [g=320, 10513 evaluated, 10512 expanded, t=307.25s]
+Best heuristic value: 14/48 [g=323, 11014 evaluated, 11013 expanded, t=320.02s]
+Best heuristic value: 14/47 [g=329, 11123 evaluated, 11122 expanded, t=322.76s]
+Best heuristic value: 14/46 [g=332, 11478 evaluated, 11477 expanded, t=331.57s]
+Best heuristic value: 14/45 [g=334, 11488 evaluated, 11487 expanded, t=331.8s]
+Best heuristic value: 13/44 [g=336, 11502 evaluated, 11501 expanded, t=332.12s]
+Best heuristic value: 13/43 [g=342, 11592 evaluated, 11591 expanded, t=334.43s]
+Best heuristic value: 13/42 [g=347, 11980 evaluated, 11979 expanded, t=344.18s]
+Best heuristic value: 13/41 [g=349, 11991 evaluated, 11990 expanded, t=344.43s]
+Best heuristic value: 12/41 [g=343, 12022 evaluated, 12021 expanded, t=345.17s]
+Best heuristic value: 12/40 [g=354, 12028 evaluated, 12027 expanded, t=345.32s]
+Best heuristic value: 12/39 [g=356, 12039 evaluated, 12038 expanded, t=345.59s]
+Best heuristic value: 12/37 [g=358, 12070 evaluated, 12069 expanded, t=346.33s]
+Best heuristic value: 12/36 [g=359, 12072 evaluated, 12071 expanded, t=346.38s]
+Best heuristic value: 12/35 [g=362, 12110 evaluated, 12109 expanded, t=347.27s]
+Best heuristic value: 11/35 [g=364, 12165 evaluated, 12164 expanded, t=348.64s]
+Best heuristic value: 11/34 [g=365, 12169 evaluated, 12168 expanded, t=348.72s]
+Best heuristic value: 10/34 [g=367, 12207 evaluated, 12206 expanded, t=349.63s]
+Best heuristic value: 10/33 [g=368, 12212 evaluated, 12211 expanded, t=349.75s]
+Best heuristic value: 9/32 [g=370, 12225 evaluated, 12224 expanded, t=350.05s]
+Best heuristic value: 9/31 [g=374, 12248 evaluated, 12247 expanded, t=350.61s]
+Best heuristic value: 8/30 [g=377, 12347 evaluated, 12346 expanded, t=353.13s]
+Best heuristic value: 8/29 [g=385, 12428 evaluated, 12427 expanded, t=355.01s]
+Best heuristic value: 8/28 [g=386, 12434 evaluated, 12433 expanded, t=355.14s]
+Best heuristic value: 8/27 [g=388, 12478 evaluated, 12477 expanded, t=356.13s]
+Best heuristic value: 7/26 [g=390, 12486 evaluated, 12485 expanded, t=356.31s]
+Best heuristic value: 7/25 [g=396, 12580 evaluated, 12579 expanded, t=358.59s]
+Best heuristic value: 7/24 [g=397, 12584 evaluated, 12583 expanded, t=358.68s]
+Best heuristic value: 7/23 [g=398, 12682 evaluated, 12681 expanded, t=361.03s]
+Best heuristic value: 7/22 [g=399, 12690 evaluated, 12689 expanded, t=361.23s]
+Best heuristic value: 6/21 [g=401, 12703 evaluated, 12702 expanded, t=361.51s]
+Best heuristic value: 6/20 [g=407, 12743 evaluated, 12742 expanded, t=362.52s]
+Best heuristic value: 6/19 [g=406, 12760 evaluated, 12759 expanded, t=362.92s]
+Best heuristic value: 6/18 [g=407, 12762 evaluated, 12761 expanded, t=362.97s]
+Best heuristic value: 6/17 [g=413, 12811 evaluated, 12810 expanded, t=364.18s]
+Best heuristic value: 6/15 [g=417, 12845 evaluated, 12844 expanded, t=365.06s]
+Best heuristic value: 6/14 [g=423, 12882 evaluated, 12881 expanded, t=365.97s]
+Best heuristic value: 5/14 [g=410, 12903 evaluated, 12902 expanded, t=366.49s]
+Best heuristic value: 5/12 [g=426, 12914 evaluated, 12913 expanded, t=366.73s]
+Best heuristic value: 5/11 [g=427, 12917 evaluated, 12916 expanded, t=366.79s]
+Best heuristic value: 5/10 [g=431, 12948 evaluated, 12947 expanded, t=367.59s]
+Best heuristic value: 5/9 [g=432, 12950 evaluated, 12949 expanded, t=367.64s]
+Best heuristic value: 5/8 [g=433, 12952 evaluated, 12951 expanded, t=367.67s]
+Best heuristic value: 5/7 [g=434, 12954 evaluated, 12953 expanded, t=367.72s]
+Best heuristic value: 5/6 [g=435, 12956 evaluated, 12955 expanded, t=367.75s]
+Best heuristic value: 5/5 [g=437, 12970 evaluated, 12969 expanded, t=368.02s]
+Best heuristic value: 4/4 [g=439, 12981 evaluated, 12980 expanded, t=368.23s]
+Best heuristic value: 3/3 [g=441, 12986 evaluated, 12985 expanded, t=368.28s]
+Best heuristic value: 2/2 [g=443, 12990 evaluated, 12989 expanded, t=368.32s]
+Best heuristic value: 1/1 [g=445, 12993 evaluated, 12992 expanded, t=368.34s]
+Solution found!
+Actual search time: 354.28s [t=368.35s]
+calibrate rover6 camera13 objective3 waypoint22 (1)
+calibrate rover10 camera14 objective9 waypoint45 (1)
+navigate rover10 waypoint45 waypoint36 (1)
+sample_rock rover6 rover6store waypoint22 (1)
+calibrate rover0 camera10 objective2 waypoint5 (1)
+navigate rover0 waypoint5 waypoint87 (1)
+navigate rover12 waypoint59 waypoint38 (1)
+navigate rover12 waypoint38 waypoint19 (1)
+sample_rock rover12 rover12store waypoint19 (1)
+navigate rover2 waypoint86 waypoint10 (1)
+navigate rover11 waypoint35 waypoint11 (1)
+navigate rover12 waypoint19 waypoint38 (1)
+navigate rover9 waypoint12 waypoint59 (1)
+navigate rover3 waypoint63 waypoint25 (1)
+sample_rock rover1 rover1store waypoint94 (1)
+navigate rover1 waypoint94 waypoint14 (1)
+navigate rover1 waypoint14 waypoint66 (1)
+take_image rover10 waypoint36 objective9 camera14 high_res (1)
+calibrate rover10 camera14 objective9 waypoint36 (1)
+communicate_image_data rover10 general objective9 high_res waypoint36 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+take_image rover10 waypoint36 objective8 camera14 high_res (1)
+calibrate rover10 camera14 objective9 waypoint36 (1)
+communicate_image_data rover10 general objective8 high_res waypoint36 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+take_image rover10 waypoint36 objective7 camera14 high_res (1)
+calibrate rover10 camera14 objective9 waypoint36 (1)
+communicate_image_data rover10 general objective7 high_res waypoint36 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+take_image rover10 waypoint36 objective4 camera14 high_res (1)
+calibrate rover10 camera14 objective9 waypoint36 (1)
+take_image rover10 waypoint36 objective10 camera14 high_res (1)
+communicate_image_data rover10 general objective4 high_res waypoint36 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+communicate_image_data rover10 general objective10 high_res waypoint36 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+take_image rover6 waypoint22 objective9 camera13 low_res (1)
+navigate rover6 waypoint22 waypoint81 (1)
+calibrate rover11 camera9 objective3 waypoint11 (1)
+take_image rover0 waypoint87 objective8 camera10 low_res (1)
+take_image rover11 waypoint11 objective9 camera9 colour (1)
+calibrate rover11 camera9 objective3 waypoint11 (1)
+take_image rover11 waypoint11 objective8 camera9 colour (1)
+calibrate rover11 camera9 objective3 waypoint11 (1)
+take_image rover11 waypoint11 objective7 camera9 low_res (1)
+calibrate rover11 camera9 objective3 waypoint11 (1)
+take_image rover11 waypoint11 objective7 camera9 colour (1)
+calibrate rover11 camera9 objective3 waypoint11 (1)
+take_image rover11 waypoint11 objective6 camera9 low_res (1)
+calibrate rover11 camera9 objective3 waypoint11 (1)
+take_image rover11 waypoint11 objective6 camera9 colour (1)
+calibrate rover11 camera9 objective3 waypoint11 (1)
+take_image rover11 waypoint11 objective5 camera9 low_res (1)
+calibrate rover11 camera9 objective3 waypoint11 (1)
+take_image rover11 waypoint11 objective4 camera9 low_res (1)
+calibrate rover11 camera9 objective3 waypoint11 (1)
+take_image rover11 waypoint11 objective4 camera9 colour (1)
+calibrate rover11 camera9 objective3 waypoint11 (1)
+take_image rover11 waypoint11 objective3 camera9 colour (1)
+calibrate rover11 camera9 objective3 waypoint11 (1)
+take_image rover11 waypoint11 objective2 camera9 colour (1)
+calibrate rover11 camera9 objective3 waypoint11 (1)
+take_image rover11 waypoint11 objective10 camera9 low_res (1)
+calibrate rover11 camera9 objective3 waypoint11 (1)
+take_image rover11 waypoint11 objective10 camera9 colour (1)
+calibrate rover11 camera9 objective3 waypoint11 (1)
+communicate_rock_data rover12 general waypoint19 waypoint38 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+sample_soil rover9 rover9store waypoint59 (1)
+communicate_soil_data rover9 general waypoint59 waypoint59 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+communicate_rock_data rover6 general waypoint22 waypoint81 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+communicate_image_data rover11 general objective9 colour waypoint11 waypoint21 (1)
+end_communication rover6 general colour waypoint81 waypoint21 (1)
+communicate_image_data rover6 general objective9 low_res waypoint81 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+communicate_image_data rover0 general objective8 low_res waypoint87 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+communicate_image_data rover11 general objective8 colour waypoint11 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+communicate_image_data rover11 general objective7 low_res waypoint11 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+communicate_image_data rover11 general objective7 colour waypoint11 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+communicate_image_data rover11 general objective6 low_res waypoint11 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+communicate_image_data rover11 general objective6 colour waypoint11 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+communicate_image_data rover11 general objective5 low_res waypoint11 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+communicate_image_data rover11 general objective4 low_res waypoint11 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+communicate_image_data rover11 general objective4 colour waypoint11 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+communicate_image_data rover11 general objective3 colour waypoint11 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+communicate_image_data rover11 general objective2 colour waypoint11 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+communicate_image_data rover11 general objective10 low_res waypoint11 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+communicate_image_data rover11 general objective10 colour waypoint11 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+end_communication rover0 general colour waypoint87 waypoint21 (1)
+navigate rover3 waypoint25 waypoint33 (1)
+navigate rover4 waypoint49 waypoint4 (1)
+sample_soil rover4 rover4store waypoint4 (1)
+navigate rover4 waypoint4 waypoint66 (1)
+communicate_soil_data rover4 general waypoint4 waypoint66 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+communicate_rock_data rover1 general waypoint94 waypoint66 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+navigate rover11 waypoint11 waypoint8 (1)
+take_image rover11 waypoint8 objective0 camera9 low_res (1)
+navigate rover11 waypoint8 waypoint11 (1)
+navigate rover5 waypoint57 waypoint18 (1)
+navigate rover5 waypoint18 waypoint33 (1)
+sample_soil rover5 rover5store waypoint33 (1)
+navigate rover5 waypoint33 waypoint18 (1)
+navigate rover5 waypoint18 waypoint52 (1)
+navigate rover5 waypoint52 waypoint36 (1)
+communicate_soil_data rover5 general waypoint33 waypoint36 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+communicate_image_data rover11 general objective0 low_res waypoint11 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+navigate rover8 waypoint77 waypoint56 (1)
+navigate rover8 waypoint56 waypoint53 (1)
+navigate rover13 waypoint66 waypoint95 (1)
+sample_soil rover8 rover8store waypoint53 (1)
+navigate rover8 waypoint53 waypoint56 (1)
+sample_soil rover2 rover2store waypoint10 (1)
+drop rover2 rover2store (1)
+navigate rover8 waypoint56 waypoint75 (1)
+drop rover8 rover8store (1)
+navigate rover2 waypoint10 waypoint23 (1)
+sample_rock rover2 rover2store waypoint23 (1)
+navigate rover2 waypoint23 waypoint10 (1)
+drop rover2 rover2store (1)
+navigate rover2 waypoint10 waypoint26 (1)
+sample_rock rover2 rover2store waypoint26 (1)
+navigate rover2 waypoint26 waypoint10 (1)
+navigate rover2 waypoint10 waypoint38 (1)
+communicate_rock_data rover2 general waypoint23 waypoint38 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover2 general colour waypoint38 waypoint21 (1)
+communicate_soil_data rover2 general waypoint10 waypoint38 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover2 general colour waypoint38 waypoint21 (1)
+communicate_rock_data rover2 general waypoint26 waypoint38 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+sample_rock rover8 rover8store waypoint75 (1)
+drop rover8 rover8store (1)
+navigate rover8 waypoint75 waypoint98 (1)
+sample_rock rover8 rover8store waypoint98 (1)
+navigate rover8 waypoint98 waypoint75 (1)
+navigate rover8 waypoint75 waypoint56 (1)
+communicate_soil_data rover8 general waypoint53 waypoint56 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+drop rover8 rover8store (1)
+sample_rock rover8 rover8store waypoint56 (1)
+end_communication rover8 general colour waypoint56 waypoint21 (1)
+communicate_rock_data rover8 general waypoint98 waypoint56 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover8 general colour waypoint56 waypoint21 (1)
+communicate_rock_data rover8 general waypoint75 waypoint56 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover8 general colour waypoint56 waypoint21 (1)
+communicate_rock_data rover8 general waypoint56 waypoint56 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+sample_rock rover0 rover0store waypoint87 (1)
+drop rover0 rover0store (1)
+navigate rover0 waypoint87 waypoint5 (1)
+sample_rock rover0 rover0store waypoint5 (1)
+drop rover0 rover0store (1)
+navigate rover0 waypoint5 waypoint84 (1)
+sample_rock rover0 rover0store waypoint84 (1)
+navigate rover0 waypoint84 waypoint5 (1)
+navigate rover0 waypoint5 waypoint69 (1)
+navigate rover0 waypoint69 waypoint42 (1)
+drop rover0 rover0store (1)
+navigate rover0 waypoint42 waypoint60 (1)
+sample_soil rover0 rover0store waypoint60 (1)
+navigate rover0 waypoint60 waypoint42 (1)
+drop rover0 rover0store (1)
+navigate rover0 waypoint42 waypoint89 (1)
+sample_rock rover0 rover0store waypoint89 (1)
+navigate rover0 waypoint89 waypoint42 (1)
+navigate rover0 waypoint42 waypoint56 (1)
+communicate_soil_data rover0 general waypoint60 waypoint56 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover0 general colour waypoint56 waypoint21 (1)
+communicate_rock_data rover0 general waypoint89 waypoint56 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover0 general colour waypoint56 waypoint21 (1)
+communicate_rock_data rover0 general waypoint87 waypoint56 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover0 general colour waypoint56 waypoint21 (1)
+communicate_rock_data rover0 general waypoint84 waypoint56 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover0 general colour waypoint56 waypoint21 (1)
+communicate_rock_data rover0 general waypoint5 waypoint56 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+navigate rover13 waypoint95 waypoint66 (1)
+sample_rock rover13 rover13store waypoint66 (1)
+navigate rover13 waypoint66 waypoint58 (1)
+drop rover13 rover13store (1)
+sample_rock rover13 rover13store waypoint58 (1)
+drop rover13 rover13store (1)
+navigate rover13 waypoint58 waypoint92 (1)
+sample_rock rover13 rover13store waypoint92 (1)
+navigate rover13 waypoint92 waypoint58 (1)
+navigate rover13 waypoint58 waypoint66 (1)
+communicate_rock_data rover13 general waypoint92 waypoint66 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover13 general colour waypoint66 waypoint21 (1)
+communicate_rock_data rover13 general waypoint66 waypoint66 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover13 general colour waypoint66 waypoint21 (1)
+navigate rover13 waypoint66 waypoint17 (1)
+communicate_rock_data rover13 general waypoint58 waypoint17 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+drop rover13 rover13store (1)
+sample_rock rover13 rover13store waypoint17 (1)
+end_communication rover13 general colour waypoint17 waypoint21 (1)
+navigate rover13 waypoint17 waypoint3 (1)
+drop rover13 rover13store (1)
+navigate rover13 waypoint3 waypoint80 (1)
+sample_rock rover13 rover13store waypoint80 (1)
+navigate rover13 waypoint80 waypoint3 (1)
+navigate rover13 waypoint3 waypoint17 (1)
+communicate_rock_data rover13 general waypoint17 waypoint17 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover13 general colour waypoint17 waypoint21 (1)
+communicate_rock_data rover13 general waypoint80 waypoint17 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+navigate rover11 waypoint11 waypoint20 (1)
+end_communication rover6 general colour waypoint81 waypoint21 (1)
+navigate rover11 waypoint20 waypoint11 (1)
+navigate rover6 waypoint81 waypoint24 (1)
+drop rover6 rover6store (1)
+sample_rock rover6 rover6store waypoint24 (1)
+drop rover6 rover6store (1)
+navigate rover6 waypoint24 waypoint70 (1)
+sample_rock rover6 rover6store waypoint70 (1)
+navigate rover6 waypoint70 waypoint24 (1)
+navigate rover6 waypoint24 waypoint81 (1)
+communicate_rock_data rover6 general waypoint24 waypoint81 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover6 general colour waypoint81 waypoint21 (1)
+communicate_rock_data rover6 general waypoint70 waypoint81 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+navigate rover11 waypoint11 waypoint20 (1)
+sample_soil rover11 rover11store waypoint20 (1)
+drop rover11 rover11store (1)
+navigate rover3 waypoint33 waypoint25 (1)
+navigate rover11 waypoint20 waypoint11 (1)
+sample_rock rover3 rover3store waypoint25 (1)
+navigate rover3 waypoint25 waypoint63 (1)
+drop rover3 rover3store (1)
+navigate rover3 waypoint63 waypoint55 (1)
+navigate rover3 waypoint55 waypoint29 (1)
+navigate rover11 waypoint11 waypoint20 (1)
+sample_soil rover3 rover3store waypoint29 (1)
+navigate rover3 waypoint29 waypoint55 (1)
+navigate rover11 waypoint20 waypoint11 (1)
+drop rover3 rover3store (1)
+navigate rover3 waypoint55 waypoint69 (1)
+sample_rock rover3 rover3store waypoint69 (1)
+navigate rover3 waypoint69 waypoint55 (1)
+navigate rover3 waypoint55 waypoint11 (1)
+communicate_soil_data rover3 general waypoint29 waypoint11 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover3 general colour waypoint11 waypoint21 (1)
+communicate_rock_data rover3 general waypoint69 waypoint11 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover3 general colour waypoint11 waypoint21 (1)
+communicate_rock_data rover3 general waypoint25 waypoint11 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+communicate_soil_data rover11 general waypoint20 waypoint11 waypoint21 (1)
+end_communication rover8 general colour waypoint56 waypoint21 (1)
+navigate rover8 waypoint56 waypoint35 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+drop rover8 rover8store (1)
+navigate rover8 waypoint35 waypoint16 (1)
+sample_rock rover8 rover8store waypoint16 (1)
+navigate rover8 waypoint16 waypoint35 (1)
+navigate rover8 waypoint35 waypoint56 (1)
+communicate_rock_data rover8 general waypoint16 waypoint56 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+navigate rover11 waypoint11 waypoint8 (1)
+sample_rock rover11 rover11store waypoint8 (1)
+drop rover11 rover11store (1)
+navigate rover11 waypoint8 waypoint11 (1)
+navigate rover11 waypoint11 waypoint19 (1)
+navigate rover11 waypoint19 waypoint38 (1)
+drop rover13 rover13store (1)
+navigate rover11 waypoint38 waypoint19 (1)
+navigate rover11 waypoint19 waypoint11 (1)
+navigate rover11 waypoint11 waypoint20 (1)
+end_communication rover13 general colour waypoint17 waypoint21 (1)
+navigate rover13 waypoint17 waypoint66 (1)
+navigate rover11 waypoint20 waypoint11 (1)
+navigate rover13 waypoint66 waypoint39 (1)
+sample_rock rover13 rover13store waypoint39 (1)
+drop rover13 rover13store (1)
+navigate rover13 waypoint39 waypoint91 (1)
+sample_rock rover13 rover13store waypoint91 (1)
+navigate rover13 waypoint91 waypoint39 (1)
+navigate rover13 waypoint39 waypoint66 (1)
+communicate_rock_data rover13 general waypoint91 waypoint66 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover13 general colour waypoint66 waypoint21 (1)
+communicate_rock_data rover13 general waypoint39 waypoint66 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+communicate_rock_data rover11 general waypoint8 waypoint11 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+navigate rover11 waypoint11 waypoint51 (1)
+sample_rock rover11 rover11store waypoint51 (1)
+drop rover11 rover11store (1)
+navigate rover11 waypoint51 waypoint11 (1)
+communicate_rock_data rover11 general waypoint51 waypoint11 waypoint21 (1)
+end_communication rover11 general colour waypoint11 waypoint21 (1)
+navigate rover11 waypoint11 waypoint20 (1)
+navigate rover11 waypoint20 waypoint97 (1)
+end_communication rover13 general colour waypoint66 waypoint21 (1)
+navigate rover13 waypoint66 waypoint40 (1)
+navigate rover11 waypoint97 waypoint20 (1)
+navigate rover13 waypoint40 waypoint82 (1)
+drop rover13 rover13store (1)
+sample_rock rover13 rover13store waypoint82 (1)
+navigate rover13 waypoint82 waypoint40 (1)
+navigate rover11 waypoint20 waypoint11 (1)
+navigate rover13 waypoint40 waypoint66 (1)
+communicate_rock_data rover13 general waypoint82 waypoint66 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+navigate rover11 waypoint11 waypoint35 (1)
+navigate rover11 waypoint35 waypoint28 (1)
+navigate rover11 waypoint28 waypoint99 (1)
+sample_soil rover11 rover11store waypoint99 (1)
+end_communication rover2 general colour waypoint38 waypoint21 (1)
+drop rover2 rover2store (1)
+drop rover11 rover11store (1)
+navigate rover11 waypoint99 waypoint28 (1)
+navigate rover11 waypoint28 waypoint68 (1)
+sample_rock rover11 rover11store waypoint68 (1)
+drop rover11 rover11store (1)
+navigate rover11 waypoint68 waypoint28 (1)
+navigate rover11 waypoint28 waypoint24 (1)
+navigate rover2 waypoint38 waypoint10 (1)
+navigate rover11 waypoint24 waypoint47 (1)
+navigate rover2 waypoint10 waypoint9 (1)
+sample_rock rover11 rover11store waypoint47 (1)
+navigate rover11 waypoint47 waypoint24 (1)
+navigate rover11 waypoint24 waypoint28 (1)
+navigate rover2 waypoint9 waypoint10 (1)
+drop rover11 rover11store (1)
+sample_soil rover11 rover11store waypoint28 (1)
+navigate rover11 waypoint28 waypoint17 (1)
+communicate_soil_data rover11 general waypoint99 waypoint17 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover11 general colour waypoint17 waypoint21 (1)
+communicate_soil_data rover11 general waypoint28 waypoint17 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover11 general colour waypoint17 waypoint21 (1)
+communicate_rock_data rover11 general waypoint68 waypoint17 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+end_communication rover11 general colour waypoint17 waypoint21 (1)
+communicate_rock_data rover11 general waypoint47 waypoint17 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+navigate rover2 waypoint10 waypoint86 (1)
+sample_rock rover2 rover2store waypoint86 (1)
+drop rover2 rover2store (1)
+navigate rover2 waypoint86 waypoint3 (1)
+navigate rover2 waypoint3 waypoint17 (1)
+communicate_rock_data rover2 general waypoint86 waypoint17 waypoint21 (1)
+end_communication rover2 general colour waypoint17 waypoint21 (1)
+navigate rover2 waypoint17 waypoint3 (1)
+navigate rover2 waypoint3 waypoint31 (1)
+end_communication rover13 general colour waypoint66 waypoint21 (1)
+navigate rover2 waypoint31 waypoint3 (1)
+navigate rover13 waypoint66 waypoint14 (1)
+drop rover13 rover13store (1)
+navigate rover13 waypoint14 waypoint79 (1)
+sample_rock rover13 rover13store waypoint79 (1)
+navigate rover13 waypoint79 waypoint14 (1)
+navigate rover2 waypoint3 waypoint17 (1)
+navigate rover13 waypoint14 waypoint11 (1)
+communicate_rock_data rover13 general waypoint79 waypoint11 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+navigate rover2 waypoint17 waypoint3 (1)
+navigate rover2 waypoint3 waypoint31 (1)
+end_communication rover12 general colour waypoint38 waypoint21 (1)
+navigate rover2 waypoint31 waypoint3 (1)
+navigate rover12 waypoint38 waypoint59 (1)
+navigate rover12 waypoint59 waypoint54 (1)
+drop rover12 rover12store (1)
+sample_rock rover12 rover12store waypoint54 (1)
+navigate rover12 waypoint54 waypoint59 (1)
+communicate_rock_data rover12 general waypoint54 waypoint59 waypoint21 (1)
+end_communication rover10 general colour waypoint36 waypoint21 (1)
+navigate rover2 waypoint3 waypoint31 (1)
+navigate rover2 waypoint31 waypoint61 (1)
+sample_rock rover2 rover2store waypoint61 (1)
+navigate rover2 waypoint61 waypoint31 (1)
+drop rover2 rover2store (1)
+navigate rover2 waypoint31 waypoint3 (1)
+navigate rover2 waypoint3 waypoint86 (1)
+navigate rover2 waypoint86 waypoint63 (1)
+sample_rock rover2 rover2store waypoint63 (1)
+drop rover2 rover2store (1)
+navigate rover2 waypoint63 waypoint86 (1)
+navigate rover2 waypoint86 waypoint64 (1)
+sample_rock rover2 rover2store waypoint64 (1)
+drop rover2 rover2store (1)
+navigate rover2 waypoint64 waypoint86 (1)
+navigate rover2 waypoint86 waypoint32 (1)
+navigate rover2 waypoint32 waypoint97 (1)
+sample_soil rover2 rover2store waypoint97 (1)
+navigate rover2 waypoint97 waypoint32 (1)
+drop rover2 rover2store (1)
+navigate rover2 waypoint32 waypoint97 (1)
+sample_rock rover2 rover2store waypoint97 (1)
+navigate rover2 waypoint97 waypoint32 (1)
+navigate rover2 waypoint32 waypoint86 (1)
+navigate rover2 waypoint86 waypoint10 (1)
+drop rover2 rover2store (1)
+navigate rover2 waypoint10 waypoint86 (1)
+navigate rover2 waypoint86 waypoint63 (1)
+navigate rover2 waypoint63 waypoint7 (1)
+sample_rock rover2 rover2store waypoint7 (1)
+navigate rover2 waypoint7 waypoint63 (1)
+navigate rover2 waypoint63 waypoint86 (1)
+navigate rover2 waypoint86 waypoint10 (1)
+navigate rover2 waypoint10 waypoint38 (1)
+communicate_soil_data rover2 general waypoint97 waypoint38 waypoint21 (1)
+end_communication rover2 general colour waypoint38 waypoint21 (1)
+communicate_rock_data rover2 general waypoint97 waypoint38 waypoint21 (1)
+end_communication rover2 general colour waypoint38 waypoint21 (1)
+communicate_rock_data rover2 general waypoint7 waypoint38 waypoint21 (1)
+end_communication rover2 general colour waypoint38 waypoint21 (1)
+communicate_rock_data rover2 general waypoint64 waypoint38 waypoint21 (1)
+end_communication rover2 general colour waypoint38 waypoint21 (1)
+communicate_rock_data rover2 general waypoint63 waypoint38 waypoint21 (1)
+end_communication rover2 general colour waypoint38 waypoint21 (1)
+communicate_rock_data rover2 general waypoint61 waypoint38 waypoint21 (1)
+Plan length: 446 step(s).
+Plan cost: 446
+Initial state h value: 69/208.
+Expanded 12993 state(s).
+Reopened 0 state(s).
+Evaluated 12994 state(s).
+Evaluations: 25988
+Generated 1446335 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 446
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff, hlm), preferred = list(hff, hlm), w = 5)
+Conducting lazy best first search, (real) bound = 446
+Best heuristic value: 69/208 [g=0, 1 evaluated, 0 expanded, t=368.38s]
+Best heuristic value: 69/207 [g=1, 2 evaluated, 1 expanded, t=368.42s]
+Best heuristic value: 69/206 [g=2, 5 evaluated, 4 expanded, t=368.52s]
+Best heuristic value: 69/205 [g=1, 12 evaluated, 11 expanded, t=368.74s]
+Best heuristic value: 69/204 [g=2, 13 evaluated, 12 expanded, t=368.77s]
+Best heuristic value: 69/203 [g=3, 17 evaluated, 16 expanded, t=368.91s]
+Best heuristic value: 69/202 [g=4, 29 evaluated, 28 expanded, t=369.3s]
+Best heuristic value: 69/200 [g=2, 43 evaluated, 42 expanded, t=369.76s]
+Best heuristic value: 69/199 [g=3, 55 evaluated, 54 expanded, t=370.15s]
+Best heuristic value: 69/198 [g=4, 67 evaluated, 66 expanded, t=370.55s]
+Best heuristic value: 69/197 [g=5, 83 evaluated, 82 expanded, t=371.07s]
+Best heuristic value: 69/195 [g=6, 126 evaluated, 125 expanded, t=372.45s]
