@@ -1,0 +1,53 @@
+Parsing... [0.020s CPU, 0.013s wall-clock]
+Normalizing task... [0.000s CPU, 0.001s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.006s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.010s CPU, 0.010s wall-clock]
+Preparing model... [0.020s CPU, 0.017s wall-clock]
+Generated 115 rules.
+Computing model... [4.640s CPU, 4.637s wall-clock]
+85828 relevant atoms
+95489 auxiliary atoms
+181317 final queue length
+296457 total queue pushes
+Completing instantiation... [11.440s CPU, 11.457s wall-clock]
+Instantiating: [16.260s CPU, 16.262s wall-clock]
+Computing fact groups...
+Finding invariants...
+24 initial candidates
+Finding invariants: [0.120s CPU, 0.128s wall-clock]
+Checking invariant weight... [0.010s CPU, 0.002s wall-clock]
+Instantiating groups... [0.050s CPU, 0.054s wall-clock]
+Collecting mutex groups... [0.010s CPU, 0.011s wall-clock]
+Choosing groups...
+11422 uncovered facts
+Choosing groups: [0.010s CPU, 0.009s wall-clock]
+Building translation key... [0.080s CPU, 0.082s wall-clock]
+Computing fact groups: [0.560s CPU, 0.565s wall-clock]
+Building STRIPS to SAS dictionary... [0.040s CPU, 0.036s wall-clock]
+Building dictionary for full mutex groups... [0.030s CPU, 0.034s wall-clock]
+Building mutex information...
+Building mutex information: [0.040s CPU, 0.036s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.650s CPU, 0.653s wall-clock]
+Translating task: [9.360s CPU, 9.357s wall-clock]
+202 implied effects removed
+0 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+3 propositions removed
+Detecting unreachable propositions: [1.640s CPU, 1.641s wall-clock]
+Translator variables: 11425
+Translator derived variables: 0
+Translator facts: 23053
+Translator mutex groups: 105
+Translator total mutex groups size: 515
+Translator operators: 70504
+Translator task size: 671220
+Translator peak memory: 571860 KB
+Writing output... [2.630s CPU, 2.633s wall-clock]
+Done! [31.350s CPU, 31.349s wall-clock]

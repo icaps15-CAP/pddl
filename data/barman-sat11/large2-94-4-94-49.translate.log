@@ -1,0 +1,53 @@
+Parsing... [0.010s CPU, 0.013s wall-clock]
+Normalizing task... [0.000s CPU, 0.001s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.005s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.010s CPU, 0.010s wall-clock]
+Preparing model... [0.010s CPU, 0.015s wall-clock]
+Generated 115 rules.
+Computing model... [4.230s CPU, 4.220s wall-clock]
+75279 relevant atoms
+83617 auxiliary atoms
+158896 final queue length
+260134 total queue pushes
+Completing instantiation... [9.810s CPU, 9.812s wall-clock]
+Instantiating: [14.170s CPU, 14.177s wall-clock]
+Computing fact groups...
+Finding invariants...
+24 initial candidates
+Finding invariants: [0.120s CPU, 0.117s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.002s wall-clock]
+Instantiating groups... [0.050s CPU, 0.049s wall-clock]
+Collecting mutex groups... [0.010s CPU, 0.009s wall-clock]
+Choosing groups...
+9973 uncovered facts
+Choosing groups: [0.010s CPU, 0.009s wall-clock]
+Building translation key... [0.070s CPU, 0.074s wall-clock]
+Computing fact groups: [0.500s CPU, 0.501s wall-clock]
+Building STRIPS to SAS dictionary... [0.030s CPU, 0.031s wall-clock]
+Building dictionary for full mutex groups... [0.030s CPU, 0.030s wall-clock]
+Building mutex information...
+Building mutex information: [0.030s CPU, 0.031s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.580s CPU, 0.580s wall-clock]
+Translating task: [8.090s CPU, 8.093s wall-clock]
+188 implied effects removed
+0 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+3 propositions removed
+Detecting unreachable propositions: [1.450s CPU, 1.440s wall-clock]
+Translator variables: 9976
+Translator derived variables: 0
+Translator facts: 20141
+Translator mutex groups: 98
+Translator total mutex groups size: 480
+Translator operators: 61670
+Translator task size: 587199
+Translator peak memory: 512468 KB
+Writing output... [2.300s CPU, 2.296s wall-clock]
+Done! [27.280s CPU, 27.285s wall-clock]

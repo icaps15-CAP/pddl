@@ -1,0 +1,53 @@
+Parsing... [0.020s CPU, 0.012s wall-clock]
+Normalizing task... [0.000s CPU, 0.001s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.005s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.010s CPU, 0.011s wall-clock]
+Preparing model... [0.010s CPU, 0.015s wall-clock]
+Generated 115 rules.
+Computing model... [5.920s CPU, 5.919s wall-clock]
+73828 relevant atoms
+81985 auxiliary atoms
+155813 final queue length
+255137 total queue pushes
+Completing instantiation... [24.300s CPU, 24.296s wall-clock]
+Instantiating: [30.780s CPU, 30.793s wall-clock]
+Computing fact groups...
+Finding invariants...
+24 initial candidates
+Finding invariants: [0.150s CPU, 0.146s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.004s wall-clock]
+Instantiating groups... [0.050s CPU, 0.046s wall-clock]
+Collecting mutex groups... [0.030s CPU, 0.025s wall-clock]
+Choosing groups...
+9774 uncovered facts
+Choosing groups: [0.010s CPU, 0.019s wall-clock]
+Building translation key... [0.070s CPU, 0.073s wall-clock]
+Computing fact groups: [0.560s CPU, 0.562s wall-clock]
+Building STRIPS to SAS dictionary... [0.040s CPU, 0.043s wall-clock]
+Building dictionary for full mutex groups... [0.040s CPU, 0.040s wall-clock]
+Building mutex information...
+Building mutex information: [0.060s CPU, 0.054s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.010s CPU, 0.000s wall-clock]
+Processing axioms: [1.640s CPU, 1.636s wall-clock]
+Translating task: [16.200s CPU, 16.205s wall-clock]
+186 implied effects removed
+0 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+3 propositions removed
+Detecting unreachable propositions: [1.660s CPU, 1.655s wall-clock]
+Translator variables: 9777
+Translator derived variables: 0
+Translator facts: 19741
+Translator mutex groups: 97
+Translator total mutex groups size: 475
+Translator operators: 60456
+Translator task size: 575652
+Translator peak memory: 503132 KB
+Writing output... [5.430s CPU, 5.434s wall-clock]
+Done! [57.600s CPU, 57.610s wall-clock]

@@ -1,0 +1,59 @@
+Dispatcher selected state size 1.
+This is a unit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 283.262s
+Discovered 588 landmarks, of which 2 are disjunctive and 0 are conjunctive 
+1536 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+390 initial landmarks, 95 goal landmarks
+Starting search: lazy_greedy(list(hff, hlm), preferred = list(hff, hlm))
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 198/200 [g=0, 1 evaluated, 0 expanded, t=294.08s]
+Best heuristic value: 197/200 [g=1, 2 evaluated, 1 expanded, t=294.41s]
+Best heuristic value: 195/199 [g=6, 25 evaluated, 24 expanded, t=302.41s]
+Best heuristic value: 195/198 [g=8, 30 evaluated, 29 expanded, t=304.14s]
+Best heuristic value: 194/198 [g=9, 31 evaluated, 30 expanded, t=304.5s]
+Best heuristic value: 194/197 [g=11, 57 evaluated, 56 expanded, t=313.64s]
+Best heuristic value: 193/197 [g=12, 59 evaluated, 58 expanded, t=314.34s]
+Best heuristic value: 193/196 [g=22, 3916 evaluated, 3915 expanded, t=1663.95s]
+Best heuristic value: 192/196 [g=23, 3918 evaluated, 3917 expanded, t=1664.65s]
+Best heuristic value: 192/195 [g=25, 3946 evaluated, 3945 expanded, t=1674.7s]
+Best heuristic value: 191/195 [g=26, 3948 evaluated, 3947 expanded, t=1675.4s]
+Best heuristic value: 191/194 [g=36, 8204 evaluated, 8203 expanded, t=3162.85s]
+Best heuristic value: 190/194 [g=37, 8206 evaluated, 8205 expanded, t=3163.55s]
+Best heuristic value: 190/193 [g=39, 8233 evaluated, 8232 expanded, t=3173.05s]
+Best heuristic value: 189/193 [g=40, 8235 evaluated, 8234 expanded, t=3173.76s]
+Best heuristic value: 189/192 [g=50, 12408 evaluated, 12407 expanded, t=4623.24s]
+Best heuristic value: 188/192 [g=51, 12410 evaluated, 12409 expanded, t=4623.91s]
+Best heuristic value: 188/191 [g=53, 12440 evaluated, 12439 expanded, t=4634.34s]
+Best heuristic value: 187/191 [g=54, 12442 evaluated, 12441 expanded, t=4635.05s]
+Best heuristic value: 187/190 [g=64, 16598 evaluated, 16597 expanded, t=6069.41s]
+Best heuristic value: 186/190 [g=65, 16600 evaluated, 16599 expanded, t=6070.09s]
+Best heuristic value: 186/189 [g=67, 16628 evaluated, 16627 expanded, t=6079.88s]
+Best heuristic value: 185/189 [g=68, 16630 evaluated, 16629 expanded, t=6080.57s]
+Best heuristic value: 185/188 [g=78, 20399 evaluated, 20398 expanded, t=7376.56s]
+Best heuristic value: 184/188 [g=79, 20401 evaluated, 20400 expanded, t=7377.26s]
+Best heuristic value: 184/187 [g=81, 20428 evaluated, 20427 expanded, t=7386.77s]
+Best heuristic value: 183/187 [g=82, 20430 evaluated, 20429 expanded, t=7387.45s]
+Best heuristic value: 183/186 [g=92, 24090 evaluated, 24089 expanded, t=8645.7s]
+Best heuristic value: 182/186 [g=93, 24092 evaluated, 24091 expanded, t=8646.4s]
+Best heuristic value: 182/185 [g=95, 24120 evaluated, 24119 expanded, t=8656.13s]
+Best heuristic value: 181/185 [g=96, 24122 evaluated, 24121 expanded, t=8656.81s]
+Best heuristic value: 181/184 [g=106, 26247 evaluated, 26246 expanded, t=9387.87s]
+Best heuristic value: 180/184 [g=107, 26249 evaluated, 26248 expanded, t=9388.56s]
+Best heuristic value: 180/183 [g=109, 26279 evaluated, 26278 expanded, t=9398.95s]
+Best heuristic value: 179/183 [g=110, 26281 evaluated, 26280 expanded, t=9399.62s]
+Best heuristic value: 179/182 [g=120, 29370 evaluated, 29369 expanded, t=10457.5s]
+Best heuristic value: 178/182 [g=121, 29372 evaluated, 29371 expanded, t=10458.2s]
+Best heuristic value: 178/181 [g=123, 29403 evaluated, 29402 expanded, t=10468.9s]
+Best heuristic value: 177/181 [g=124, 29405 evaluated, 29404 expanded, t=10469.6s]
+Best heuristic value: 177/180 [g=134, 31568 evaluated, 31567 expanded, t=11208.6s]
+Best heuristic value: 176/180 [g=135, 31570 evaluated, 31569 expanded, t=11209.3s]
+Best heuristic value: 176/179 [g=137, 31603 evaluated, 31602 expanded, t=11220.6s]
+Best heuristic value: 175/179 [g=138, 31605 evaluated, 31604 expanded, t=11221.3s]
