@@ -1,0 +1,53 @@
+Parsing... [0.020s CPU, 0.020s wall-clock]
+Normalizing task... [0.000s CPU, 0.001s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.006s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.010s CPU, 0.006s wall-clock]
+Preparing model... [0.010s CPU, 0.015s wall-clock]
+Generated 46 rules.
+Computing model... [4.620s CPU, 4.625s wall-clock]
+127392 relevant atoms
+40294 auxiliary atoms
+167686 final queue length
+396302 total queue pushes
+Completing instantiation... [16.240s CPU, 16.236s wall-clock]
+Instantiating: [20.990s CPU, 21.006s wall-clock]
+Computing fact groups...
+Finding invariants...
+12 initial candidates
+Finding invariants: [0.140s CPU, 0.144s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.004s wall-clock]
+Instantiating groups... [0.170s CPU, 0.167s wall-clock]
+Collecting mutex groups... [0.020s CPU, 0.016s wall-clock]
+Choosing groups...
+0 uncovered facts
+Choosing groups: [0.040s CPU, 0.046s wall-clock]
+Building translation key... [0.010s CPU, 0.013s wall-clock]
+Computing fact groups: [0.480s CPU, 0.479s wall-clock]
+Building STRIPS to SAS dictionary... [0.020s CPU, 0.015s wall-clock]
+Building dictionary for full mutex groups... [0.010s CPU, 0.014s wall-clock]
+Building mutex information...
+Building mutex information: [0.010s CPU, 0.013s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.870s CPU, 0.875s wall-clock]
+Translating task: [12.100s CPU, 12.093s wall-clock]
+0 implied effects removed
+0 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+166 propositions removed
+Detecting unreachable propositions: [1.430s CPU, 1.427s wall-clock]
+Translator variables: 166
+Translator derived variables: 0
+Translator facts: 7478
+Translator mutex groups: 166
+Translator total mutex groups size: 7478
+Translator operators: 118328
+Translator task size: 723056
+Translator peak memory: 733584 KB
+Writing output... [1.810s CPU, 1.813s wall-clock]
+Done! [37.880s CPU, 37.892s wall-clock]
