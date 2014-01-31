@@ -1,0 +1,53 @@
+Parsing... [0.020s CPU, 0.024s wall-clock]
+Normalizing task... [0.000s CPU, 0.001s wall-clock]
+Instantiating...
+Generating Datalog program... [0.010s CPU, 0.008s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.010s CPU, 0.006s wall-clock]
+Preparing model... [0.030s CPU, 0.020s wall-clock]
+Generated 46 rules.
+Computing model... [15.550s CPU, 15.562s wall-clock]
+227712 relevant atoms
+66334 auxiliary atoms
+294046 final queue length
+705062 total queue pushes
+Completing instantiation... [74.280s CPU, 74.284s wall-clock]
+Instantiating: [90.890s CPU, 90.891s wall-clock]
+Computing fact groups...
+Finding invariants...
+12 initial candidates
+Finding invariants: [0.800s CPU, 0.804s wall-clock]
+Checking invariant weight... [0.010s CPU, 0.006s wall-clock]
+Instantiating groups... [0.450s CPU, 0.453s wall-clock]
+Collecting mutex groups... [0.080s CPU, 0.085s wall-clock]
+Choosing groups...
+0 uncovered facts
+Choosing groups: [0.190s CPU, 0.183s wall-clock]
+Building translation key... [0.030s CPU, 0.027s wall-clock]
+Computing fact groups: [1.730s CPU, 1.736s wall-clock]
+Building STRIPS to SAS dictionary... [0.040s CPU, 0.046s wall-clock]
+Building dictionary for full mutex groups... [0.060s CPU, 0.049s wall-clock]
+Building mutex information...
+Building mutex information: [0.040s CPU, 0.043s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [4.940s CPU, 4.942s wall-clock]
+Translating task: [48.280s CPU, 48.289s wall-clock]
+0 implied effects removed
+0 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+286 propositions removed
+Detecting unreachable propositions: [3.050s CPU, 3.049s wall-clock]
+Translator variables: 286
+Translator derived variables: 0
+Translator facts: 13358
+Translator mutex groups: 286
+Translator total mutex groups size: 13358
+Translator operators: 212408
+Translator task size: 1299536
+Translator peak memory: 1281716 KB
+Writing output... [3.270s CPU, 3.269s wall-clock]
+Done! [155.010s CPU, 155.016s wall-clock]
