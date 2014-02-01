@@ -1,0 +1,1074 @@
+Dispatcher selected state size 1.
+This is a nonunit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.011716s
+Discovered 68 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+271 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+35 initial landmarks, 2 goal landmarks
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 0.0119584s
+Discovered 68 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+272 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+35 initial landmarks, 2 goal landmarks
+Starting search: lazy_greedy(list(hff1, hlm1), preferred = list(hff1, hlm1), cost_type = 1, reopen_closed = false)
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 33/34 [g=0, 1 evaluated, 0 expanded, t=0.04s]
+Best heuristic value: 32/33 [g=1, 4 evaluated, 3 expanded, t=0.04s]
+Best heuristic value: 31/32 [g=4, 60 evaluated, 49 expanded, t=0.04s]
+Best heuristic value: 31/31 [g=5, 61 evaluated, 50 expanded, t=0.04s]
+Best heuristic value: 30/31 [g=6, 85 evaluated, 72 expanded, t=0.04s]
+Best heuristic value: 29/31 [g=7, 86 evaluated, 73 expanded, t=0.04s]
+Best heuristic value: 28/30 [g=8, 378 evaluated, 271 expanded, t=0.07s]
+Best heuristic value: 28/29 [g=11, 460 evaluated, 335 expanded, t=0.08s]
+Best heuristic value: 28/28 [g=12, 461 evaluated, 336 expanded, t=0.08s]
+Best heuristic value: 27/28 [g=13, 483 evaluated, 356 expanded, t=0.08s]
+Best heuristic value: 26/28 [g=14, 484 evaluated, 357 expanded, t=0.08s]
+Best heuristic value: 26/27 [g=15, 635 evaluated, 466 expanded, t=0.09s]
+Best heuristic value: 25/26 [g=16, 636 evaluated, 467 expanded, t=0.09s]
+Best heuristic value: 24/26 [g=18, 645 evaluated, 476 expanded, t=0.09s]
+Best heuristic value: 23/26 [g=19, 646 evaluated, 477 expanded, t=0.09s]
+Best heuristic value: 23/25 [g=20, 653 evaluated, 484 expanded, t=0.09s]
+Best heuristic value: 23/24 [g=22, 671 evaluated, 502 expanded, t=0.09s]
+Best heuristic value: 22/23 [g=23, 672 evaluated, 503 expanded, t=0.09s]
+Best heuristic value: 21/23 [g=25, 701 evaluated, 528 expanded, t=0.1s]
+Best heuristic value: 20/22 [g=27, 744 evaluated, 567 expanded, t=0.1s]
+Best heuristic value: 20/21 [g=30, 765 evaluated, 586 expanded, t=0.1s]
+Best heuristic value: 19/20 [g=31, 767 evaluated, 588 expanded, t=0.1s]
+Best heuristic value: 18/20 [g=33, 793 evaluated, 609 expanded, t=0.1s]
+Best heuristic value: 17/19 [g=35, 829 evaluated, 640 expanded, t=0.11s]
+Best heuristic value: 17/18 [g=38, 849 evaluated, 657 expanded, t=0.11s]
+Best heuristic value: 16/18 [g=39, 851 evaluated, 659 expanded, t=0.11s]
+Best heuristic value: 16/17 [g=39, 855 evaluated, 663 expanded, t=0.11s]
+Best heuristic value: 15/17 [g=40, 861 evaluated, 669 expanded, t=0.11s]
+Best heuristic value: 14/17 [g=41, 864 evaluated, 672 expanded, t=0.11s]
+Best heuristic value: 14/16 [g=41, 878 evaluated, 686 expanded, t=0.11s]
+Best heuristic value: 14/15 [g=42, 882 evaluated, 690 expanded, t=0.11s]
+Best heuristic value: 13/15 [g=44, 899 evaluated, 703 expanded, t=0.11s]
+Best heuristic value: 13/14 [g=45, 902 evaluated, 706 expanded, t=0.11s]
+Best heuristic value: 12/13 [g=46, 911 evaluated, 715 expanded, t=0.11s]
+Best heuristic value: 11/12 [g=47, 914 evaluated, 718 expanded, t=0.12s]
+Best heuristic value: 10/12 [g=49, 920 evaluated, 724 expanded, t=0.12s]
+Best heuristic value: 9/11 [g=50, 923 evaluated, 727 expanded, t=0.12s]
+Best heuristic value: 8/11 [g=51, 931 evaluated, 735 expanded, t=0.12s]
+Best heuristic value: 7/11 [g=52, 934 evaluated, 738 expanded, t=0.12s]
+Best heuristic value: 6/10 [g=53, 938 evaluated, 742 expanded, t=0.12s]
+Best heuristic value: 6/9 [g=54, 941 evaluated, 745 expanded, t=0.12s]
+Best heuristic value: 6/8 [g=56, 949 evaluated, 753 expanded, t=0.12s]
+Best heuristic value: 6/7 [g=57, 950 evaluated, 754 expanded, t=0.12s]
+Best heuristic value: 6/6 [g=59, 953 evaluated, 757 expanded, t=0.12s]
+Best heuristic value: 5/5 [g=60, 954 evaluated, 758 expanded, t=0.12s]
+Best heuristic value: 4/5 [g=63, 960 evaluated, 763 expanded, t=0.12s]
+Best heuristic value: 3/4 [g=64, 961 evaluated, 764 expanded, t=0.12s]
+Best heuristic value: 3/3 [g=66, 963 evaluated, 766 expanded, t=0.12s]
+Best heuristic value: 2/2 [g=67, 964 evaluated, 767 expanded, t=0.12s]
+Best heuristic value: 1/1 [g=68, 965 evaluated, 768 expanded, t=0.12s]
+Solution found!
+Actual search time: 0.08s [t=0.12s]
+slide-base-in b-0 carry-in table-in (1)
+move-arm arm1 tray-a table-in (2)
+eject-base b-0 arm1 table-in (1)
+move-arm-holding arm1 table-in table-out b-0 (3)
+move-arm-holding arm1 table-out gasket-machine b-0 (4)
+set-base b-0 arm1 gasket-machine (1)
+move-arm arm1 gasket-machine table-out (4)
+assemble-with-machine b-0 gasket-machine insert-gasket nothing-done (2)
+move-arm arm1 table-out gasket-machine (4)
+eject-base b-0 arm1 gasket-machine (1)
+move-arm-holding arm1 gasket-machine table-out b-0 (4)
+move-arm-holding arm1 table-out table1 b-0 (5)
+set-base b-0 arm1 table1 (1)
+move-arm arm1 table1 tray-a (4)
+pickup-component part-a-0 arm1 tray-a (1)
+move-arm-holding arm1 tray-a table-out part-a-0 (2)
+move-arm-holding arm1 table-out table1 part-a-0 (5)
+assemble-with-arm part-a-0 attatch-a insert-gasket b-0 arm1 table1 (3)
+move-arm arm1 table1 table-out (5)
+move-arm arm2 oiling-machine table1 (4)
+eject-base b-0 arm2 table1 (1)
+move-arm-holding arm2 table1 table2 b-0 (7)
+move-arm-holding arm2 table2 screw-machine-c b-0 (2)
+move-arm-holding arm2 screw-machine-c screw-machine-a b-0 (5)
+set-base b-0 arm2 screw-machine-a (1)
+move-arm arm2 screw-machine-a table2 (6)
+assemble-with-machine b-0 screw-machine-a screw-a attatch-a (3)
+move-arm arm2 table2 screw-machine-a (6)
+eject-base b-0 arm2 screw-machine-a (1)
+move-arm-holding arm2 screw-machine-a table2 b-0 (6)
+move-arm-holding arm2 table2 screw-machine-c b-0 (2)
+move-arm-holding arm2 screw-machine-c oiling-machine b-0 (3)
+set-base b-0 arm2 oiling-machine (1)
+move-arm arm2 oiling-machine table2 (4)
+assemble-with-machine b-0 oiling-machine oil-cylinder screw-a (3)
+move-arm arm2 table2 oiling-machine (4)
+eject-base b-0 arm2 oiling-machine (1)
+move-arm-holding arm2 oiling-machine table2 b-0 (4)
+set-base b-0 arm2 table2 (1)
+move-arm arm2 table2 tray-b (5)
+pickup-component part-b-0 arm2 tray-b (1)
+move-arm-holding arm2 tray-b screw-machine-c part-b-0 (4)
+move-arm-holding arm2 screw-machine-c table2 part-b-0 (2)
+assemble-with-arm part-b-0 attatch-b oil-cylinder b-0 arm2 table2 (2)
+move-arm arm2 table2 tray-c (3)
+pickup-component part-c-0 arm2 tray-c (1)
+move-arm-holding arm2 tray-c screw-machine-c part-c-0 (2)
+move-arm-holding arm2 screw-machine-c table2 part-c-0 (2)
+assemble-with-arm part-c-0 attatch-c attatch-b b-0 arm2 table2 (2)
+eject-base b-0 arm2 table2 (1)
+move-arm-holding arm2 table2 screw-machine-c b-0 (2)
+set-base b-0 arm2 screw-machine-c (1)
+assemble-with-machine b-0 screw-machine-c screw-c attatch-c (3)
+eject-base b-0 arm2 screw-machine-c (1)
+move-arm-holding arm2 screw-machine-c table2 b-0 (2)
+set-base b-0 arm2 table2 (1)
+move-arm arm2 table2 oiling-machine (4)
+move-arm arm1 table-out table2 (3)
+eject-base b-0 arm1 table2 (1)
+move-arm-holding arm1 table2 table-out b-0 (3)
+move-arm-holding arm1 table-out inspection-machine b-0 (2)
+set-base b-0 arm1 inspection-machine (1)
+move-arm arm1 inspection-machine table-out (2)
+assemble-with-machine b-0 inspection-machine inspect-base screw-c (2)
+move-arm arm1 table-out inspection-machine (2)
+eject-base b-0 arm1 inspection-machine (1)
+move-arm-holding arm1 inspection-machine table-out b-0 (2)
+set-base b-0 arm1 table-out (1)
+slide-base-out b-0 table-out carry-out (1)
+Plan length: 69 step(s).
+Plan cost: 178
+Initial state h value: 33/34.
+Expanded 769 state(s).
+Reopened 0 state(s).
+Evaluated 966 state(s).
+Evaluations: 1932
+Generated 9541 state(s).
+Dead ends: 196 state(s).
+Best solution cost so far: 178
+Solution found - keep searching
+Starting search: lazy_greedy(list(hff2, hlm2), preferred = list(hff2, hlm2), reopen_closed = false)
+Conducting lazy best first search, (real) bound = 178
+Switch from bucket-based to heap-based queue at key = 126, num_pushes = 96
+Best heuristic value: 88/101 [g=0, 1 evaluated, 0 expanded, t=0.12s]
+Best heuristic value: 86/101 [g=2, 2 evaluated, 1 expanded, t=0.12s]
+Best heuristic value: 84/100 [g=3, 4 evaluated, 3 expanded, t=0.12s]
+Best heuristic value: 82/100 [g=6, 7 evaluated, 6 expanded, t=0.12s]
+Best heuristic value: 81/100 [g=10, 24 evaluated, 23 expanded, t=0.12s]
+Best heuristic value: 78/96 [g=13, 26 evaluated, 25 expanded, t=0.12s]
+Best heuristic value: 78/94 [g=16, 35 evaluated, 34 expanded, t=0.12s]
+Best heuristic value: 77/94 [g=16, 40 evaluated, 39 expanded, t=0.12s]
+Best heuristic value: 74/94 [g=18, 42 evaluated, 41 expanded, t=0.12s]
+Best heuristic value: 71/93 [g=24, 167 evaluated, 131 expanded, t=0.14s]
+Best heuristic value: 71/91 [g=27, 175 evaluated, 139 expanded, t=0.14s]
+Best heuristic value: 70/86 [g=33, 254 evaluated, 196 expanded, t=0.14s]
+Best heuristic value: 70/84 [g=36, 262 evaluated, 204 expanded, t=0.14s]
+Best heuristic value: 69/84 [g=36, 267 evaluated, 209 expanded, t=0.14s]
+Best heuristic value: 66/84 [g=38, 269 evaluated, 211 expanded, t=0.14s]
+Best heuristic value: 66/83 [g=50, 407 evaluated, 312 expanded, t=0.16s]
+Best heuristic value: 66/80 [g=52, 409 evaluated, 314 expanded, t=0.16s]
+Best heuristic value: 62/80 [g=63, 421 evaluated, 326 expanded, t=0.16s]
+Best heuristic value: 59/80 [g=68, 423 evaluated, 328 expanded, t=0.16s]
+Best heuristic value: 59/76 [g=71, 432 evaluated, 337 expanded, t=0.16s]
+Best heuristic value: 57/69 [g=69, 457 evaluated, 355 expanded, t=0.16s]
+Best heuristic value: 57/68 [g=71, 459 evaluated, 357 expanded, t=0.16s]
+Best heuristic value: 57/67 [g=72, 465 evaluated, 363 expanded, t=0.16s]
+Best heuristic value: 57/66 [g=74, 468 evaluated, 366 expanded, t=0.16s]
+Best heuristic value: 56/66 [g=77, 475 evaluated, 373 expanded, t=0.16s]
+Best heuristic value: 54/66 [g=80, 476 evaluated, 374 expanded, t=0.16s]
+Best heuristic value: 50/64 [g=99, 681 evaluated, 521 expanded, t=0.18s]
+Best heuristic value: 50/62 [g=102, 686 evaluated, 526 expanded, t=0.18s]
+Best heuristic value: 49/56 [g=110, 716 evaluated, 550 expanded, t=0.18s]
+Best heuristic value: 48/56 [g=111, 720 evaluated, 554 expanded, t=0.18s]
+Best heuristic value: 45/56 [g=113, 725 evaluated, 559 expanded, t=0.18s]
+Best heuristic value: 45/55 [g=112, 726 evaluated, 560 expanded, t=0.18s]
+Best heuristic value: 45/52 [g=117, 757 evaluated, 586 expanded, t=0.19s]
+Best heuristic value: 43/52 [g=121, 760 evaluated, 589 expanded, t=0.19s]
+Best heuristic value: 43/51 [g=119, 765 evaluated, 594 expanded, t=0.19s]
+Best heuristic value: 42/48 [g=122, 774 evaluated, 602 expanded, t=0.19s]
+Best heuristic value: 42/46 [g=124, 776 evaluated, 604 expanded, t=0.19s]
+Best heuristic value: 41/46 [g=123, 778 evaluated, 606 expanded, t=0.19s]
+Best heuristic value: 39/46 [g=125, 782 evaluated, 610 expanded, t=0.19s]
+Best heuristic value: 36/46 [g=127, 787 evaluated, 615 expanded, t=0.19s]
+Best heuristic value: 34/40 [g=142, 854 evaluated, 669 expanded, t=0.2s]
+Best heuristic value: 34/39 [g=144, 855 evaluated, 670 expanded, t=0.2s]
+Best heuristic value: 30/38 [g=155, 889 evaluated, 702 expanded, t=0.2s]
+Best heuristic value: 30/37 [g=157, 890 evaluated, 703 expanded, t=0.2s]
+Best heuristic value: 30/36 [g=159, 893 evaluated, 706 expanded, t=0.2s]
+Best heuristic value: 28/36 [g=159, 899 evaluated, 712 expanded, t=0.2s]
+Best heuristic value: 28/35 [g=161, 901 evaluated, 714 expanded, t=0.2s]
+Best heuristic value: 25/32 [g=161, 902 evaluated, 715 expanded, t=0.2s]
+Best heuristic value: 25/31 [g=163, 904 evaluated, 717 expanded, t=0.2s]
+Best heuristic value: 22/29 [g=165, 907 evaluated, 720 expanded, t=0.2s]
+Best heuristic value: 19/29 [g=167, 908 evaluated, 721 expanded, t=0.2s]
+Best heuristic value: 19/28 [g=167, 910 evaluated, 723 expanded, t=0.2s]
+Best heuristic value: 17/28 [g=168, 914 evaluated, 727 expanded, t=0.2s]
+Best heuristic value: 15/28 [g=169, 917 evaluated, 730 expanded, t=0.2s]
+Best heuristic value: 11/25 [g=172, 921 evaluated, 734 expanded, t=0.2s]
+Best heuristic value: 11/23 [g=173, 924 evaluated, 737 expanded, t=0.2s]
+Best heuristic value: 11/22 [g=175, 928 evaluated, 741 expanded, t=0.2s]
+Best heuristic value: 11/21 [g=176, 931 evaluated, 744 expanded, t=0.2s]
+Completely explored state space -- no solution!
+Actual search time: 0.62s [t=0.74s]
+Initial state h value: 88/101.
+Expanded 4120 state(s).
+Reopened 0 state(s).
+Evaluated 5315 state(s).
+Evaluations: 10630
+Generated 50171 state(s).
+Dead ends: 1195 state(s).
+Best solution cost so far: 178
+No solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 5)
+Conducting lazy best first search, (real) bound = 178
+Best heuristic value: 88/101 [g=0, 1 evaluated, 0 expanded, t=0.74s]
+Best heuristic value: 86/101 [g=1, 2 evaluated, 1 expanded, t=0.74s]
+Best heuristic value: 84/100 [g=3, 5 evaluated, 2 expanded, t=0.74s]
+Best heuristic value: 82/100 [g=5, 7 evaluated, 4 expanded, t=0.74s]
+Best heuristic value: 82/99 [g=7, 21 evaluated, 16 expanded, 1 reopened, t=0.74s]
+Best heuristic value: 81/99 [g=9, 56 evaluated, 49 expanded, 7 reopened, t=0.74s]
+Best heuristic value: 78/99 [g=11, 58 evaluated, 50 expanded, 7 reopened, t=0.74s]
+Best heuristic value: 77/99 [g=12, 60 evaluated, 52 expanded, 8 reopened, t=0.74s]
+Best heuristic value: 74/99 [g=14, 64 evaluated, 55 expanded, 10 reopened, t=0.74s]
+Best heuristic value: 71/99 [g=16, 69 evaluated, 59 expanded, 13 reopened, t=0.74s]
+Best heuristic value: 71/97 [g=20, 83 evaluated, 70 expanded, 16 reopened, t=0.74s]
+Best heuristic value: 71/93 [g=22, 87 evaluated, 72 expanded, 16 reopened, t=0.74s]
+Best heuristic value: 71/91 [g=23, 95 evaluated, 78 expanded, 17 reopened, t=0.74s]
+Best heuristic value: 70/91 [g=21, 162 evaluated, 132 expanded, 29 reopened, t=0.75s]
+Best heuristic value: 69/91 [g=22, 164 evaluated, 134 expanded, 29 reopened, t=0.75s]
+Best heuristic value: 69/86 [g=27, 178 evaluated, 146 expanded, 29 reopened, t=0.75s]
+Best heuristic value: 69/84 [g=27, 180 evaluated, 148 expanded, 30 reopened, t=0.75s]
+Best heuristic value: 66/81 [g=29, 182 evaluated, 149 expanded, 30 reopened, t=0.75s]
+Best heuristic value: 66/80 [g=31, 186 evaluated, 152 expanded, 30 reopened, t=0.75s]
+Best heuristic value: 62/80 [g=37, 213 evaluated, 175 expanded, 34 reopened, t=0.76s]
+Best heuristic value: 60/80 [g=38, 214 evaluated, 176 expanded, 34 reopened, t=0.76s]
+Best heuristic value: 57/69 [g=43, 236 evaluated, 195 expanded, 40 reopened, t=0.76s]
+Best heuristic value: 57/68 [g=45, 239 evaluated, 197 expanded, 40 reopened, t=0.76s]
+Best heuristic value: 57/67 [g=45, 243 evaluated, 200 expanded, 40 reopened, t=0.76s]
+Best heuristic value: 57/66 [g=47, 246 evaluated, 203 expanded, 40 reopened, t=0.76s]
+Best heuristic value: 56/66 [g=50, 255 evaluated, 212 expanded, 40 reopened, t=0.76s]
+Best heuristic value: 54/66 [g=52, 266 evaluated, 220 expanded, 40 reopened, t=0.76s]
+Best heuristic value: 50/64 [g=66, 688 evaluated, 585 expanded, 263 reopened, t=0.8s]
+Best heuristic value: 50/62 [g=68, 693 evaluated, 589 expanded, 263 reopened, t=0.8s]
+Best heuristic value: 49/62 [g=71, 722 evaluated, 612 expanded, 264 reopened, t=0.8s]
+Best heuristic value: 49/56 [g=73, 725 evaluated, 615 expanded, 264 reopened, t=0.8s]
+Best heuristic value: 49/55 [g=74, 728 evaluated, 618 expanded, 264 reopened, t=0.81s]
+Best heuristic value: 48/55 [g=76, 737 evaluated, 627 expanded, 265 reopened, t=0.81s]
+Best heuristic value: 47/55 [g=76, 739 evaluated, 629 expanded, 265 reopened, t=0.81s]
+Best heuristic value: 43/51 [g=79, 749 evaluated, 637 expanded, 265 reopened, t=0.81s]
+Best heuristic value: 42/51 [g=84, 771 evaluated, 654 expanded, 265 reopened, t=0.81s]
+Best heuristic value: 42/46 [g=84, 773 evaluated, 656 expanded, 265 reopened, t=0.81s]
+Best heuristic value: 39/46 [g=87, 780 evaluated, 663 expanded, 265 reopened, t=0.81s]
+Best heuristic value: 36/46 [g=89, 785 evaluated, 668 expanded, 265 reopened, t=0.81s]
+Best heuristic value: 34/41 [g=106, 856 evaluated, 723 expanded, 270 reopened, t=0.82s]
+Best heuristic value: 34/40 [g=108, 857 evaluated, 724 expanded, 270 reopened, t=0.82s]
+Best heuristic value: 34/39 [g=110, 861 evaluated, 728 expanded, 270 reopened, t=0.82s]
+Best heuristic value: 30/38 [g=121, 916 evaluated, 781 expanded, 289 reopened, t=0.82s]
+Best heuristic value: 30/37 [g=123, 918 evaluated, 783 expanded, 289 reopened, t=0.82s]
+Best heuristic value: 30/36 [g=125, 919 evaluated, 784 expanded, 289 reopened, t=0.82s]
+Best heuristic value: 28/36 [g=125, 925 evaluated, 790 expanded, 289 reopened, t=0.82s]
+Best heuristic value: 28/35 [g=127, 926 evaluated, 791 expanded, 289 reopened, t=0.82s]
+Best heuristic value: 25/32 [g=127, 927 evaluated, 792 expanded, 289 reopened, t=0.82s]
+Best heuristic value: 25/31 [g=129, 928 evaluated, 793 expanded, 289 reopened, t=0.82s]
+Best heuristic value: 22/29 [g=131, 933 evaluated, 798 expanded, 290 reopened, t=0.83s]
+Best heuristic value: 20/29 [g=132, 934 evaluated, 799 expanded, 290 reopened, t=0.83s]
+Best heuristic value: 19/29 [g=133, 935 evaluated, 800 expanded, 290 reopened, t=0.83s]
+Best heuristic value: 19/28 [g=135, 936 evaluated, 801 expanded, 290 reopened, t=0.83s]
+Best heuristic value: 17/28 [g=134, 940 evaluated, 805 expanded, 291 reopened, t=0.83s]
+Best heuristic value: 15/28 [g=135, 942 evaluated, 807 expanded, 292 reopened, t=0.83s]
+Best heuristic value: 11/25 [g=138, 947 evaluated, 812 expanded, 292 reopened, t=0.83s]
+Best heuristic value: 11/23 [g=139, 948 evaluated, 813 expanded, 292 reopened, t=0.83s]
+Best heuristic value: 11/22 [g=141, 951 evaluated, 816 expanded, 292 reopened, t=0.83s]
+Best heuristic value: 11/20 [g=144, 956 evaluated, 821 expanded, 292 reopened, t=0.83s]
+Best heuristic value: 11/17 [g=146, 960 evaluated, 825 expanded, 294 reopened, t=0.83s]
+Best heuristic value: 11/16 [g=149, 964 evaluated, 829 expanded, 294 reopened, t=0.83s]
+Best heuristic value: 11/12 [g=151, 965 evaluated, 830 expanded, 294 reopened, t=0.83s]
+Best heuristic value: 9/12 [g=153, 968 evaluated, 833 expanded, 295 reopened, t=0.83s]
+Best heuristic value: 7/12 [g=154, 969 evaluated, 834 expanded, 295 reopened, t=0.83s]
+Best heuristic value: 7/9 [g=154, 972 evaluated, 836 expanded, 295 reopened, t=0.83s]
+Best heuristic value: 7/7 [g=155, 974 evaluated, 838 expanded, 295 reopened, t=0.83s]
+Best heuristic value: 4/4 [g=157, 976 evaluated, 839 expanded, 295 reopened, t=0.83s]
+Best heuristic value: 2/2 [g=158, 977 evaluated, 840 expanded, 295 reopened, t=0.83s]
+Solution found!
+Actual search time: 0.09s [t=0.83s]
+slide-base-in b-0 carry-in table-in (1)
+move-arm arm1 tray-a table-out (2)
+move-arm arm2 oiling-machine tray-b (2)
+move-arm arm1 table-out table-in (3)
+eject-base b-0 arm1 table-in (1)
+move-arm-holding arm1 table-in gasket-machine b-0 (2)
+set-base b-0 arm1 gasket-machine (1)
+move-arm arm1 gasket-machine table1 (2)
+assemble-with-machine b-0 gasket-machine insert-gasket nothing-done (2)
+move-arm arm1 table1 gasket-machine (2)
+eject-base b-0 arm1 gasket-machine (1)
+move-arm-holding arm1 gasket-machine table1 b-0 (2)
+set-base b-0 arm1 table1 (1)
+move-arm arm1 table1 tray-a (4)
+pickup-component part-a-0 arm1 tray-a (1)
+move-arm-holding arm1 tray-a table-out part-a-0 (2)
+move-arm-holding arm1 table-out table1 part-a-0 (5)
+assemble-with-arm part-a-0 attatch-a insert-gasket b-0 arm1 table1 (3)
+eject-base b-0 arm1 table1 (1)
+move-arm-holding arm1 table1 table2 b-0 (7)
+set-base b-0 arm1 table2 (1)
+move-arm arm1 table2 inspection-machine (2)
+move-arm arm2 tray-b table2 (5)
+eject-base b-0 arm2 table2 (1)
+move-arm-holding arm2 table2 screw-machine-a b-0 (6)
+set-base b-0 arm2 screw-machine-a (1)
+move-arm arm2 screw-machine-a tray-b (2)
+assemble-with-machine b-0 screw-machine-a screw-a attatch-a (3)
+move-arm arm2 tray-b screw-machine-a (2)
+eject-base b-0 arm2 screw-machine-a (1)
+move-arm-holding arm2 screw-machine-a tray-b b-0 (2)
+move-arm-holding arm2 tray-b oiling-machine b-0 (2)
+set-base b-0 arm2 oiling-machine (1)
+move-arm arm2 oiling-machine tray-c (2)
+assemble-with-machine b-0 oiling-machine oil-cylinder screw-a (3)
+move-arm arm2 tray-c oiling-machine (2)
+eject-base b-0 arm2 oiling-machine (1)
+move-arm-holding arm2 oiling-machine tray-c b-0 (2)
+move-arm-holding arm2 tray-c table2 b-0 (3)
+set-base b-0 arm2 table2 (1)
+move-arm arm2 table2 screw-machine-c (2)
+move-arm arm1 inspection-machine table2 (2)
+eject-base b-0 arm1 table2 (1)
+move-arm-holding arm1 table2 inspection-machine b-0 (2)
+set-base b-0 arm1 inspection-machine (1)
+move-arm arm1 inspection-machine table-out (2)
+move-arm arm2 screw-machine-c tray-b (4)
+pickup-component part-b-0 arm2 tray-b (1)
+move-arm-holding arm2 tray-b screw-machine-c part-b-0 (4)
+move-arm arm1 table-out inspection-machine (2)
+eject-base b-0 arm1 inspection-machine (1)
+move-arm-holding arm1 inspection-machine table2 b-0 (2)
+set-base b-0 arm1 table2 (1)
+move-arm arm1 table2 inspection-machine (2)
+move-arm arm1 inspection-machine table-out (2)
+move-arm-holding arm2 screw-machine-c table2 part-b-0 (2)
+assemble-with-arm part-b-0 attatch-b oil-cylinder b-0 arm2 table2 (2)
+move-arm arm2 table2 tray-c (3)
+pickup-component part-c-0 arm2 tray-c (1)
+move-arm-holding arm2 tray-c screw-machine-c part-c-0 (2)
+move-arm-holding arm2 screw-machine-c table2 part-c-0 (2)
+assemble-with-arm part-c-0 attatch-c attatch-b b-0 arm2 table2 (2)
+eject-base b-0 arm2 table2 (1)
+move-arm-holding arm2 table2 screw-machine-c b-0 (2)
+set-base b-0 arm2 screw-machine-c (1)
+assemble-with-machine b-0 screw-machine-c screw-c attatch-c (3)
+eject-base b-0 arm2 screw-machine-c (1)
+move-arm arm1 table-out inspection-machine (2)
+move-arm-holding arm2 screw-machine-c table2 b-0 (2)
+set-base b-0 arm2 table2 (1)
+move-arm arm2 table2 screw-machine-c (2)
+move-arm arm1 inspection-machine table2 (2)
+eject-base b-0 arm1 table2 (1)
+move-arm-holding arm1 table2 inspection-machine b-0 (2)
+set-base b-0 arm1 inspection-machine (1)
+assemble-with-machine b-0 inspection-machine inspect-base screw-c (2)
+eject-base b-0 arm1 inspection-machine (1)
+move-arm-holding arm1 inspection-machine table-out b-0 (2)
+set-base b-0 arm1 table-out (1)
+slide-base-out b-0 table-out carry-out (1)
+Plan length: 80 step(s).
+Plan cost: 159
+Initial state h value: 88/101.
+Expanded 841 state(s).
+Reopened 295 state(s).
+Evaluated 978 state(s).
+Evaluations: 1956
+Generated 10401 state(s).
+Dead ends: 136 state(s).
+Best solution cost so far: 159
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 3)
+Conducting lazy best first search, (real) bound = 159
+Best heuristic value: 88/101 [g=0, 1 evaluated, 0 expanded, t=0.83s]
+Best heuristic value: 86/101 [g=1, 2 evaluated, 1 expanded, t=0.83s]
+Best heuristic value: 84/100 [g=3, 5 evaluated, 2 expanded, t=0.83s]
+Best heuristic value: 82/100 [g=5, 10 evaluated, 7 expanded, t=0.83s]
+Best heuristic value: 82/99 [g=7, 24 evaluated, 19 expanded, t=0.83s]
+Best heuristic value: 81/99 [g=6, 39 evaluated, 32 expanded, 4 reopened, t=0.84s]
+Best heuristic value: 78/99 [g=8, 45 evaluated, 37 expanded, 5 reopened, t=0.84s]
+Best heuristic value: 77/99 [g=9, 47 evaluated, 39 expanded, 5 reopened, t=0.84s]
+Best heuristic value: 74/99 [g=11, 54 evaluated, 45 expanded, 7 reopened, t=0.84s]
+Best heuristic value: 71/99 [g=13, 59 evaluated, 47 expanded, 7 reopened, t=0.84s]
+Best heuristic value: 71/91 [g=17, 70 evaluated, 57 expanded, 8 reopened, t=0.84s]
+Best heuristic value: 70/91 [g=18, 144 evaluated, 116 expanded, 16 reopened, t=0.84s]
+Best heuristic value: 69/91 [g=19, 146 evaluated, 118 expanded, 17 reopened, t=0.84s]
+Best heuristic value: 69/84 [g=24, 160 evaluated, 130 expanded, 19 reopened, t=0.85s]
+Best heuristic value: 66/81 [g=26, 164 evaluated, 133 expanded, 19 reopened, t=0.85s]
+Best heuristic value: 66/80 [g=28, 168 evaluated, 136 expanded, 19 reopened, t=0.85s]
+Best heuristic value: 62/80 [g=31, 218 evaluated, 181 expanded, 36 reopened, t=0.85s]
+Best heuristic value: 60/80 [g=32, 219 evaluated, 182 expanded, 36 reopened, t=0.85s]
+Best heuristic value: 57/67 [g=37, 236 evaluated, 195 expanded, 37 reopened, t=0.85s]
+Best heuristic value: 57/66 [g=39, 239 evaluated, 197 expanded, 37 reopened, t=0.86s]
+Best heuristic value: 54/66 [g=42, 256 evaluated, 210 expanded, 37 reopened, t=0.86s]
+Best heuristic value: 50/64 [g=63, 641 evaluated, 533 expanded, 194 reopened, t=0.89s]
+Best heuristic value: 50/62 [g=65, 646 evaluated, 537 expanded, 194 reopened, t=0.89s]
+Best heuristic value: 49/62 [g=68, 676 evaluated, 560 expanded, 196 reopened, t=0.9s]
+Best heuristic value: 49/56 [g=70, 679 evaluated, 563 expanded, 196 reopened, t=0.9s]
+Best heuristic value: 49/55 [g=71, 682 evaluated, 566 expanded, 196 reopened, t=0.9s]
+Best heuristic value: 48/55 [g=73, 691 evaluated, 575 expanded, 197 reopened, t=0.9s]
+Best heuristic value: 47/55 [g=73, 693 evaluated, 577 expanded, 197 reopened, t=0.9s]
+Best heuristic value: 43/51 [g=76, 703 evaluated, 585 expanded, 197 reopened, t=0.9s]
+Best heuristic value: 42/51 [g=81, 725 evaluated, 602 expanded, 197 reopened, t=0.9s]
+Best heuristic value: 42/46 [g=81, 727 evaluated, 604 expanded, 197 reopened, t=0.9s]
+Best heuristic value: 39/46 [g=84, 734 evaluated, 611 expanded, 197 reopened, t=0.9s]
+Best heuristic value: 36/46 [g=86, 739 evaluated, 616 expanded, 197 reopened, t=0.9s]
+Best heuristic value: 36/40 [g=94, 817 evaluated, 680 expanded, 207 reopened, t=0.91s]
+Best heuristic value: 36/39 [g=96, 820 evaluated, 683 expanded, 207 reopened, t=0.91s]
+Best heuristic value: 33/37 [g=99, 825 evaluated, 688 expanded, 207 reopened, t=0.91s]
+Best heuristic value: 33/36 [g=101, 828 evaluated, 691 expanded, 207 reopened, t=0.91s]
+Best heuristic value: 31/35 [g=103, 834 evaluated, 697 expanded, 207 reopened, t=0.91s]
+Best heuristic value: 28/31 [g=105, 837 evaluated, 700 expanded, 207 reopened, t=0.91s]
+Best heuristic value: 25/28 [g=109, 842 evaluated, 705 expanded, 207 reopened, t=0.91s]
+Best heuristic value: 23/28 [g=110, 843 evaluated, 706 expanded, 207 reopened, t=0.91s]
+Best heuristic value: 22/28 [g=111, 846 evaluated, 709 expanded, 207 reopened, t=0.91s]
+Best heuristic value: 20/28 [g=112, 849 evaluated, 712 expanded, 207 reopened, t=0.91s]
+Best heuristic value: 18/28 [g=113, 850 evaluated, 713 expanded, 207 reopened, t=0.91s]
+Best heuristic value: 14/24 [g=116, 855 evaluated, 718 expanded, 207 reopened, t=0.91s]
+Best heuristic value: 14/22 [g=117, 856 evaluated, 719 expanded, 207 reopened, t=0.91s]
+Best heuristic value: 14/20 [g=120, 863 evaluated, 726 expanded, 207 reopened, t=0.92s]
+Best heuristic value: 14/17 [g=122, 865 evaluated, 728 expanded, 207 reopened, t=0.92s]
+Best heuristic value: 14/16 [g=125, 869 evaluated, 732 expanded, 207 reopened, t=0.92s]
+Best heuristic value: 12/12 [g=127, 870 evaluated, 733 expanded, 207 reopened, t=0.92s]
+Best heuristic value: 9/12 [g=130, 874 evaluated, 737 expanded, 207 reopened, t=0.92s]
+Best heuristic value: 9/9 [g=130, 875 evaluated, 738 expanded, 207 reopened, t=0.92s]
+Best heuristic value: 7/7 [g=131, 876 evaluated, 739 expanded, 207 reopened, t=0.92s]
+Best heuristic value: 4/4 [g=133, 877 evaluated, 740 expanded, 207 reopened, t=0.92s]
+Best heuristic value: 2/2 [g=134, 878 evaluated, 741 expanded, 207 reopened, t=0.92s]
+Solution found!
+Actual search time: 0.09s [t=0.92s]
+move-arm arm2 oiling-machine tray-c (2)
+slide-base-in b-0 carry-in table-in (1)
+move-arm arm1 tray-a table-in (2)
+eject-base b-0 arm1 table-in (1)
+move-arm-holding arm1 table-in gasket-machine b-0 (2)
+set-base b-0 arm1 gasket-machine (1)
+move-arm arm1 gasket-machine table1 (2)
+assemble-with-machine b-0 gasket-machine insert-gasket nothing-done (2)
+move-arm arm1 table1 gasket-machine (2)
+eject-base b-0 arm1 gasket-machine (1)
+move-arm-holding arm1 gasket-machine table1 b-0 (2)
+set-base b-0 arm1 table1 (1)
+move-arm arm1 table1 tray-a (4)
+pickup-component part-a-0 arm1 tray-a (1)
+move-arm-holding arm1 tray-a table1 part-a-0 (4)
+assemble-with-arm part-a-0 attatch-a insert-gasket b-0 arm1 table1 (3)
+eject-base b-0 arm1 table1 (1)
+move-arm-holding arm1 table1 table2 b-0 (7)
+set-base b-0 arm1 table2 (1)
+move-arm arm1 table2 inspection-machine (2)
+move-arm arm2 tray-c table2 (3)
+eject-base b-0 arm2 table2 (1)
+move-arm-holding arm2 table2 tray-c b-0 (3)
+move-arm arm1 inspection-machine table2 (2)
+move-arm-holding arm2 tray-c screw-machine-a b-0 (4)
+set-base b-0 arm2 screw-machine-a (1)
+move-arm arm2 screw-machine-a tray-b (2)
+move-arm arm1 table2 inspection-machine (2)
+assemble-with-machine b-0 screw-machine-a screw-a attatch-a (3)
+move-arm arm2 tray-b screw-machine-a (2)
+eject-base b-0 arm2 screw-machine-a (1)
+move-arm-holding arm2 screw-machine-a tray-b b-0 (2)
+move-arm-holding arm2 tray-b oiling-machine b-0 (2)
+set-base b-0 arm2 oiling-machine (1)
+move-arm arm2 oiling-machine tray-c (2)
+assemble-with-machine b-0 oiling-machine oil-cylinder screw-a (3)
+move-arm arm2 tray-c oiling-machine (2)
+eject-base b-0 arm2 oiling-machine (1)
+move-arm-holding arm2 oiling-machine tray-c b-0 (2)
+move-arm-holding arm2 tray-c table2 b-0 (3)
+set-base b-0 arm2 table2 (1)
+move-arm arm2 table2 tray-b (5)
+pickup-component part-b-0 arm2 tray-b (1)
+move-arm-holding arm2 tray-b tray-c part-b-0 (3)
+move-arm-holding arm2 tray-c table2 part-b-0 (3)
+assemble-with-arm part-b-0 attatch-b oil-cylinder b-0 arm2 table2 (2)
+move-arm arm2 table2 tray-c (3)
+pickup-component part-c-0 arm2 tray-c (1)
+move-arm-holding arm2 tray-c screw-machine-c part-c-0 (2)
+move-arm-holding arm2 screw-machine-c table2 part-c-0 (2)
+assemble-with-arm part-c-0 attatch-c attatch-b b-0 arm2 table2 (2)
+eject-base b-0 arm2 table2 (1)
+move-arm-holding arm2 table2 screw-machine-c b-0 (2)
+set-base b-0 arm2 screw-machine-c (1)
+assemble-with-machine b-0 screw-machine-c screw-c attatch-c (3)
+eject-base b-0 arm2 screw-machine-c (1)
+move-arm-holding arm2 screw-machine-c table2 b-0 (2)
+set-base b-0 arm2 table2 (1)
+move-arm arm2 table2 screw-machine-c (2)
+move-arm arm1 inspection-machine table2 (2)
+eject-base b-0 arm1 table2 (1)
+move-arm-holding arm1 table2 inspection-machine b-0 (2)
+set-base b-0 arm1 inspection-machine (1)
+assemble-with-machine b-0 inspection-machine inspect-base screw-c (2)
+eject-base b-0 arm1 inspection-machine (1)
+move-arm-holding arm1 inspection-machine table-out b-0 (2)
+set-base b-0 arm1 table-out (1)
+slide-base-out b-0 table-out carry-out (1)
+Plan length: 68 step(s).
+Plan cost: 135
+Initial state h value: 88/101.
+Expanded 742 state(s).
+Reopened 207 state(s).
+Evaluated 879 state(s).
+Evaluations: 1758
+Generated 9209 state(s).
+Dead ends: 136 state(s).
+Best solution cost so far: 135
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 2)
+Conducting lazy best first search, (real) bound = 135
+Best heuristic value: 88/101 [g=0, 1 evaluated, 0 expanded, t=0.92s]
+Best heuristic value: 86/101 [g=1, 2 evaluated, 1 expanded, t=0.92s]
+Best heuristic value: 84/100 [g=3, 5 evaluated, 2 expanded, t=0.92s]
+Best heuristic value: 82/100 [g=5, 10 evaluated, 7 expanded, t=0.92s]
+Best heuristic value: 82/99 [g=3, 25 evaluated, 20 expanded, 1 reopened, t=0.92s]
+Best heuristic value: 81/99 [g=6, 31 evaluated, 24 expanded, 1 reopened, t=0.92s]
+Best heuristic value: 78/99 [g=8, 39 evaluated, 30 expanded, 2 reopened, t=0.92s]
+Best heuristic value: 77/99 [g=9, 41 evaluated, 32 expanded, 3 reopened, t=0.92s]
+Best heuristic value: 74/99 [g=11, 50 evaluated, 37 expanded, 3 reopened, t=0.92s]
+Best heuristic value: 71/99 [g=13, 57 evaluated, 43 expanded, 3 reopened, t=0.92s]
+Best heuristic value: 71/91 [g=17, 69 evaluated, 54 expanded, 5 reopened, t=0.92s]
+Best heuristic value: 70/91 [g=18, 140 evaluated, 110 expanded, 11 reopened, t=0.93s]
+Best heuristic value: 69/91 [g=19, 141 evaluated, 111 expanded, 11 reopened, t=0.93s]
+Best heuristic value: 69/84 [g=24, 160 evaluated, 127 expanded, 11 reopened, t=0.93s]
+Best heuristic value: 66/81 [g=26, 164 evaluated, 130 expanded, 11 reopened, t=0.93s]
+Best heuristic value: 66/80 [g=28, 168 evaluated, 133 expanded, 11 reopened, t=0.93s]
+Best heuristic value: 62/80 [g=31, 251 evaluated, 203 expanded, 24 reopened, t=0.94s]
+Best heuristic value: 60/80 [g=32, 252 evaluated, 204 expanded, 24 reopened, t=0.94s]
+Best heuristic value: 57/67 [g=37, 279 evaluated, 227 expanded, 26 reopened, t=0.94s]
+Best heuristic value: 57/66 [g=39, 282 evaluated, 229 expanded, 26 reopened, t=0.94s]
+Best heuristic value: 54/66 [g=42, 306 evaluated, 246 expanded, 26 reopened, t=0.94s]
+Best heuristic value: 50/66 [g=46, 1157 evaluated, 1013 expanded, 578 reopened, t=1.03s]
+Best heuristic value: 50/64 [g=48, 1162 evaluated, 1017 expanded, 578 reopened, t=1.03s]
+Best heuristic value: 50/63 [g=48, 1164 evaluated, 1018 expanded, 578 reopened, t=1.03s]
+Best heuristic value: 50/62 [g=50, 1165 evaluated, 1019 expanded, 578 reopened, t=1.03s]
+Best heuristic value: 49/62 [g=51, 1197 evaluated, 1046 expanded, 583 reopened, t=1.03s]
+Best heuristic value: 49/57 [g=53, 1199 evaluated, 1048 expanded, 583 reopened, t=1.03s]
+Best heuristic value: 49/56 [g=55, 1201 evaluated, 1050 expanded, 583 reopened, t=1.03s]
+Best heuristic value: 49/55 [g=56, 1204 evaluated, 1053 expanded, 583 reopened, t=1.03s]
+Best heuristic value: 48/55 [g=56, 1212 evaluated, 1061 expanded, 583 reopened, t=1.03s]
+Best heuristic value: 45/55 [g=58, 1213 evaluated, 1062 expanded, 583 reopened, t=1.03s]
+Best heuristic value: 43/55 [g=59, 1234 evaluated, 1079 expanded, 585 reopened, t=1.04s]
+Best heuristic value: 43/53 [g=61, 1236 evaluated, 1080 expanded, 585 reopened, t=1.04s]
+Best heuristic value: 43/52 [g=63, 1239 evaluated, 1083 expanded, 585 reopened, t=1.04s]
+Best heuristic value: 43/51 [g=64, 1246 evaluated, 1088 expanded, 585 reopened, t=1.04s]
+Best heuristic value: 42/51 [g=64, 1262 evaluated, 1103 expanded, 589 reopened, t=1.04s]
+Best heuristic value: 42/47 [g=64, 1264 evaluated, 1105 expanded, 589 reopened, t=1.04s]
+Best heuristic value: 42/46 [g=66, 1266 evaluated, 1107 expanded, 589 reopened, t=1.04s]
+Best heuristic value: 39/46 [g=67, 1273 evaluated, 1114 expanded, 590 reopened, t=1.04s]
+Best heuristic value: 36/46 [g=69, 1275 evaluated, 1116 expanded, 590 reopened, t=1.04s]
+Best heuristic value: 36/41 [g=72, 1509 evaluated, 1332 expanded, 753 reopened, t=1.06s]
+Best heuristic value: 36/40 [g=74, 1510 evaluated, 1333 expanded, 753 reopened, t=1.06s]
+Best heuristic value: 36/39 [g=76, 1514 evaluated, 1337 expanded, 753 reopened, t=1.06s]
+Best heuristic value: 33/38 [g=77, 1519 evaluated, 1342 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 33/37 [g=79, 1521 evaluated, 1344 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 33/36 [g=81, 1525 evaluated, 1348 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 31/36 [g=81, 1526 evaluated, 1349 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 31/35 [g=83, 1528 evaluated, 1351 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 28/32 [g=83, 1529 evaluated, 1352 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 28/31 [g=85, 1530 evaluated, 1353 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 25/29 [g=87, 1534 evaluated, 1357 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 23/29 [g=88, 1535 evaluated, 1358 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 22/29 [g=89, 1536 evaluated, 1359 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 22/28 [g=91, 1537 evaluated, 1360 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 20/28 [g=90, 1540 evaluated, 1363 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 18/28 [g=91, 1541 evaluated, 1364 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 14/25 [g=94, 1545 evaluated, 1368 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 14/23 [g=95, 1546 evaluated, 1369 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 14/22 [g=97, 1549 evaluated, 1372 expanded, 755 reopened, t=1.06s]
+Best heuristic value: 14/21 [g=98, 1555 evaluated, 1378 expanded, 756 reopened, t=1.06s]
+Best heuristic value: 14/18 [g=100, 1556 evaluated, 1379 expanded, 756 reopened, t=1.06s]
+Best heuristic value: 14/17 [g=102, 1557 evaluated, 1380 expanded, 756 reopened, t=1.07s]
+Best heuristic value: 14/16 [g=104, 1561 evaluated, 1384 expanded, 757 reopened, t=1.07s]
+Best heuristic value: 12/12 [g=106, 1562 evaluated, 1385 expanded, 757 reopened, t=1.07s]
+Best heuristic value: 9/12 [g=109, 1565 evaluated, 1388 expanded, 757 reopened, t=1.07s]
+Best heuristic value: 9/9 [g=109, 1566 evaluated, 1389 expanded, 757 reopened, t=1.07s]
+Best heuristic value: 7/7 [g=110, 1568 evaluated, 1391 expanded, 757 reopened, t=1.07s]
+Best heuristic value: 4/4 [g=112, 1569 evaluated, 1392 expanded, 757 reopened, t=1.07s]
+Best heuristic value: 2/2 [g=113, 1570 evaluated, 1393 expanded, 757 reopened, t=1.07s]
+Solution found!
+Actual search time: 0.15s [t=1.07s]
+move-arm arm2 oiling-machine tray-c (2)
+slide-base-in b-0 carry-in table-in (1)
+move-arm arm1 tray-a table-in (2)
+eject-base b-0 arm1 table-in (1)
+move-arm-holding arm1 table-in gasket-machine b-0 (2)
+set-base b-0 arm1 gasket-machine (1)
+assemble-with-machine b-0 gasket-machine insert-gasket nothing-done (2)
+eject-base b-0 arm1 gasket-machine (1)
+move-arm-holding arm1 gasket-machine table1 b-0 (2)
+set-base b-0 arm1 table1 (1)
+move-arm arm1 table1 tray-a (4)
+pickup-component part-a-0 arm1 tray-a (1)
+move-arm-holding arm1 tray-a table1 part-a-0 (4)
+assemble-with-arm part-a-0 attatch-a insert-gasket b-0 arm1 table1 (3)
+move-arm arm1 table1 table-out (5)
+move-arm arm2 tray-c table1 (5)
+eject-base b-0 arm2 table1 (1)
+move-arm-holding arm2 table1 screw-machine-a b-0 (2)
+set-base b-0 arm2 screw-machine-a (1)
+move-arm arm2 screw-machine-a tray-b (2)
+assemble-with-machine b-0 screw-machine-a screw-a attatch-a (3)
+move-arm arm2 tray-b screw-machine-a (2)
+eject-base b-0 arm2 screw-machine-a (1)
+move-arm-holding arm2 screw-machine-a tray-b b-0 (2)
+move-arm-holding arm2 tray-b oiling-machine b-0 (2)
+set-base b-0 arm2 oiling-machine (1)
+assemble-with-machine b-0 oiling-machine oil-cylinder screw-a (3)
+eject-base b-0 arm2 oiling-machine (1)
+move-arm-holding arm2 oiling-machine table2 b-0 (4)
+set-base b-0 arm2 table2 (1)
+move-arm arm2 table2 tray-b (5)
+pickup-component part-b-0 arm2 tray-b (1)
+move-arm-holding arm2 tray-b tray-c part-b-0 (3)
+move-arm-holding arm2 tray-c table2 part-b-0 (3)
+assemble-with-arm part-b-0 attatch-b oil-cylinder b-0 arm2 table2 (2)
+move-arm arm2 table2 tray-c (3)
+pickup-component part-c-0 arm2 tray-c (1)
+move-arm-holding arm2 tray-c screw-machine-c part-c-0 (2)
+move-arm-holding arm2 screw-machine-c table2 part-c-0 (2)
+assemble-with-arm part-c-0 attatch-c attatch-b b-0 arm2 table2 (2)
+eject-base b-0 arm2 table2 (1)
+move-arm-holding arm2 table2 screw-machine-c b-0 (2)
+set-base b-0 arm2 screw-machine-c (1)
+assemble-with-machine b-0 screw-machine-c screw-c attatch-c (3)
+eject-base b-0 arm2 screw-machine-c (1)
+move-arm-holding arm2 screw-machine-c table2 b-0 (2)
+set-base b-0 arm2 table2 (1)
+move-arm arm2 table2 screw-machine-c (2)
+move-arm arm1 table-out table2 (3)
+eject-base b-0 arm1 table2 (1)
+move-arm-holding arm1 table2 inspection-machine b-0 (2)
+set-base b-0 arm1 inspection-machine (1)
+assemble-with-machine b-0 inspection-machine inspect-base screw-c (2)
+eject-base b-0 arm1 inspection-machine (1)
+move-arm-holding arm1 inspection-machine table-out b-0 (2)
+set-base b-0 arm1 table-out (1)
+slide-base-out b-0 table-out carry-out (1)
+Plan length: 57 step(s).
+Plan cost: 114
+Initial state h value: 88/101.
+Expanded 1394 state(s).
+Reopened 757 state(s).
+Evaluated 1571 state(s).
+Evaluations: 3142
+Generated 17393 state(s).
+Dead ends: 176 state(s).
+Best solution cost so far: 114
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 1)
+Conducting lazy best first search, (real) bound = 114
+Best heuristic value: 88/101 [g=0, 1 evaluated, 0 expanded, t=1.07s]
+Best heuristic value: 86/101 [g=1, 2 evaluated, 1 expanded, t=1.07s]
+Best heuristic value: 84/100 [g=3, 7 evaluated, 4 expanded, t=1.07s]
+Best heuristic value: 83/100 [g=4, 11 evaluated, 8 expanded, t=1.07s]
+Best heuristic value: 83/99 [g=3, 19 evaluated, 14 expanded, t=1.07s]
+Best heuristic value: 82/99 [g=5, 24 evaluated, 15 expanded, t=1.07s]
+Best heuristic value: 81/99 [g=6, 27 evaluated, 17 expanded, t=1.07s]
+Best heuristic value: 80/99 [g=6, 50 evaluated, 33 expanded, t=1.07s]
+Best heuristic value: 79/99 [g=7, 51 evaluated, 34 expanded, t=1.07s]
+Best heuristic value: 78/99 [g=8, 56 evaluated, 39 expanded, t=1.07s]
+Best heuristic value: 77/99 [g=9, 58 evaluated, 41 expanded, t=1.07s]
+Best heuristic value: 76/99 [g=9, 69 evaluated, 48 expanded, t=1.07s]
+Best heuristic value: 73/99 [g=11, 70 evaluated, 49 expanded, t=1.07s]
+Best heuristic value: 71/99 [g=13, 73 evaluated, 52 expanded, t=1.08s]
+Best heuristic value: 70/99 [g=14, 123 evaluated, 91 expanded, 10 reopened, t=1.08s]
+Best heuristic value: 69/99 [g=15, 125 evaluated, 93 expanded, 11 reopened, t=1.08s]
+Best heuristic value: 69/98 [g=15, 135 evaluated, 99 expanded, 12 reopened, t=1.08s]
+Best heuristic value: 69/92 [g=17, 138 evaluated, 102 expanded, 12 reopened, t=1.08s]
+Best heuristic value: 69/91 [g=15, 175 evaluated, 137 expanded, 21 reopened, t=1.08s]
+Best heuristic value: 69/85 [g=13, 198 evaluated, 156 expanded, 30 reopened, t=1.08s]
+Best heuristic value: 69/84 [g=15, 199 evaluated, 157 expanded, 30 reopened, t=1.08s]
+Best heuristic value: 69/83 [g=18, 235 evaluated, 190 expanded, 32 reopened, t=1.09s]
+Best heuristic value: 68/80 [g=20, 238 evaluated, 191 expanded, 32 reopened, t=1.09s]
+Best heuristic value: 66/80 [g=22, 240 evaluated, 193 expanded, 32 reopened, t=1.09s]
+Best heuristic value: 64/80 [g=25, 1099 evaluated, 859 expanded, 300 reopened, t=1.17s]
+Best heuristic value: 62/80 [g=26, 1100 evaluated, 860 expanded, 300 reopened, t=1.17s]
+Best heuristic value: 60/80 [g=28, 1102 evaluated, 862 expanded, 300 reopened, t=1.17s]
+Best heuristic value: 59/77 [g=33, 1164 evaluated, 906 expanded, 317 reopened, t=1.18s]
+Best heuristic value: 59/76 [g=35, 1168 evaluated, 909 expanded, 317 reopened, t=1.18s]
+Best heuristic value: 59/67 [g=31, 1201 evaluated, 933 expanded, 321 reopened, t=1.18s]
+Best heuristic value: 59/66 [g=33, 1203 evaluated, 935 expanded, 321 reopened, t=1.18s]
+Best heuristic value: 57/66 [g=33, 1204 evaluated, 936 expanded, 321 reopened, t=1.18s]
+Best heuristic value: 56/66 [g=36, 1228 evaluated, 954 expanded, 321 reopened, t=1.18s]
+Best heuristic value: 54/66 [g=38, 1259 evaluated, 977 expanded, 321 reopened, t=1.19s]
+Best heuristic value: 50/66 [g=43, 2173 evaluated, 1741 expanded, 674 reopened, t=1.28s]
+Best heuristic value: 50/64 [g=45, 2178 evaluated, 1744 expanded, 674 reopened, t=1.28s]
+Best heuristic value: 50/63 [g=45, 2180 evaluated, 1745 expanded, 674 reopened, t=1.28s]
+Best heuristic value: 50/62 [g=47, 2181 evaluated, 1746 expanded, 674 reopened, t=1.28s]
+Best heuristic value: 49/62 [g=44, 2274 evaluated, 1826 expanded, 700 reopened, t=1.29s]
+Best heuristic value: 49/57 [g=46, 2277 evaluated, 1829 expanded, 701 reopened, t=1.29s]
+Best heuristic value: 49/56 [g=48, 2279 evaluated, 1831 expanded, 701 reopened, t=1.29s]
+Best heuristic value: 49/55 [g=49, 2289 evaluated, 1841 expanded, 705 reopened, t=1.29s]
+Best heuristic value: 47/55 [g=48, 2292 evaluated, 1844 expanded, 706 reopened, t=1.29s]
+Best heuristic value: 46/53 [g=49, 2309 evaluated, 1859 expanded, 711 reopened, t=1.29s]
+Best heuristic value: 45/53 [g=50, 2311 evaluated, 1861 expanded, 712 reopened, t=1.29s]
+Best heuristic value: 45/52 [g=51, 2313 evaluated, 1863 expanded, 713 reopened, t=1.29s]
+Best heuristic value: 43/52 [g=51, 2314 evaluated, 1864 expanded, 713 reopened, t=1.29s]
+Best heuristic value: 42/52 [g=52, 2326 evaluated, 1874 expanded, 713 reopened, t=1.29s]
+Best heuristic value: 42/47 [g=52, 2327 evaluated, 1875 expanded, 713 reopened, t=1.29s]
+Best heuristic value: 42/46 [g=54, 2328 evaluated, 1876 expanded, 713 reopened, t=1.29s]
+Best heuristic value: 39/46 [g=55, 2337 evaluated, 1885 expanded, 713 reopened, t=1.3s]
+Best heuristic value: 36/46 [g=57, 2340 evaluated, 1888 expanded, 713 reopened, t=1.3s]
+Best heuristic value: 36/41 [g=64, 2569 evaluated, 2081 expanded, 778 reopened, t=1.32s]
+Best heuristic value: 36/40 [g=66, 2570 evaluated, 2082 expanded, 778 reopened, t=1.32s]
+Best heuristic value: 36/39 [g=68, 2575 evaluated, 2087 expanded, 779 reopened, t=1.32s]
+Best heuristic value: 33/38 [g=69, 2579 evaluated, 2091 expanded, 779 reopened, t=1.32s]
+Best heuristic value: 33/37 [g=71, 2581 evaluated, 2093 expanded, 779 reopened, t=1.32s]
+Best heuristic value: 33/36 [g=73, 2587 evaluated, 2099 expanded, 779 reopened, t=1.32s]
+Best heuristic value: 31/36 [g=73, 2588 evaluated, 2100 expanded, 779 reopened, t=1.32s]
+Best heuristic value: 31/35 [g=75, 2597 evaluated, 2109 expanded, 779 reopened, t=1.32s]
+Best heuristic value: 28/32 [g=75, 2598 evaluated, 2110 expanded, 779 reopened, t=1.32s]
+Best heuristic value: 28/31 [g=77, 2599 evaluated, 2111 expanded, 779 reopened, t=1.32s]
+Best heuristic value: 25/29 [g=79, 2603 evaluated, 2115 expanded, 779 reopened, t=1.32s]
+Best heuristic value: 23/29 [g=80, 2604 evaluated, 2116 expanded, 779 reopened, t=1.32s]
+Best heuristic value: 22/29 [g=81, 2605 evaluated, 2117 expanded, 779 reopened, t=1.32s]
+Best heuristic value: 22/28 [g=81, 2606 evaluated, 2118 expanded, 779 reopened, t=1.32s]
+Best heuristic value: 20/28 [g=82, 2609 evaluated, 2121 expanded, 779 reopened, t=1.32s]
+Best heuristic value: 18/28 [g=82, 2629 evaluated, 2141 expanded, 788 reopened, t=1.32s]
+Best heuristic value: 14/25 [g=85, 2702 evaluated, 2206 expanded, 807 reopened, t=1.33s]
+Best heuristic value: 14/23 [g=86, 2703 evaluated, 2207 expanded, 807 reopened, t=1.33s]
+Best heuristic value: 14/22 [g=88, 2705 evaluated, 2209 expanded, 807 reopened, t=1.33s]
+Best heuristic value: 14/21 [g=89, 2709 evaluated, 2213 expanded, 807 reopened, t=1.33s]
+Best heuristic value: 14/18 [g=91, 2711 evaluated, 2215 expanded, 807 reopened, t=1.33s]
+Best heuristic value: 14/17 [g=93, 2712 evaluated, 2216 expanded, 807 reopened, t=1.33s]
+Best heuristic value: 14/16 [g=95, 2719 evaluated, 2223 expanded, 809 reopened, t=1.33s]
+Best heuristic value: 12/12 [g=97, 2720 evaluated, 2224 expanded, 809 reopened, t=1.33s]
+Best heuristic value: 9/12 [g=100, 2723 evaluated, 2227 expanded, 809 reopened, t=1.33s]
+Best heuristic value: 9/9 [g=100, 2724 evaluated, 2228 expanded, 809 reopened, t=1.33s]
+Best heuristic value: 7/7 [g=101, 2725 evaluated, 2229 expanded, 809 reopened, t=1.33s]
+Best heuristic value: 4/4 [g=103, 2726 evaluated, 2230 expanded, 809 reopened, t=1.33s]
+Best heuristic value: 2/2 [g=104, 2727 evaluated, 2231 expanded, 809 reopened, t=1.33s]
+Solution found!
+Actual search time: 0.26s [t=1.33s]
+slide-base-in b-0 carry-in table-in (1)
+move-arm arm1 tray-a table-in (2)
+eject-base b-0 arm1 table-in (1)
+move-arm-holding arm1 table-in gasket-machine b-0 (2)
+set-base b-0 arm1 gasket-machine (1)
+assemble-with-machine b-0 gasket-machine insert-gasket nothing-done (2)
+eject-base b-0 arm1 gasket-machine (1)
+move-arm-holding arm1 gasket-machine table1 b-0 (2)
+set-base b-0 arm1 table1 (1)
+move-arm arm1 table1 tray-a (4)
+pickup-component part-a-0 arm1 tray-a (1)
+move-arm-holding arm1 tray-a table1 part-a-0 (4)
+assemble-with-arm part-a-0 attatch-a insert-gasket b-0 arm1 table1 (3)
+move-arm arm1 table1 table-out (5)
+move-arm arm2 oiling-machine table1 (4)
+eject-base b-0 arm2 table1 (1)
+move-arm-holding arm2 table1 screw-machine-a b-0 (2)
+set-base b-0 arm2 screw-machine-a (1)
+assemble-with-machine b-0 screw-machine-a screw-a attatch-a (3)
+eject-base b-0 arm2 screw-machine-a (1)
+move-arm-holding arm2 screw-machine-a oiling-machine b-0 (3)
+set-base b-0 arm2 oiling-machine (1)
+assemble-with-machine b-0 oiling-machine oil-cylinder screw-a (3)
+eject-base b-0 arm2 oiling-machine (1)
+move-arm-holding arm2 oiling-machine table2 b-0 (4)
+set-base b-0 arm2 table2 (1)
+move-arm arm2 table2 tray-b (5)
+pickup-component part-b-0 arm2 tray-b (1)
+move-arm-holding arm2 tray-b tray-c part-b-0 (3)
+move-arm-holding arm2 tray-c table2 part-b-0 (3)
+assemble-with-arm part-b-0 attatch-b oil-cylinder b-0 arm2 table2 (2)
+move-arm arm2 table2 tray-c (3)
+pickup-component part-c-0 arm2 tray-c (1)
+move-arm-holding arm2 tray-c table2 part-c-0 (3)
+assemble-with-arm part-c-0 attatch-c attatch-b b-0 arm2 table2 (2)
+eject-base b-0 arm2 table2 (1)
+move-arm-holding arm2 table2 screw-machine-c b-0 (2)
+set-base b-0 arm2 screw-machine-c (1)
+assemble-with-machine b-0 screw-machine-c screw-c attatch-c (3)
+eject-base b-0 arm2 screw-machine-c (1)
+move-arm-holding arm2 screw-machine-c table2 b-0 (2)
+set-base b-0 arm2 table2 (1)
+move-arm arm2 table2 screw-machine-c (2)
+move-arm arm1 table-out table2 (3)
+eject-base b-0 arm1 table2 (1)
+move-arm-holding arm1 table2 inspection-machine b-0 (2)
+set-base b-0 arm1 inspection-machine (1)
+assemble-with-machine b-0 inspection-machine inspect-base screw-c (2)
+eject-base b-0 arm1 inspection-machine (1)
+move-arm-holding arm1 inspection-machine table-out b-0 (2)
+set-base b-0 arm1 table-out (1)
+slide-base-out b-0 table-out carry-out (1)
+Plan length: 52 step(s).
+Plan cost: 105
+Initial state h value: 88/101.
+Expanded 2232 state(s).
+Reopened 809 state(s).
+Evaluated 2728 state(s).
+Evaluations: 5456
+Generated 27645 state(s).
+Dead ends: 495 state(s).
+Best solution cost so far: 105
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 1)
+Conducting lazy best first search, (real) bound = 105
+Best heuristic value: 88/101 [g=0, 1 evaluated, 0 expanded, t=1.33s]
+Best heuristic value: 86/101 [g=1, 2 evaluated, 1 expanded, t=1.33s]
+Best heuristic value: 84/100 [g=3, 7 evaluated, 4 expanded, t=1.33s]
+Best heuristic value: 83/100 [g=4, 11 evaluated, 8 expanded, t=1.33s]
+Best heuristic value: 83/99 [g=3, 19 evaluated, 14 expanded, t=1.34s]
+Best heuristic value: 82/99 [g=5, 24 evaluated, 15 expanded, t=1.34s]
+Best heuristic value: 81/99 [g=6, 27 evaluated, 17 expanded, t=1.34s]
+Best heuristic value: 80/99 [g=6, 50 evaluated, 33 expanded, t=1.34s]
+Best heuristic value: 79/99 [g=7, 51 evaluated, 34 expanded, t=1.34s]
+Best heuristic value: 78/99 [g=8, 56 evaluated, 39 expanded, t=1.34s]
+Best heuristic value: 77/99 [g=9, 58 evaluated, 41 expanded, t=1.34s]
+Best heuristic value: 76/99 [g=9, 69 evaluated, 48 expanded, t=1.34s]
+Best heuristic value: 73/99 [g=11, 70 evaluated, 49 expanded, t=1.34s]
+Best heuristic value: 71/99 [g=13, 73 evaluated, 52 expanded, t=1.34s]
+Best heuristic value: 70/99 [g=14, 123 evaluated, 91 expanded, 10 reopened, t=1.34s]
+Best heuristic value: 69/99 [g=15, 125 evaluated, 93 expanded, 11 reopened, t=1.34s]
+Best heuristic value: 69/98 [g=15, 135 evaluated, 99 expanded, 12 reopened, t=1.34s]
+Best heuristic value: 69/92 [g=17, 138 evaluated, 102 expanded, 12 reopened, t=1.34s]
+Best heuristic value: 69/91 [g=15, 175 evaluated, 137 expanded, 21 reopened, t=1.35s]
+Best heuristic value: 69/85 [g=13, 198 evaluated, 156 expanded, 30 reopened, t=1.35s]
+Best heuristic value: 69/84 [g=15, 199 evaluated, 157 expanded, 30 reopened, t=1.35s]
+Best heuristic value: 69/83 [g=18, 235 evaluated, 190 expanded, 32 reopened, t=1.35s]
+Best heuristic value: 68/80 [g=20, 238 evaluated, 191 expanded, 32 reopened, t=1.36s]
+Best heuristic value: 66/80 [g=22, 240 evaluated, 193 expanded, 32 reopened, t=1.36s]
+Best heuristic value: 64/80 [g=25, 1099 evaluated, 859 expanded, 300 reopened, t=1.44s]
+Best heuristic value: 62/80 [g=26, 1100 evaluated, 860 expanded, 300 reopened, t=1.44s]
+Best heuristic value: 60/80 [g=28, 1102 evaluated, 862 expanded, 300 reopened, t=1.44s]
+Best heuristic value: 59/77 [g=33, 1164 evaluated, 906 expanded, 317 reopened, t=1.44s]
+Best heuristic value: 59/76 [g=35, 1168 evaluated, 909 expanded, 317 reopened, t=1.44s]
+Best heuristic value: 59/67 [g=31, 1201 evaluated, 933 expanded, 321 reopened, t=1.45s]
+Best heuristic value: 59/66 [g=33, 1203 evaluated, 935 expanded, 321 reopened, t=1.45s]
+Best heuristic value: 57/66 [g=33, 1204 evaluated, 936 expanded, 321 reopened, t=1.45s]
+Best heuristic value: 56/66 [g=36, 1228 evaluated, 954 expanded, 321 reopened, t=1.45s]
+Best heuristic value: 54/66 [g=38, 1259 evaluated, 977 expanded, 321 reopened, t=1.45s]
+Best heuristic value: 50/66 [g=43, 2173 evaluated, 1741 expanded, 674 reopened, t=1.54s]
+Best heuristic value: 50/64 [g=45, 2178 evaluated, 1744 expanded, 674 reopened, t=1.54s]
+Best heuristic value: 50/63 [g=45, 2180 evaluated, 1745 expanded, 674 reopened, t=1.54s]
+Best heuristic value: 50/62 [g=47, 2181 evaluated, 1746 expanded, 674 reopened, t=1.54s]
+Best heuristic value: 49/62 [g=44, 2274 evaluated, 1826 expanded, 700 reopened, t=1.55s]
+Best heuristic value: 49/57 [g=46, 2277 evaluated, 1829 expanded, 701 reopened, t=1.55s]
+Best heuristic value: 49/56 [g=48, 2279 evaluated, 1831 expanded, 701 reopened, t=1.55s]
+Best heuristic value: 49/55 [g=49, 2289 evaluated, 1841 expanded, 705 reopened, t=1.56s]
+Best heuristic value: 47/55 [g=48, 2292 evaluated, 1844 expanded, 706 reopened, t=1.56s]
+Best heuristic value: 46/53 [g=49, 2309 evaluated, 1859 expanded, 711 reopened, t=1.56s]
+Best heuristic value: 45/53 [g=50, 2311 evaluated, 1861 expanded, 712 reopened, t=1.56s]
+Best heuristic value: 45/52 [g=51, 2313 evaluated, 1863 expanded, 713 reopened, t=1.56s]
+Best heuristic value: 43/52 [g=51, 2314 evaluated, 1864 expanded, 713 reopened, t=1.56s]
+Best heuristic value: 42/52 [g=52, 2326 evaluated, 1874 expanded, 713 reopened, t=1.56s]
+Best heuristic value: 42/47 [g=52, 2327 evaluated, 1875 expanded, 713 reopened, t=1.56s]
+Best heuristic value: 42/46 [g=54, 2328 evaluated, 1876 expanded, 713 reopened, t=1.56s]
+Best heuristic value: 39/46 [g=55, 2337 evaluated, 1885 expanded, 713 reopened, t=1.56s]
+Best heuristic value: 36/46 [g=57, 2340 evaluated, 1888 expanded, 713 reopened, t=1.56s]
+Best heuristic value: 36/41 [g=64, 2569 evaluated, 2081 expanded, 778 reopened, t=1.58s]
+Best heuristic value: 36/40 [g=66, 2570 evaluated, 2082 expanded, 778 reopened, t=1.58s]
+Best heuristic value: 36/39 [g=68, 2575 evaluated, 2087 expanded, 779 reopened, t=1.58s]
+Best heuristic value: 33/38 [g=69, 2579 evaluated, 2091 expanded, 779 reopened, t=1.58s]
+Best heuristic value: 33/37 [g=71, 2581 evaluated, 2093 expanded, 779 reopened, t=1.58s]
+Best heuristic value: 33/36 [g=73, 2587 evaluated, 2099 expanded, 779 reopened, t=1.58s]
+Best heuristic value: 31/36 [g=73, 2588 evaluated, 2100 expanded, 779 reopened, t=1.58s]
+Best heuristic value: 31/35 [g=75, 2597 evaluated, 2109 expanded, 779 reopened, t=1.58s]
+Best heuristic value: 28/32 [g=75, 2598 evaluated, 2110 expanded, 779 reopened, t=1.58s]
+Best heuristic value: 28/31 [g=77, 2599 evaluated, 2111 expanded, 779 reopened, t=1.58s]
+Best heuristic value: 25/29 [g=79, 2603 evaluated, 2115 expanded, 779 reopened, t=1.58s]
+Best heuristic value: 23/29 [g=80, 2604 evaluated, 2116 expanded, 779 reopened, t=1.58s]
+Best heuristic value: 22/29 [g=81, 2605 evaluated, 2117 expanded, 779 reopened, t=1.58s]
+Best heuristic value: 22/28 [g=81, 2606 evaluated, 2118 expanded, 779 reopened, t=1.58s]
+Best heuristic value: 20/28 [g=82, 2609 evaluated, 2121 expanded, 779 reopened, t=1.58s]
+Best heuristic value: 18/28 [g=82, 2629 evaluated, 2141 expanded, 788 reopened, t=1.59s]
+Best heuristic value: 14/25 [g=85, 2702 evaluated, 2206 expanded, 807 reopened, t=1.6s]
+Best heuristic value: 14/23 [g=86, 2703 evaluated, 2207 expanded, 807 reopened, t=1.6s]
+Best heuristic value: 14/22 [g=88, 2705 evaluated, 2209 expanded, 807 reopened, t=1.6s]
+Best heuristic value: 14/21 [g=89, 2709 evaluated, 2213 expanded, 807 reopened, t=1.6s]
+Best heuristic value: 14/18 [g=91, 2711 evaluated, 2215 expanded, 807 reopened, t=1.6s]
+Best heuristic value: 14/17 [g=93, 2712 evaluated, 2216 expanded, 807 reopened, t=1.6s]
+Best heuristic value: 14/16 [g=95, 2719 evaluated, 2223 expanded, 809 reopened, t=1.6s]
+Best heuristic value: 12/12 [g=97, 2720 evaluated, 2224 expanded, 809 reopened, t=1.6s]
+Best heuristic value: 9/12 [g=100, 2723 evaluated, 2227 expanded, 809 reopened, t=1.6s]
+Best heuristic value: 9/9 [g=100, 2724 evaluated, 2228 expanded, 809 reopened, t=1.6s]
+Best heuristic value: 7/7 [g=101, 2725 evaluated, 2229 expanded, 809 reopened, t=1.6s]
+Best heuristic value: 4/4 [g=103, 2726 evaluated, 2230 expanded, 809 reopened, t=1.6s]
+Best heuristic value: 2/2 [g=104, 2727 evaluated, 2231 expanded, 809 reopened, t=1.6s]
+Solution found!
+Actual search time: 0.29s [t=1.62s]
+slide-base-in b-0 carry-in table-in (1)
+move-arm arm1 tray-a table-in (2)
+eject-base b-0 arm1 table-in (1)
+move-arm-holding arm1 table-in gasket-machine b-0 (2)
+set-base b-0 arm1 gasket-machine (1)
+assemble-with-machine b-0 gasket-machine insert-gasket nothing-done (2)
+eject-base b-0 arm1 gasket-machine (1)
+move-arm-holding arm1 gasket-machine table1 b-0 (2)
+set-base b-0 arm1 table1 (1)
+move-arm arm1 table1 tray-a (4)
+pickup-component part-a-0 arm1 tray-a (1)
+move-arm-holding arm1 tray-a table1 part-a-0 (4)
+assemble-with-arm part-a-0 attatch-a insert-gasket b-0 arm1 table1 (3)
+move-arm arm1 table1 table-out (5)
+move-arm arm2 oiling-machine table1 (4)
+eject-base b-0 arm2 table1 (1)
+move-arm-holding arm2 table1 screw-machine-a b-0 (2)
+set-base b-0 arm2 screw-machine-a (1)
+assemble-with-machine b-0 screw-machine-a screw-a attatch-a (3)
+eject-base b-0 arm2 screw-machine-a (1)
+move-arm-holding arm2 screw-machine-a oiling-machine b-0 (3)
+set-base b-0 arm2 oiling-machine (1)
+assemble-with-machine b-0 oiling-machine oil-cylinder screw-a (3)
+eject-base b-0 arm2 oiling-machine (1)
+move-arm-holding arm2 oiling-machine table2 b-0 (4)
+set-base b-0 arm2 table2 (1)
+move-arm arm2 table2 tray-b (5)
+pickup-component part-b-0 arm2 tray-b (1)
+move-arm-holding arm2 tray-b table2 part-b-0 (5)
+assemble-with-arm part-b-0 attatch-b oil-cylinder b-0 arm2 table2 (2)
+move-arm arm2 table2 tray-c (3)
+pickup-component part-c-0 arm2 tray-c (1)
+move-arm-holding arm2 tray-c table2 part-c-0 (3)
+assemble-with-arm part-c-0 attatch-c attatch-b b-0 arm2 table2 (2)
+eject-base b-0 arm2 table2 (1)
+move-arm-holding arm2 table2 screw-machine-c b-0 (2)
+set-base b-0 arm2 screw-machine-c (1)
+assemble-with-machine b-0 screw-machine-c screw-c attatch-c (3)
+eject-base b-0 arm2 screw-machine-c (1)
+move-arm-holding arm2 screw-machine-c table2 b-0 (2)
+set-base b-0 arm2 table2 (1)
+move-arm arm2 table2 screw-machine-c (2)
+move-arm arm1 table-out table2 (3)
+eject-base b-0 arm1 table2 (1)
+move-arm-holding arm1 table2 inspection-machine b-0 (2)
+set-base b-0 arm1 inspection-machine (1)
+assemble-with-machine b-0 inspection-machine inspect-base screw-c (2)
+eject-base b-0 arm1 inspection-machine (1)
+move-arm-holding arm1 inspection-machine table-out b-0 (2)
+set-base b-0 arm1 table-out (1)
+slide-base-out b-0 table-out carry-out (1)
+Plan length: 51 step(s).
+Plan cost: 104
+Initial state h value: 88/101.
+Expanded 2410 state(s).
+Reopened 945 state(s).
+Evaluated 2923 state(s).
+Evaluations: 5846
+Generated 29842 state(s).
+Dead ends: 512 state(s).
+Best solution cost so far: 104
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff2, hlm2), preferred = list(hff2, hlm2), w = 1)
+Conducting lazy best first search, (real) bound = 104
+Best heuristic value: 88/101 [g=0, 1 evaluated, 0 expanded, t=1.62s]
+Best heuristic value: 86/101 [g=1, 2 evaluated, 1 expanded, t=1.62s]
+Best heuristic value: 84/100 [g=3, 7 evaluated, 4 expanded, t=1.62s]
+Best heuristic value: 83/100 [g=4, 11 evaluated, 8 expanded, t=1.62s]
+Best heuristic value: 83/99 [g=3, 19 evaluated, 14 expanded, t=1.62s]
+Best heuristic value: 82/99 [g=5, 24 evaluated, 15 expanded, t=1.62s]
+Best heuristic value: 81/99 [g=6, 27 evaluated, 17 expanded, t=1.62s]
+Best heuristic value: 80/99 [g=6, 50 evaluated, 33 expanded, t=1.62s]
+Best heuristic value: 79/99 [g=7, 51 evaluated, 34 expanded, t=1.62s]
+Best heuristic value: 78/99 [g=8, 56 evaluated, 39 expanded, t=1.62s]
+Best heuristic value: 77/99 [g=9, 58 evaluated, 41 expanded, t=1.62s]
+Best heuristic value: 76/99 [g=9, 69 evaluated, 48 expanded, t=1.62s]
+Best heuristic value: 73/99 [g=11, 70 evaluated, 49 expanded, t=1.62s]
+Best heuristic value: 71/99 [g=13, 73 evaluated, 52 expanded, t=1.62s]
+Best heuristic value: 70/99 [g=14, 123 evaluated, 91 expanded, 10 reopened, t=1.63s]
+Best heuristic value: 69/99 [g=15, 125 evaluated, 93 expanded, 11 reopened, t=1.63s]
+Best heuristic value: 69/98 [g=15, 135 evaluated, 99 expanded, 12 reopened, t=1.63s]
+Best heuristic value: 69/92 [g=17, 138 evaluated, 102 expanded, 12 reopened, t=1.63s]
+Best heuristic value: 69/91 [g=15, 175 evaluated, 137 expanded, 21 reopened, t=1.63s]
+Best heuristic value: 69/85 [g=13, 198 evaluated, 156 expanded, 30 reopened, t=1.63s]
+Best heuristic value: 69/84 [g=15, 199 evaluated, 157 expanded, 30 reopened, t=1.63s]
+Best heuristic value: 69/83 [g=18, 235 evaluated, 190 expanded, 32 reopened, t=1.64s]
+Best heuristic value: 68/80 [g=20, 238 evaluated, 191 expanded, 32 reopened, t=1.64s]
+Best heuristic value: 66/80 [g=22, 240 evaluated, 193 expanded, 32 reopened, t=1.64s]
+Best heuristic value: 64/80 [g=25, 1099 evaluated, 859 expanded, 300 reopened, t=1.72s]
+Best heuristic value: 62/80 [g=26, 1100 evaluated, 860 expanded, 300 reopened, t=1.72s]
+Best heuristic value: 60/80 [g=28, 1102 evaluated, 862 expanded, 300 reopened, t=1.72s]
+Best heuristic value: 59/77 [g=33, 1164 evaluated, 906 expanded, 317 reopened, t=1.72s]
+Best heuristic value: 59/76 [g=35, 1168 evaluated, 909 expanded, 317 reopened, t=1.72s]
+Best heuristic value: 59/67 [g=31, 1201 evaluated, 933 expanded, 321 reopened, t=1.73s]
+Best heuristic value: 59/66 [g=33, 1203 evaluated, 935 expanded, 321 reopened, t=1.73s]
+Best heuristic value: 57/66 [g=33, 1204 evaluated, 936 expanded, 321 reopened, t=1.73s]
+Best heuristic value: 56/66 [g=36, 1228 evaluated, 954 expanded, 321 reopened, t=1.73s]
+Best heuristic value: 54/66 [g=38, 1259 evaluated, 977 expanded, 321 reopened, t=1.74s]
+Best heuristic value: 50/66 [g=43, 2173 evaluated, 1741 expanded, 674 reopened, t=1.83s]
+Best heuristic value: 50/64 [g=45, 2178 evaluated, 1744 expanded, 674 reopened, t=1.83s]
+Best heuristic value: 50/63 [g=45, 2180 evaluated, 1745 expanded, 674 reopened, t=1.83s]
+Best heuristic value: 50/62 [g=47, 2181 evaluated, 1746 expanded, 674 reopened, t=1.83s]
+Best heuristic value: 49/62 [g=44, 2274 evaluated, 1826 expanded, 700 reopened, t=1.84s]
+Best heuristic value: 49/57 [g=46, 2277 evaluated, 1829 expanded, 701 reopened, t=1.84s]
+Best heuristic value: 49/56 [g=48, 2279 evaluated, 1831 expanded, 701 reopened, t=1.84s]
+Best heuristic value: 49/55 [g=49, 2289 evaluated, 1841 expanded, 705 reopened, t=1.84s]
+Best heuristic value: 47/55 [g=48, 2292 evaluated, 1844 expanded, 706 reopened, t=1.84s]
+Best heuristic value: 46/53 [g=49, 2309 evaluated, 1859 expanded, 711 reopened, t=1.84s]
+Best heuristic value: 45/53 [g=50, 2311 evaluated, 1861 expanded, 712 reopened, t=1.84s]
+Best heuristic value: 45/52 [g=51, 2313 evaluated, 1863 expanded, 713 reopened, t=1.84s]
+Best heuristic value: 43/52 [g=51, 2314 evaluated, 1864 expanded, 713 reopened, t=1.84s]
+Best heuristic value: 42/52 [g=52, 2326 evaluated, 1874 expanded, 713 reopened, t=1.84s]
+Best heuristic value: 42/47 [g=52, 2327 evaluated, 1875 expanded, 713 reopened, t=1.84s]
+Best heuristic value: 42/46 [g=54, 2328 evaluated, 1876 expanded, 713 reopened, t=1.84s]
+Best heuristic value: 39/46 [g=55, 2337 evaluated, 1885 expanded, 713 reopened, t=1.84s]
+Best heuristic value: 36/46 [g=57, 2340 evaluated, 1888 expanded, 713 reopened, t=1.84s]
+Best heuristic value: 36/41 [g=64, 2569 evaluated, 2081 expanded, 778 reopened, t=1.86s]
+Best heuristic value: 36/40 [g=66, 2570 evaluated, 2082 expanded, 778 reopened, t=1.86s]
+Best heuristic value: 36/39 [g=68, 2575 evaluated, 2087 expanded, 779 reopened, t=1.86s]
+Best heuristic value: 33/38 [g=69, 2579 evaluated, 2091 expanded, 779 reopened, t=1.86s]
+Best heuristic value: 33/37 [g=71, 2581 evaluated, 2093 expanded, 779 reopened, t=1.86s]
+Best heuristic value: 33/36 [g=73, 2587 evaluated, 2099 expanded, 779 reopened, t=1.86s]
+Best heuristic value: 31/36 [g=73, 2588 evaluated, 2100 expanded, 779 reopened, t=1.87s]
+Best heuristic value: 31/35 [g=75, 2597 evaluated, 2109 expanded, 779 reopened, t=1.87s]
+Best heuristic value: 28/32 [g=75, 2598 evaluated, 2110 expanded, 779 reopened, t=1.87s]
+Best heuristic value: 28/31 [g=77, 2599 evaluated, 2111 expanded, 779 reopened, t=1.87s]
+Best heuristic value: 25/29 [g=79, 2603 evaluated, 2115 expanded, 779 reopened, t=1.87s]
+Best heuristic value: 23/29 [g=80, 2604 evaluated, 2116 expanded, 779 reopened, t=1.87s]
+Best heuristic value: 22/29 [g=81, 2605 evaluated, 2117 expanded, 779 reopened, t=1.87s]
+Best heuristic value: 22/28 [g=81, 2606 evaluated, 2118 expanded, 779 reopened, t=1.87s]
+Best heuristic value: 20/28 [g=82, 2609 evaluated, 2121 expanded, 779 reopened, t=1.87s]
+Best heuristic value: 18/28 [g=82, 2629 evaluated, 2141 expanded, 788 reopened, t=1.87s]
+Best heuristic value: 14/25 [g=85, 2702 evaluated, 2206 expanded, 807 reopened, t=1.88s]
+Best heuristic value: 14/23 [g=86, 2703 evaluated, 2207 expanded, 807 reopened, t=1.88s]
+Best heuristic value: 14/22 [g=88, 2705 evaluated, 2209 expanded, 807 reopened, t=1.88s]
+Best heuristic value: 14/21 [g=89, 2709 evaluated, 2213 expanded, 807 reopened, t=1.88s]
+Best heuristic value: 14/18 [g=91, 2711 evaluated, 2215 expanded, 807 reopened, t=1.88s]
+Best heuristic value: 14/17 [g=93, 2712 evaluated, 2216 expanded, 807 reopened, t=1.88s]
+Best heuristic value: 14/16 [g=95, 2719 evaluated, 2223 expanded, 809 reopened, t=1.88s]
+Best heuristic value: 12/12 [g=97, 2720 evaluated, 2224 expanded, 809 reopened, t=1.88s]
+Best heuristic value: 9/12 [g=100, 2723 evaluated, 2227 expanded, 809 reopened, t=1.88s]
+Best heuristic value: 9/9 [g=100, 2724 evaluated, 2228 expanded, 809 reopened, t=1.88s]
+Best heuristic value: 7/7 [g=101, 2725 evaluated, 2229 expanded, 809 reopened, t=1.88s]
+Best heuristic value: 4/4 [g=103, 2726 evaluated, 2230 expanded, 809 reopened, t=1.88s]
+Best heuristic value: 2/2 [g=103, 2921 evaluated, 2408 expanded, 944 reopened, t=1.9s]
+Completely explored state space -- no solution!
+Actual search time: 1.8s [t=3.42s]
+Initial state h value: 88/101.
+Expanded 12870 state(s).
+Reopened 7785 state(s).
+Evaluated 14176 state(s).
+Evaluations: 28352
+Generated 155246 state(s).
+Dead ends: 1306 state(s).
+Best solution cost so far: 104
+No solution found - keep searching
+Actual search time: 3.38s [t=3.42s]
+Cumulative statistics:
+Expanded 25378 state(s).
+Reopened 10798 state(s).
+Evaluated 29536 state(s).
+Evaluations: 59072
+Generated 309448 state(s).
+Dead ends: 0 state(s).
+Search time: 3.38s
+Total time: 3.42s
+Solution found.
+Peak memory: 17728 KB
