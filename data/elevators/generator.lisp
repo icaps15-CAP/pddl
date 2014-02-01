@@ -1,4 +1,4 @@
-(require :pddl.builder)
+;(require :pddl.builder)
 
 (in-package :pddl.builder)
 
@@ -116,48 +116,48 @@
   (format nil "~a-~a-~a-~a-~a.pddl"
           prefix floors passengers area-size num))
 
-(let ((floors 40) (area-size 10))
-  (iter (for passengers from 180 to 400 by 30)
-        (for i from 1)
-        (for path = (elevator-filename "xlarge" floors passengers area-size i))
-        (print path)
-        (with-open-file (s path
-                           :direction :output
-                           :if-does-not-exist :create
-                           :if-exists :supersede)
-          (print (elevator floors passengers area-size) s))))
+;; (let ((floors 40) (area-size 10))
+;;   (iter (for passengers from 180 to 400 by 30)
+;;         (for i from 1)
+;;         (for path = (elevator-filename "xlarge" floors passengers area-size i))
+;;         (print path)
+;;         (with-open-file (s path
+;;                            :direction :output
+;;                            :if-does-not-exist :create
+;;                            :if-exists :supersede)
+;;           (print (elevator floors passengers area-size) s))))
 
-(let ((floors 40) (area-size 10))
-  (iter (for passengers from 70 to 150 by 5)
-        (for i from 1)
-        (for path = (elevator-filename "large2" floors passengers area-size i))
-        (print path)
-        (with-open-file (s path
-                           :direction :output
-                           :if-does-not-exist :create
-                           :if-exists :supersede)
-          (print (elevator floors passengers area-size) s))))
+;; (let ((floors 40) (area-size 10))
+;;   (iter (for passengers from 70 to 150 by 5)
+;;         (for i from 1)
+;;         (for path = (elevator-filename "large2" floors passengers area-size i))
+;;         (print path)
+;;         (with-open-file (s path
+;;                            :direction :output
+;;                            :if-does-not-exist :create
+;;                            :if-exists :supersede)
+;;           (print (elevator floors passengers area-size) s))))
 
-(let ((floors 40) (area-size 10))
-  (iter (for passengers from 70 to 150 by 2)
-        (for i from 1)
-        (for path = (elevator-filename "large3" floors passengers area-size i))
-        (print path)
-        (with-open-file (s path
-                           :direction :output
-                           :if-does-not-exist :create
-                           :if-exists :supersede)
-          (print (elevator floors passengers area-size) s))))
+;; (let ((floors 40) (area-size 10))
+;;   (iter (for passengers from 70 to 150 by 2)
+;;         (for i from 1)
+;;         (for path = (elevator-filename "large3" floors passengers area-size i))
+;;         (print path)
+;;         (with-open-file (s path
+;;                            :direction :output
+;;                            :if-does-not-exist :create
+;;                            :if-exists :supersede)
+;;           (print (elevator floors passengers area-size) s))))
 
-(let ((floors 40) (area-size 10))
-  (iter (for passengers from 70 to 150 by 1)
-        (for i from 1)
-        (for path = (elevator-filename "large3" floors passengers area-size i))
-        (print path)
-        (with-open-file (s path
-                           :direction :output
-                           :if-does-not-exist :create
-                           :if-exists :supersede)
-          (print (elevator floors passengers area-size) s))))
+;; (let ((floors 40) (area-size 10))
+;;   (iter (for passengers from 70 to 150 by 1)
+;;         (for i from 1)
+;;         (for path = (elevator-filename "large3" floors passengers area-size i))
+;;         (print path)
+;;         (with-open-file (s path
+;;                            :direction :output
+;;                            :if-does-not-exist :create
+;;                            :if-exists :supersede)
+;;           (print (elevator floors passengers area-size) s))))
 
-(exit)
+;; (exit)

@@ -2,7 +2,9 @@
 (defpackage pddl.builder
   (:use :cl
 	:guicho-utilities
+        :cl-ppcre
         :optima
+        :optima.extra
 	:iterate
 	:alexandria
 	:guicho-a*)

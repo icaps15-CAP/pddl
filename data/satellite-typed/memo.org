@@ -1,1 +1,68 @@
 all IPC sat problems are solved: upto p36
+
+結局ジェネレータをつくることに。
+
+type -- satellite, mode, instruments, direction
+
+一つのsatelliteに2~3のinstruments, on_board で対応付け
+instruments 毎に 複数の mode, supports で対応付け
+
+10~100のdirection
+
+終了状態: pointing とhave_image
+
+
+デフォルトのデータは以下
+
+#+BEGIN_SRC lisp
+
+(analyze-all "./")
+
+((1 1 3 7)
+ (1 2 3 8)
+ (2 4 3 8)
+ (2 3 3 10)
+ (3 9 3 10)
+ (3 5 4 11)
+ (4 8 4 12)
+ (4 10 4 15)
+ (5 11 5 15)
+ (5 11 5 17)
+ (5 9 5 20)
+ (5 10 5 25)
+ (5 9 5 30)
+ (6 12 5 25)
+ (8 19 5 25)
+ (10 23 5 25)
+ (12 24 5 25)
+ (5 13 5 25)
+ (5 25 8 25)
+ (5 29 10 25)
+ (5 11 3 43)
+ (5 10 3 53)
+ (7 18 3 53)
+ (7 15 3 73)
+ (8 17 3 73)
+ (8 20 4 74)
+ (10 17 4 75)
+ (10 24 4 105)
+ (15 28 5 105)
+ (15 31 5 125)
+ (15 30 5 155)
+ (15 30 5 205)
+ (15 35 5 255)
+ (5 7 5 205)
+ (8 16 5 205)
+ (10 23 5 205))
+#+END_SRC
+
+順に、satellite, instruments, modes, directions(+stations)
+
+20,40,10,260から初めて、
+
+satelliteを2ずつ上げる
+instruments は satellite の 2~3倍
+modes は 0.3ずつ上げて切り捨て
+stationsは 5で固定
+directionsは 15ずつ上げる
+ 
