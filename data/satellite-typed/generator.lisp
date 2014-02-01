@@ -80,11 +80,11 @@
 
 (defun write-satellites (&optional (prefix "large"))
   (iter (for n from 1 to 20)
-        (for satellites from 20)
+        (for satellites from 5)
         (for instruments = (floor (* satellites (+ 2 (random 1.0)))))
         (for modes = (+ 10 (floor (* 0.3 n))))
         (for stations = 5)
-        (for directions = (+ 250 (floor (* 10 (expt 2 (/ (1- n) 3))))))
+        (for directions = (+ 150 (floor (* 10 (expt 2 (/ (1- n) 3))))))
         (for path = (format nil "~a-~a-~a-~a-~a-~a-~a.pddl"
                             prefix
                             satellites
