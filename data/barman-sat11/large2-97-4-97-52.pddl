@@ -1,4 +1,4 @@
-(define (problem prob)
+(define (problem barman-large2-97-4-97-52)
  (:domain barman)
  (:objects 
      shaker1 - shaker

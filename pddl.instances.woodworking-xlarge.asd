@@ -1,4 +1,4 @@
-(defsystem pddl.instances.woodworking-large
+(defsystem pddl.instances.woodworking-xlarge
   :author "guicho"
   :license "LLGPL"
   :depends-on (:pddl.instances)
