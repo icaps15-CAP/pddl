@@ -1,0 +1,49 @@
+Parsing... [0.020s CPU, 0.013s wall-clock]
+Normalizing task... [0.000s CPU, 0.001s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.008s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.010s CPU, 0.005s wall-clock]
+Preparing model... [0.020s CPU, 0.024s wall-clock]
+Generated 31 rules.
+Computing model... [282.420s CPU, 282.418s wall-clock]
+4537332 relevant atoms
+30527 auxiliary atoms
+4567859 final queue length
+9070926 total queue pushes
+Completing instantiation... [802.110s CPU, 802.093s wall-clock]
+Instantiating: [1102.640s CPU, 1102.610s wall-clock]
+Computing fact groups...
+Finding invariants...
+12 initial candidates
+Finding invariants: [4.320s CPU, 4.319s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.001s wall-clock]
+Instantiating groups... [0.070s CPU, 0.067s wall-clock]
+Collecting mutex groups... [0.060s CPU, 0.060s wall-clock]
+Choosing groups...
+6764 uncovered facts
+Choosing groups: [0.130s CPU, 0.128s wall-clock]
+Building translation key... [0.070s CPU, 0.070s wall-clock]
+Computing fact groups: [4.960s CPU, 4.963s wall-clock]
+Building STRIPS to SAS dictionary... [0.080s CPU, 0.077s wall-clock]
+Building dictionary for full mutex groups... [0.060s CPU, 0.061s wall-clock]
+Building mutex information...
+Building mutex information: [0.080s CPU, 0.075s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [53.010s CPU, 53.016s wall-clock]
+Traceback (most recent call last):
+  File "/home/asai/repos/downward/src/translate/translate.py", line 665, in <module>
+    main()
+  File "/home/asai/repos/downward/src/translate/translate.py", line 655, in main
+    sas_task = pddl_to_sas(task)
+  File "/home/asai/repos/downward/src/translate/translate.py", line 518, in pddl_to_sas
+    implied_facts)
+  File "/home/asai/repos/downward/src/translate/translate.py", line 456, in translate_task
+    operators, axioms, metric)
+  File "/home/asai/repos/downward/src/translate/sas_tasks.py", line 13, in __init__
+    self.operators = sorted(operators, key=lambda op: (op.name, op.prevail, op.pre_post))
+  File "/home/asai/repos/downward/src/translate/sas_tasks.py", line 13, in <lambda>
+    self.operators = sorted(operators, key=lambda op: (op.name, op.prevail, op.pre_post))
+MemoryError

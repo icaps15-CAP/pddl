@@ -1,0 +1,766 @@
+Dispatcher selected state size 1.
+This is a unit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 37.4108s
+Discovered 537 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+1019 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+190 initial landmarks, 164 goal landmarks
+Starting search: lazy_greedy(list(hff, hlm), preferred = list(hff, hlm))
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 347/347 [g=0, 1 evaluated, 0 expanded, t=39.9s]
+Best heuristic value: 346/346 [g=1, 2 evaluated, 1 expanded, t=39.92s]
+Best heuristic value: 345/345 [g=2, 3 evaluated, 2 expanded, t=39.95s]
+Best heuristic value: 344/344 [g=3, 27 evaluated, 26 expanded, t=40.58s]
+Best heuristic value: 343/343 [g=4, 65 evaluated, 64 expanded, t=41.58s]
+Best heuristic value: 342/342 [g=5, 172 evaluated, 171 expanded, t=44.4s]
+Best heuristic value: 341/341 [g=6, 293 evaluated, 292 expanded, t=47.58s]
+Best heuristic value: 340/340 [g=7, 453 evaluated, 452 expanded, t=51.8s]
+Best heuristic value: 339/339 [g=8, 613 evaluated, 612 expanded, t=56.01s]
+Best heuristic value: 338/338 [g=10, 3701 evaluated, 3700 expanded, t=137.41s]
+Best heuristic value: 337/337 [g=11, 3702 evaluated, 3701 expanded, t=137.44s]
+Best heuristic value: 336/336 [g=13, 6633 evaluated, 6632 expanded, t=214.78s]
+Best heuristic value: 335/335 [g=14, 6634 evaluated, 6633 expanded, t=214.81s]
+Best heuristic value: 334/334 [g=16, 9541 evaluated, 9540 expanded, t=291.54s]
+Best heuristic value: 333/333 [g=17, 9542 evaluated, 9541 expanded, t=291.57s]
+Best heuristic value: 332/332 [g=19, 14047 evaluated, 14046 expanded, t=410.64s]
+Best heuristic value: 331/331 [g=20, 14048 evaluated, 14047 expanded, t=410.66s]
+Best heuristic value: 330/330 [g=22, 18561 evaluated, 18560 expanded, t=529.98s]
+Best heuristic value: 329/329 [g=23, 18562 evaluated, 18561 expanded, t=530.01s]
+Best heuristic value: 328/328 [g=25, 23029 evaluated, 23028 expanded, t=648.14s]
+Best heuristic value: 327/327 [g=26, 23030 evaluated, 23029 expanded, t=648.16s]
+Best heuristic value: 326/326 [g=28, 27451 evaluated, 27450 expanded, t=765.2s]
+Best heuristic value: 325/325 [g=29, 27452 evaluated, 27451 expanded, t=765.22s]
+Best heuristic value: 324/324 [g=31, 31827 evaluated, 31826 expanded, t=881s]
+Best heuristic value: 323/323 [g=32, 31828 evaluated, 31827 expanded, t=881.03s]
+Best heuristic value: 322/322 [g=34, 36157 evaluated, 36156 expanded, t=995.6s]
+Best heuristic value: 321/321 [g=35, 36158 evaluated, 36157 expanded, t=995.63s]
+Best heuristic value: 320/320 [g=37, 40441 evaluated, 40440 expanded, t=1108.99s]
+Best heuristic value: 319/319 [g=38, 40442 evaluated, 40441 expanded, t=1109.01s]
+Best heuristic value: 318/318 [g=40, 44679 evaluated, 44678 expanded, t=1221.2s]
+Best heuristic value: 317/317 [g=41, 44680 evaluated, 44679 expanded, t=1221.23s]
+Best heuristic value: 316/316 [g=43, 48871 evaluated, 48870 expanded, t=1332.24s]
+Best heuristic value: 315/315 [g=44, 48872 evaluated, 48871 expanded, t=1332.27s]
+Best heuristic value: 314/314 [g=46, 53017 evaluated, 53016 expanded, t=1442.17s]
+Best heuristic value: 313/313 [g=47, 53018 evaluated, 53017 expanded, t=1442.19s]
+Best heuristic value: 312/312 [g=49, 71000 evaluated, 70999 expanded, t=1918.66s]
+Best heuristic value: 311/311 [g=50, 71001 evaluated, 71000 expanded, t=1918.69s]
+Best heuristic value: 310/310 [g=52, 88719 evaluated, 88718 expanded, t=2388.38s]
+Best heuristic value: 309/309 [g=53, 88720 evaluated, 88719 expanded, t=2388.41s]
+Best heuristic value: 308/308 [g=55, 106263 evaluated, 106262 expanded, t=2853.82s]
+Best heuristic value: 307/307 [g=56, 106264 evaluated, 106263 expanded, t=2853.84s]
+Best heuristic value: 306/306 [g=58, 123632 evaluated, 123631 expanded, t=3314.5s]
+Best heuristic value: 305/305 [g=59, 123633 evaluated, 123632 expanded, t=3314.53s]
+Best heuristic value: 304/304 [g=61, 140826 evaluated, 140825 expanded, t=3770.64s]
+Best heuristic value: 303/303 [g=62, 140827 evaluated, 140826 expanded, t=3770.67s]
+Best heuristic value: 302/302 [g=64, 157845 evaluated, 157844 expanded, t=4222.18s]
+Best heuristic value: 301/301 [g=65, 157846 evaluated, 157845 expanded, t=4222.21s]
+Best heuristic value: 300/300 [g=67, 174706 evaluated, 174705 expanded, t=4669.79s]
+Best heuristic value: 299/299 [g=68, 174707 evaluated, 174706 expanded, t=4669.82s]
+Best heuristic value: 298/298 [g=70, 191485 evaluated, 191484 expanded, t=5115.22s]
+Best heuristic value: 297/297 [g=71, 191486 evaluated, 191485 expanded, t=5115.25s]
+Best heuristic value: 296/296 [g=73, 208127 evaluated, 208126 expanded, t=5557.53s]
+Best heuristic value: 295/295 [g=74, 208128 evaluated, 208127 expanded, t=5557.56s]
+Best heuristic value: 294/294 [g=76, 224593 evaluated, 224592 expanded, t=5994.73s]
+Best heuristic value: 293/293 [g=77, 224594 evaluated, 224593 expanded, t=5994.76s]
+Best heuristic value: 292/292 [g=79, 240959 evaluated, 240958 expanded, t=6429.34s]
+Best heuristic value: 291/291 [g=80, 240960 evaluated, 240959 expanded, t=6429.37s]
+Best heuristic value: 290/290 [g=82, 257190 evaluated, 257189 expanded, t=6860.37s]
+Best heuristic value: 289/289 [g=83, 257191 evaluated, 257190 expanded, t=6860.4s]
+Best heuristic value: 288/288 [g=85, 273245 evaluated, 273244 expanded, t=7286.82s]
+Best heuristic value: 287/287 [g=86, 273246 evaluated, 273245 expanded, t=7286.84s]
+Best heuristic value: 286/286 [g=88, 289124 evaluated, 289123 expanded, t=7708.6s]
+Best heuristic value: 285/285 [g=89, 289125 evaluated, 289124 expanded, t=7708.63s]
+Best heuristic value: 284/284 [g=91, 304827 evaluated, 304826 expanded, t=8125.79s]
+Best heuristic value: 283/283 [g=92, 304921 evaluated, 304920 expanded, t=8128.29s]
+Best heuristic value: 282/282 [g=93, 305015 evaluated, 305014 expanded, t=8130.79s]
+Best heuristic value: 281/281 [g=94, 305109 evaluated, 305108 expanded, t=8133.28s]
+Best heuristic value: 280/280 [g=95, 305203 evaluated, 305202 expanded, t=8135.78s]
+Best heuristic value: 279/279 [g=96, 305297 evaluated, 305296 expanded, t=8138.29s]
+Best heuristic value: 278/278 [g=97, 305391 evaluated, 305390 expanded, t=8140.78s]
+Best heuristic value: 277/277 [g=98, 305485 evaluated, 305484 expanded, t=8143.28s]
+Best heuristic value: 276/276 [g=99, 305579 evaluated, 305578 expanded, t=8145.78s]
+Best heuristic value: 275/275 [g=100, 305673 evaluated, 305672 expanded, t=8148.27s]
+Best heuristic value: 274/274 [g=101, 305767 evaluated, 305766 expanded, t=8150.77s]
+Best heuristic value: 273/273 [g=102, 305861 evaluated, 305860 expanded, t=8153.27s]
+Best heuristic value: 272/272 [g=103, 305955 evaluated, 305954 expanded, t=8155.77s]
+Best heuristic value: 271/271 [g=104, 306049 evaluated, 306048 expanded, t=8158.26s]
+Best heuristic value: 270/270 [g=105, 306143 evaluated, 306142 expanded, t=8160.77s]
+Best heuristic value: 269/269 [g=106, 306237 evaluated, 306236 expanded, t=8163.26s]
+Best heuristic value: 268/268 [g=107, 306331 evaluated, 306330 expanded, t=8165.76s]
+Best heuristic value: 267/267 [g=108, 306425 evaluated, 306424 expanded, t=8168.25s]
+Best heuristic value: 266/266 [g=109, 306519 evaluated, 306518 expanded, t=8170.76s]
+Best heuristic value: 265/265 [g=110, 306613 evaluated, 306612 expanded, t=8173.25s]
+Best heuristic value: 264/264 [g=111, 306707 evaluated, 306706 expanded, t=8175.75s]
+Best heuristic value: 263/263 [g=112, 306801 evaluated, 306800 expanded, t=8178.25s]
+Best heuristic value: 262/262 [g=113, 306895 evaluated, 306894 expanded, t=8180.74s]
+Best heuristic value: 261/261 [g=114, 306989 evaluated, 306988 expanded, t=8183.24s]
+Best heuristic value: 260/260 [g=115, 307083 evaluated, 307082 expanded, t=8185.74s]
+Best heuristic value: 259/259 [g=116, 307177 evaluated, 307176 expanded, t=8188.24s]
+Best heuristic value: 258/258 [g=117, 307271 evaluated, 307270 expanded, t=8190.74s]
+Best heuristic value: 257/257 [g=118, 307365 evaluated, 307364 expanded, t=8193.24s]
+Best heuristic value: 256/256 [g=119, 307459 evaluated, 307458 expanded, t=8195.73s]
+Best heuristic value: 255/255 [g=120, 307553 evaluated, 307552 expanded, t=8198.23s]
+Best heuristic value: 254/254 [g=121, 307647 evaluated, 307646 expanded, t=8200.72s]
+Best heuristic value: 253/253 [g=122, 307741 evaluated, 307740 expanded, t=8203.22s]
+Best heuristic value: 252/252 [g=123, 307835 evaluated, 307834 expanded, t=8205.72s]
+Best heuristic value: 251/251 [g=124, 307929 evaluated, 307928 expanded, t=8208.23s]
+Best heuristic value: 250/250 [g=125, 308023 evaluated, 308022 expanded, t=8210.72s]
+Best heuristic value: 249/249 [g=126, 308117 evaluated, 308116 expanded, t=8213.22s]
+Best heuristic value: 248/248 [g=127, 308211 evaluated, 308210 expanded, t=8215.72s]
+Best heuristic value: 247/247 [g=128, 308305 evaluated, 308304 expanded, t=8218.22s]
+Best heuristic value: 246/246 [g=129, 308399 evaluated, 308398 expanded, t=8220.71s]
+Best heuristic value: 245/245 [g=130, 308493 evaluated, 308492 expanded, t=8223.22s]
+Best heuristic value: 244/244 [g=131, 308587 evaluated, 308586 expanded, t=8225.71s]
+Best heuristic value: 243/243 [g=132, 308681 evaluated, 308680 expanded, t=8228.21s]
+Best heuristic value: 242/242 [g=133, 308775 evaluated, 308774 expanded, t=8230.72s]
+Best heuristic value: 241/241 [g=134, 308869 evaluated, 308868 expanded, t=8233.21s]
+Best heuristic value: 240/240 [g=135, 308963 evaluated, 308962 expanded, t=8235.7s]
+Best heuristic value: 239/239 [g=136, 309057 evaluated, 309056 expanded, t=8238.2s]
+Best heuristic value: 238/238 [g=137, 309151 evaluated, 309150 expanded, t=8240.7s]
+Best heuristic value: 237/237 [g=138, 309245 evaluated, 309244 expanded, t=8243.2s]
+Best heuristic value: 236/236 [g=139, 309339 evaluated, 309338 expanded, t=8245.71s]
+Best heuristic value: 235/235 [g=140, 309433 evaluated, 309432 expanded, t=8248.2s]
+Best heuristic value: 234/234 [g=141, 309527 evaluated, 309526 expanded, t=8250.7s]
+Best heuristic value: 233/233 [g=142, 309621 evaluated, 309620 expanded, t=8253.2s]
+Best heuristic value: 232/232 [g=143, 309715 evaluated, 309714 expanded, t=8255.7s]
+Best heuristic value: 231/231 [g=144, 309809 evaluated, 309808 expanded, t=8258.2s]
+Best heuristic value: 230/230 [g=145, 309903 evaluated, 309902 expanded, t=8260.7s]
+Best heuristic value: 229/229 [g=146, 309997 evaluated, 309996 expanded, t=8263.2s]
+Best heuristic value: 228/228 [g=147, 310091 evaluated, 310090 expanded, t=8265.7s]
+Best heuristic value: 227/227 [g=148, 310185 evaluated, 310184 expanded, t=8268.2s]
+Best heuristic value: 226/226 [g=149, 310279 evaluated, 310278 expanded, t=8270.7s]
+Best heuristic value: 225/225 [g=150, 310373 evaluated, 310372 expanded, t=8273.2s]
+Best heuristic value: 224/224 [g=151, 310467 evaluated, 310466 expanded, t=8275.7s]
+Best heuristic value: 223/223 [g=152, 310561 evaluated, 310560 expanded, t=8278.19s]
+Best heuristic value: 222/222 [g=153, 310655 evaluated, 310654 expanded, t=8280.69s]
+Best heuristic value: 221/221 [g=154, 310749 evaluated, 310748 expanded, t=8283.19s]
+Best heuristic value: 220/220 [g=155, 310843 evaluated, 310842 expanded, t=8285.69s]
+Best heuristic value: 219/219 [g=156, 310937 evaluated, 310936 expanded, t=8288.19s]
+Best heuristic value: 218/218 [g=157, 311031 evaluated, 311030 expanded, t=8290.68s]
+Best heuristic value: 217/217 [g=158, 311125 evaluated, 311124 expanded, t=8293.18s]
+Best heuristic value: 216/216 [g=159, 311219 evaluated, 311218 expanded, t=8295.69s]
+Best heuristic value: 215/215 [g=160, 311313 evaluated, 311312 expanded, t=8298.19s]
+Best heuristic value: 214/214 [g=161, 311407 evaluated, 311406 expanded, t=8300.69s]
+Best heuristic value: 213/213 [g=162, 311501 evaluated, 311500 expanded, t=8303.19s]
+Best heuristic value: 212/212 [g=163, 311595 evaluated, 311594 expanded, t=8305.69s]
+Best heuristic value: 211/211 [g=164, 311689 evaluated, 311688 expanded, t=8308.19s]
+Best heuristic value: 210/210 [g=165, 311783 evaluated, 311782 expanded, t=8310.69s]
+Best heuristic value: 209/209 [g=166, 311877 evaluated, 311876 expanded, t=8313.18s]
+Best heuristic value: 208/208 [g=167, 311971 evaluated, 311970 expanded, t=8315.69s]
+Best heuristic value: 207/207 [g=168, 312065 evaluated, 312064 expanded, t=8318.19s]
+Best heuristic value: 206/206 [g=169, 312159 evaluated, 312158 expanded, t=8320.68s]
+Best heuristic value: 205/205 [g=171, 315513 evaluated, 315512 expanded, t=8409.95s]
+Best heuristic value: 204/204 [g=172, 315607 evaluated, 315606 expanded, t=8412.45s]
+Best heuristic value: 203/203 [g=173, 315701 evaluated, 315700 expanded, t=8414.95s]
+Best heuristic value: 202/202 [g=174, 315795 evaluated, 315794 expanded, t=8417.46s]
+Best heuristic value: 201/201 [g=175, 315889 evaluated, 315888 expanded, t=8419.96s]
+Best heuristic value: 200/200 [g=176, 315983 evaluated, 315982 expanded, t=8422.46s]
+Best heuristic value: 199/199 [g=177, 316077 evaluated, 316076 expanded, t=8424.95s]
+Best heuristic value: 198/198 [g=178, 316171 evaluated, 316170 expanded, t=8427.46s]
+Best heuristic value: 197/197 [g=179, 316265 evaluated, 316264 expanded, t=8429.97s]
+Best heuristic value: 196/196 [g=180, 316359 evaluated, 316358 expanded, t=8432.47s]
+Best heuristic value: 195/195 [g=181, 316453 evaluated, 316452 expanded, t=8434.97s]
+Best heuristic value: 194/194 [g=182, 316547 evaluated, 316546 expanded, t=8437.47s]
+Best heuristic value: 193/193 [g=183, 316641 evaluated, 316640 expanded, t=8439.97s]
+Best heuristic value: 192/192 [g=184, 316735 evaluated, 316734 expanded, t=8442.47s]
+Best heuristic value: 191/191 [g=185, 316829 evaluated, 316828 expanded, t=8444.97s]
+Best heuristic value: 190/190 [g=186, 316923 evaluated, 316922 expanded, t=8447.48s]
+Best heuristic value: 189/189 [g=187, 317017 evaluated, 317016 expanded, t=8449.97s]
+Best heuristic value: 188/188 [g=188, 317111 evaluated, 317110 expanded, t=8452.48s]
+Best heuristic value: 187/187 [g=189, 317205 evaluated, 317204 expanded, t=8454.98s]
+Best heuristic value: 186/186 [g=190, 317299 evaluated, 317298 expanded, t=8457.48s]
+Best heuristic value: 185/185 [g=191, 317393 evaluated, 317392 expanded, t=8459.98s]
+Best heuristic value: 184/184 [g=194, 319849 evaluated, 319848 expanded, t=8525.4s]
+Best heuristic value: 183/183 [g=195, 319850 evaluated, 319849 expanded, t=8525.43s]
+Best heuristic value: 182/182 [g=196, 319851 evaluated, 319850 expanded, t=8525.46s]
+Best heuristic value: 181/181 [g=197, 319852 evaluated, 319851 expanded, t=8525.48s]
+Best heuristic value: 180/180 [g=198, 319853 evaluated, 319852 expanded, t=8525.51s]
+Best heuristic value: 179/179 [g=199, 319854 evaluated, 319853 expanded, t=8525.54s]
+Best heuristic value: 178/178 [g=200, 319855 evaluated, 319854 expanded, t=8525.56s]
+Best heuristic value: 177/177 [g=201, 319856 evaluated, 319855 expanded, t=8525.59s]
+Best heuristic value: 176/176 [g=202, 319857 evaluated, 319856 expanded, t=8525.62s]
+Best heuristic value: 175/175 [g=203, 319858 evaluated, 319857 expanded, t=8525.64s]
+Best heuristic value: 174/174 [g=204, 319859 evaluated, 319858 expanded, t=8525.67s]
+Best heuristic value: 173/173 [g=205, 319860 evaluated, 319859 expanded, t=8525.7s]
+Best heuristic value: 172/172 [g=206, 319861 evaluated, 319860 expanded, t=8525.72s]
+Best heuristic value: 171/171 [g=207, 319862 evaluated, 319861 expanded, t=8525.75s]
+Best heuristic value: 170/170 [g=208, 319863 evaluated, 319862 expanded, t=8525.78s]
+Best heuristic value: 169/169 [g=209, 319864 evaluated, 319863 expanded, t=8525.8s]
+Best heuristic value: 168/168 [g=210, 319865 evaluated, 319864 expanded, t=8525.83s]
+Best heuristic value: 167/167 [g=211, 319866 evaluated, 319865 expanded, t=8525.86s]
+Best heuristic value: 166/166 [g=212, 319867 evaluated, 319866 expanded, t=8525.88s]
+Best heuristic value: 165/165 [g=213, 319868 evaluated, 319867 expanded, t=8525.91s]
+Best heuristic value: 164/164 [g=214, 319869 evaluated, 319868 expanded, t=8525.94s]
+Best heuristic value: 163/163 [g=215, 319870 evaluated, 319869 expanded, t=8525.96s]
+Best heuristic value: 162/162 [g=216, 319871 evaluated, 319870 expanded, t=8525.99s]
+Best heuristic value: 161/161 [g=217, 319872 evaluated, 319871 expanded, t=8526.02s]
+Best heuristic value: 160/160 [g=218, 319873 evaluated, 319872 expanded, t=8526.04s]
+Best heuristic value: 159/159 [g=219, 319874 evaluated, 319873 expanded, t=8526.07s]
+Best heuristic value: 158/158 [g=220, 319875 evaluated, 319874 expanded, t=8526.1s]
+Best heuristic value: 157/157 [g=221, 319876 evaluated, 319875 expanded, t=8526.12s]
+Best heuristic value: 156/156 [g=222, 319877 evaluated, 319876 expanded, t=8526.15s]
+Best heuristic value: 155/155 [g=223, 319878 evaluated, 319877 expanded, t=8526.18s]
+Best heuristic value: 154/154 [g=224, 319879 evaluated, 319878 expanded, t=8526.21s]
+Best heuristic value: 153/153 [g=225, 319880 evaluated, 319879 expanded, t=8526.24s]
+Best heuristic value: 152/152 [g=226, 319881 evaluated, 319880 expanded, t=8526.26s]
+Best heuristic value: 151/151 [g=227, 319882 evaluated, 319881 expanded, t=8526.29s]
+Best heuristic value: 150/150 [g=228, 319883 evaluated, 319882 expanded, t=8526.32s]
+Best heuristic value: 149/149 [g=229, 319884 evaluated, 319883 expanded, t=8526.34s]
+Best heuristic value: 148/148 [g=230, 319885 evaluated, 319884 expanded, t=8526.37s]
+Best heuristic value: 147/147 [g=231, 319886 evaluated, 319885 expanded, t=8526.39s]
+Best heuristic value: 146/146 [g=232, 319887 evaluated, 319886 expanded, t=8526.42s]
+Best heuristic value: 145/145 [g=233, 319888 evaluated, 319887 expanded, t=8526.45s]
+Best heuristic value: 144/144 [g=234, 319889 evaluated, 319888 expanded, t=8526.47s]
+Best heuristic value: 143/143 [g=235, 319890 evaluated, 319889 expanded, t=8526.5s]
+Best heuristic value: 142/142 [g=236, 319891 evaluated, 319890 expanded, t=8526.53s]
+Best heuristic value: 141/141 [g=237, 319921 evaluated, 319920 expanded, t=8527.33s]
+Best heuristic value: 140/140 [g=238, 319951 evaluated, 319950 expanded, t=8528.13s]
+Best heuristic value: 139/139 [g=239, 319981 evaluated, 319980 expanded, t=8528.93s]
+Best heuristic value: 138/138 [g=241, 320902 evaluated, 320901 expanded, t=8553.49s]
+Best heuristic value: 137/137 [g=242, 320932 evaluated, 320931 expanded, t=8554.3s]
+Best heuristic value: 136/136 [g=243, 320962 evaluated, 320961 expanded, t=8555.1s]
+Best heuristic value: 135/135 [g=244, 320992 evaluated, 320991 expanded, t=8555.89s]
+Best heuristic value: 134/134 [g=245, 321022 evaluated, 321021 expanded, t=8556.69s]
+Best heuristic value: 133/133 [g=246, 321052 evaluated, 321051 expanded, t=8557.49s]
+Best heuristic value: 132/132 [g=247, 321082 evaluated, 321081 expanded, t=8558.29s]
+Best heuristic value: 131/131 [g=248, 321112 evaluated, 321111 expanded, t=8559.09s]
+Best heuristic value: 130/130 [g=249, 321142 evaluated, 321141 expanded, t=8559.89s]
+Best heuristic value: 129/129 [g=250, 321172 evaluated, 321171 expanded, t=8560.69s]
+Best heuristic value: 128/128 [g=251, 321202 evaluated, 321201 expanded, t=8561.49s]
+Best heuristic value: 127/127 [g=252, 321232 evaluated, 321231 expanded, t=8562.3s]
+Best heuristic value: 126/126 [g=253, 321262 evaluated, 321261 expanded, t=8563.1s]
+Best heuristic value: 125/125 [g=254, 321292 evaluated, 321291 expanded, t=8563.89s]
+Best heuristic value: 124/124 [g=255, 321322 evaluated, 321321 expanded, t=8564.69s]
+Best heuristic value: 123/123 [g=256, 321352 evaluated, 321351 expanded, t=8565.49s]
+Best heuristic value: 122/122 [g=257, 321382 evaluated, 321381 expanded, t=8566.29s]
+Best heuristic value: 121/121 [g=258, 321412 evaluated, 321411 expanded, t=8567.09s]
+Best heuristic value: 120/120 [g=259, 321442 evaluated, 321441 expanded, t=8567.89s]
+Best heuristic value: 119/119 [g=260, 321472 evaluated, 321471 expanded, t=8568.69s]
+Best heuristic value: 118/118 [g=261, 321502 evaluated, 321501 expanded, t=8569.49s]
+Best heuristic value: 117/117 [g=262, 321532 evaluated, 321531 expanded, t=8570.29s]
+Best heuristic value: 116/116 [g=263, 321562 evaluated, 321561 expanded, t=8571.09s]
+Best heuristic value: 115/115 [g=264, 321592 evaluated, 321591 expanded, t=8571.89s]
+Best heuristic value: 114/114 [g=265, 321622 evaluated, 321621 expanded, t=8572.69s]
+Best heuristic value: 113/113 [g=266, 321652 evaluated, 321651 expanded, t=8573.5s]
+Best heuristic value: 112/112 [g=267, 321682 evaluated, 321681 expanded, t=8574.3s]
+Best heuristic value: 111/111 [g=268, 321712 evaluated, 321711 expanded, t=8575.1s]
+Best heuristic value: 110/110 [g=269, 321742 evaluated, 321741 expanded, t=8575.9s]
+Best heuristic value: 109/109 [g=270, 321772 evaluated, 321771 expanded, t=8576.69s]
+Best heuristic value: 108/108 [g=271, 321802 evaluated, 321801 expanded, t=8577.5s]
+Best heuristic value: 107/107 [g=272, 321832 evaluated, 321831 expanded, t=8578.3s]
+Best heuristic value: 106/106 [g=273, 321862 evaluated, 321861 expanded, t=8579.1s]
+Best heuristic value: 105/105 [g=274, 321892 evaluated, 321891 expanded, t=8579.89s]
+Best heuristic value: 104/104 [g=275, 321922 evaluated, 321921 expanded, t=8580.7s]
+Best heuristic value: 103/103 [g=276, 321952 evaluated, 321951 expanded, t=8581.5s]
+Best heuristic value: 102/102 [g=277, 321982 evaluated, 321981 expanded, t=8582.3s]
+Best heuristic value: 101/101 [g=278, 322012 evaluated, 322011 expanded, t=8583.1s]
+Best heuristic value: 100/100 [g=279, 322042 evaluated, 322041 expanded, t=8583.9s]
+Best heuristic value: 99/99 [g=280, 322072 evaluated, 322071 expanded, t=8584.7s]
+Best heuristic value: 98/98 [g=281, 322102 evaluated, 322101 expanded, t=8585.5s]
+Best heuristic value: 97/97 [g=282, 322132 evaluated, 322131 expanded, t=8586.3s]
+Best heuristic value: 96/96 [g=283, 322162 evaluated, 322161 expanded, t=8587.1s]
+Best heuristic value: 95/95 [g=284, 322192 evaluated, 322191 expanded, t=8587.91s]
+Best heuristic value: 94/94 [g=285, 322222 evaluated, 322221 expanded, t=8588.7s]
+Best heuristic value: 93/93 [g=286, 322252 evaluated, 322251 expanded, t=8589.51s]
+Best heuristic value: 92/92 [g=287, 322282 evaluated, 322281 expanded, t=8590.31s]
+Best heuristic value: 91/91 [g=288, 322312 evaluated, 322311 expanded, t=8591.11s]
+Best heuristic value: 90/90 [g=289, 322342 evaluated, 322341 expanded, t=8591.91s]
+Best heuristic value: 89/89 [g=290, 322372 evaluated, 322371 expanded, t=8592.71s]
+Best heuristic value: 88/88 [g=291, 322402 evaluated, 322401 expanded, t=8593.51s]
+Best heuristic value: 87/87 [g=292, 322432 evaluated, 322431 expanded, t=8594.31s]
+Best heuristic value: 86/86 [g=293, 322462 evaluated, 322461 expanded, t=8595.11s]
+Best heuristic value: 85/85 [g=294, 322492 evaluated, 322491 expanded, t=8595.91s]
+Best heuristic value: 84/84 [g=295, 322522 evaluated, 322521 expanded, t=8596.71s]
+Best heuristic value: 83/83 [g=298, 322645 evaluated, 322644 expanded, t=8600s]
+Best heuristic value: 82/82 [g=300, 322687 evaluated, 322686 expanded, t=8601.13s]
+Best heuristic value: 81/81 [g=301, 322688 evaluated, 322687 expanded, t=8601.15s]
+Best heuristic value: 80/80 [g=302, 322689 evaluated, 322688 expanded, t=8601.18s]
+Best heuristic value: 79/79 [g=303, 322690 evaluated, 322689 expanded, t=8601.21s]
+Best heuristic value: 78/78 [g=304, 322691 evaluated, 322690 expanded, t=8601.23s]
+Best heuristic value: 77/77 [g=305, 322692 evaluated, 322691 expanded, t=8601.26s]
+Best heuristic value: 76/76 [g=306, 322693 evaluated, 322692 expanded, t=8601.29s]
+Best heuristic value: 75/75 [g=307, 322694 evaluated, 322693 expanded, t=8601.31s]
+Best heuristic value: 74/74 [g=308, 322695 evaluated, 322694 expanded, t=8601.34s]
+Best heuristic value: 73/73 [g=309, 322696 evaluated, 322695 expanded, t=8601.37s]
+Best heuristic value: 72/72 [g=310, 322697 evaluated, 322696 expanded, t=8601.39s]
+Best heuristic value: 71/71 [g=311, 322698 evaluated, 322697 expanded, t=8601.42s]
+Best heuristic value: 70/70 [g=312, 322699 evaluated, 322698 expanded, t=8601.45s]
+Best heuristic value: 69/69 [g=313, 322700 evaluated, 322699 expanded, t=8601.47s]
+Best heuristic value: 68/68 [g=314, 322701 evaluated, 322700 expanded, t=8601.5s]
+Best heuristic value: 67/67 [g=315, 322702 evaluated, 322701 expanded, t=8601.53s]
+Best heuristic value: 66/66 [g=316, 322703 evaluated, 322702 expanded, t=8601.55s]
+Best heuristic value: 65/65 [g=317, 322704 evaluated, 322703 expanded, t=8601.58s]
+Best heuristic value: 64/64 [g=318, 322705 evaluated, 322704 expanded, t=8601.61s]
+Best heuristic value: 63/63 [g=319, 322706 evaluated, 322705 expanded, t=8601.63s]
+Best heuristic value: 62/62 [g=320, 322707 evaluated, 322706 expanded, t=8601.66s]
+Best heuristic value: 61/61 [g=321, 322708 evaluated, 322707 expanded, t=8601.69s]
+Best heuristic value: 60/60 [g=322, 322709 evaluated, 322708 expanded, t=8601.71s]
+Best heuristic value: 59/59 [g=323, 322710 evaluated, 322709 expanded, t=8601.74s]
+Best heuristic value: 58/58 [g=324, 322711 evaluated, 322710 expanded, t=8601.77s]
+Best heuristic value: 57/57 [g=325, 322712 evaluated, 322711 expanded, t=8601.79s]
+Best heuristic value: 56/56 [g=326, 322713 evaluated, 322712 expanded, t=8601.82s]
+Best heuristic value: 55/55 [g=327, 322714 evaluated, 322713 expanded, t=8601.85s]
+Best heuristic value: 54/54 [g=328, 322715 evaluated, 322714 expanded, t=8601.87s]
+Best heuristic value: 53/53 [g=329, 322716 evaluated, 322715 expanded, t=8601.89s]
+Best heuristic value: 52/52 [g=330, 322717 evaluated, 322716 expanded, t=8601.92s]
+Best heuristic value: 51/51 [g=331, 322718 evaluated, 322717 expanded, t=8601.95s]
+Best heuristic value: 50/50 [g=332, 322719 evaluated, 322718 expanded, t=8601.97s]
+Best heuristic value: 49/49 [g=333, 322720 evaluated, 322719 expanded, t=8602s]
+Best heuristic value: 48/48 [g=334, 322721 evaluated, 322720 expanded, t=8602.03s]
+Best heuristic value: 47/47 [g=335, 322722 evaluated, 322721 expanded, t=8602.06s]
+Best heuristic value: 46/46 [g=336, 322723 evaluated, 322722 expanded, t=8602.08s]
+Best heuristic value: 45/45 [g=337, 322724 evaluated, 322723 expanded, t=8602.11s]
+Best heuristic value: 44/44 [g=338, 322725 evaluated, 322724 expanded, t=8602.14s]
+Best heuristic value: 43/43 [g=339, 322726 evaluated, 322725 expanded, t=8602.16s]
+Best heuristic value: 42/42 [g=340, 322727 evaluated, 322726 expanded, t=8602.19s]
+Best heuristic value: 41/41 [g=341, 322728 evaluated, 322727 expanded, t=8602.22s]
+Best heuristic value: 40/40 [g=342, 322729 evaluated, 322728 expanded, t=8602.24s]
+Best heuristic value: 39/39 [g=343, 322730 evaluated, 322729 expanded, t=8602.27s]
+Best heuristic value: 38/38 [g=344, 322731 evaluated, 322730 expanded, t=8602.3s]
+Best heuristic value: 37/37 [g=345, 322732 evaluated, 322731 expanded, t=8602.32s]
+Best heuristic value: 36/36 [g=346, 322733 evaluated, 322732 expanded, t=8602.35s]
+Best heuristic value: 35/35 [g=347, 322734 evaluated, 322733 expanded, t=8602.38s]
+Best heuristic value: 34/34 [g=348, 322735 evaluated, 322734 expanded, t=8602.4s]
+Best heuristic value: 33/33 [g=349, 322736 evaluated, 322735 expanded, t=8602.43s]
+Best heuristic value: 32/32 [g=350, 322737 evaluated, 322736 expanded, t=8602.46s]
+Best heuristic value: 31/31 [g=351, 322738 evaluated, 322737 expanded, t=8602.49s]
+Best heuristic value: 30/30 [g=352, 322739 evaluated, 322738 expanded, t=8602.51s]
+Best heuristic value: 29/29 [g=353, 322740 evaluated, 322739 expanded, t=8602.54s]
+Best heuristic value: 28/28 [g=354, 322741 evaluated, 322740 expanded, t=8602.57s]
+Best heuristic value: 27/27 [g=355, 322742 evaluated, 322741 expanded, t=8602.59s]
+Best heuristic value: 26/26 [g=356, 322743 evaluated, 322742 expanded, t=8602.62s]
+Best heuristic value: 25/25 [g=357, 322744 evaluated, 322743 expanded, t=8602.65s]
+Best heuristic value: 24/24 [g=359, 322757 evaluated, 322756 expanded, t=8602.99s]
+Best heuristic value: 23/23 [g=360, 322758 evaluated, 322757 expanded, t=8603.02s]
+Best heuristic value: 22/22 [g=361, 322759 evaluated, 322758 expanded, t=8603.05s]
+Best heuristic value: 21/21 [g=362, 322760 evaluated, 322759 expanded, t=8603.07s]
+Best heuristic value: 20/20 [g=363, 322761 evaluated, 322760 expanded, t=8603.1s]
+Best heuristic value: 19/19 [g=364, 322762 evaluated, 322761 expanded, t=8603.13s]
+Best heuristic value: 18/18 [g=365, 322763 evaluated, 322762 expanded, t=8603.15s]
+Best heuristic value: 17/17 [g=366, 322764 evaluated, 322763 expanded, t=8603.18s]
+Best heuristic value: 16/16 [g=367, 322765 evaluated, 322764 expanded, t=8603.21s]
+Best heuristic value: 15/15 [g=368, 322766 evaluated, 322765 expanded, t=8603.23s]
+Best heuristic value: 14/14 [g=369, 322767 evaluated, 322766 expanded, t=8603.26s]
+Best heuristic value: 13/13 [g=370, 322768 evaluated, 322767 expanded, t=8603.29s]
+Best heuristic value: 12/12 [g=371, 322769 evaluated, 322768 expanded, t=8603.31s]
+Best heuristic value: 11/11 [g=372, 322770 evaluated, 322769 expanded, t=8603.34s]
+Best heuristic value: 10/10 [g=373, 322771 evaluated, 322770 expanded, t=8603.37s]
+Best heuristic value: 9/9 [g=374, 322772 evaluated, 322771 expanded, t=8603.39s]
+Best heuristic value: 8/8 [g=375, 322773 evaluated, 322772 expanded, t=8603.42s]
+Best heuristic value: 7/7 [g=376, 322774 evaluated, 322773 expanded, t=8603.45s]
+Best heuristic value: 6/6 [g=377, 322775 evaluated, 322774 expanded, t=8603.47s]
+Best heuristic value: 5/5 [g=378, 322776 evaluated, 322775 expanded, t=8603.5s]
+Best heuristic value: 4/4 [g=379, 322777 evaluated, 322776 expanded, t=8603.53s]
+Best heuristic value: 3/3 [g=380, 322778 evaluated, 322777 expanded, t=8603.55s]
+Best heuristic value: 2/2 [g=381, 322779 evaluated, 322778 expanded, t=8603.58s]
+Best heuristic value: 1/1 [g=382, 322780 evaluated, 322779 expanded, t=8603.59s]
+Solution found!
+Actual search time: 8563.72s [t=8603.59s]
+turn_to satellite-5 direction-100 direction-119 (1)
+turn_to satellite-1 direction-31 direction-73 (1)
+switch_on instrument-7 satellite-1 (1)
+turn_to satellite-0 direction-97 direction-157 (1)
+switch_on instrument-11 satellite-5 (1)
+switch_on instrument-1 satellite-2 (1)
+switch_on instrument-0 satellite-3 (1)
+turn_to satellite-3 direction-99 direction-137 (1)
+turn_to satellite-1 station-2 direction-31 (1)
+calibrate instrument-7 satellite-1 station-2 (1)
+turn_to satellite-1 direction-31 station-2 (1)
+turn_to satellite-1 direction-94 direction-31 (1)
+take_image instrument-7 satellite-1 direction-94 mode-0 (1)
+turn_to satellite-1 direction-31 direction-94 (1)
+turn_to satellite-1 direction-89 direction-31 (1)
+take_image instrument-7 satellite-1 direction-89 mode-0 (1)
+turn_to satellite-1 direction-31 direction-89 (1)
+turn_to satellite-1 direction-8 direction-31 (1)
+take_image instrument-7 satellite-1 direction-8 mode-0 (1)
+turn_to satellite-1 direction-31 direction-8 (1)
+turn_to satellite-1 direction-76 direction-31 (1)
+take_image instrument-7 satellite-1 direction-76 mode-0 (1)
+turn_to satellite-1 direction-31 direction-76 (1)
+turn_to satellite-1 direction-60 direction-31 (1)
+take_image instrument-7 satellite-1 direction-60 mode-0 (1)
+turn_to satellite-1 direction-31 direction-60 (1)
+turn_to satellite-1 direction-6 direction-31 (1)
+take_image instrument-7 satellite-1 direction-6 mode-0 (1)
+turn_to satellite-1 direction-31 direction-6 (1)
+turn_to satellite-1 direction-42 direction-31 (1)
+take_image instrument-7 satellite-1 direction-42 mode-0 (1)
+turn_to satellite-1 direction-31 direction-42 (1)
+turn_to satellite-1 direction-37 direction-31 (1)
+take_image instrument-7 satellite-1 direction-37 mode-0 (1)
+turn_to satellite-1 direction-31 direction-37 (1)
+turn_to satellite-1 direction-26 direction-31 (1)
+take_image instrument-7 satellite-1 direction-26 mode-0 (1)
+turn_to satellite-1 direction-31 direction-26 (1)
+turn_to satellite-1 direction-140 direction-31 (1)
+take_image instrument-7 satellite-1 direction-140 mode-0 (1)
+turn_to satellite-1 direction-31 direction-140 (1)
+turn_to satellite-1 direction-114 direction-31 (1)
+take_image instrument-7 satellite-1 direction-114 mode-0 (1)
+turn_to satellite-1 direction-31 direction-114 (1)
+turn_to satellite-1 direction-104 direction-31 (1)
+take_image instrument-7 satellite-1 direction-104 mode-0 (1)
+turn_to satellite-1 direction-31 direction-104 (1)
+turn_to satellite-5 station-3 direction-100 (1)
+calibrate instrument-11 satellite-5 station-3 (1)
+turn_to satellite-5 direction-100 station-3 (1)
+turn_to satellite-5 direction-84 direction-100 (1)
+take_image instrument-11 satellite-5 direction-84 mode-5 (1)
+turn_to satellite-5 direction-100 direction-84 (1)
+turn_to satellite-5 direction-74 direction-100 (1)
+take_image instrument-11 satellite-5 direction-74 mode-5 (1)
+turn_to satellite-5 direction-100 direction-74 (1)
+turn_to satellite-5 direction-66 direction-100 (1)
+take_image instrument-11 satellite-5 direction-66 mode-5 (1)
+turn_to satellite-5 direction-100 direction-66 (1)
+turn_to satellite-5 direction-59 direction-100 (1)
+take_image instrument-11 satellite-5 direction-59 mode-5 (1)
+turn_to satellite-5 direction-100 direction-59 (1)
+turn_to satellite-5 direction-58 direction-100 (1)
+take_image instrument-11 satellite-5 direction-58 mode-5 (1)
+turn_to satellite-5 direction-100 direction-58 (1)
+turn_to satellite-5 direction-5 direction-100 (1)
+take_image instrument-11 satellite-5 direction-5 mode-5 (1)
+turn_to satellite-5 direction-100 direction-5 (1)
+turn_to satellite-5 direction-36 direction-100 (1)
+take_image instrument-11 satellite-5 direction-36 mode-5 (1)
+turn_to satellite-5 direction-100 direction-36 (1)
+turn_to satellite-5 direction-34 direction-100 (1)
+take_image instrument-11 satellite-5 direction-34 mode-5 (1)
+turn_to satellite-5 direction-100 direction-34 (1)
+turn_to satellite-5 direction-2 direction-100 (1)
+take_image instrument-11 satellite-5 direction-2 mode-5 (1)
+turn_to satellite-5 direction-100 direction-2 (1)
+turn_to satellite-5 direction-158 direction-100 (1)
+take_image instrument-11 satellite-5 direction-158 mode-5 (1)
+turn_to satellite-5 direction-100 direction-158 (1)
+turn_to satellite-5 direction-149 direction-100 (1)
+take_image instrument-11 satellite-5 direction-149 mode-5 (1)
+turn_to satellite-5 direction-100 direction-149 (1)
+turn_to satellite-5 direction-113 direction-100 (1)
+take_image instrument-11 satellite-5 direction-113 mode-5 (1)
+turn_to satellite-5 direction-100 direction-113 (1)
+turn_to satellite-5 direction-101 direction-100 (1)
+take_image instrument-11 satellite-5 direction-101 mode-5 (1)
+turn_to satellite-5 direction-100 direction-101 (1)
+turn_to satellite-2 station-1 direction-98 (1)
+calibrate instrument-1 satellite-2 station-1 (1)
+turn_to satellite-2 direction-98 station-1 (1)
+take_image instrument-1 satellite-2 direction-98 mode-3 (1)
+turn_to satellite-2 direction-95 direction-98 (1)
+take_image instrument-1 satellite-2 direction-95 mode-3 (1)
+turn_to satellite-2 direction-92 direction-95 (1)
+take_image instrument-1 satellite-2 direction-92 mode-9 (1)
+turn_to satellite-2 direction-91 direction-92 (1)
+take_image instrument-1 satellite-2 direction-91 mode-3 (1)
+turn_to satellite-2 direction-81 direction-91 (1)
+take_image instrument-1 satellite-2 direction-81 mode-3 (1)
+turn_to satellite-2 direction-79 direction-81 (1)
+take_image instrument-1 satellite-2 direction-79 mode-9 (1)
+turn_to satellite-2 direction-78 direction-79 (1)
+take_image instrument-1 satellite-2 direction-78 mode-3 (1)
+turn_to satellite-2 direction-77 direction-78 (1)
+take_image instrument-1 satellite-2 direction-77 mode-3 (1)
+turn_to satellite-2 direction-70 direction-77 (1)
+take_image instrument-1 satellite-2 direction-70 mode-9 (1)
+turn_to satellite-2 direction-67 direction-70 (1)
+take_image instrument-1 satellite-2 direction-67 mode-9 (1)
+turn_to satellite-2 direction-64 direction-67 (1)
+take_image instrument-1 satellite-2 direction-64 mode-3 (1)
+turn_to satellite-2 direction-57 direction-64 (1)
+take_image instrument-1 satellite-2 direction-57 mode-9 (1)
+turn_to satellite-2 direction-56 direction-57 (1)
+take_image instrument-1 satellite-2 direction-56 mode-3 (1)
+turn_to satellite-2 direction-52 direction-56 (1)
+take_image instrument-1 satellite-2 direction-52 mode-3 (1)
+turn_to satellite-2 direction-47 direction-52 (1)
+take_image instrument-1 satellite-2 direction-47 mode-9 (1)
+turn_to satellite-2 direction-40 direction-47 (1)
+take_image instrument-1 satellite-2 direction-40 mode-3 (1)
+turn_to satellite-2 direction-30 direction-40 (1)
+take_image instrument-1 satellite-2 direction-30 mode-9 (1)
+turn_to satellite-2 direction-23 direction-30 (1)
+take_image instrument-1 satellite-2 direction-23 mode-9 (1)
+turn_to satellite-2 direction-21 direction-23 (1)
+take_image instrument-1 satellite-2 direction-21 mode-3 (1)
+turn_to satellite-2 direction-17 direction-21 (1)
+take_image instrument-1 satellite-2 direction-17 mode-3 (1)
+turn_to satellite-2 direction-157 direction-17 (1)
+take_image instrument-1 satellite-2 direction-157 mode-9 (1)
+turn_to satellite-2 direction-152 direction-157 (1)
+take_image instrument-1 satellite-2 direction-152 mode-3 (1)
+turn_to satellite-2 direction-147 direction-152 (1)
+take_image instrument-1 satellite-2 direction-147 mode-9 (1)
+turn_to satellite-2 direction-145 direction-147 (1)
+take_image instrument-1 satellite-2 direction-145 mode-9 (1)
+turn_to satellite-2 direction-143 direction-145 (1)
+take_image instrument-1 satellite-2 direction-143 mode-3 (1)
+turn_to satellite-2 direction-142 direction-143 (1)
+take_image instrument-1 satellite-2 direction-142 mode-3 (1)
+turn_to satellite-2 direction-139 direction-142 (1)
+take_image instrument-1 satellite-2 direction-139 mode-3 (1)
+turn_to satellite-2 direction-13 direction-139 (1)
+take_image instrument-1 satellite-2 direction-13 mode-9 (1)
+turn_to satellite-2 direction-125 direction-13 (1)
+take_image instrument-1 satellite-2 direction-125 mode-3 (1)
+turn_to satellite-2 direction-124 direction-125 (1)
+take_image instrument-1 satellite-2 direction-124 mode-9 (1)
+turn_to satellite-2 direction-122 direction-124 (1)
+take_image instrument-1 satellite-2 direction-122 mode-9 (1)
+turn_to satellite-2 direction-12 direction-122 (1)
+take_image instrument-1 satellite-2 direction-12 mode-3 (1)
+turn_to satellite-2 direction-119 direction-12 (1)
+take_image instrument-1 satellite-2 direction-119 mode-9 (1)
+turn_to satellite-2 direction-117 direction-119 (1)
+take_image instrument-1 satellite-2 direction-117 mode-3 (1)
+turn_to satellite-2 direction-115 direction-117 (1)
+take_image instrument-1 satellite-2 direction-115 mode-3 (1)
+turn_to satellite-2 direction-11 direction-115 (1)
+take_image instrument-1 satellite-2 direction-11 mode-9 (1)
+turn_to satellite-2 direction-109 direction-11 (1)
+take_image instrument-1 satellite-2 direction-109 mode-9 (1)
+turn_to satellite-2 direction-10 direction-109 (1)
+take_image instrument-1 satellite-2 direction-10 mode-3 (1)
+turn_to satellite-2 direction-0 direction-10 (1)
+take_image instrument-1 satellite-2 direction-0 mode-9 (1)
+turn_to satellite-3 station-0 direction-99 (1)
+calibrate instrument-0 satellite-3 station-0 (1)
+turn_to satellite-3 direction-99 station-0 (1)
+take_image instrument-0 satellite-3 direction-99 mode-7 (1)
+turn_to satellite-3 direction-71 direction-99 (1)
+take_image instrument-0 satellite-3 direction-71 mode-7 (1)
+turn_to satellite-3 direction-61 direction-71 (1)
+take_image instrument-0 satellite-3 direction-61 mode-7 (1)
+turn_to satellite-3 direction-41 direction-61 (1)
+take_image instrument-0 satellite-3 direction-41 mode-7 (1)
+turn_to satellite-3 direction-32 direction-41 (1)
+take_image instrument-0 satellite-3 direction-32 mode-7 (1)
+turn_to satellite-3 direction-19 direction-32 (1)
+take_image instrument-0 satellite-3 direction-19 mode-7 (1)
+turn_to satellite-3 direction-155 direction-19 (1)
+take_image instrument-0 satellite-3 direction-155 mode-7 (1)
+turn_to satellite-3 direction-130 direction-155 (1)
+take_image instrument-0 satellite-3 direction-130 mode-7 (1)
+turn_to satellite-3 direction-108 direction-130 (1)
+take_image instrument-0 satellite-3 direction-108 mode-7 (1)
+turn_to satellite-3 direction-106 direction-108 (1)
+take_image instrument-0 satellite-3 direction-106 mode-7 (1)
+switch_on instrument-8 satellite-4 (1)
+turn_to satellite-4 station-0 direction-55 (1)
+calibrate instrument-8 satellite-4 station-0 (1)
+turn_to satellite-4 direction-96 station-0 (1)
+take_image instrument-8 satellite-4 direction-96 mode-4 (1)
+turn_to satellite-4 direction-93 direction-96 (1)
+take_image instrument-8 satellite-4 direction-93 mode-4 (1)
+turn_to satellite-4 direction-9 direction-93 (1)
+take_image instrument-8 satellite-4 direction-9 mode-4 (1)
+turn_to satellite-4 direction-87 direction-9 (1)
+take_image instrument-8 satellite-4 direction-87 mode-4 (1)
+turn_to satellite-4 direction-69 direction-87 (1)
+take_image instrument-8 satellite-4 direction-69 mode-4 (1)
+turn_to satellite-4 direction-65 direction-69 (1)
+take_image instrument-8 satellite-4 direction-65 mode-4 (1)
+turn_to satellite-4 direction-29 direction-65 (1)
+take_image instrument-8 satellite-4 direction-29 mode-4 (1)
+turn_to satellite-4 direction-25 direction-29 (1)
+take_image instrument-8 satellite-4 direction-25 mode-4 (1)
+turn_to satellite-4 direction-24 direction-25 (1)
+take_image instrument-8 satellite-4 direction-24 mode-4 (1)
+turn_to satellite-4 direction-18 direction-24 (1)
+take_image instrument-8 satellite-4 direction-18 mode-4 (1)
+turn_to satellite-4 direction-15 direction-18 (1)
+take_image instrument-8 satellite-4 direction-15 mode-4 (1)
+turn_to satellite-4 direction-141 direction-15 (1)
+take_image instrument-8 satellite-4 direction-141 mode-4 (1)
+turn_to satellite-4 direction-138 direction-141 (1)
+take_image instrument-8 satellite-4 direction-138 mode-4 (1)
+turn_to satellite-4 direction-136 direction-138 (1)
+take_image instrument-8 satellite-4 direction-136 mode-4 (1)
+turn_to satellite-4 direction-132 direction-136 (1)
+take_image instrument-8 satellite-4 direction-132 mode-4 (1)
+turn_to satellite-4 direction-129 direction-132 (1)
+take_image instrument-8 satellite-4 direction-129 mode-4 (1)
+turn_to satellite-4 direction-127 direction-129 (1)
+take_image instrument-8 satellite-4 direction-127 mode-4 (1)
+turn_to satellite-4 direction-121 direction-127 (1)
+take_image instrument-8 satellite-4 direction-121 mode-4 (1)
+turn_to satellite-4 direction-112 direction-121 (1)
+take_image instrument-8 satellite-4 direction-112 mode-4 (1)
+turn_to satellite-4 direction-111 direction-112 (1)
+take_image instrument-8 satellite-4 direction-111 mode-4 (1)
+turn_to satellite-4 direction-110 direction-111 (1)
+take_image instrument-8 satellite-4 direction-110 mode-4 (1)
+switch_off instrument-8 satellite-4 (1)
+switch_on instrument-3 satellite-4 (1)
+turn_to satellite-4 direction-88 direction-110 (1)
+turn_to satellite-4 station-3 direction-88 (1)
+calibrate instrument-3 satellite-4 station-3 (1)
+turn_to satellite-4 direction-88 station-3 (1)
+take_image instrument-3 satellite-4 direction-88 mode-1 (1)
+turn_to satellite-4 direction-85 direction-88 (1)
+take_image instrument-3 satellite-4 direction-85 mode-1 (1)
+turn_to satellite-4 direction-83 direction-85 (1)
+take_image instrument-3 satellite-4 direction-83 mode-1 (1)
+turn_to satellite-4 direction-82 direction-83 (1)
+take_image instrument-3 satellite-4 direction-82 mode-1 (1)
+turn_to satellite-4 direction-72 direction-82 (1)
+take_image instrument-3 satellite-4 direction-72 mode-1 (1)
+turn_to satellite-4 direction-7 direction-72 (1)
+take_image instrument-3 satellite-4 direction-7 mode-1 (1)
+turn_to satellite-4 direction-68 direction-7 (1)
+take_image instrument-3 satellite-4 direction-68 mode-1 (1)
+turn_to satellite-4 direction-55 direction-68 (1)
+take_image instrument-3 satellite-4 direction-55 mode-1 (1)
+turn_to satellite-4 direction-53 direction-55 (1)
+take_image instrument-3 satellite-4 direction-53 mode-1 (1)
+turn_to satellite-4 direction-50 direction-53 (1)
+take_image instrument-3 satellite-4 direction-50 mode-1 (1)
+turn_to satellite-4 direction-48 direction-50 (1)
+take_image instrument-3 satellite-4 direction-48 mode-1 (1)
+turn_to satellite-4 direction-45 direction-48 (1)
+take_image instrument-3 satellite-4 direction-45 mode-1 (1)
+turn_to satellite-4 direction-44 direction-45 (1)
+take_image instrument-3 satellite-4 direction-44 mode-1 (1)
+turn_to satellite-4 direction-39 direction-44 (1)
+take_image instrument-3 satellite-4 direction-39 mode-1 (1)
+turn_to satellite-4 direction-38 direction-39 (1)
+take_image instrument-3 satellite-4 direction-38 mode-1 (1)
+turn_to satellite-4 direction-35 direction-38 (1)
+take_image instrument-3 satellite-4 direction-35 mode-1 (1)
+turn_to satellite-4 direction-33 direction-35 (1)
+take_image instrument-3 satellite-4 direction-33 mode-1 (1)
+turn_to satellite-4 direction-16 direction-33 (1)
+take_image instrument-3 satellite-4 direction-16 mode-1 (1)
+turn_to satellite-4 direction-159 direction-16 (1)
+take_image instrument-3 satellite-4 direction-159 mode-1 (1)
+turn_to satellite-4 direction-156 direction-159 (1)
+take_image instrument-3 satellite-4 direction-156 mode-1 (1)
+turn_to satellite-4 direction-133 direction-156 (1)
+take_image instrument-3 satellite-4 direction-133 mode-1 (1)
+turn_to satellite-4 direction-123 direction-133 (1)
+take_image instrument-3 satellite-4 direction-123 mode-1 (1)
+turn_to satellite-4 direction-118 direction-123 (1)
+take_image instrument-3 satellite-4 direction-118 mode-1 (1)
+turn_to satellite-4 direction-116 direction-118 (1)
+take_image instrument-3 satellite-4 direction-116 mode-1 (1)
+turn_to satellite-4 direction-107 direction-116 (1)
+take_image instrument-3 satellite-4 direction-107 mode-1 (1)
+turn_to satellite-4 direction-102 direction-107 (1)
+take_image instrument-3 satellite-4 direction-102 mode-1 (1)
+turn_to satellite-4 direction-1 direction-102 (1)
+take_image instrument-3 satellite-4 direction-1 mode-1 (1)
+switch_on instrument-6 satellite-0 (1)
+turn_to satellite-0 station-4 direction-97 (1)
+calibrate instrument-6 satellite-0 station-4 (1)
+turn_to satellite-0 direction-97 station-4 (1)
+take_image instrument-6 satellite-0 direction-97 mode-6 (1)
+turn_to satellite-0 direction-86 direction-97 (1)
+take_image instrument-6 satellite-0 direction-86 mode-8 (1)
+turn_to satellite-0 direction-63 direction-86 (1)
+take_image instrument-6 satellite-0 direction-63 mode-6 (1)
+turn_to satellite-0 direction-62 direction-63 (1)
+take_image instrument-6 satellite-0 direction-62 mode-6 (1)
+turn_to satellite-0 direction-54 direction-62 (1)
+take_image instrument-6 satellite-0 direction-54 mode-6 (1)
+turn_to satellite-0 direction-51 direction-54 (1)
+take_image instrument-6 satellite-0 direction-51 mode-6 (1)
+turn_to satellite-0 direction-49 direction-51 (1)
+take_image instrument-6 satellite-0 direction-49 mode-6 (1)
+turn_to satellite-0 direction-4 direction-49 (1)
+take_image instrument-6 satellite-0 direction-4 mode-8 (1)
+turn_to satellite-0 direction-31 direction-4 (1)
+take_image instrument-6 satellite-0 direction-31 mode-6 (1)
+turn_to satellite-0 direction-3 direction-31 (1)
+take_image instrument-6 satellite-0 direction-3 mode-6 (1)
+turn_to satellite-0 direction-28 direction-3 (1)
+take_image instrument-6 satellite-0 direction-28 mode-6 (1)
+turn_to satellite-0 direction-27 direction-28 (1)
+take_image instrument-6 satellite-0 direction-27 mode-8 (1)
+turn_to satellite-0 direction-20 direction-27 (1)
+take_image instrument-6 satellite-0 direction-20 mode-8 (1)
+turn_to satellite-0 direction-161 direction-20 (1)
+take_image instrument-6 satellite-0 direction-161 mode-8 (1)
+turn_to satellite-0 direction-160 direction-161 (1)
+take_image instrument-6 satellite-0 direction-160 mode-6 (1)
+turn_to satellite-0 direction-154 direction-160 (1)
+take_image instrument-6 satellite-0 direction-154 mode-8 (1)
+turn_to satellite-0 direction-151 direction-154 (1)
+take_image instrument-6 satellite-0 direction-151 mode-8 (1)
+turn_to satellite-0 direction-150 direction-151 (1)
+take_image instrument-6 satellite-0 direction-150 mode-6 (1)
+turn_to satellite-0 direction-148 direction-150 (1)
+take_image instrument-6 satellite-0 direction-148 mode-8 (1)
+turn_to satellite-0 direction-146 direction-148 (1)
+take_image instrument-6 satellite-0 direction-146 mode-6 (1)
+turn_to satellite-0 direction-144 direction-146 (1)
+take_image instrument-6 satellite-0 direction-144 mode-6 (1)
+turn_to satellite-0 direction-14 direction-144 (1)
+take_image instrument-6 satellite-0 direction-14 mode-6 (1)
+turn_to satellite-0 direction-137 direction-14 (1)
+take_image instrument-6 satellite-0 direction-137 mode-8 (1)
+turn_to satellite-0 direction-135 direction-137 (1)
+take_image instrument-6 satellite-0 direction-135 mode-8 (1)
+turn_to satellite-0 direction-128 direction-135 (1)
+take_image instrument-6 satellite-0 direction-128 mode-8 (1)
+turn_to satellite-0 direction-120 direction-128 (1)
+take_image instrument-6 satellite-0 direction-120 mode-6 (1)
+turn_to satellite-0 direction-105 direction-120 (1)
+take_image instrument-6 satellite-0 direction-105 mode-6 (1)
+turn_to satellite-0 direction-100 direction-105 (1)
+take_image instrument-6 satellite-0 direction-100 mode-6 (1)
+switch_off instrument-6 satellite-0 (1)
+switch_on instrument-2 satellite-0 (1)
+turn_to satellite-0 direction-90 direction-100 (1)
+turn_to satellite-0 station-4 direction-90 (1)
+calibrate instrument-2 satellite-0 station-4 (1)
+turn_to satellite-0 direction-90 station-4 (1)
+take_image instrument-2 satellite-0 direction-90 mode-2 (1)
+turn_to satellite-0 direction-80 direction-90 (1)
+take_image instrument-2 satellite-0 direction-80 mode-2 (1)
+turn_to satellite-0 direction-75 direction-80 (1)
+take_image instrument-2 satellite-0 direction-75 mode-2 (1)
+turn_to satellite-0 direction-73 direction-75 (1)
+take_image instrument-2 satellite-0 direction-73 mode-2 (1)
+turn_to satellite-0 direction-46 direction-73 (1)
+take_image instrument-2 satellite-0 direction-46 mode-2 (1)
+turn_to satellite-0 direction-43 direction-46 (1)
+take_image instrument-2 satellite-0 direction-43 mode-2 (1)
+turn_to satellite-0 direction-22 direction-43 (1)
+take_image instrument-2 satellite-0 direction-22 mode-2 (1)
+turn_to satellite-0 direction-153 direction-22 (1)
+take_image instrument-2 satellite-0 direction-153 mode-2 (1)
+turn_to satellite-0 direction-134 direction-153 (1)
+take_image instrument-2 satellite-0 direction-134 mode-2 (1)
+turn_to satellite-0 direction-131 direction-134 (1)
+take_image instrument-2 satellite-0 direction-131 mode-2 (1)
+turn_to satellite-0 direction-126 direction-131 (1)
+take_image instrument-2 satellite-0 direction-126 mode-2 (1)
+turn_to satellite-0 direction-103 direction-126 (1)
+take_image instrument-2 satellite-0 direction-103 mode-2 (1)
+Plan length: 383 step(s).
+Plan cost: 383
+Initial state h value: 347/347.
+Expanded 322780 state(s).
+Reopened 0 state(s).
+Evaluated 322781 state(s).
+Evaluations: 645562
+Generated 324373525 state(s).
+Dead ends: 0 state(s).
+Best solution cost so far: 383
+Solution found - keep searching
+Starting search: lazy_wastar(list(hff, hlm), preferred = list(hff, hlm), w = 5)
+Conducting lazy best first search, (real) bound = 383
+Best heuristic value: 347/347 [g=0, 1 evaluated, 0 expanded, t=8603.62s]
+Best heuristic value: 346/346 [g=1, 2 evaluated, 1 expanded, t=8603.65s]
+Best heuristic value: 345/345 [g=2, 3 evaluated, 2 expanded, t=8603.67s]
+Best heuristic value: 344/344 [g=3, 27 evaluated, 26 expanded, t=8604.32s]
+Best heuristic value: 343/343 [g=4, 65 evaluated, 64 expanded, t=8605.33s]

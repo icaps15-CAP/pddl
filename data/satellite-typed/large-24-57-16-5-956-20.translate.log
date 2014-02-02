@@ -1,0 +1,39 @@
+Parsing... [0.020s CPU, 0.023s wall-clock]
+Normalizing task... [0.000s CPU, 0.002s wall-clock]
+Instantiating...
+Generating Datalog program... [0.010s CPU, 0.014s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.010s CPU, 0.006s wall-clock]
+Preparing model... [0.040s CPU, 0.043s wall-clock]
+Generated 31 rules.
+Computing model... [608.060s CPU, 608.034s wall-clock]
+22221934 relevant atoms
+72261 auxiliary atoms
+22294195 final queue length
+44435716 total queue pushes
+Completing instantiation... Exception MemoryError: MemoryError() in  ignored
+Exception MemoryError: MemoryError() in  ignored
+Exception MemoryError: MemoryError() in  ignored
+Traceback (most recent call last):
+  File "/home/asai/repos/downward/src/translate/instantiate.py", line 57, in instantiate
+    fluent_facts, type_to_objects)
+  File "/home/asai/repos/downward/src/translate/pddl/conditions.py", line 342, in instantiate
+    result.append(NegatedAtom(self.predicate, args))
+MemoryError
+Error in sys.excepthook:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/apport_python_hook.py", line 66, in apport_excepthook
+    from apport.fileutils import likely_packaged, get_recent_crashes
+  File "/usr/lib/python2.7/dist-packages/apport/__init__.py", line 1, in <module>
+    from apport.report import Report
+  File "/usr/lib/python2.7/dist-packages/apport/report.py", line 12, in <module>
+    import subprocess, tempfile, os.path, urllib, re, pwd, grp, os
+MemoryError
+
+Original exception was:
+Traceback (most recent call last):
+  File "/home/asai/repos/downward/src/translate/instantiate.py", line 57, in instantiate
+    fluent_facts, type_to_objects)
+  File "/home/asai/repos/downward/src/translate/pddl/conditions.py", line 342, in instantiate
+    result.append(NegatedAtom(self.predicate, args))
+MemoryError

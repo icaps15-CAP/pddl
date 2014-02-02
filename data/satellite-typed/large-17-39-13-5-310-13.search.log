@@ -1,0 +1,42 @@
+Dispatcher selected state size 2.
+This is a unit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 437.419s
+Discovered 1016 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+1935 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+354 initial landmarks, 320 goal landmarks
+Starting search: lazy_greedy(list(hff, hlm), preferred = list(hff, hlm))
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 662/662 [g=0, 1 evaluated, 0 expanded, t=460.62s]
+Best heuristic value: 661/661 [g=1, 2 evaluated, 1 expanded, t=460.82s]
+Best heuristic value: 660/660 [g=2, 3 evaluated, 2 expanded, t=461s]
+Best heuristic value: 659/659 [g=3, 4 evaluated, 3 expanded, t=461.18s]
+Best heuristic value: 658/658 [g=4, 5 evaluated, 4 expanded, t=461.36s]
+Best heuristic value: 657/657 [g=5, 6 evaluated, 5 expanded, t=461.54s]
+Best heuristic value: 656/656 [g=6, 7 evaluated, 6 expanded, t=461.74s]
+Best heuristic value: 655/655 [g=7, 8 evaluated, 7 expanded, t=461.92s]
+Best heuristic value: 654/654 [g=8, 9 evaluated, 8 expanded, t=462.1s]
+Best heuristic value: 653/653 [g=9, 10 evaluated, 9 expanded, t=462.28s]
+Best heuristic value: 652/652 [g=10, 11 evaluated, 10 expanded, t=462.46s]
+Best heuristic value: 651/651 [g=11, 87 evaluated, 86 expanded, t=476.48s]
+Best heuristic value: 650/650 [g=12, 206 evaluated, 205 expanded, t=498.4s]
+Best heuristic value: 649/649 [g=13, 347 evaluated, 346 expanded, t=524.4s]
+Best heuristic value: 648/648 [g=14, 488 evaluated, 487 expanded, t=550.4s]
+Best heuristic value: 647/647 [g=15, 661 evaluated, 660 expanded, t=582.32s]
+Best heuristic value: 646/646 [g=16, 834 evaluated, 833 expanded, t=614.22s]
+Best heuristic value: 645/645 [g=17, 1036 evaluated, 1035 expanded, t=651.46s]
+Best heuristic value: 644/644 [g=18, 1265 evaluated, 1264 expanded, t=693.7s]
+Best heuristic value: 643/643 [g=19, 1494 evaluated, 1493 expanded, t=735.94s]
+Best heuristic value: 642/642 [g=20, 1744 evaluated, 1743 expanded, t=782.04s]
+Best heuristic value: 641/641 [g=22, 24797 evaluated, 24796 expanded, t=5034.44s]
+Best heuristic value: 640/640 [g=23, 24798 evaluated, 24797 expanded, t=5034.62s]
+Failed to allocate memory. Released memory buffer.
+Memory limit has been reached.
+Peak memory: 4189824 KB

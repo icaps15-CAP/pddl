@@ -1,0 +1,73 @@
+Dispatcher selected state size 1.
+This is a unit task.
+Simplifying transitions... done!
+Initializing Exploration...
+Generating landmarks using the RPG/SAS+ approach
+approx. reasonable orders
+approx. obedient reasonable orders
+Removed 0 reasonable or obedient reasonable orders
+Landmarks generation time: 162.279s
+Discovered 815 landmarks, of which 0 are disjunctive and 0 are conjunctive 
+1628 edges
+Initializing LAMA-FF Synergy Object
+Initializing landmarks count heuristic...
+283 initial landmarks, 254 goal landmarks
+Starting search: lazy_greedy(list(hff, hlm), preferred = list(hff, hlm))
+Conducting lazy best first search, (real) bound = 2147483647
+Best heuristic value: 532/532 [g=0, 1 evaluated, 0 expanded, t=169.07s]
+Best heuristic value: 531/531 [g=1, 2 evaluated, 1 expanded, t=169.15s]
+Best heuristic value: 530/530 [g=2, 3 evaluated, 2 expanded, t=169.22s]
+Best heuristic value: 529/529 [g=3, 4 evaluated, 3 expanded, t=169.3s]
+Best heuristic value: 529/528 [g=4, 5 evaluated, 4 expanded, t=169.37s]
+Best heuristic value: 528/527 [g=5, 8 evaluated, 7 expanded, t=169.6s]
+Best heuristic value: 527/526 [g=6, 30 evaluated, 29 expanded, t=171.26s]
+Best heuristic value: 526/526 [g=7, 187 evaluated, 186 expanded, t=183.09s]
+Best heuristic value: 526/525 [g=9, 187162 evaluated, 187161 expanded, t=14316.7s]
+Best heuristic value: 525/524 [g=10, 187163 evaluated, 187162 expanded, t=14316.8s]
+Best heuristic value: 524/523 [g=11, 187164 evaluated, 187163 expanded, t=14316.9s]
+Best heuristic value: 523/522 [g=12, 187165 evaluated, 187164 expanded, t=14316.9s]
+Best heuristic value: 522/521 [g=13, 187166 evaluated, 187165 expanded, t=14317s]
+Best heuristic value: 521/520 [g=14, 187167 evaluated, 187166 expanded, t=14317.1s]
+Best heuristic value: 520/519 [g=15, 187168 evaluated, 187167 expanded, t=14317.1s]
+Best heuristic value: 519/518 [g=16, 187169 evaluated, 187168 expanded, t=14317.2s]
+Best heuristic value: 518/517 [g=17, 187170 evaluated, 187169 expanded, t=14317.3s]
+Best heuristic value: 517/516 [g=18, 187171 evaluated, 187170 expanded, t=14317.4s]
+Best heuristic value: 516/515 [g=19, 187172 evaluated, 187171 expanded, t=14317.5s]
+Best heuristic value: 515/514 [g=20, 187173 evaluated, 187172 expanded, t=14317.5s]
+Best heuristic value: 514/513 [g=21, 187174 evaluated, 187173 expanded, t=14317.6s]
+Best heuristic value: 513/512 [g=22, 187175 evaluated, 187174 expanded, t=14317.7s]
+Best heuristic value: 512/511 [g=23, 187176 evaluated, 187175 expanded, t=14317.8s]
+Best heuristic value: 511/510 [g=24, 187177 evaluated, 187176 expanded, t=14317.8s]
+Best heuristic value: 510/509 [g=25, 187178 evaluated, 187177 expanded, t=14317.9s]
+Best heuristic value: 509/508 [g=26, 187179 evaluated, 187178 expanded, t=14318s]
+Best heuristic value: 508/507 [g=27, 187180 evaluated, 187179 expanded, t=14318.1s]
+Best heuristic value: 507/506 [g=28, 187181 evaluated, 187180 expanded, t=14318.1s]
+Best heuristic value: 506/505 [g=29, 187182 evaluated, 187181 expanded, t=14318.2s]
+Best heuristic value: 505/504 [g=30, 187183 evaluated, 187182 expanded, t=14318.3s]
+Best heuristic value: 504/503 [g=31, 187184 evaluated, 187183 expanded, t=14318.4s]
+Best heuristic value: 503/502 [g=32, 187185 evaluated, 187184 expanded, t=14318.4s]
+Best heuristic value: 502/501 [g=33, 187186 evaluated, 187185 expanded, t=14318.5s]
+Best heuristic value: 501/500 [g=34, 187187 evaluated, 187186 expanded, t=14318.6s]
+Best heuristic value: 500/499 [g=35, 187188 evaluated, 187187 expanded, t=14318.7s]
+Best heuristic value: 499/498 [g=36, 187189 evaluated, 187188 expanded, t=14318.7s]
+Best heuristic value: 498/497 [g=37, 187190 evaluated, 187189 expanded, t=14318.8s]
+Best heuristic value: 497/496 [g=38, 187191 evaluated, 187190 expanded, t=14318.9s]
+Best heuristic value: 496/495 [g=39, 187192 evaluated, 187191 expanded, t=14319s]
+Best heuristic value: 495/494 [g=40, 187193 evaluated, 187192 expanded, t=14319s]
+Best heuristic value: 494/493 [g=41, 187194 evaluated, 187193 expanded, t=14319.1s]
+Best heuristic value: 493/492 [g=42, 187195 evaluated, 187194 expanded, t=14319.2s]
+Best heuristic value: 492/491 [g=43, 187196 evaluated, 187195 expanded, t=14319.3s]
+Best heuristic value: 491/490 [g=44, 187197 evaluated, 187196 expanded, t=14319.4s]
+Best heuristic value: 490/489 [g=45, 187198 evaluated, 187197 expanded, t=14319.4s]
+Best heuristic value: 489/488 [g=46, 187199 evaluated, 187198 expanded, t=14319.5s]
+Best heuristic value: 488/487 [g=47, 187200 evaluated, 187199 expanded, t=14319.6s]
+Best heuristic value: 487/487 [g=48, 187337 evaluated, 187336 expanded, t=14329.9s]
+Best heuristic value: 487/486 [g=48, 187472 evaluated, 187471 expanded, t=14340.1s]
+Best heuristic value: 486/486 [g=49, 187704 evaluated, 187703 expanded, t=14357.7s]
+Best heuristic value: 486/485 [g=49, 187839 evaluated, 187838 expanded, t=14367.9s]
+Best heuristic value: 485/485 [g=50, 188071 evaluated, 188070 expanded, t=14385.5s]
+Best heuristic value: 485/484 [g=50, 188206 evaluated, 188205 expanded, t=14395.7s]
+Best heuristic value: 484/484 [g=51, 188438 evaluated, 188437 expanded, t=14413.3s]
+Failed to allocate memory. Released memory buffer.
+Memory limit has been reached.
+Peak memory: 14999904 KB
