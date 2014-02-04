@@ -1,4 +1,4 @@
-(defsystem pddl.instances.openstacks
+(defsystem pddl.instances.openstacks-large
   :author "guicho"
   :license "LLGPL"
   :depends-on (:pddl.instances)
