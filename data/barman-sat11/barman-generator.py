@@ -107,7 +107,6 @@ try:
    num_cocktails = int(sys.argv[1])
    num_ingredients =  int(sys.argv[2])
    num_shots = int(sys.argv[3])
-   name="prob"
 except:
    print "Usage: " +sys.argv[0] + " <num_cocktails> <num_ingredients> <num_shots>"
    print "  num_cocktails (min 1)"
@@ -118,7 +117,7 @@ except:
 
 random.seed()
 
-print ("(define (problem "+name+")")
+print ("(define (problem barman-%d-%d-%d)" % (num_cocktails,num_ingredients,num_shots))
 print (" (:domain barman)")
 print (" (:objects "+ get_objects()+")")
 print (" (:init " + get_init()+")")
