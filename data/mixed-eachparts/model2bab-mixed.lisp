@@ -49,20 +49,20 @@
 		 gasket-machine screw-machine-a oiling-machine
 		 screw-machine-c inspection-machine  - machine
                  ;; jobs in 2a
-		 2a-insert-gasket  - machine-job
-		 2a-attatch-a      - job ;; at table1
-		 2a-screw-a        - machine-job
-		 2a-oil-cylinder   - machine-job
-		 2a-attatch-b      - job ;; at table2
-		 2a-attatch-c      - job ;; at table2
-		 2a-screw-c        - machine-job
-		 2a-inspect-base   - machine-job
+		 j2a-insert-gasket  - machine-job
+		 j2a-attatch-a      - job ;; at table1
+		 j2a-screw-a        - machine-job
+		 j2a-oil-cylinder   - machine-job
+		 j2a-attatch-b      - job ;; at table2
+		 j2a-attatch-c      - job ;; at table2
+		 j2a-screw-c        - machine-job
+		 j2a-inspect-base   - machine-job
                  ;; jobs in 2b
-        	 2b-attatch-a      - job ;; at table-in
-        	 2b-screw-a        - machine-job
-        	 2b-attatch-b      - job ;; at table1
-        	 2b-attatch-c      - job ;; at table1
-        	 2b-screw-c        - machine-job
+        	 j2b-attatch-a      - job ;; at table-in
+        	 j2b-screw-a        - machine-job
+        	 j2b-attatch-b      - job ;; at table1
+        	 j2b-attatch-c      - job ;; at table1
+        	 j2b-screw-c        - machine-job
                  )
        (:init
         ;;;;;;;;;;;;;;;;;; ATTRIBUTES ;;;;;;;;;;;;;;;;
@@ -100,22 +100,22 @@
         ;; 2a jobs
 	,@(destructuring-bind (part-as part-bs part-cs) parts-2a
             (make-linear-jobs
-             `((2a-insert-gasket gasket-machine)
-               (2a-attatch-a table1 ,part-as tray-a)
-               (2a-screw-a screw-machine-a)
-               (2a-oil-cylinder oiling-machine)
-               (2a-attatch-b table2 ,part-bs tray-b)
-               (2a-attatch-c table2 ,part-cs tray-c)
-               (2a-screw-c screw-machine-c)
-               (2a-inspect-base inspection-machine)) 2 4))
+             `((j2a-insert-gasket gasket-machine)
+               (j2a-attatch-a table1 ,part-as tray-a)
+               (j2a-screw-a screw-machine-a)
+               (j2a-oil-cylinder oiling-machine)
+               (j2a-attatch-b table2 ,part-bs tray-b)
+               (j2a-attatch-c table2 ,part-cs tray-c)
+               (j2a-screw-c screw-machine-c)
+               (j2a-inspect-base inspection-machine)) 2 4))
         ;; 2b jobs
 	,@(destructuring-bind (part-as part-bs part-cs) parts-2b
             (make-linear-jobs
-             `((2b-attatch-a table-in ,part-as tray-a)
-               (2b-screw-a screw-machine-a)
-               (2b-attatch-b table1 ,part-bs tray-b)
-               (2b-attatch-c table1 ,part-cs tray-c)
-               (2b-screw-c screw-machine-c)) 2 4))
+             `((j2b-attatch-a table-in ,part-as tray-a)
+               (j2b-screw-a screw-machine-a)
+               (j2b-attatch-b table1 ,part-bs tray-b)
+               (j2b-attatch-c table1 ,part-cs tray-c)
+               (j2b-screw-c screw-machine-c)) 2 4))
         ;; component-base association
         ,@(make-component-bases parts-2a bases-2a)
         ,@(make-component-bases parts-2b bases-2b)
@@ -130,8 +130,8 @@
         ;; Arms ;;;;;;;;;;;;;;;;
         ,@(make-initial-arms '(arm1 arm2)
 			     '(tray-a oiling-machine)))
-       (:goal (and ,@(make-goal-bases bases-2a '2a-inspect-base)
-                   ,@(make-goal-bases bases-2b '2b-screw-c)))
+       (:goal (and ,@(make-goal-bases bases-2a 'j2a-inspect-base)
+                   ,@(make-goal-bases bases-2b 'j2b-screw-c)))
        (:metric minimize (total-cost)))))
 
 
