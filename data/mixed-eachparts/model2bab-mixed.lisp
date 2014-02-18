@@ -6,7 +6,7 @@
 	(write-model #'2a2b-mixed-each
 		     #'(lambda (i)
                          (merge-pathnames
-                          (format nil "2a2b-mixed-each-~a.pddl" i)
+                          (format nil "2a2b-mixed-each-~2,,,'0@a.pddl" i)
                           (asdf:system-relative-pathname :pddl.builder "data/mixed-eachparts/")))
 		     i)))
 
