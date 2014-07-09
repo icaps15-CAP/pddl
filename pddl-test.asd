@@ -22,4 +22,6 @@
 		 (:file :matcher)
 		 (:file :writer)
 		 (:file :costs))))
-  :perform (load-op :after (op c) (asdf:clear-system c)))
+  :perform (load-op :after (op c) 
+		    (eval (read-from-string "(fiveam:run! :pddl)"))
+		    (asdf:clear-system c)))
