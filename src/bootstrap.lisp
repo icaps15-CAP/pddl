@@ -6,14 +6,9 @@
 @export
 (defun parse-file (pddl-pathname)
   (let ((*parsing-filename* pddl-pathname))
-    (tagbody
-     parse-start
-       (restart-case
-           (with-open-file (s pddl-pathname)
-             (return-from parse-file 
-               (parse-stream s)))
-         (retry-reading-file ()
-           (go parse-start))))))
+    (do-restart ((retry-reading-file (lambda () )))
+      (with-open-file (s pddl-pathname)
+        (parse-stream s)))))
 
 @export
 (defun parse-stream (s)
