@@ -39,7 +39,7 @@ supported requirements:
 returns (values t remained-states matches used-states)
 where remained-states are the states which did not appear in the precond
 and used-states are those which did."
-(defgeneric applicable (states action))
+(defgeneric applicable (atomic-states action))
 
 (defmethod applicable ((states list) (action pddl-action))
   (handler-bind ((assignment-error
