@@ -3,7 +3,7 @@
   :version "0.1"
   :author "guicho"
   :license "LLGPL"
-  :depends-on (:aflab1
+  :depends-on (:guicho-a-star
 	       :guicho-utilities
                :iterate
                :cl-ppcre
