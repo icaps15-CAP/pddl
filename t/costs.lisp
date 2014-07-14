@@ -43,10 +43,9 @@
 (test (simulate-plan-with-costs :depends-on costs)
   (reinitialize-instance *env*)
   (is (= 0 (cost *env*)))
-  (setf env
-	(with-simulating-plan (envname *env*)
-	  (format t "~%~a~%" (cost *env*))))
-  
+  (setf *env*
+	(with-simulating-plan (env *env*)
+	  (format t "~%~a~%" (cost env))))
   (is (= 63 (cost *env*))))
 
 

@@ -23,11 +23,10 @@
           (mapcar #'sxhash (parameters action))
           match-set
           (mapcar #'sxhash match-set))
-  (let ((new-states (copy-list states))
-        (*domain* (domain action)))
-    (setf new-states (%apply-delete-effect action match-set new-states))
-    (setf new-states (%apply-add-effect action match-set new-states))
-    (setf new-states (%apply-assign-ops action match-set new-states))
+  (let ((*domain* (domain action)))
+    (setf states (%apply-delete-effect action match-set states))
+    (setf states (%apply-add-effect action match-set states))
+    (setf states (%apply-assign-ops action match-set states))
     ;; (format t
     ;;    "~%~@<APPLY-ACTION: ~@;~
     ;;          action:~:@_~a~:@_~
@@ -42,24 +41,25 @@
     ;;    (add-list action)
     ;;    (delete-list action)
     ;;    (assign-ops action))
-    new-states))
+    states))
 
 @doc "deletes all states that matches an object in the delete-list"
 (defun %apply-delete-effect (action match-set states)
-  (dolist (effect-pred (delete-list action) states)
-    (setf states
-          (delete-if
-           (lambda-match
-             ((pddl-atomic-state
-               :name (eq (name effect-pred))
-               :parameters
-               (equalp (mapcar (lambda (p)
-                                 (or (getf match-set p)
-                                     (when (typep p 'pddl-constant)
-                                       p)))
-                               (parameters effect-pred))))
-              t))
-           states))))
+  (let ((states (copy-list states)))
+    (dolist (effect-pred (delete-list action) states)
+      (setf states
+            (delete-if
+             (lambda-match
+               ((pddl-atomic-state
+                 :name (eq (name effect-pred))
+                 :parameters
+                 (equalp (mapcar (lambda (p)
+                                   (or (getf match-set p)
+                                       (when (typep p 'pddl-constant)
+                                         p)))
+                                 (parameters effect-pred))))
+                t))
+             states)))))
 
 @doc "adds all states that matches an object in the add-list"
 (defun %apply-add-effect (action match-set states)
@@ -80,4 +80,4 @@
 @doc "apply all assign operators to the current states"
 (defun %apply-assign-ops (action match-set states)
   (dolist (effect-pred (assign-ops action) states)
-    (apply-assign-op effect-pred match-set states)))
+    (setf states (apply-assign-op effect-pred match-set states))))

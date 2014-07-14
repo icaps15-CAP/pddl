@@ -81,11 +81,11 @@
       env)))
 
 @export
-(defmacro with-simulating-plan ((envname env) &body body)
-  `(simulate-plan ,env
-                  (lambda (,envname)
+(defmacro with-simulating-plan ((simulation-env start-env) &body body)
+  `(simulate-plan ,start-env
+                  (lambda (,simulation-env)
                     ,@body)))
-    
+
 
 @export
 (defun cost (env)

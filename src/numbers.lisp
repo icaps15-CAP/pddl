@@ -162,8 +162,10 @@ clause in the domain description.
   (funcall (value-function op) matches states))
 @export
 (defun apply-assign-op (op matches states)
-  (setf (value (assign-op-place op matches states))
-        (assign-op-new-value op matches states)))
+  (let ((fs (assign-op-place op matches states)))
+    (substitute
+     (shallow-copy fs :value (assign-op-new-value op matches states))
+     fs states)))
 
 (export '(maximize minimize))
 
