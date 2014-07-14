@@ -42,7 +42,7 @@ clause in the domain description.
      value)
     ((list* _ _ rest)
      (%getf-by-name rest parameter))))
-     
+
 
 (defun %function-state-compiler (head matches states)
   `(or (find-if 
@@ -105,10 +105,18 @@ clause in the domain description.
 (defun parse-numeric-effect (source)
   (ematch (transform-numeric-to-assign source)
     ((list 'assign place new-value)
-     (pddl-assign-op
-      :source source
-      :place-function (compile-place-function place)
-      :value-function (compile-value-function new-value)))))
+     (match source
+       ((list 'increase (list 'total-cost) cost)
+        (pddl-action-cost
+         :source source
+         :action-cost cost
+         :place-function (compile-place-function place)
+         :value-function (compile-value-function new-value)))
+       (_
+        (pddl-assign-op
+         :source source
+         :place-function (compile-place-function place)
+         :value-function (compile-value-function new-value)))))))
 
 @export
 (defun transform-numeric-to-assign (source)
