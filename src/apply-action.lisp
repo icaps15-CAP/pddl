@@ -9,7 +9,6 @@
      (match-set actual-action)
      states)))
 
-@export
 (defun apply-action (action match-set states)
   (assert (= (arity action) (/ (length match-set) 2)))
   (assert (domain action))
