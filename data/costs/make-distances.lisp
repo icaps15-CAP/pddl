@@ -7,7 +7,7 @@
         :optima.extra
 	:iterate
 	:alexandria
-	:guicho-a*)
+	:eazy-a*)
   (:export :write-model :model2a :model2b
 	   :write-model2a :write-model2b))
 (in-package :pddl.builder)
