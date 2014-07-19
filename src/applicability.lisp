@@ -52,7 +52,7 @@ and used-states are those which did."
                        nil
                        nil)))
 
-(defmethod applicable ((states list) (aa pddl-actual-action))
+(defmethod applicable ((states list) (aa pddl-ground-action))
   (handler-bind 
       ((assignment-error
         (lambda (c)
@@ -65,6 +65,7 @@ and used-states are those which did."
      (match-set aa)
      nil)))
 
+;; negative preconditions are checked in the last.
 (defun %delay-negatives (preds)
   (let (positive negative)
     (dolist (p preds)
@@ -72,7 +73,6 @@ and used-states are those which did."
         ((notp _) (push p negative))
         (_ (push p positive))))
     (append positive negative)))
-    
 
 @doc "Returns 4 values or nil when no matching found.
 Values are (success-p remaining-states new-matches used-states)."

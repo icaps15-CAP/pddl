@@ -73,7 +73,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; instances under problems
 
-(defmethod print-object ((o pddl-actual-action) s)
+(defmethod print-object ((o pddl-ground-action) s)
   (print-ignoring-unbound-slot
     (format s "~@<(AC* ~;~a ~_~a~;)~:>"
             (name o)

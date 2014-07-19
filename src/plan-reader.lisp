@@ -67,7 +67,7 @@
      :problem (problem env)
      :plan (plan env)
      :index (1+ (index env))
-     :states (apply-actual-action aa (states env)))))
+     :states (apply-ground-action aa (states env)))))
 
 @export
 (defun simulate-plan (env &optional function)
@@ -141,14 +141,14 @@
     (%parse-plan-rec s (cons read acc))
     (nreverse acc)))
 
-(define-pddl-class pddl-actual-action (pddl-problem-slot pddl-action)
+(define-pddl-class pddl-ground-action (pddl-problem-slot pddl-action)
   ((index :type fixnum)))
 
-(define-pddl-class pddl-intermediate-action (pddl-actual-action)
+(define-pddl-class pddl-intermediate-action (pddl-ground-action)
   ())
-(define-pddl-class pddl-initial-action (pddl-actual-action)
+(define-pddl-class pddl-initial-action (pddl-ground-action)
   ())
-(define-pddl-class pddl-goal-action (pddl-actual-action)
+(define-pddl-class pddl-goal-action (pddl-ground-action)
   ())
 
 @export
@@ -228,7 +228,7 @@
 @doc "Returns a plist 
   (<pddl-variable> <pddl-object> <pddl-variable> <pddl-object> ...)
 meaning it is a valid assignment of an object to a variable in an action."
-(defgeneric match-set (actual-action))
+(defgeneric match-set (ground-action))
 (defmethod match-set ((aa pddl-intermediate-action))
   (let ((set nil)
         (a (action (domain aa) aa)))
@@ -246,3 +246,18 @@ meaning it is a valid assignment of an object to a variable in an action."
     (iter (for obj in (parameters aa))
           (setf (getf set obj) obj))
     set))
+
+(defmethod applicable ((states list) (ga pddl-goal-action))
+  (handler-bind 
+      ((assignment-error
+        (lambda (c)
+          (invoke-restart
+           (find-restart
+            'ignore-conflict-and-continue c) c))))
+    (%apply-clause-rec
+     states
+     ;; unlike pddl-actial-action, there is no corresponding
+     ;; action in the domain description
+     (precondition ga)
+     (match-set ga)
+     nil)))

@@ -2,11 +2,11 @@
 (use-syntax :annot)
 
 @export
-(defun apply-actual-action (actual-action states)
-  (let ((*problem* (problem actual-action)))
+(defun apply-ground-action (ground-action states)
+  (let ((*problem* (problem ground-action)))
     (apply-action
-     (action (domain actual-action) actual-action)
-     (match-set actual-action)
+     (action (domain ground-action) ground-action)
+     (match-set ground-action)
      states)))
 
 (defun apply-action (action match-set states)

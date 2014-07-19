@@ -186,7 +186,7 @@
             :effect ,(append (print-pddl-object (effect o))
                              (mapcar #'print-pddl-object (assign-ops o)))))
 
-(defmethod print-pddl-object ((o pddl-actual-action) &optional s)
+(defmethod print-pddl-object ((o pddl-ground-action) &optional s)
   @ignore s
   `(,(print-pddl-object (name o))
      ,@(mappend #'print-pddl-object (parameters o))))

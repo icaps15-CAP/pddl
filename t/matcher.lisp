@@ -88,7 +88,7 @@
 			   (object depotprob1818 'distributor1))))
 	 (inits (init depotprob1818)))
     (is (applicable inits aa))
-    (let ((new-states (apply-actual-action aa inits)))
+    (let ((new-states (apply-ground-action aa inits)))
       (is-false (null new-states))
       (handler-bind ((warning #'muffle-warning))
 	(dolist (s new-states)
