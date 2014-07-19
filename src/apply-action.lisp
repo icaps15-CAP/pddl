@@ -3,81 +3,16 @@
 
 @export
 (defun apply-ground-action (ground-action states)
-  (let ((*problem* (problem ground-action)))
-    (apply-action
-     (action (domain ground-action) ground-action)
-     (match-set ground-action)
-     states)))
+  (let ((match-set (match-set ground-action)))
+    (labels ((rec (e states)
+               (ematch e
+                 ((list* 'and e rest)
+                  (rec (list* 'and rest) (rec e states)))
+                 ((list 'not op)
+                  (remove-if (curry #'eqstate op) states))
+                 ((pddl-atomic-state)
+                  (cons e states))
+                 ((pddl-assign-op)
+                  (apply-assign-op e match-set states)))))
+      (rec (effect ground-action) states))))
 
-(defun apply-action (action match-set states)
-  (assert (= (arity action) (/ (length match-set) 2)))
-  (assert (domain action))
-  (assert (action (domain action) action))
-  (assert (iter (for var in (parameters action))
-                (always (getf match-set var)))
-          nil "the parameters ~a~%~
-               ~a~%~
-               didnt matched~:_ ~a~%~
-               ~a"
-          (parameters action)
-          (mapcar #'sxhash (parameters action))
-          match-set
-          (mapcar #'sxhash match-set))
-  (let ((*domain* (domain action)))
-    (setf states (%apply-delete-effect action match-set states))
-    (setf states (%apply-add-effect action match-set states))
-    (setf states (%apply-assign-ops action match-set states))
-    ;; (format t
-    ;;    "~%~@<APPLY-ACTION: ~@;~
-    ;;          action:~:@_~a~:@_~
-    ;;          match:~:@_~a~:@_~
-    ;;          eff+:~:@_~a~:@_~
-    ;;          eff-:~:@_~a~:@_~
-    ;;          numeric:~:@_~a~:@_~
-    ;;       ~;~:@>~%"
-    ;;    ;; states(old):~:@_~a~:@_~
-    ;;    action
-    ;;    match-set
-    ;;    (add-list action)
-    ;;    (delete-list action)
-    ;;    (assign-ops action))
-    states))
-
-@doc "deletes all states that matches an object in the delete-list"
-(defun %apply-delete-effect (action match-set states)
-  (let ((states (copy-list states)))
-    (dolist (effect-pred (delete-list action) states)
-      (setf states
-            (delete-if
-             (lambda-match
-               ((pddl-atomic-state
-                 :name (eq (name effect-pred))
-                 :parameters
-                 (equalp (mapcar (lambda (p)
-                                   (or (getf match-set p)
-                                       (when (typep p 'pddl-constant)
-                                         p)))
-                                 (parameters effect-pred))))
-                t))
-             states)))))
-
-@doc "adds all states that matches an object in the add-list"
-(defun %apply-add-effect (action match-set states)
-  (dolist (effect-pred (add-list action) states)
-    (push (pddl-atomic-state
-           :name (name effect-pred)
-           :parameters
-           (iter (for param in (parameters effect-pred))
-                 (collecting
-                  (or (getf match-set param)
-                      (when (typep param 'pddl-constant)
-                        param)
-                      (error "failed to find a parameter in match-set!~%~
-                              match:~a~%~
-                              parameter:~a" match-set param)))))
-          states)))
-
-@doc "apply all assign operators to the current states"
-(defun %apply-assign-ops (action match-set states)
-  (dolist (effect-pred (assign-ops action) states)
-    (setf states (apply-assign-op effect-pred match-set states))))

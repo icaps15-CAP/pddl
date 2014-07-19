@@ -38,6 +38,7 @@
 		 (:file :equality)
 		 (:file :parsers)
                  (:file :ground-actions)
+                 (:file :match-set)
 
 		 (:file :domain-parser)
 		 (:file :problem-parser)
@@ -46,10 +47,10 @@
 		 (:file :numbers)
 		 
 		 (:file :plan-reader)
+                 (:file :simulator)
 		 
 		 (:file :applicability)
 		 (:file :apply-action)
-		 (:file :goal-check)
 
 		 (:file :printers)
 		 (:file :output))))

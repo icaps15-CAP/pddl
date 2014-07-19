@@ -2,122 +2,109 @@
 (in-package :pddl-test)
 (in-suite :pddl)
 
-(defvar APPLIABILITY-NOT)
-(defvar APPLIABILITY-NOT-PROB)
-
+(defmacro check (tester operator &rest names)
+  `(,tester
+    (applicable
+     (init *problem*)
+     (ground-action (action *domain* ',operator)
+                    (list ,@(mapcar (lambda (name)
+                                      `(object *problem* ,name))
+                                    names))))))
 (test (applicability :depends-on (and predicate accessors))
-  (let* ((*domain* depot)
-	 (*problem* depotprob1818)
-	 (p (predicate *domain* :at))
-	 (*params* (objects depotprob1818)))
-    (let ((s (find-if (lambda (pred)
-			(match pred
-			  ((pddl-atomic-state
-			    :name 'at
-			    :parameters
-			    (list (pddl-object :name 'pallet0)
-			    	  (pddl-object :name 'depot0)))
-			   t)))
-		      (init *problem*)))
-	  (s2 (find-if (lambda (pred)
-			 (match pred
-			   ((state 'at 'pallet1 'distributor0) t)))
-		       (init *problem*)))
-	  
-	  (s3 (find-if (lambda (pred)
-			 (match pred
-			   ((state 'place 'depot0) t)))
-		       (init *problem*))))
-      (is-false (null s))
-      (is-false (null s2))
-      
-      (is (eq (second (parameters s))
-	      (first (parameters s3))))
-      
-      
-      (let ((matches (%try-match p s nil)))
-	(iter 
-	  (for var in (parameters p))
-	  (for obj in (parameters s))
-	  (is (eq (getf matches var)
-		  obj)))
-
-
-	(signals assignment-error
-	  (%try-match p s2 matches))))
-    
-    (is (applicable
-	 (init *problem*)
-	 (action *domain* :drive)))))
-
-(test (applicability-not)
   (finishes
-    (define (domain applicability-not)
-      (:predicates (true ?a))
-      (:action should-not-applicable
+    (define (domain *test-domain*)
+      (:requirements :strips
+                     :disjunctive-precondition
+                     :negative-precondition)
+      (:predicates (true ?a) (success))
+      (:action and
+               :parameters (?x ?y)
+	       :precondition (and (true ?x) (true ?y))
+	       :effect (and (success)))
+      (:action not
 	       :parameters (?x)
 	       :precondition (and (not (true ?x)))
-	       :effect nil)))
+	       :effect (and (success)))
+      (:action or
+	       :parameters (?x ?y)
+	       :precondition (or (true ?x) (true ?y))
+	       :effect (and (success)))))
   (finishes
-    (define (problem applicability-not-prob)
-      (:domain applicability-not)
-      (:objects a b c)
-      (:init (true a)
-	     (true b)
-	     (true c))))
-  (is-false
-   (let* ((*domain* applicability-not)
-	  (*problem* applicability-not-prob))
-     (applicable (init applicability-not-prob)
-		(pddl-intermediate-action
-		 :name 'should-not-applicable
-		 :domain applicability-not
-		 :problem applicability-not-prob
-		 :parameters (list (object applicability-not-prob 'a)))))))
+    (define (problem *test-problem*)
+      (:domain *test-domain*)
+      (:objects a b c d)
+      (:init (true a) (true b))))
+  (let* ((*domain* *test-domain*)
+         (*problem* *test-problem*))
+    ;; and
+    (check is-true and :a :b)
+    (check is-false and :a :d)
+    (check is-false and :c :b)
+    (check is-false and :c :d)
+    ;; or
+    (check is-true or :a :b)
+    (check is-true or :a :d)
+    (check is-true or :c :b)
+    (check is-false or :c :d)
+    ;; not
+    (check is-false not :a)
+    (check is-true not :c)))
+
+(test logistics
+  (finishes
+    (define (domain logistics)
+      (:requirements :strips)
+      (:predicates (truck ?t) (at ?t ?a) (connected ?x ?y))
+      (:action move
+	       :parameters (?t ?x ?y)
+	       :precondition (and (truck ?t) (at ?t ?x) (connected ?x ?y))
+	       :effect (and (not (at ?t ?x)) (at ?t ?y)))))
+  (finishes
+    (define (problem logistics-prob)
+      (:domain logistics)
+      (:objects t1 a b c)
+      (:init (truck t1) (at t1 a) (connected a b) (connected b c))
+      (:goal (at t1 c))))
+
+  (let* ((*domain* *test-domain*)
+	 (*problem* *test-problem*))
+
+    (check is-true move :t1 :a :b)
+    (check is-false move :t1 :a :c)
+    (signals no-such-operator
+      (pddl-ground-action
+       :name 'foo
+       :parameters (list (object *problem* :b)
+                         (object *problem* :c))))))
 
 (test (apply-action :depends-on applicability)
-  (let* ((*domain* depot)
-	 (*problem* depotprob1818)
-	 (aa (pddl-intermediate-action
-	      :name 'drive
-	      :domain depot
-	      :problem depotprob1818
-	      :parameters (list
-			   (object depotprob1818 'truck1)
-			   (object depotprob1818 'depot0)
-			   (object depotprob1818 'distributor1))))
-	 (inits (init depotprob1818)))
-    (is (applicable inits aa))
-    (let ((new-states (apply-ground-action aa inits)))
-      (is-false (null new-states))
-      (handler-bind ((warning #'muffle-warning))
-	(dolist (s new-states)
-	  (match s
-	    ((state 'at 'truck1 (where))
-	     (is-false (eq where (object depotprob1818 'depot0))
-		       "truck1 not moved")
-	     (is (eq where (object depotprob1818 'distributor1))
-		 "truck1 moved to the wrong position ~A" where))))))))
-
-(test (simulate-plan :depends-on apply-action)
-  (let ((*plan* (pddl-plan :domain depot
-                           :problem depotprob1818 
-                           :actions *depot-actions*)))
-    (setf *env* (pddl-environment :plan *plan*
-				:domain depot
-				:problem depotprob1818))
-    
-    (map nil
-	 (lambda (aa)
-	   (is (domain aa) depot)
-	   (is (problem aa) depotprob1818))
-	 (actions *plan*))
-    (let ((last-env (handler-bind ((warning #'muffle-warning))
-		      (simulate-plan *env*))))
-      (map nil
-	 (lambda (s)
-	   (is (domain s) depot)
-	   (is (problem s) depotprob1818))
-	 (states last-env))
-      (is (goal-p depotprob1818 (states last-env))))))
+  (let* ((*domain* logistics)
+	 (*problem* logistics-prob)
+         (ga1 (pddl-ground-action
+               :name 'move
+               :parameters (list (object *problem* :t1)
+                                 (object *problem* :a)
+                                 (object *problem* :b))))
+         (ga2 (pddl-ground-action
+               :name 'move
+               :parameters (list (object *problem* :t1)
+                                 (object *problem* :b)
+                                 (object *problem* :c)))))
+    (is-true (applicable ga1 (init *problem*)))
+    (is-false (applicable ga2 (init *problem*)))
+    ;; ensure not modified
+    (let ((original-init (copy-list (init *problem*))))
+      (finishes
+        (apply-ground-action ga (init *problem*)))
+      (is (equalp (init *problem*) original-init)))
+    ;; apply
+    (let ((new-state (apply-ground-action ga (init *problem*))))
+      (is-false (applicable new-state ga1))
+      (is-true (applicable new-state ga2)))
+    (let* ((*actions* (list ga1 ga2))
+           (*plan* (pddl-plan :actions *actions*))
+           (*env* (pddl-environment :plan *plan*)))
+      (let ((last-env (simulate-plan *env*)))
+        (is (typep last-env 'pddl-environment)))
+      (is (goal-p *problem* (states last-env))))))
 
