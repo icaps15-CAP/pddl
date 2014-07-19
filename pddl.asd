@@ -37,6 +37,7 @@
 		 (:file :problem-class)
 		 (:file :equality)
 		 (:file :parsers)
+                 (:file :ground-actions)
 
 		 (:file :domain-parser)
 		 (:file :problem-parser)

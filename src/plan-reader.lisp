@@ -256,7 +256,7 @@ meaning it is a valid assignment of an object to a variable in an action."
             'ignore-conflict-and-continue c) c))))
     (%apply-clause-rec
      states
-     ;; unlike pddl-actial-action, there is no corresponding
+     ;; unlike pddl-ground-action, there is no corresponding
      ;; action in the domain description
      (precondition ga)
      (match-set ga)
