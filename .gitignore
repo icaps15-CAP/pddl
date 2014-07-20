@@ -1,3 +1,4 @@
+*.pddlfasl
 *.fasl
 *.dx32fsl
 *.dx64fsl
@@ -10,3 +11,4 @@
 *.sas
 *.sasp
 *.svn*
+/.compiled-pddlfasl-files

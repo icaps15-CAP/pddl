@@ -1,7 +1,7 @@
 (in-package :pddl-test)
 (in-suite :pddl)
 
-(test grounding
+(test (grounding :depends-on (and parse-domain parse-problem))
   ;; in depot, there are no types
   ;; so the number of possible ground actions of (drive x y z) is |O|^3
   (iter (for name in '(:drive :lift :drop))

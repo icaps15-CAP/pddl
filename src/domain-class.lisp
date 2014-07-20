@@ -27,8 +27,6 @@
 (define-pddl-class pathnamable ()
   ((path :type pathname)))
 
-(declaim (ftype (function (namable) symbol) name))
-
 (define-pddl-class pddl-domain (pathnamable namable)
   ((requirements :type list)
    (types :type list)

@@ -10,8 +10,12 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
         :iterate)
   (:import-from :metatilities :defclass*)
   (:shadow :minimize :maximize))
+
+(defpackage :pddl.universe)
+
 (in-package :pddl)
 (use-syntax :annot)
 ;; blah blah blah.
 (package-optimize-setting 0 3 3 3)
 (optimize*)
+

@@ -13,7 +13,7 @@
   (let ((p (predicate depot :at)))
     (is (typep p 'pddl-predicate))
     (is (= 2 (arity p)))))
-    
+
 (test (actions :depends-on accessors)
   (let ((a (action depot :drive)))
     (is (typep a 'pddl-action))
@@ -39,7 +39,6 @@
       (is (problem o) depotprob1818))))
 
 (test (states :depends-on accessors-prob)
-  
   (dolist (o (init depotprob1818))
     (is (domain o) depot)
     (is (problem o) depotprob1818)))
