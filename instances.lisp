@@ -33,16 +33,14 @@
         (format t "~&; loading ~a~&" path)
         (for i from 1)
         (for sym = (concatenate-symbols
-                    (name problem) i))
+                    (name *problem*) i))
         (for plan = (pddl-plan :path path))
         (eval `(defparameter ,sym ,plan))
-        (export sym)
         (collecting plan)))
 
 (defun read-many-problems (problempath-regex)
   (iter (for path in (find-by-regex problempath-regex))
-        (for sym = (parse-file path))
-        (export sym)
+        (for sym = (parse-file path t))
         (let ((*problem* (symbol-value sym)))
           (collecting
            (list* (symbol-value sym)
@@ -60,8 +58,7 @@
     (handler-bind ((warning #'muffle-warning))
       (cond
         ((or (stringp domain) (pathnamep domain))
-         (let ((sym (parse-file (data domain))))
-           (export sym)
+         (let ((sym (parse-file (data domain) t)))
            (let ((*domain* (symbol-value sym)))
              (list* *domain*
                     (mappend #'read-many-problems args)))))
@@ -69,6 +66,7 @@
          (let ((*domain* domain))
            (list* *domain*
                   (mappend #'read-many-problems args))))))))
+
 (export 'all)
 
 (defun problem->plans (problem-path)
