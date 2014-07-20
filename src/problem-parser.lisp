@@ -27,8 +27,35 @@
 
 (define-clause-getter init :init
   (lambda (init-descriptions)
-    (mapcar #'parse-init-el
-            init-descriptions)))
+    (let ((inits (mapcar #'parse-init-el init-descriptions)))
+      (let ((fss (remove-if-not (rcurry #'typep 'pddl-function-state) inits)))
+        (assert (= (length fss)
+                   (reduce #'+ (functions *domain*) :key
+                           (lambda (f)
+                             (reduce #'* (possible-arguments f *problem*)
+                                     :key #'length))))
+                nil
+                "~&The initial value of a function is not fully defined! ~%~
+                 Missing definition:~%~
+                 ~{~a~%~}"
+                (missing-definitions fss *domain*)))
+      inits)))
+
+(defun missing-definitions (fss *domain*)
+  (iter (for f in (functions *domain*))
+        (for sets = (possible-arguments f *problem*))
+        (if sets
+            (apply #'map-product
+                   (lambda (&rest objects)
+                     (unless (member objects
+                                     (remove-if-not (curry #'eqname f) fss)
+                                     :key #'parameters
+                                     :test #'equal)
+                       (collect (mapcar #'name (list* f objects)))))
+                   sets)
+            ;; total-cost, total-time, or any 0-arg functions
+            (unless (member f fss :test #'eqname)
+              (collect (list (name f)))))))
 
 (defun parse-init-el (desc)
   (match desc
