@@ -20,16 +20,11 @@
 
 (defun data (name)
   (merge-pathnames
-   name
-   (asdf:system-relative-pathname :pddl "data/")))
+   name (asdf:system-relative-pathname :pddl "t/")))
 
-(defvar +problem+ (data "pfile1"))
-(defvar +domain+ (data "domain.pddl"))
-(defvar +plan+ (data "pfile1.plan.1"))
-
-(print +problem+)
-(print +domain+)
-(print +plan+)
+(defparameter +problem+ (data "depot/pfile1"))
+(defparameter +domain+ (data "depot/domain.pddl"))
+(defparameter +plan+ (data "depot/pfile1.plan.1"))
 
 (def-suite :pddl)
 (in-suite :pddl)

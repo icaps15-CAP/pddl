@@ -6,11 +6,11 @@
     (finishes
       (parse-file (data "costs/domain.pddl"))
       (let ((*domain* cell-assembly))
-	(parse-file (data (format nil "costs/model2b~a.pddl" 1)))
+	(parse-file (data "costs/model2b1.pddl"))
 	(let ((*problem* cell-assembly-model2b-1))
 	  (setf cell-assembly-model2b-1-6
 		(pddl-plan
-		 :path (data (format nil "costs/model2b~a.plan.~a" 1 6)))))))))
+		 :path (data "costs/model2b1.plan.1"))))))))
 
 (test costs
   (finishes

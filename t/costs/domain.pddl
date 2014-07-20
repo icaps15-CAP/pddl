@@ -1,0 +1,1 @@
+../../data/costs/domain.pddl
