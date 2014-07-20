@@ -10,6 +10,7 @@
                     (list ,@(mapcar (lambda (name)
                                       `(object *problem* ,name))
                                     names))))))
+
 (test (applicability :depends-on (and predicate accessors))
   (finishes
     (define (domain *test-domain*)
@@ -66,12 +67,11 @@
       (:init (truck t1) (at t1 a) (connected a b) (connected b c))
       (:goal (at t1 c))))
 
-  (let* ((*domain* *test-domain*)
-	 (*problem* *test-problem*))
-
+  (let* ((*domain* logistics)
+	 (*problem* logistics-prob))
     (check is-true move :t1 :a :b)
     (check is-false move :t1 :a :c)
-    (signals no-such-operator
+    (signals error
       (pddl-ground-action
        :name 'foo
        :parameters (list (object *problem* :b)
@@ -80,31 +80,29 @@
 (test (apply-action :depends-on applicability)
   (let* ((*domain* logistics)
 	 (*problem* logistics-prob)
-         (ga1 (pddl-ground-action
-               :name 'move
-               :parameters (list (object *problem* :t1)
-                                 (object *problem* :a)
-                                 (object *problem* :b))))
-         (ga2 (pddl-ground-action
-               :name 'move
-               :parameters (list (object *problem* :t1)
-                                 (object *problem* :b)
-                                 (object *problem* :c)))))
-    (is-true (applicable ga1 (init *problem*)))
-    (is-false (applicable ga2 (init *problem*)))
+         (ga1 (ground-action (action *domain* :move)
+                             (list (object *problem* :t1)
+                                   (object *problem* :a)
+                                   (object *problem* :b))))
+         (ga2 (ground-action (action *domain* :move)
+                             (list (object *problem* :t1)
+                                   (object *problem* :b)
+                                   (object *problem* :c)))))
+    (is-true (applicable (init *problem*) ga1))
+    (is-false (applicable (init *problem*) ga2))
     ;; ensure not modified
     (let ((original-init (copy-list (init *problem*))))
       (finishes
-        (apply-ground-action ga (init *problem*)))
+        (apply-ground-action ga1 (init *problem*)))
       (is (equalp (init *problem*) original-init)))
     ;; apply
-    (let ((new-state (apply-ground-action ga (init *problem*))))
+    (let ((new-state (apply-ground-action ga1 (init *problem*))))
       (is-false (applicable new-state ga1))
       (is-true (applicable new-state ga2)))
     (let* ((*actions* (list ga1 ga2))
            (*plan* (pddl-plan :actions *actions*))
            (*env* (pddl-environment :plan *plan*)))
       (let ((last-env (simulate-plan *env*)))
-        (is (typep last-env 'pddl-environment)))
-      (is (goal-p *problem* (states last-env))))))
+        (is (typep last-env 'pddl-environment))
+        (is (goal-p *problem* (states last-env)))))))
 

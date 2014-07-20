@@ -1,10 +1,6 @@
 (in-package :pddl-test)
 (in-suite :pddl)
 
-(defvar CELL-ASSEMBLY)
-(defvar CELL-ASSEMBLY-MODEL2B-1)
-(defvar CELL-ASSEMBLY-MODEL2B-1-6)
-
 (test (read-all-problem-and-plans)
   (handler-bind ((found-in-dictionary #'muffle-warning))
     (finishes
@@ -16,37 +12,95 @@
 		(pddl-plan
 		 :path (data (format nil "costs/model2b~a.plan.~a" 1 6)))))))))
 
-(test (costs :depends-on read-all-problem-and-plans)
-  (handler-bind ((found-in-dictionary #'muffle-warning))
+(test costs
+  (finishes
+    (define (domain logistics-typed-cost)
+      (:requirements :strips :action-cost)
+      (:types truck place)
+      (:predicates (at ?t - truck ?a - place) (connected ?x ?y - place))
+      (:functions (total-cost) (distance ?x ?y - place))
+      (:action move-fixed
+	       :parameters (?t - truck ?x ?y - place)
+	       :precondition (and (at ?t ?x) (connected ?x ?y))
+	       :effect (and (not (at ?t ?x)) (at ?t ?y)
+                            (increase (total-cost) 10)))
+      (:action move-function
+	       :parameters (?t - truck ?x ?y - place)
+	       :precondition (and (at ?t ?x) (connected ?x ?y))
+	       :effect (and (not (at ?t ?x)) (at ?t ?y)
+                            (increase (total-cost) (distance ?x ?y))))))
+  (finishes
+    (define (problem logistics-typed-cost-prob)
+      (:domain logistics-typed-cost)
+      (:objects t1 - truck
+                a b c - place)
+      (:init (at t1 a)
+             (connected a b)
+             (connected b c)
+             (= (total-cost) 0)
+             (= (distance a a) 0)
+             (= (distance a b) 5)
+             (= (distance a c) 5)
+             ;;
+             (= (distance b a) 5)
+             (= (distance b b) 0)
+             (= (distance b c) 5)
+             ;;
+             (= (distance c a) 5)
+             (= (distance c b) 5)
+             (= (distance c c) 0))
+      (:goal (at t1 c))
+      (:metric minimize (total-cost))))
+
+  (let (*env* logistics-plan)
+
+    (finishes
+      (setf logistics-plan
+            (pddl-plan
+             :actions (parse-plan '((move-fixed t1 a b)
+                                    (move-function t1 b c))
+                                  logistics-typed-cost
+                                  logistics-typed-cost-prob))))
     (finishes
       (setf *env* (pddl-environment
-		 :domain cell-assembly
-		 :problem cell-assembly-model2b-1
-		 :plan cell-assembly-model2b-1-6))))
+                   :domain logistics-typed-cost
+                   :problem logistics-typed-cost-prob
+                   :plan logistics-plan)))
+    (is (= 0 (cost *env*)) "the metric is not initialized to 0")
+    (finishes (setf *env* (proceed *env*)))
+    (is (= 10 (cost *env*)))
+    (is (= 5 (value (function-state *env* '(distance b c)))))
+    (finishes (setf *env* (proceed *env*)))
+    (is (= 15 (cost *env*)))
+    ;; integrated test
+    (is (= 15 (cost
+               (with-simulating-plan (env *env*)
+                 (format t "~&~a" (cost env))))))))
 
-  (is (= (cost *env*) 0) "the metric is not initialized to 0")
-  (is (= (value (function-state *env* '(MOVE-COST SCREW-MACHINE-A TRAY-B)))
-	 3)
-      "failed to query a function state '(MOVE-COST SCREW-MACHINE-A TRAY-B) ~
-       and to get its value")
+(test detect-cost-initialization-missing
+  (signals simple-error ;; because the definition is not full
+    (define (problem logistics-definition-missing)
+      (:domain logistics-typed-cost)
+      (:objects t1 - truck
+                a b c - place)
+      (:init (at t1 a)
+             (connected a b)
+             (connected b c)
+             ;;(= (total-cost) 0)
+             (= (distance a a) 0)
+             (= (distance a b) 5)
+             (= (distance a c) 5)
+             ;;
+             (= (distance b a) 5)
+             ;;(= (distance b b) 0)
+             (= (distance b c) 5)
+             ;;
+             (= (distance c a) 5)
+             (= (distance c b) 5)
+             (= (distance c c) 0))
+      (:goal (at t1 c))
+      (:metric minimize (total-cost)))))
 
-
-  (finishes (setf *env* (proceed *env*))) ;slide
-  (is (= 1 (cost *env*)))
-  (finishes (setf *env* (proceed *env*))) ;move-arm table-on tray-a
-  (is (= 5 (cost *env*)))
-  (finishes (setf *env* (proceed *env*))) ;pickup
-  (is (= 6 (cost *env*)))
-  (finishes (setf *env* (proceed *env*))) ;move-arm tray-a table-on
-  (is (= 10 (cost *env*))))
-
-(test (simulate-plan-with-costs :depends-on costs)
-  (reinitialize-instance *env*)
-  (is (= 0 (cost *env*)))
-  (setf *env*
-	(with-simulating-plan (env *env*)
-	  (format t "~%~a~%" (cost env))))
-  (is (= 63 (cost *env*))))
 
 
 
