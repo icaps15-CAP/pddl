@@ -7,8 +7,10 @@
   (defvar *compiled-files-logfile*
     (asdf:system-relative-pathname :pddl ".compiled-pddlfasl-files"))
   (defun delete-file-verbose (path)
-    (format t "~&Deleting : ~a~%" path)
-    (delete-file path))
+    (format t "~&Deleting : ~a" path)
+    (if (probe-file path)
+        (delete-file path)
+        (format t "~%File not Deleted : not found")))
   (defun cleanup-pddlfasl ()
     (with-open-file (s *compiled-files-logfile*
                        :if-does-not-exist :create)
@@ -18,6 +20,7 @@
     (delete-file-verbose *compiled-files-logfile*)))
 
 (export '(domain problem
+          cleanup-pddlfasl
           pddl-definition
           pddl-domain-definition
           pddl-problem-definition))
