@@ -30,7 +30,9 @@
       (states env)))))
 
 @export
-(defun parse-plan (path-or-descriptions *domain* *problem*)
+(defun parse-plan (path-or-descriptions
+                   &optional
+                     (*domain* *domain*) (*problem* *problem*))
   (flet ((instantiate (a-desc)
              (ematch a-desc
                ((list* name arguments)
