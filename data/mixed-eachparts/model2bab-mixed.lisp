@@ -2,13 +2,15 @@
 (in-package :pddl.builder)
 
 (defun write-2a2b-mixed-each (max)
-  (iter (for i from 1 to max)
-	(write-model #'2a2b-mixed-each
-		     #'(lambda (i)
-                         (merge-pathnames
-                          (format nil "2a2b-mixed-each-~2,,,'0@a.pddl" i)
-                          (asdf:system-relative-pathname :pddl.builder "data/mixed-eachparts/")))
-		     i)))
+  (let ((rs (make-random-state)))
+    (iter (for i from 1 to max)
+          (let ((*random-state* rs))
+            (write-model #'2a2b-mixed-each
+                         #'(lambda (i)
+                             (merge-pathnames
+                              (format nil "2a2b-mixed-each-~2,,,'0@a.pddl" i)
+                              (asdf:system-relative-pathname :pddl.builder "data/mixed-eachparts/")))
+                         i)))))
 
 (defun 2a2b-mixed-each (basenum)
   (let ((bases-2a (iter (for i below basenum) (collect (concatenate-symbols 'base-2a i))))
@@ -115,7 +117,7 @@
                (j2b-screw-a screw-machine-a)
                (j2b-attatch-b table1 ,part-bs tray-b)
                (j2b-attatch-c table1 ,part-cs tray-c)
-               (j2b-screw-c screw-machine-c)) 2 4))
+               (j2b-screw-c screw-machine-c)) 2 4 t))
         ;; component-base association
         ,@(make-component-bases parts-2a bases-2a)
         ,@(make-component-bases parts-2b bases-2b)

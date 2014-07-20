@@ -8,13 +8,15 @@
                (collect `(component-base ,component ,base))))))
 
 (defun write-model2a-each (max)
-  (iter (for i from 1 to max)
-	(write-model #'model2a-each
-		     #'(lambda (i)
-                         (merge-pathnames
-                          (format nil "model2a-each-~a.pddl" i)
-                          (asdf:system-relative-pathname :pddl.builder "data/costs-eachparts/")))
-		     i)))
+  (let ((rs (make-random-state)))
+    (iter (for i from 1 to max)
+          (let ((*random-state* rs))
+            (write-model #'model2a-each
+                         #'(lambda (i)
+                             (merge-pathnames
+                              (format nil "model2a-each-~a.pddl" i)
+                              (asdf:system-relative-pathname :pddl.builder "data/costs-eachparts/")))
+                         i)))))
 
 (defun model2a-each (basenum)
   (let ((bases (make-bases basenum))
@@ -40,24 +42,13 @@
 			'cell-assembly-model2a-each
 			basenum))
        (:domain cell-assembly-eachparts)
-       (:objects arm1
-		 arm2 - arm
+       (:objects arm1 arm2 - arm
 		 ,@bases - base
 		 ,@(reduce #'append parts :from-end t) - component
-		 
-		 tray-a
-		 tray-b
-		 tray-c - tray
-		 
-		 table1
-		 table2 - table
-		 
-		 gasket-machine
-		 screw-machine-a
-		 oiling-machine
-		 screw-machine-c
-		 inspection-machine  - machine
-		 
+		 tray-a tray-b tray-c - tray
+		 table1 table2 - table
+		 gasket-machine screw-machine-a oiling-machine
+		 screw-machine-c inspection-machine  - machine
 		 insert-gasket  - machine-job
 		 attatch-a      - job ;; at table1
 		 screw-a        - machine-job
@@ -65,10 +56,9 @@
 		 attatch-b      - job ;; at table2
 		 attatch-c      - job ;; at table2
 		 screw-c        - machine-job
-		 inspect-base   - machine-job
-		 )
+		 inspect-base   - machine-job)
        (:init
-   ;;;;;;;;;;;;;;;; ATTRIBUTES ;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;;;;;;; ATTRIBUTES ;;;;;;;;;;;;;;;;
 	;; 
 	;; cost initialization
 	(= (total-cost) 0)   ; !!! do not remove this
@@ -78,34 +68,28 @@
 	,@(make-reachable
 	   'arm1 '(gasket-machine
 		   inspection-machine
-		   
 		   table-in
 		   table-out
 		   table1
 		   table2
-		   
 		   tray-a))
 
 	,@(make-reachable
 	   'arm2 '(screw-machine-a
 		   oiling-machine
 		   screw-machine-c
-		   
 		   table1
 		   table2
-		   
 		   tray-b
 		   tray-c))
 
 	;; position attributes
 	,@distances
-	
 	;; conveyor attributes
 	(connected carry-in table-in)   ; !!! do not remove this
 	(connected table-out carry-out) ; !!! do not remove this
 
 	;; job and component attributes
-	
 	,@(destructuring-bind (part-as part-bs part-cs) parts
             (make-linear-jobs
              `((insert-gasket gasket-machine)
@@ -116,21 +100,18 @@
                (attatch-c table2 ,part-cs tray-c)
                (screw-c screw-machine-c)
                (inspect-base inspection-machine)) 2 4))
-        
+        ;; component-base association
         ,@(make-component-bases parts bases)
-	
-   ;;;;;;;;;;;;;;;; INITIAL STATES ;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;;;; INITIAL STATES ;;;;;;;;;;;;;;;;
 	;; 
-   ;;;; Bases ;;;;;;;;;
+        ;;;;;; Bases ;;;;;;;;;
 	;; 
 	;; All bases are at CARRY-IN
 	;; Base and jobs. All bases must have finished NOTHING-DONE
 
 	,@(make-initial-bases bases)
-   ;;;; Arms ;;;;;;;;;;;;;;;;
+        ;; Arms ;;;;;;;;;;;;;;;;
 	,@(make-initial-arms '(arm1 arm2)
 			     '(tray-a oiling-machine)))
-       (:goal (and
-	       ,@(make-goal-bases bases 'inspect-base)
-	       ))
+       (:goal (and ,@(make-goal-bases bases 'inspect-base)))
        (:metric minimize (total-cost)))))

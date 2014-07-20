@@ -2,13 +2,15 @@
 (in-package :pddl.builder)
 
 (defun write-model2b-each (max)
-  (iter (for i from 1 to max)
-	(write-model #'model2b-each
-		     #'(lambda (i)
-                         (merge-pathnames
-                          (format nil "model2b-each-~a.pddl" i)
-                          (asdf:system-relative-pathname :pddl.builder "data/costs-eachparts/")))
-		     i)))
+  (let ((rs (make-random-state)))
+    (iter (for i from 1 to max)
+          (let ((*random-state* rs))
+            (write-model #'model2b-each
+                         #'(lambda (i)
+                             (merge-pathnames
+                              (format nil "model2b-each-~a.pddl" i)
+                              (asdf:system-relative-pathname :pddl.builder "data/costs-eachparts/")))
+                         i)))))
 
 (defun model2b-each (basenum)
   (let ((bases (iter (for i below basenum)
