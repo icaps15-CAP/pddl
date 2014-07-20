@@ -36,6 +36,7 @@
                     (name *problem*) i))
         (for plan = (pddl-plan :path path))
         (eval `(defparameter ,sym ,plan))
+        (export sym)
         (collecting plan)))
 
 (defun read-many-problems (problempath-regex)
