@@ -6,8 +6,7 @@
                     (muffle-warning c))))
     (defpackage pddl.instances
       (:use :cl :iterate :pddl :guicho-utilities :alexandria
-            :optima
-            :cl-ppcre :osicat)
+            :optima :cl-ppcre :osicat)
       (:shadow :place)
       (:shadowing-import-from :pddl :minimize :maximize))))
 
@@ -29,38 +28,35 @@
        (scan regex (princ-to-string (absolute-pathname path)))))
     acc))
 
-(defun read-many-plans (problem plans)
+(defun read-many-plans (plans)
   (iter (for path in plans)
         (format t "~&; loading ~a~&" path)
         (for i from 1)
         (for sym = (concatenate-symbols
                     (name problem) i))
-        (for plan = (pddl-plan
-                     :domain *domain*
-                     :problem problem
-                     :path path))
+        (for plan = (pddl-plan :path path))
         (eval `(defparameter ,sym ,plan))
         (export sym)
         (collecting plan)))
 
 (defun read-many-problems (problempath-regex)
   (iter (for path in (find-by-regex problempath-regex))
-        (format t "~&; loading ~a~&" path)
         (for sym = (parse-file path))
-        (collecting
-         (list* (symbol-value sym)
-                (read-many-plans (symbol-value sym) (problem->plans path))))
-        (export sym)))
+        (export sym)
+        (let ((*problem* (symbol-value sym)))
+          (collecting
+           (list* (symbol-value sym)
+                  (read-many-plans (problem->plans path)))))))
 
 (defun data (name)
   (merge-pathnames
    name
    *data-home*))
 
-
 (defun all (domain &rest args)
-  (let ((*package* (find-package :pddl.instances)))
-    (format t "~&; loading ~a~&" domain)
+  (let ((*package* (find-package :pddl.instances))
+        (*load-verbose* t)
+        (*load-print* t))
     (handler-bind ((warning #'muffle-warning))
       (cond
         ((or (stringp domain) (pathnamep domain))

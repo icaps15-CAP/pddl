@@ -2,10 +2,10 @@
 (use-syntax :annot)
 
 (defvar *parsing-filename* nil)
-(defvar *compiled-files-logfile*
-  (asdf:system-relative-pathname :pddl ".compiled-pddlfasl-files"))
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
+  (defvar *compiled-files-logfile*
+    (asdf:system-relative-pathname :pddl ".compiled-pddlfasl-files"))
   (defun delete-file-verbose (path)
     (format t "~&Deleting : ~a~%" path)
     (delete-file path))
@@ -23,11 +23,11 @@
           pddl-problem-definition))
 
 (progn
-  ;; if this file is re-compiled, then the pddlfasls are invalidated, so run a cleanup
+  ;; if this file is re-compiled, then the pddlfasls are invalidated
   (eval-when (:compile-toplevel :execute)
     (cleanup-pddlfasl))
   @export
-  (defun parse-file (pddl-pathname)
+  (defun parse-file (pddl-pathname &optional export)
     (let ((*parsing-filename* pddl-pathname)
           (*compile-verbose* t)
           (*compile-print* t))
@@ -45,6 +45,7 @@
           (handler-case
               (load fasl)
             (pddl-definition (c)
+              (when export (export (name c)))
               (values (name c) (value c))))))))
 
   (define-condition pddl-definition (condition)
@@ -58,12 +59,11 @@
     (ematch type
       ((list 'domain name)
        `(progn
-          (in-package :pddl.universe)
           (defparameter ,name (parse-domain-def ',name ',body))
+          ;; signalled in load time
           (signal 'pddl-domain-definition :name ',name :value ,name)))
       ((list 'problem name)
        `(progn
-          (in-package :pddl.universe)
           (defparameter ,name (parse-problem-def ',name ',body))
           (signal 'pddl-problem-definition :name ',name :value ,name))))))
 
