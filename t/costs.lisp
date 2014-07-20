@@ -10,7 +10,7 @@
 	(let ((*problem* cell-assembly-model2b-1))
 	  (setf cell-assembly-model2b-1-6
 		(pddl-plan
-		 :path (data "costs/model2b1.plan.1"))))))))
+		 :path (data "costs/model2b1.plan.6"))))))))
 
 (test costs
   (finishes
