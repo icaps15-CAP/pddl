@@ -33,10 +33,9 @@
 (defun parse-plan (path-or-descriptions *domain* *problem*)
   (flet ((instantiate (a-desc)
              (ematch a-desc
-               ((list* action-name arguments)
-                (pddl-ground-action
-                 :name action-name
-                 :parameters ; namesym -> object
+               ((list* name arguments)
+                (ground-action
+                 (action *domain* name)
                  (mapcar (curry #'object *problem*) arguments))))))
     (typecase path-or-descriptions
       ((or string pathname)
@@ -54,7 +53,12 @@
 
 (define-pddl-class pddl-ground-action (pddl-problem-slot pddl-action) ())
 
-
+(defmethod initialize-instance :after ((ga pddl-ground-action)
+                                       &rest args &key &allow-other-keys)
+  (declare (ignore args))
+  (let ((a (action (domain ga) ga)))
+    (assert a nil "undefined action ~A" (name ga))
+    (assert (= (arity a) (arity ga)))))
 
 (defmethod action ((dom pddl-domain) (a pddl-ground-action))
   (action dom (name a)))

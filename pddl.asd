@@ -37,8 +37,7 @@
 		 (:file :problem-class)
 		 (:file :equality)
 		 (:file :parsers)
-                 (:file :ground-actions)
-                 (:file :match-set)
+                 (:file :grounds)
 
 		 (:file :domain-parser)
 		 (:file :problem-parser)
