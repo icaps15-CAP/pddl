@@ -33,16 +33,12 @@
        (remove-duplicates (flatten position-tree)))
     (%build-dists a index-hash)))
 
-(defclass symbol-node (searchable-bidirectional-node)
-  ((sym :type symbol :initarg :sym :accessor sym)
-   (complementary-edge-class :initform 'symbol-edge)))
+(defclass symbol-node (unit-cost-node)
+  ((sym :type symbol :initarg :sym :accessor sym)))
 
 (defmethod print-object ((n symbol-node) s)
   (print-unreadable-object (n s :type t)
     (format s "~w ~w" :sym (sym n))))
-
-(defclass symbol-edge (searchable-edge)
-  ((complementary-node-class :initform 'symbol-node)))
 
 (defmethod generic-eq ((s1 symbol-node) (s2 symbol-node))
   (eq (sym s1) (sym s2)))
@@ -50,9 +46,6 @@
 (defmethod heuristic-cost-between ((s1 symbol-node) (s2 symbol-node))
   0 ;; dijkstra search
   )
-
-(defmethod cost ((e symbol-edge))
-  1)
 
 (defmethod generate-nodes ((s symbol-node))
   nil)
@@ -81,8 +74,8 @@
 		      (gethash p2 index-hash))
 		(iter (for node
 			   initially
-			   (a*-search (gethash p1 node-hash)
-				      (gethash p2 node-hash))
+			   (a*-search-clos (gethash p1 node-hash)
+                                           (gethash p2 node-hash))
 			   then (parent node))
 		      (until (eq (sym node) p1))
 		      ;; (format t "~%going backward... ~w" node)
@@ -143,8 +136,10 @@
 
 (defun make-linear-jobs (jobspecs &optional
 			 (lower-limit 1)
-			 (upper-limit 3))
-  (let ((acc '((= (job-cost nothing-done) 0))))
+			 (upper-limit 3)
+                         exclude-nothing-done)
+  (let ((acc (unless exclude-nothing-done
+               '((= (job-cost nothing-done) 0)))))
     (let ((prev 'nothing-done))
       (dolist (job jobspecs acc)
 	 (destructuring-bind
