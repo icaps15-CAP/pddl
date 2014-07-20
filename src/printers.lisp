@@ -63,13 +63,6 @@
     (format s "~@<(ASSIGN ~; ~a ~;)~:>"
             (source o))))
 
-(defmethod print-object ((o pddl-initial-action) s)
-  (print-ignoring-unbound-slot
-    (format s "(INIT-ACTION)")))
-(defmethod print-object ((o pddl-goal-action) s)
-  (print-ignoring-unbound-slot
-    (format s "(GOAL-ACTION)")))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; instances under problems
 

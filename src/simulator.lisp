@@ -5,7 +5,7 @@
 (define-pddl-class pddl-environment (pddl-problem-slot)
   (plan
    states
-   (index :initform 1)))
+   (index :initform 0)))
 
 (defmethod initialize-instance :after
     ((env pddl-environment)
@@ -25,7 +25,7 @@
 
 (defmethod reinitialize-instance :after ((env pddl-environment)
                                          &key &allow-other-keys)
-  (setf (index env) 1
+  (setf (index env) 0
         (states env) (init (problem env))))
 
 @export
