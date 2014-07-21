@@ -21,10 +21,12 @@
   (<pddl-variable> <pddl-object> <pddl-variable> <pddl-object> ...)
 meaning it is a valid assignment of an object to a variable in an action."
 (defun match-set (ground-action)
-  (let ((set nil)
-        (a (action (domain ground-action) ground-action)))
-    (iter (for obj in (parameters ground-action))
-          (for var in (parameters a))
-          (setf (getf set var) obj))
-    set))
+  (make-match-set (parameters (action (domain ground-action) ground-action))
+                  (parameters ground-action)))
+
+(defun make-match-set (keys values)
+  (iter (for x in keys)
+        (for y in values)
+        (collecting x)
+        (collecting y)))
 
