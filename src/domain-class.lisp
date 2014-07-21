@@ -199,9 +199,6 @@ that of pred2. a predicate p1 is more specific than p2 when:
    value-function
    source))
 
-(define-pddl-class pddl-action-cost (pddl-assign-op)
-  (action-cost))
-
 (define-pddl-class pddl-action (pddl-domain-slot
                                 pddl-parametrized-object
                                 namable)

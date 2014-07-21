@@ -9,7 +9,8 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
         :annot.doc :annot.eval-when
         :iterate)
   (:import-from :metatilities :defclass*)
-  (:shadow :minimize :maximize))
+  (:shadow :minimize :maximize)
+  (:export :total-cost :total-time))
 (in-package :pddl)
 (use-syntax :annot)
 ;; blah blah blah.
