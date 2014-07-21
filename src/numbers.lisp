@@ -127,17 +127,17 @@ clause in the domain description.
                 (parse-f-head head) matches states))))))))
 
 @export
-(defun assign-op-place (op matches states)
-  (funcall (place-function op) matches states))
+(defun assign-op-place (op matches atomic-states)
+  (funcall (place-function op) matches atomic-states))
 @export
-(defun assign-op-new-value (op matches states)
-  (funcall (value-function op) matches states))
+(defun assign-op-new-value (op matches atomic-states)
+  (funcall (value-function op) matches atomic-states))
 @export
-(defun apply-assign-op (op matches states)
-  (let ((fs (assign-op-place op matches states)))
+(defun apply-assign-op (op matches atomic-states)
+  (let ((fs (assign-op-place op matches atomic-states)))
     (substitute
-     (shallow-copy fs :value (assign-op-new-value op matches states))
-     fs states)))
+     (shallow-copy fs :value (assign-op-new-value op matches atomic-states))
+     fs atomic-states)))
 
 (export '(maximize minimize))
 
