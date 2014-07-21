@@ -16,7 +16,8 @@
                   (apply-assign-op e match-set states)))))
       (rec states (effect ground-action)))))
 
-;; deprecated, to be removed
+;; +deprecated, to be removed+ ... maybe not
+@export
 @doc "Returns a plist 
   (<pddl-variable> <pddl-object> <pddl-variable> <pddl-object> ...)
 meaning it is a valid assignment of an object to a variable in an action."

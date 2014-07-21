@@ -88,7 +88,7 @@
 
 (declaim (ftype (function (t) list) parameters))
 (define-pddl-class pddl-parametrized-object ()
-  ((parameters :type list)))
+  ((parameters :type list :initform nil)))
 
 @export
 @doc "returns t if the arguments of pred1 is more specific than
