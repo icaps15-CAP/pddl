@@ -14,13 +14,15 @@
 
 (defmacro define-pddl-class (name superclass slots)
   `(eval-when (:compile-toplevel :load-toplevel :execute)
-     (defclass* ,name ,superclass
-       ,slots
-       (:EXPORT-P t)
-       :EXPORT-SLOTS
-       :AUTOMATIC-ACCESSORS
-       :AUTOMATIC-INITARGS)
-     (define-constructor ,name)))
+     (#+sbcl sb-ext:with-unlocked-packages #+sbcl (:cl)
+      #-sbcl progn
+      (defclass* ,name ,superclass
+        ,slots
+        (:EXPORT-P t)
+        :EXPORT-SLOTS
+        :AUTOMATIC-ACCESSORS
+        :AUTOMATIC-INITARGS)
+      (define-constructor ,name))))
 
 (define-pddl-class namable ()
   ((name :type symbol)))
@@ -123,18 +125,9 @@ that of pred2. a predicate p1 is more specific than p2 when:
                                    namable)
   ())
 
-#+sbcl
-(eval-when (:compile-toplevel :load-toplevel :execute)
-  (sb-ext:with-unlocked-packages (:cl)
-    (define-pddl-class pddl-variable (pddl-domain-slot
-                                      namable)
-      (type))))
-
-#-sbcl
-(eval-when (:compile-toplevel :load-toplevel :execute)
-  (define-pddl-class pddl-variable (pddl-domain-slot namable)
-    (type)))
-
+(define-pddl-class pddl-variable (pddl-domain-slot
+                                  namable)
+  ((type :initform *pddl-primitive-object-type*)))
 
 (define-pddl-class pddl-type (pddl-variable)
   ())
@@ -168,17 +161,19 @@ that of pred2. a predicate p1 is more specific than p2 when:
             :key (compose #'string-upcase #'name)
             :test #'string=)))
 
-@eval-always
 @export
 (defvar *pddl-primitive-object-type*
-  (let ((pt (pddl-type :name 'object)))
+  (let ((pt (pddl-type :name 'object
+                       :type nil))) ; to suppress the reference to
+                                    ; *pddl-primitive-object-type* specified in the
+                                    ; :initform of pddl-variable
     (setf (type pt) pt)
     pt))
 
-@eval-always
 @export
 (defvar *pddl-primitive-number-type*
-  (let ((pt (pddl-type :name 'number)))
+  (let ((pt (pddl-type :name 'number
+                       :type nil)))
     (setf (type pt) pt)
     pt))
 
@@ -248,21 +243,11 @@ that of pred2. a predicate p1 is more specific than p2 when:
       acc)))
 
 
-#+sbcl
-(eval-when (:compile-toplevel :load-toplevel :execute)
-  (sb-ext:with-unlocked-packages (:cl)
-    (define-pddl-class pddl-durative-action (pddl-domain-slot namable)
-      ((parameters :type pddl-variable)
-       duration
-       condition
-       effect))))
-
-#-sbcl
-(eval-when (:compile-toplevel :load-toplevel :execute)
-  (define-pddl-class pddl-durative-action (pddl-domain-slot)
-    ((parameters :type pddl-variable)
-     condition
-     effect)))
+(define-pddl-class pddl-durative-action (pddl-domain-slot namable)
+  ((parameters :type pddl-variable)
+   duration
+   condition
+   effect))
 
 (define-pddl-class pddl-derived-predicate (pddl-domain-slot)
   ((parameters :type pddl-variable)
