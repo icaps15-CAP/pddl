@@ -35,11 +35,11 @@
                    &optional
                      (*domain* *domain*) (*problem* *problem*))
   (flet ((instantiate (a-desc)
-             (ematch a-desc
-               ((list* name arguments)
-                (ground-action
-                 (action *domain* name)
-                 (mapcar (curry #'object *problem*) arguments))))))
+           (ematch a-desc
+             ((list* name arguments)
+              (ground-action
+               (action *domain* name)
+               (mapcar (curry #'object *problem*) arguments))))))
     (typecase path-or-descriptions
       ((or string pathname)
        (with-open-file (s path-or-descriptions)
