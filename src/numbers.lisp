@@ -31,55 +31,44 @@ clause in the domain description.
 (defun %getf-by-name (matches parameter)
   (match matches
     (nil nil)
-    ((list* (guard key (and (eqname key parameter)
-                            (or (pddl-supertype-p
-                                 (type key)
-                                 (type parameter))
-                                (pddl-supertype-p
-                                 (type parameter)
-                                 (type key)))))
-            value _)
-     value)
-    ((list* _ _ rest)
-     (%getf-by-name rest parameter))))
+    ((list* var obj rest)
+     (if (and (eqname var parameter)
+              (or (pddl-supertype-p (type var) (type parameter))
+                  (pddl-supertype-p (type parameter) (type var))))
+         obj
+         (%getf-by-name rest parameter)))))
+
+(defun wrap-eq (x)
+  (with-gensyms (it)
+    `(guard ,it (eqname ,it ,x))))
+(defun params-matcher (matches params)
+  (mapcar (lambda (p)
+            (if (typep p 'pddl-constant) p
+                `(%getf-by-name ,matches ,p)))
+   params))
 
 (defun %function-state-compiler (head matches states)
-  `(or (find-if 
-        (lambda-match
-          ((pddl-function-state
-            :name ',(name head)
-            :parameters
-            (list 
-             ,@(mapcar
-                (lambda (p)
-                  `(eq ,(if (typep p 'pddl-constant) p
-                            `(%getf-by-name ,matches ,p))))
-                (parameters head)))) t))
-        ,states)
-       ,(%error-form head matches states)))
+  (let* ((params-form (params-matcher matches (parameters head)))
+         (matcher-form
+          `(lambda-match
+             ((pddl-function-state
+               :name ',(name head)
+               :parameters (list ,@(mapcar #'wrap-eq params-form))) t))))
+    `(or (find-if ,matcher-form ,states)
+         ,(%error-form head matches states matcher-form params-form))))
 
-(defun %error-form (head matches states)
-  (let ((param-form
-         (mapcar
-          (lambda (p) `(%getf-by-name ,matches ,p))
-          (parameters head))))
-    `(error "~%The value is not initialized ~_~
+(defun %error-form (head matches states matcher-form params-form)
+  `(error "~%The value is not initialized ~_~
                in the problem description! ~%~
                ~<match-set: ~@;~@{~a ~30,5:t~a~^~%~}~;~:>~%~
                  head:      ~a~%~
                add~%(= ~a 0)~%to the problem file.~%~
                match-test:~%~a~%~
-               parameters:~%~a~%~
                state:~%~a~%"
-            ,matches ,head 
-            (print-pddl-object ,head) ; add
-            '(pddl-function-state ; match-test
-              :name ',(name head)
-              :parameters (list ,@(mapcar
-                                   (lambda (form) `(eq ,form))
-                                   param-form)))
-            (list ,@param-form) ; parameters
-            ,states))) ; states
+          ,matches ,head 
+          (list* (name ,head) (mapcar #'name (list ,@params-form))) ; add
+          ',matcher-form ; match-test
+          ,states)) ; states
 
 @export
 @doc "This function is meant to be called while parsing the action effect.
