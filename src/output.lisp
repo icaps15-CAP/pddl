@@ -6,7 +6,7 @@
 ;;;; a valid pddl problem, domain etc.
 ;;;;
 
-(defvar *print-type-p* t)
+(defvar *print-type* t)
 
 @export
 (defgeneric print-pddl-object (o &optional s))
@@ -89,14 +89,17 @@
       (pprint-pddl (call-next-method) s)
       (call-next-method)))
 
+(defun %output-when (keyword list)
+  (when list `((,keyword ,@list))))
+
 (defmethod print-pddl-object ((o pddl-domain) &optional s)
   @ignore s
   `(define (domain ,(print-pddl-object (name o)))
-     (:requirements ,@(requirements o))
-     (:types ,@(mappend #'print-pddl-object (types o)))
-     (:constants ,@(mappend #'print-pddl-object (constants o)))
-     (:predicates ,@(print-pddl-object (predicates o)))
-     (:functions ,@(mapcar #'print-pddl-object (functions o)))
+     ,@(%output-when :requirements (requirements o))
+     ,@(%output-when :types (mappend #'print-pddl-object (types o)))
+     ,@(%output-when :constants (mappend #'print-pddl-object (constants o)))
+     ,@(%output-when :predicates (print-pddl-object (predicates o)))
+     ,@(%output-when :functions (mapcar #'print-pddl-object (functions o)))
      ;; (:functions ,@(print-pddl-object (functions o)))
      ,@(mapcar #'print-pddl-object (actions o))
      ,@(mapcar #'print-pddl-object (durative-actions o))
@@ -123,7 +126,7 @@
     (format s "~{~a~%~}"
             (ematch o
               ((pddl-plan actions)
-               (let ((*print-type-p* nil))
+               (let ((*print-type* nil))
                  (reduce #'cons actions
                          :key #'print-pddl-object
                          :from-end t
@@ -156,12 +159,12 @@
 
 (defmethod print-pddl-object ((o pddl-atomic-state) &optional s)
   @ignore s
-  (let ((*print-type-p* nil))
+  (let ((*print-type* nil))
     (call-next-method)))
 
 (defmethod print-pddl-object ((o pddl-function-state) &optional s)
   @ignore s
-  (let ((*print-type-p* nil))
+  (let ((*print-type* nil))
     `(= (,(print-pddl-object (name o))
           ,@(mappend #'print-pddl-object (parameters o)))
         ,(value o))))
@@ -171,7 +174,7 @@
   @ignore s
   `(,(print-pddl-object (name o))
      ,@(when (and (not (eq (type o) *pddl-primitive-object-type*))
-                  *print-type-p*)
+                  *print-type*)
              `(- ,(print-pddl-object (name (type o)))))))
 
 (defmethod print-pddl-object ((o pddl-assign-op) &optional s)
@@ -182,9 +185,10 @@
   @ignore s
   `(:action ,(print-pddl-object (name o))
             :parameters ,(mappend #'print-pddl-object (parameters o))
-            :precondition ,(print-pddl-object (precondition o))
-            :effect ,(append (print-pddl-object (effect o))
-                             (mapcar #'print-pddl-object (assign-ops o)))))
+            :precondition ,(let ((*print-type* nil))
+                             (print-pddl-object (precondition o)))
+            :effect ,(let ((*print-type* nil))
+                        (print-pddl-object (effect o)))))
 
 (defmethod print-pddl-object ((o pddl-ground-action) &optional s)
   @ignore s
