@@ -14,7 +14,8 @@
      (error "both actions and path are specified!"))
     ((not (or path actions))
      (error "neither actions nor path is specified!"))
-    (path (setf (actions env) (coerce (parse-plan path domain problem) 'vector)))
+    (path (setf (actions env) (coerce (parse-plan path domain problem) 'vector)
+                (name env) (pathname-name (pathname path))))
     (actions (setf (actions env) (coerce actions 'vector)))))
 
 @export
