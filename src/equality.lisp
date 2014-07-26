@@ -10,5 +10,6 @@
   @type pddl-predicate s1
   @type pddl-predicate s2
   (and (eqname s1 s2)
-       (equal (parameters s1)
+       (every #'eqname
+              (parameters s1)
               (parameters s2))))
