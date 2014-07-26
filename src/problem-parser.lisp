@@ -25,20 +25,29 @@
                     (find-if (curry #'%eqname1 typesym) (types *domain*))
                     *pddl-primitive-object-type*)))))))
 
+(define-condition function-value-missing (simple-warning) ())
+
+
+
 (define-clause-getter init :init
   (lambda (init-descriptions)
     (let ((inits (mapcar #'parse-init-el init-descriptions)))
       (let ((fss (remove-if-not (rcurry #'typep 'pddl-function-state) inits)))
-        (assert (= (length fss)
-                   (reduce #'+ (functions *domain*) :key
-                           (lambda (f)
-                             (reduce #'* (possible-arguments f *problem*)
-                                     :key #'length))))
-                nil
-                "~&The initial value of a function is not fully defined! ~%~
+        (restart-case
+            (assert (= (length fss)
+                       (reduce #'+ (functions *domain*) :key
+                               (lambda (f)
+                                 (reduce #'* (possible-arguments f *problem*)
+                                         :key #'length))))
+                    nil
+                    'function-value-missing
+                    :format-control
+                    "~&The initial value of a function is not fully defined! ~%~
                  Missing definition:~%~
-                 ~{~a~%~}"
-                (missing-definitions fss *domain*)))
+                 ~@{~a~%~}"
+                    :format-arguments
+                    (missing-definitions fss *domain*))
+          (muffle-warning ())))
       inits)))
 
 (defun missing-definitions (fss *domain*)

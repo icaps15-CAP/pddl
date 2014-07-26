@@ -78,7 +78,7 @@
                  (format t "~&~a" (cost env))))))))
 
 (test detect-cost-initialization-missing
-  (signals simple-error ;; because the definition is not full
+  (signals warning ;; because the definition is not full
     (define (problem logistics-definition-missing)
       (:domain logistics-typed-cost)
       (:objects t1 - truck
