@@ -215,11 +215,16 @@ Funcalls the second argument `getter' if it finds a head like (head arg arg2)."
              'malformed-f-head :fn fn :arguments arguments)
      (pddl-function
       :name name :parameters
-      (mapcar (lambda (sym) (pddl-variable :name sym))
+      (mapcar (lambda (sym)
+                (or (find sym *params* :key #'name)
+                    (error 'not-found-in-dictionary
+                           :pddl-form (list* name arguments)
+                           :interning-class 'pddl-variable
+                           :name sym)))
               arguments)))
     (nil
      (error 'not-found-in-dictionary
-            :pddl-form head
+            :pddl-form (list* name arguments)
             :interning-class 'pddl-function
             :name name))))
 
