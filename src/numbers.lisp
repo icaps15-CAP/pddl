@@ -60,9 +60,9 @@ clause in the domain description.
 
 (defun %error-form (head matches states)
   (let ((param-form
-         `(list ,@(mapcar
-                   (lambda (p) `(eq (%getf-by-name ,matches ,p)))
-                   (parameters head)))))
+         (mapcar
+          (lambda (p) `(%getf-by-name ,matches ,p))
+          (parameters head))))
     `(error "~%The value is not initialized ~_~
                in the problem description! ~%~
                ~<match-set: ~@;~@{~a ~30,5:t~a~^~%~}~;~:>~%~
@@ -75,8 +75,10 @@ clause in the domain description.
             (print-pddl-object ,head) ; add
             '(pddl-function-state ; match-test
               :name ',(name head)
-              :parameters ,param-form)
-            ',param-form ; parameters
+              :parameters (list ,@(mapcar
+                                   (lambda (form) `(eq ,form))
+                                   param-form)))
+            (list ,@param-form) ; parameters
             ,states))) ; states
 
 @export
