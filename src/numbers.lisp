@@ -67,7 +67,7 @@ clause in the domain description.
                in the problem description! ~%~
                ~<match-set: ~@;~@{~a ~30,5:t~a~^~%~}~;~:>~%~
                  head:      ~a~%~
-               add~%~(= ~a 0)~%to the problem file.~%~
+               add~%(= ~a 0)~%to the problem file.~%~
                match-test:~%~a~%~
                parameters:~%~a~%~
                state:~%~a~%"
@@ -76,7 +76,7 @@ clause in the domain description.
             '(pddl-function-state ; match-test
               :name ',(name head)
               :parameters ,param-form)
-            ,param-form ; parameters
+            ',param-form ; parameters
             ,states))) ; states
 
 @export
