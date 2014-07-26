@@ -201,7 +201,9 @@ that of pred2. a predicate p1 is more specific than p2 when:
    effect
    add-list
    delete-list
-   assign-ops))
+   assign-ops
+   positive-preconditions
+   negative-preconditions))
 
 (defmethod action ((dom pddl-domain) (designator pddl-action))
   (find designator (actions dom)))
@@ -240,6 +242,30 @@ that of pred2. a predicate p1 is more specific than p2 when:
                      ((type pddl-assign-op)
                       (push branch acc))))
                  (effect a))
+      acc)))
+
+(defmethod positive-preconditions ((a pddl-action))
+  (with-memoising-slot (positive-preconditions a)
+    (let ((acc nil))
+      (walk-tree (lambda (branch cont)
+                   (match branch
+                     ((andp rest)
+                      (funcall cont rest))
+                     ((type pddl-predicate)
+                      (push branch acc))))
+                 (precondition a))
+      acc)))
+
+(defmethod negative-preconditions ((a pddl-action))
+  (with-memoising-slot (negative-preconditions a)
+    (let ((acc nil))
+      (walk-tree (lambda (branch cont)
+                   (match branch
+                     ((andp rest)
+                      (funcall cont rest))
+                     ((notp (and pred (type pddl-predicate)))
+                      (push pred acc))))
+                 (precondition a))
       acc)))
 
 
