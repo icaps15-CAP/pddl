@@ -9,16 +9,10 @@
 
 (defmethod initialize-instance :after
     ((env pddl-environment)
-     &key
-       path plan states
+     &key plan states
        (domain (or *domain* (and plan (domain plan))))
        (problem (or *problem* (and plan (problem plan)))))
   (cond
-    ((and path plan) (error "both plan and path are specified!"))
-    ((not (or path plan)) (error "neither plan nor path is specified!"))
-    (path (setf (plan env) (pddl-plan :domain domain
-                                      :problem problem
-                                      :path path)))
     (plan (setf (plan env) plan)))
   (unless states
     (setf (states env) (init problem))))
