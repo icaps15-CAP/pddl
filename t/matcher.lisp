@@ -103,6 +103,6 @@
            (*plan* (pddl-plan :actions *actions*))
            (*env* (pddl-environment :plan *plan*)))
       (let ((last-env (simulate-plan *env*)))
-        (is (typep last-env 'pddl-environment))
+        (is-true (typep last-env 'pddl-environment))
         (is (goal-p *problem* (states last-env)))))))
 
