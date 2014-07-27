@@ -17,6 +17,11 @@
   "bind this variable with LET if you want to change the directory")
 (export '*data-home*)
 
+(defun ensure-complete-match (re)
+  (if (char= #\$ (aref re (1- (length re))))
+      re
+      (concatenate 'string re "$")))
+
 (defun find-by-regex (regex)
   (let (acc)
     (walk-directory
@@ -25,7 +30,8 @@
        (push (absolute-pathname path) acc))
      :test
      (lambda (path)
-       (scan regex (princ-to-string (absolute-pathname path)))))
+       (scan (ensure-complete-match regex)
+             (princ-to-string (absolute-pathname path)))))
     acc))
 
 (defun read-many-plans (plans)
