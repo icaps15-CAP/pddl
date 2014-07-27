@@ -1,5 +1,5 @@
 (in-package :pddl.instances)
 
-(all cell-assembly
-     "model[23][a-c]-loop/p[0-9]*.pddl")
+(all "costs/domain.pddl"
+     "model[23][a-c]-loop/p00[0-9]*.pddl")
 
