@@ -1,0 +1,19 @@
+Building causal graph...
+The causal graph is acyclic.
+0 variables of 0 necessary
+0 of 0 mutex groups necessary.
+0 of 0 operators necessary.
+0 of 0 axiom rules necessary.
+Building domain transition graphs...
+solveable in poly time 0
+Building successor generator...
+Preprocessor facts: 0
+Preprocessor derived variables: 0
+Preprocessor task size: 0
+Writing output...
+done
+
+real 0.00
+user 0.00
+sys 0.00
+maxmem 552
