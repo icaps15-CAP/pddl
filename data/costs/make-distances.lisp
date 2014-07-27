@@ -7,9 +7,8 @@
         :optima.extra
 	:iterate
 	:alexandria
-	:eazy-a*)
-  (:export :write-model :model2a :model2b
-	   :write-model2a :write-model2b))
+	:eazy-a*
+        :osicat))
 (in-package :pddl.builder)
 
 (defun make-bases (basenum)
@@ -22,7 +21,7 @@
     (print r)))
 (defun make-reachable (arms positions)
   (map-product (lambda (arm position)
-		 `(reachable ,arm ,position))
+		 `(is-reachable ,arm ,position))
 	       (ensure-list arms)
 	       (ensure-list positions)))
 
@@ -58,28 +57,28 @@
     (iter (for p in positions)
 	  (for i from 0)
 	  (setf (gethash p index-hash) i))
-    
-    (let ((node-hash (make-hash-table)))
-      (dolist (p positions)
-	(setf (gethash p node-hash)
-	      (make-instance 'symbol-node :sym p)))
-      (dolist (pair adjacencies)
-	(destructuring-bind (p q) pair
-	  (connect (gethash p node-hash)
-		   (gethash q node-hash))))
-      (dolist (p1 positions)
-	(dolist (p2 positions)
-	  (setf (aref a
-		      (gethash p1 index-hash)
-		      (gethash p2 index-hash))
-		(iter (for node
-			   initially
-			   (a*-search-clos (gethash p1 node-hash)
-                                           (gethash p2 node-hash))
-			   then (parent node))
-		      (until (eq (sym node) p1))
-		      ;; (format t "~%going backward... ~w" node)
-		      (counting (cost node)))))))
+    (dolist (p1 positions)
+      (dolist (p2 positions)
+        (let ((node-hash (make-hash-table)))
+          (dolist (p positions)
+            (setf (gethash p node-hash)
+                  (make-instance 'symbol-node :sym p)))
+          (dolist (pair adjacencies)
+            (destructuring-bind (p q) pair
+              (connect (gethash p node-hash)
+                       (gethash q node-hash))))
+          (setf (aref a
+                      (gethash p1 index-hash)
+                      (gethash p2 index-hash))
+                (multiple-value-bind (node cost)
+                    (a*-search-clos (gethash p1 node-hash)
+                                    (gethash p2 node-hash)
+                                    :verbose nil)
+                  (declare (ignore node))
+                  (if cost cost
+                      (progn
+                        (error "Path from ~a to ~a not found!" p1 p2)
+                        MOST-POSITIVE-FIXNUM)))))))
     (values a
 	    index-hash
 	    (sort (hash-table-alist index-hash) #'< :key #'cdr))))
@@ -109,29 +108,24 @@
   (list `(= (move-cost ,a ,b) 1000)))
 
 (defun %get-adjacency (position-tree)
-  (let ((acc nil))
-    (walk-tree
-     (let ((prev nil))
-       (lambda (branch cont)
-	 (if prev
-	     (typecase branch
-	       (list
-		(push (list (first prev) (car branch)) acc)
-		(push (car branch) prev)
-		(funcall cont (cdr branch))
-		(pop prev))
-	       (symbol
-		(push (list (first prev) branch) acc)
-		(setf (car prev) branch)))
-	     ;; first layer
-	     (typecase branch
-	       (list
-		(prog2
-		    (push (car branch) prev)
-		    (funcall cont (cdr branch))
-		  (pop prev)))
-	       (symbol (error "illegal argument"))))))
-     position-tree)
+  (let ((acc nil)
+        (stack nil)
+        (prev nil))
+    (labels ((rec (tree)
+               (match tree
+                 ((list* (and branch (list* first _)) rest)
+                  (push first stack)
+                  (rec branch)
+                  (rec rest))
+                 ((list* (and first (type symbol)) rest)
+                  (connect first)
+                  (rec rest))
+                 (nil (setf prev (pop stack)))))
+             (connect (now)
+               (when prev
+                 (push (list prev now) acc))
+               (setf prev now)))
+      (rec position-tree))
     acc))
 
 (defun make-linear-jobs (jobspecs &optional
@@ -177,3 +171,24 @@
     (dolist (base (ensure-list base-names) (nreverse acc))
       (push `(at ,base carry-out) acc)
       (push `(finished ,last-job ,base) acc))))
+
+(defun write-models-many (fn
+                          &key
+                            (format-control "p~4,,,'0@a.pddl")
+                            (size-list '(1 2 4 16 64 256 1024)))
+  (let ((rs (make-random-state)))
+    (dolist (i size-list)
+      (let ((*random-state* (make-random-state rs)))
+        (write-model fn
+                     #'(lambda (i)
+                         (format nil format-control i))
+                     i)))))
+
+(defun write-model (modelfn pathnamefn basenum)
+  (with-open-file (s (merge-pathnames
+                      (funcall pathnamefn basenum))
+		     :direction :output
+		     :if-exists :supersede
+		     :if-does-not-exist :create)
+    (let ((*package* (find-package :pddl.builder)))
+      (write (funcall modelfn basenum) :stream s))))

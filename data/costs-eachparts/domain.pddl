@@ -22,7 +22,7 @@
 	      nothing-done - job)  ; general start state of any base
   (:predicates 
    ;; arm attributes
-   (reachable ?arm - arm ?to - reachable)
+   (is-reachable ?arm - arm ?to - reachable)
    ;; position attributes
    (connected ?from ?to - position)
    ;; job attributes
@@ -51,7 +51,7 @@
 	   :precondition (and (at ?arm ?from)
 			      (not (arm-present ?to))
 			      (free ?arm)
-			      (reachable ?arm ?to))
+			      (is-reachable ?arm ?to))
 	   :effect (and (at ?arm ?to)
 			(arm-present ?to)
 			(not (at ?arm ?from))
@@ -65,7 +65,7 @@
 	   :precondition (and (at ?arm ?from)
 			      (not (arm-present ?to))
 			      (hold ?arm ?thing)
-			      (reachable ?arm ?to))
+			      (is-reachable ?arm ?to))
 	   :effect (and (at ?arm ?to)
 			(arm-present ?to)
 			(not (at ?arm ?from))

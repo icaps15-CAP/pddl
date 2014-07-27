@@ -1,3 +1,0 @@
-
-2a2b-mixparts has stopped at problem 7+7,
- due to memory allocation error.

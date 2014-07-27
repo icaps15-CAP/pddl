@@ -9,16 +9,16 @@
                :cl-ppcre
                :osicat
                :alexandria)
-  :components ((:module "data/costs"
-		:serial t
-                :components
-                ((:file :make-distances)
-		 (:file :model2a)
-		 (:file :model2b)))
-               (:module "data/costs-eachparts/"
-                :components
-                ((:file :model2a-each))
-                :depends-on (:data/costs))
+  :serial t
+  :components ((:file "data/costs/make-distances")
+               (:file "data/model2a-loop/model")
+               (:file "data/model2b-loop/model")
+               (:file "data/model3a-loop/model")
+               (:file "data/model3b-loop/model")
+               (:file "data/model3c-loop/model")
+               (:file "data/model2a-each/model")
+               (:file "data/model2b-each/model")
+               (:file "data/mixed-eachparts/model")
                (:file "data/elevators/generator")
                (:file "data/satellite-typed/generator"))
   :description "PDDL writer")

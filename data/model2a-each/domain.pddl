@@ -1,0 +1,1 @@
+../costs-eachparts/domain.pddl

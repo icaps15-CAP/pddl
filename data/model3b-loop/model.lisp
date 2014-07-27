@@ -1,6 +1,13 @@
 
 (in-package :pddl.builder)
 
+(defun write-model3b ()
+  (let ((*default-pathname-defaults*
+         (pathname-directory-pathname
+          #.*compile-file-pathname*)))
+    (write-models-many #'model3b
+                       :format-control "p~4,,,'0@a.pddl")))
+
 (defun model3b (basenum)
   (let ((bases (iter (for i below basenum)
 		     (collect
