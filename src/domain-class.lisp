@@ -24,9 +24,7 @@
         :AUTOMATIC-INITARGS)
       (closer-mop:finalize-inheritance (find-class ',name))
       (define-constructor ,name)
-      (define-load-form ,name))))
-
-
+      (define-load-form ,name t))))
 
 (define-pddl-class namable ()
   ((name :type symbol)))
@@ -194,9 +192,10 @@ that of pred2. a predicate p1 is more specific than p2 when:
         :test #'string=))
 
 (define-pddl-class pddl-assign-op (pddl-domain-slot)
-  (place-function
-   value-function
-   source))
+  ((place-function :type function)
+   (value-function :type function)
+   (source :type cons)
+   (%params :type cons)))
 
 (define-pddl-class pddl-action (pddl-domain-slot
                                 pddl-parametrized-object

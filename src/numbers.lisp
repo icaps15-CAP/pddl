@@ -78,8 +78,25 @@ clause in the domain description.
     ((list 'assign place new-value)
      (pddl-assign-op
       :source source
+      :%params *params*
       :place-function (compile-place-function place)
       :value-function (compile-value-function new-value)))))
+
+(defmethod place-function ((op pddl-assign-op))
+  (with-memoising-slot (place-function op)
+    (let ((*domain* (domain op))
+          (*params* (%params op)))
+      (ematch (transform-numeric-to-assign (source op))
+        ((list 'assign place _)
+         (compile-place-function place))))))
+
+(defmethod value-function ((op pddl-assign-op))
+  (with-memoising-slot (value-function op)
+    (let ((*domain* (domain op))
+          (*params* (%params op)))
+      (ematch (transform-numeric-to-assign (source op))
+        ((list 'assign _ new-value) 
+         (compile-value-function new-value))))))
 
 @export
 (defun transform-numeric-to-assign (source)
@@ -142,6 +159,12 @@ clause in the domain description.
       :optimization optimization
       :metric-spec metric-f-exp
       :metric-function (compile-metric-function metric-f-exp)))))
+
+(defmethod metric-function ((op pddl-metric))
+  (with-memoising-slot (metric-function op)
+    (let ((*domain* (domain op)))
+      (compile-metric-function (metric-spec op)))))
+
 
 @export
 (defun compile-metric-function (metric-f-exp)
