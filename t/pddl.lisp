@@ -57,10 +57,13 @@
 	 (pass))))))
 
 (test parse-domain
-  (handler-bind ((found-in-dictionary #'muffle-warning))
-    (finishes (setf *domain-sym* (parse-file +domain+))))
-  ;; depot
-  (is (typep (symbol-value *domain-sym*) 'pddl-domain)))
+  (finishes
+    (handler-bind ((found-in-dictionary #'muffle-warning))
+      (let ((*domain* nil))
+        (multiple-value-setq
+            (*domain-sym* *domain*)
+          (parse-file +domain+))
+        (is (typep *domain* 'pddl-domain))))))
 
 ;; (test (parse-domain-airport :depends-on parse-domain)
 ;;   ;; airport-adl
@@ -68,10 +71,13 @@
 ;;     (finishes (parse-file (data "airport-adl/domain.pddl")))))
 
 (test (parse-problem :depends-on parse-domain)
-  (handler-bind ((found-in-dictionary #'muffle-warning))
-    (finishes (setf *problem-sym* (parse-file +problem+))))
-  ;; depotprob1818 
-  (is (typep (symbol-value *problem-sym*) 'pddl-problem)))
+  (finishes
+    (handler-bind ((found-in-dictionary #'muffle-warning))
+      (let ((*problem* nil))
+        (multiple-value-setq
+            (*problem-sym* *problem*)
+          (parse-file +problem+))
+        (is (typep *problem* 'pddl-problem))))))
 
 ;; (test (parse-problem-airport :depends-on parse-problem)
 ;;   ;; airport 
@@ -80,6 +86,8 @@
 
 (test (parse-plan :depends-on parse-problem)
   (handler-bind ((found-in-dictionary #'muffle-warning))
-    (finishes (setf *depot-actions* (parse-plan +plan+
-					      (symbol-value *domain-sym*)
-					      (symbol-value *problem-sym*))))))
+    (finishes
+      (setf *depot-actions*
+            (parse-plan +plan+
+                        (symbol-value *domain-sym*)
+                        (symbol-value *problem-sym*))))))
