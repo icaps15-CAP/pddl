@@ -61,7 +61,7 @@
 (defun all (domain &rest args)
   (let ((*package* (find-package :pddl.instances))
         (*load-verbose* t)
-        (*load-print* t))
+        (*load-print* nil))
     (handler-bind ((warning #'muffle-warning))
       (cond
         ((or (stringp domain) (pathnamep domain))
