@@ -131,8 +131,28 @@ that of pred2. a predicate p1 is more specific than p2 when:
                                   namable)
   ((type :initform *pddl-primitive-object-type*)))
 
+(defmethod make-load-form ((o pddl-variable) &optional env)
+  (cond
+    ((eq o *pddl-primitive-object-type*) '*pddl-primitive-object-type*)
+    ((eq o *pddl-primitive-number-type*) '*pddl-primitive-number-type*)
+    (t
+     (make-load-form-saving-slots
+      o
+      :slot-names '(name domain type)
+      :environment env))))
+
 (define-pddl-class pddl-type (pddl-variable)
   ())
+
+(defmethod make-load-form ((o pddl-type) &optional env)
+  (cond
+    ((eq o *pddl-primitive-object-type*) '*pddl-primitive-object-type*)
+    ((eq o *pddl-primitive-number-type*) '*pddl-primitive-number-type*)
+    (t
+     (make-load-form-saving-slots
+      o
+      :slot-names '(name domain type)
+      :environment env))))
 
 @export
 (defun pddl-supertype (type)
