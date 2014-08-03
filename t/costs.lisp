@@ -4,13 +4,13 @@
 (test (read-all-problem-and-plans)
   (handler-bind ((found-in-dictionary #'muffle-warning))
     (finishes
-      (parse-file (data "costs/domain.pddl"))
-      (let ((*domain* cell-assembly))
-	(parse-file (data "costs/model2b1.pddl"))
-	(let ((*problem* cell-assembly-model2b-1))
-	  (setf cell-assembly-model2b-1-6
+      (multiple-value-bind (dname *domain*)
+          (parse-file (data "costs/domain.pddl"))
+        (multiple-value-bind (pname *problem*)
+            (parse-file (data "costs/p0001.pddl"))
+	  (setf cell-assembly-model2b-1-1
 		(pddl-plan
-		 :path (data "costs/model2b1.plan.6"))))))))
+		 :path (data "costs/p0001.plan.1"))))))))
 
 (test costs
   (finishes
