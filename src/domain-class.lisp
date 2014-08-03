@@ -22,7 +22,11 @@
         :EXPORT-SLOTS
         :AUTOMATIC-ACCESSORS
         :AUTOMATIC-INITARGS)
-      (define-constructor ,name))))
+      (closer-mop:finalize-inheritance (find-class ',name))
+      (define-constructor ,name)
+      (define-load-form ,name))))
+
+
 
 (define-pddl-class namable ()
   ((name :type symbol)))
