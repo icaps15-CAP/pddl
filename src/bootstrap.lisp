@@ -33,23 +33,27 @@
   (defun parse-file (pddl-pathname &optional export)
     (let ((*parsing-filename* pddl-pathname)
           (*compile-verbose* t)
-          (*compile-print* t))
-      (do-restart ((retry-reading-file (lambda () )))
-        (let ((fasl (make-pathname :type "pddlfasl" :defaults pddl-pathname)))
-          (when (or (not (probe-file fasl))
-                    (< (file-write-date fasl)
-                       (file-write-date pddl-pathname)))
-            (compile-file pddl-pathname :output-file fasl)
-            (with-open-file (s *compiled-files-logfile*
-                               :direction :output
-                               :if-does-not-exist :create
-                               :if-exists :append)
-              (print fasl s)))
-          (handler-case
-              (load fasl)
-            (pddl-definition (c)
-              (when export (export (name c)))
-              (values (name c) (value c))))))))
+          (*compile-print* t)
+          (fasl (make-pathname :type "pddlfasl"
+                               :defaults pddl-pathname)))
+      (do-restart
+          ((recompile
+            (lambda ()
+              (compile-file pddl-pathname :output-file fasl)
+              (with-open-file (s *compiled-files-logfile*
+                                 :direction :output
+                                 :if-does-not-exist :create
+                                 :if-exists :append)
+                (print fasl s)))))
+        (when (or (not (probe-file fasl))
+                  (< (file-write-date fasl)
+                     (file-write-date pddl-pathname)))
+          (invoke-restart 'recompile))
+        (handler-case
+            (load fasl)
+          (pddl-definition (c)
+            (when export (export (name c)))
+            (values (name c) (value c)))))))
 
   (define-condition pddl-definition (condition)
     ((name :initarg :name :accessor name)
