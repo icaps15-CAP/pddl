@@ -12,6 +12,7 @@
 
 ;; (define-class-pattern pddl-domain)
 
+@export
 (defmacro define-pddl-class (name superclass slots)
   `(eval-when (:compile-toplevel :load-toplevel :execute)
      (#+sbcl sb-ext:with-unlocked-packages #+sbcl (:cl)
