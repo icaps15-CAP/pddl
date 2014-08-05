@@ -3,18 +3,17 @@
 
 @export
 (defun apply-ground-action (ground-action states)
-  (let ((match-set (match-set ground-action)))
-    (labels ((rec (states e)
-               (ematch e
-                 ((list* 'and rest)
-                  (reduce #'rec rest :initial-value states))
-                 ((list 'not op)
-                  (remove-if (curry #'eqstate op) states))
-                 ((pddl-atomic-state)
-                  (cons e states))
-                 ((pddl-assign-op)
-                  (apply-assign-op e match-set states)))))
-      (rec states (effect ground-action)))))
+  (labels ((rec (states e)
+             (ematch e
+               ((list* 'and rest)
+                (reduce #'rec rest :initial-value states))
+               ((list 'not op)
+                (remove-if (curry #'eqstate op) states))
+               ((pddl-atomic-state)
+                (cons e states))
+               ((pddl-assign-op)
+                (apply-assign-op e states)))))
+    (rec states (effect ground-action))))
 
 ;; +deprecated, to be removed+ ... maybe not
 @export

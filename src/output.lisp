@@ -199,5 +199,5 @@
   @ignore s
   `(:metric
     ,(print-pddl-object (optimization o))
-    ,(print-pddl-object (metric-spec o))))
+    ,(print-pddl-object (value-form o))))
 

@@ -88,12 +88,14 @@
   (when (member object (objects problem))
     object))
 
-
-(define-pddl-class pddl-metric (pddl-problem-slot)
-  ((optimization :type symbol)
-   (metric-function :type function)
-   (metric-spec :type cons)))
-
 (define-pddl-class pddl-function-state (pddl-function pddl-problem-slot)
   (value body))
 
+(define-pddl-class pddl-ground-fluent (pddl-fluent-expression)
+  ((value-function :type function)))
+
+(define-pddl-class pddl-ground-assign-op (pddl-assign-op pddl-ground-fluent)
+  ())
+
+(define-pddl-class pddl-metric (pddl-problem-slot pddl-ground-fluent)
+  ((optimization :type symbol)))

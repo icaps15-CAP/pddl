@@ -70,7 +70,7 @@ the plan.  The initial state has the index 0."
 @export
 (defun cost (env)
   (if-let ((metric (metric (problem env))))
-    (funcall (metric-function metric) (states env))
+    (fluent-value metric (states env))
     (index env)))
 
 

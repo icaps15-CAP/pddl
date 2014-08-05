@@ -44,6 +44,7 @@
 		 (:file :bootstrap)
 
 		 (:file :numbers)
+		 (:file :fluent-compiler)
 		 
 		 (:file :plan-reader)
                  (:file :simulator)

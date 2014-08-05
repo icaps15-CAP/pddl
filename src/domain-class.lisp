@@ -212,11 +212,12 @@ that of pred2. a predicate p1 is more specific than p2 when:
         :key (compose #'string-upcase #'name)
         :test #'string=))
 
-(define-pddl-class pddl-assign-op (pddl-domain-slot)
-  ((place-function :type function)
-   (value-function :type function)
-   (source :type cons)
-   (%params :type cons)))
+(define-pddl-class pddl-fluent-expression (pddl-domain-slot)
+  ((value-form :type cons)))
+
+(define-pddl-class pddl-assign-op (pddl-fluent-expression)
+  ((source :type cons)
+   (place :type pddl-function)))
 
 (define-pddl-class pddl-action (pddl-domain-slot
                                 pddl-parametrized-object

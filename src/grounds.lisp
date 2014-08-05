@@ -10,6 +10,8 @@
 ;; (defmethod ground ((predicate pddl-predicate) (list objects) &optional (*problem* *problem*))
 ;;   (ground-predicate predicate objects *problem*))
 
+;;;; ground elements in an action
+
 @export
 (defun ground-action (action objects &optional (*problem* *problem*))
   (ematch action
@@ -23,6 +25,26 @@
       :parameters objects
       :precondition (ground-ctree pre params objects)
       :effect (ground-ctree eff params objects)))))
+
+(defun ground-ctree (ctree
+                     params
+                     objects
+                     &optional
+                       (*domain* *domain*) (*problem* *problem*))
+  "Grounds each precondition/effect in a condition tree"
+  (labels ((value (p) (or (when-let ((pos (position p params)))
+                            (elt objects pos))
+                          (when (typep p 'pddl-constant) p)
+                          (error "Parameter ~a not found" p)))
+           (rec (e)
+             (ematch e
+               ((list* op rest)
+                (list* op (mapcar #'rec rest)))
+               ((pddl-predicate parameters)
+                (ground-predicate e (mapcar #'value parameters)))
+               ((pddl-assign-op)
+                (ground-assign-op e params objects)))))
+    (rec ctree)))
 
 @export
 (defun ground-predicate (predicate objects &optional (*problem* *problem*))
@@ -40,22 +62,42 @@
      (assert (query-function *domain* name) nil "undefined function ~A" name)
      (pddl-function-state :name name :parameters objects))))
 
-(defun ground-ctree (ctree params objects
+@export
+(defun ground-assign-op (op
+                         params ;; parameters of the ungrounded action
+                         objects ;; objects corresponding to `params'
+                         &optional (*problem* *problem*))
+  (labels ((value (p) (or (when-let ((pos (position p params)))
+                            (elt objects pos))
+                          (when (typep p 'pddl-constant) p)
+                          (error "Parameter ~a not found" p))))
+    (ematch op
+      ((pddl-assign-op domain place value-form)
+       (let ((*domain* domain))
+         (pddl-ground-assign-op
+          :place
+          (ground-function place (mapcar #'value (parameters place)))
+          :value-form 
+          (ground-f-exp value-form params objects)))))))
+
+(defun ground-f-exp (f-exp params objects
                      &optional
                        (*domain* *domain*) (*problem* *problem*))
-  "Grounds each preconditions in a condition tree"
+  "Grounds each f-head in a f-exp tree"
   (labels ((value (p) (or (when-let ((pos (position p params)))
                             (elt objects pos))
                           (when (typep p 'pddl-constant) p)
                           (error "Parameter ~a not found" p)))
            (rec (e)
              (ematch e
-               ((list* op rest)
-                (list* op (mapcar #'rec rest)))
-               ((pddl-predicate parameters)
-                (ground-predicate e (mapcar #'value parameters)))
-               ((pddl-assign-op) e))))
-    (rec ctree)))
+               ((list* (and op (or '+ '- '* '/)) fexps)
+                (list* op (mapcar #'rec fexps)))
+               ((type number) e)
+               (_ (ground-function
+                   e (mapcar #'value (parameters e)))))))
+    (rec f-exp)))
+
+;;;; ground all possible actions and predicates
 
 (defun possible-arguments (parametrized problem)
   "returns a list of lists of objects. for (pred ?x ?y) and objects a,b and c,
