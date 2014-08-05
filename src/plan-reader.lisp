@@ -60,7 +60,11 @@
                                        &rest args &key &allow-other-keys)
   (declare (ignore args))
   (let ((a (action (domain ga) ga)))
-    (assert a nil "undefined action ~A" (name ga))
+    (restart-case
+        (assert a nil "undefined action ~A" (name ga))
+      (ignore ()
+        (warn "Applying an action that's not defined in the domain: ~A" (name ga))
+        (return-from initialize-instance)))
     (assert (= (arity a) (arity ga)))))
 
 (defmethod action ((dom pddl-domain) (a pddl-ground-action))
