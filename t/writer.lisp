@@ -11,7 +11,7 @@
         (print-pddl-object pddl s))))))
   
 
-(test (write-back-pddl :depends-on (and parse-domain parse-problem))
+(test (write-back-pddl :depends-on (and parse-domain parse-problem costs))
   (mapc #'test-re-readability
         (list depot
               depotprob1818
