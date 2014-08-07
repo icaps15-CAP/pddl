@@ -31,7 +31,8 @@
                      objects
                      &optional
                        (*domain* *domain*) (*problem* *problem*))
-  "Grounds each precondition/effect in a condition tree"
+  "Grounds each precondition/effect in a condition tree. CTREE is a cons tree of
+symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
   (labels ((value (p) (or (when-let ((pos (position p params)))
                             (elt objects pos))
                           (when (typep p 'pddl-constant) p)
@@ -83,7 +84,7 @@
 (defun ground-f-exp (f-exp params objects
                      &optional
                        (*domain* *domain*) (*problem* *problem*))
-  "Grounds each f-head in a f-exp tree"
+  "Grounds each f-head in a f-exp tree."
   (labels ((value (p) (or (when-let ((pos (position p params)))
                             (elt objects pos))
                           (when (typep p 'pddl-constant) p)
