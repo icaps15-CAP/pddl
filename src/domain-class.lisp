@@ -233,7 +233,8 @@ that of pred2. a predicate p1 is more specific than p2 when:
 (defmethod action ((dom pddl-domain) (designator pddl-action))
   (find designator (actions dom)))
 
-(defmethod add-list ((a pddl-action))
+(defmethod slot-unbound (class (a pddl-action) (x (eql 'add-list)))
+  (declare (ignore class x))
   (with-memoising-slot (add-list a)
     (let ((acc nil))
       (walk-tree (lambda (branch cont)
@@ -245,7 +246,8 @@ that of pred2. a predicate p1 is more specific than p2 when:
                  (effect a))
       acc)))
 
-(defmethod delete-list ((a pddl-action))
+(defmethod slot-unbound (class (a pddl-action) (x (eql 'delete-list)))
+  (declare (ignore class x))
   (with-memoising-slot (delete-list a)
     (let ((acc nil))
       (walk-tree (lambda (branch cont)
@@ -257,7 +259,8 @@ that of pred2. a predicate p1 is more specific than p2 when:
                  (effect a))
       acc)))
 
-(defmethod assign-ops ((a pddl-action))
+(defmethod slot-unbound (class (a pddl-action) (x (eql 'assign-ops)))
+  (declare (ignore class x))
   (with-memoising-slot (assign-ops a)
     (let ((acc nil))
       (walk-tree (lambda (branch cont)
@@ -269,7 +272,8 @@ that of pred2. a predicate p1 is more specific than p2 when:
                  (effect a))
       acc)))
 
-(defmethod positive-preconditions ((a pddl-action))
+(defmethod slot-unbound (class (a pddl-action) (x (eql 'positive-preconditions)))
+  (declare (ignore class x))
   (with-memoising-slot (positive-preconditions a)
     (let ((acc nil))
       (walk-tree (lambda (branch cont)
@@ -281,7 +285,8 @@ that of pred2. a predicate p1 is more specific than p2 when:
                  (precondition a))
       acc)))
 
-(defmethod negative-preconditions ((a pddl-action))
+(defmethod slot-unbound (class (a pddl-action) (x (eql 'negative-preconditions)))
+  (declare (ignore class x))
   (with-memoising-slot (negative-preconditions a)
     (let ((acc nil))
       (walk-tree (lambda (branch cont)
