@@ -8,11 +8,26 @@
   (objects
    init
    goal
+   positive-goals
    metric))
 
 (defmethod objects :around ((p pddl-problem))
   (append (constants (domain p))
           (call-next-method)))
+
+
+(defmethod slot-unbound (class (a pddl-problem) (x (eql 'positive-goals)))
+  (declare (ignore class x))
+  (with-memoising-slot (positive-goals a)
+    (let ((acc nil))
+      (walk-tree (lambda (branch cont)
+                   (match branch
+                     ((andp rest)
+                      (funcall cont rest))
+                     ((type pddl-predicate)
+                      (push branch acc))))
+                 (goal a))
+      acc)))
 
 @export
 (defun objects/const (pddl-problem)
