@@ -173,8 +173,9 @@
 (defmethod print-pddl-object ((o pddl-variable) &optional s)
   @ignore s
   `(,(print-pddl-object (name o))
-     ,@(when (and (not (eq (type o) *pddl-primitive-object-type*))
-                  *print-type*)
+     ;; corner case: (at obj - object pos - position)
+     ;;In this case, it is not reasonable to omit "- object"
+     ,@(when *print-type*
              `(- ,(print-pddl-object (name (type o)))))))
 
 (defmethod print-pddl-object ((o pddl-assign-op) &optional s)
