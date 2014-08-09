@@ -9,20 +9,18 @@
              (find-if (curry #'%eqname1 typesym) (types *domain*))
              *pddl-primitive-object-type*)))
 
-@export
-@doc "returns a list of PDDL-VARIABLEs.
-the optional argument DICTIONARY is a list of `pddl-variable's.
-if the designator in the list refers to an already defined variable
-then it is always used. The reference is determined by the EQNAME."
 (defun parse-typed-list (lst &optional
                          (dictionary *params*)
                          (generator #'variable-generator))
+  "returns a list of PDDL-VARIABLEs.
+the optional argument DICTIONARY is a list of `pddl-variable's.
+if the designator in the list refers to an already defined variable
+then it is always used. The reference is determined by the EQNAME."
   (%getting-vars lst nil nil dictionary generator))
 
 (defun %eqname1 (sym var)
   (eq sym (name var)))
 
-@export
 (define-condition domain-parse-condition ()
   ((domain :initarg :domain :reader domain :initform *domain*)
    (clause :initarg :clause :accessor clause))
@@ -33,7 +31,6 @@ then it is always used. The reference is determined by the EQNAME."
                      ~A~;~@:>"
              (class-name (class-of c)) (domain c) (clause c)))))
 
-@export
 (define-condition declared-type-not-found (domain-parse-condition error)
   ((typesym :initarg :typesym))
   (:report
@@ -43,7 +40,6 @@ then it is always used. The reference is determined by the EQNAME."
                        while parsing ~A~;~:@>"
                typesym (domain c) (types (domain c)) (clause c))))))
 
-@export
 (define-condition found-in-dictionary (domain-parse-condition warning)
   ((found :initarg :found)
    (dictionary :initarg :dictionary)
@@ -59,7 +55,6 @@ then it is always used. The reference is determined by the EQNAME."
                   Maybe duplicated?~;~:@>"
                interning-class found dictionary)))))
 
-@export
 (define-condition type-conflict (found-in-dictionary error)
   ((declared-type :initarg :declared-type))
   (:report
@@ -68,7 +63,6 @@ then it is always used. The reference is determined by the EQNAME."
        (format s "~@<~;In ~A: The declared type ~A conflicts with ~A.~;~@:>"
                 dictionary declared-type found)))))
 
-@export
 (define-condition not-found-in-dictionary (domain-parse-condition error)
   ((name :initarg :name)
    (dictionary :initarg :dictionary)
@@ -154,7 +148,6 @@ then it is always used. The reference is determined by the EQNAME."
                                            (funcall generator name))))
                                      vars)))))))
 
-@export
 (defun parse-predicate (predicate-def &optional
                         (params *params*))
   (match predicate-def
@@ -182,19 +175,16 @@ then it is always used. The reference is determined by the EQNAME."
                       #'intern-variable))
         (parse-typed-list arguments params))))))
 
-@export
 (defun parse-atomic-formula (atom)
   (parse-predicate atom)) ;; same as predicate
 
-@export
 (defun parse-atomic-state (desc)
   (change-class (parse-atomic-formula desc)
                 'pddl-atomic-state
                 :problem *problem*))
 
-@export
-@doc "Parsing description for precondition."
 (defun parse-pre-GD (goal-description)
+  "Parsing description for precondition."
   (match goal-description
     ((andp ds)
      `(and ,@(mapcar #'parse-pre-GD ds)))
@@ -202,14 +192,12 @@ then it is always used. The reference is determined by the EQNAME."
      `(forall ,(parse-typed-list typed-list) ,(parse-pre-GD d)))
     (_ (parse-pref-GD goal-description))))
 
-@export
 (defun parse-pref-GD (goal-description)
   (match goal-description
     ((op 'preference _)
      (not-implemented 'preference))
     (_ (parse-GD goal-description))))
 
-@export
 (defun parse-GD (goal-description)
   (ematch goal-description
     ((op (and op (qor or and)) ds)  `(,op ,@(mapcar (rcurry #'parse-GD) ds)))
@@ -226,13 +214,11 @@ then it is always used. The reference is determined by the EQNAME."
      (parse-f-comp goal-description))
     (_ (parse-atomic-formula goal-description))))
 
-@export
 (defun parse-literal (desc)
   (match desc
     ((notp atom) (parse-atomic-formula atom))
     (atom (parse-atomic-formula atom))))
 
-@export
 (defun parse-effect (effect)
   (match effect
     ((andp ds)
