@@ -5,9 +5,12 @@
 (defun variable-generator (name &optional typesym)
   (pddl-variable 
    :name name
-   :type (if typesym
-             (find-if (curry #'%eqname1 typesym) (types *domain*))
-             *pddl-primitive-object-type*)))
+   :type (or
+          ;; Note: (types *domain*) might be nil, in which case
+          ;; *pddl-primitive-object-type* is used
+          (when typesym
+            (find-if (curry #'%eqname1 typesym) (types *domain*)))
+          *pddl-primitive-object-type*)))
 
 (defun parse-typed-list (lst &optional
                          (dictionary *params*)

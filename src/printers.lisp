@@ -1,6 +1,9 @@
 (in-package :pddl)
 (use-syntax :annot)
 
+;; This file contains methods for pretty printers. Note that these are not for
+;; formatting PDDL files. For PDDL formatter, see output.lisp .
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; instances under domains
 
@@ -32,7 +35,7 @@
   (print-ignoring-unbound-slot
     (if (eq (type v) *pddl-primitive-object-type*)
         (format s "(V ~A)" (name v))
-        (format s "(V ~A ∈ ~A)" (name v) (name (type v))))))
+        (format s "(V ~A ∈ ~A)" (name v) (if-let ((type (type v))) (name type) "\"not found\"")))))
 
 (defmethod print-object ((v pddl-constant) s)
   (print-ignoring-unbound-slot
