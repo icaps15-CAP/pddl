@@ -18,7 +18,6 @@
                 (name env) (pathname-name (pathname path))))
     (actions (setf (actions env) (coerce actions 'vector)))))
 
-@export
 (defun function-state (env f-head)
   (match (ensure-list f-head)
     ((list* name params)
@@ -30,7 +29,6 @@
          (equal (mapcar #'name objs) params))) 
       (states env)))))
 
-@export
 (defun parse-plan (path-or-descriptions
                    &optional
                      (*domain* *domain*) (*problem* *problem*))
