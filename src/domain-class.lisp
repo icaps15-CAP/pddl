@@ -12,7 +12,6 @@
 
 ;; (define-class-pattern pddl-domain)
 
-@export
 (defmacro define-pddl-class (name superclass slots)
   `(eval-when (:compile-toplevel :load-toplevel :execute)
      (#+sbcl sb-ext:with-unlocked-packages #+sbcl (:cl)
@@ -49,9 +48,8 @@
                                        &key (domain *domain*))
   (setf (domain o) domain))
 
-@export
-@doc "find the action specified by the designator."
-(defgeneric action (pddl-domain designator))
+(defgeneric action (pddl-domain designator)
+  (:documentation "find the action specified by the designator."))
 (defmethod action ((dom pddl-domain) (designator symbol))
   (action dom (symbol-name designator)))
 (defmethod action ((dom pddl-domain) (designator string))
@@ -61,9 +59,8 @@
                (actions dom))
       (signal "no such action found! : ~a" designator)))
 
-@export
-@doc "find a constant specified by the designator."
-(defgeneric constant (pddl-domain designator))
+(defgeneric constant (pddl-domain designator)
+  (:documentation "find a constant specified by the designator."))
 (defmethod constant ((dom pddl-domain) (designator symbol))
   (constant dom (symbol-name designator)))
 (defmethod constant ((dom pddl-domain) (designator string))
@@ -74,9 +71,8 @@
       (signal "no such constant found! : ~a" designator)))
 
 
-@export
-@doc "find the predicate specified by the designator."
-(defgeneric predicate (pddl-domain designator))
+(defgeneric predicate (pddl-domain designator)
+  (:documentation "find the predicate specified by the designator."))
 
 (defmethod predicate ((dom pddl-domain) (designator symbol))
   (find-if (lambda (predicate)
@@ -93,22 +89,20 @@
 (define-pddl-class pddl-parametrized-object ()
   ((parameters :type list :initform nil)))
 
-@export
-@doc "returns t if the arguments of pred1 is more specific than
+(defun predicate-more-specific-p (pred1 pred2)
+  "returns t if the arguments of pred1 is more specific than
 that of pred2. a predicate p1 is more specific than p2 when:
 
 1. (eqname p1 p2)
 2. each parameter of p1 has more specific types than its p2 counterpart.
 "
-(defun predicate-more-specific-p (pred1 pred2)
   (and (eqname pred1 pred2)
        (every #'pddl-supertype-p
               (mapcar #'type (parameters pred1))
               (mapcar #'type (parameters pred2)))))
 
-@export
-@doc "returns t if the type specifiers of pred1 agrees with that of pred2."
 (defun predicate-agrees-p (pred1 pred2)
+  "returns t if the type specifiers of pred1 agrees with that of pred2."
   (and (eqname pred1 pred2)
        (every #'pddl-supertype-p
               (mapcar #'type (parameters pred1))
@@ -118,9 +112,9 @@ that of pred2. a predicate p1 is more specific than p2 when:
               (mapcar #'type (parameters pred1)))))
 
 
-@export
-@doc "returns the number of parameters."
+
 (defun arity (thing)
+  "returns the number of parameters."
   (length (parameters thing)))
 
 (define-pddl-class pddl-predicate (pddl-domain-slot
@@ -155,22 +149,18 @@ that of pred2. a predicate p1 is more specific than p2 when:
       :slot-names '(name domain type)
       :environment env))))
 
-@export
 (defun pddl-supertype (type)
   (type type))
 
-@export
 (defun pddl-supertype-p (subtype supertype)
   (or (eq subtype supertype)
       (let ((subtype-1 (pddl-supertype subtype)))
         (unless (eq subtype subtype-1)
           (pddl-supertype-p subtype-1 supertype)))))
 
-@export
 (defun pddl-typep (object type)
   (pddl-supertype-p (type object) type))
 
-@export
 (defun query-type (domain designator)
   (if (typep designator 'pddl-type)
       (handler-return ((unbound-slot
@@ -184,7 +174,6 @@ that of pred2. a predicate p1 is more specific than p2 when:
             :key (compose #'string-upcase #'name)
             :test #'string=)))
 
-@export
 (defvar *pddl-primitive-object-type*
   (let ((pt (pddl-type :name 'object
                        :type nil))) ; to suppress the reference to
@@ -193,7 +182,6 @@ that of pred2. a predicate p1 is more specific than p2 when:
     (setf (type pt) pt)
     pt))
 
-@export
 (defvar *pddl-primitive-number-type*
   (let ((pt (pddl-type :name 'number
                        :type nil)))
@@ -205,9 +193,9 @@ that of pred2. a predicate p1 is more specific than p2 when:
 
 (define-pddl-class pddl-function (pddl-predicate)
   ((type :initform *pddl-primitive-number-type*)))
-@export
-@doc "find the pddl-function specified by the designator."
+
 (defun query-function (domain name)
+  "find the pddl-function specified by the designator."
   (find name (functions domain)
         :key (compose #'string-upcase #'name)
         :test #'string=))

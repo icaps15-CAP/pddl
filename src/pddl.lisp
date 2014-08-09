@@ -19,7 +19,21 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            :parse-typed-list ;; these are required 
            :not-found-in-dictionary ;; in order to run the test safely
            :found-in-dictionary
-           :parse-plan))
+           :parse-plan
+           :query-function
+           :*pddl-primitive-number-type*
+           :*pddl-primitive-object-type*
+           :query-type
+           :pddl-typep
+           :pddl-supertype-p
+           :pddl-supertype
+           :arity
+           :predicate-agrees-p
+           :predicate-more-specific-p
+           :predicate
+           :constant
+           :action
+           :define-pddl-class))
 (in-package :pddl)
 (use-syntax :annot)
 ;; blah blah blah.
