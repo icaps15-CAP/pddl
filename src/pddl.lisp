@@ -7,7 +7,12 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
 (defpackage pddl
   (:use :cl :cl-syntax :optima :alexandria :guicho-utilities
         :annot.doc :annot.eval-when
-        :iterate)
+        :iterate
+        :osicat
+        :inferior-shell
+        :cl-ppcre
+        :osicat
+        :cl-rlimit)
   (:import-from :metatilities :defclass*)
   (:shadow :minimize :maximize)
   (:export :total-cost :total-time))

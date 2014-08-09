@@ -24,7 +24,11 @@
                :optima
                :iterate
                :alexandria
-               :cl-syntax-annot)
+               :cl-syntax-annot
+               :inferior-shell
+               :cl-ppcre
+               :cl-rlimit
+               :osicat)
   :components ((:module "src"
 		:serial t
                 :components
@@ -53,7 +57,10 @@
 		 (:file :apply-action)
 
 		 (:file :printers)
-		 (:file :output))))
+		 (:file :output)
+                 
+                 (:file :test-problem)
+                 (:file :validate))))
   :description "PDDL parser"
   :long-description
   #.(with-open-file (stream (merge-pathnames
