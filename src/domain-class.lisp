@@ -46,7 +46,9 @@
   ((domain :type pddl-domain)))
 (defmethod initialize-instance :after ((o pddl-domain-slot)
                                        &key (domain *domain*))
-  (setf (domain o) domain))
+  (setf (domain o) domain)
+  (unless (domain o)
+    (warn "~a = NIL" `(domain ,(type-of o)))))
 
 (defgeneric action (pddl-domain designator)
   (:documentation "find the action specified by the designator."))

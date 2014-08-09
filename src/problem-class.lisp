@@ -42,11 +42,10 @@
   (problem))
 
 (defmethod initialize-instance :after ((o pddl-problem-slot)
-                                       &key (problem *problem* supplied-p))
-  (unless (typep problem 'pddl-problem)
-    (warn "~{~a = ~a~^ ,~}" 
-          `(problem ,problem *problem* ,*problem* supplied-p ,supplied-p)))
-  (setf (problem o) problem))
+                                       &key (problem *problem*))
+  (setf (problem o) problem)
+  (unless (problem o)
+    (warn "~a = NIL" `(problem ,(type-of o)))))
 
 (define-pddl-class pddl-atomic-state (pddl-problem-slot pddl-predicate)
   ())
