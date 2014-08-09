@@ -96,7 +96,9 @@
   @ignore s
   `(define (domain ,(print-pddl-object (name o)))
      ,@(%output-when :requirements (requirements o))
-     ,@(%output-when :types (mappend #'print-pddl-object (types o)))
+     ,@(%output-when :types (mappend #'print-pddl-object
+                                     (remove *pddl-primitive-object-type*
+                                             (types o))))
      ,@(%output-when :constants (mappend #'print-pddl-object (constants o)))
      ,@(%output-when :predicates (print-pddl-object (predicates o)))
      ,@(%output-when :functions (mapcar #'print-pddl-object (functions o)))
