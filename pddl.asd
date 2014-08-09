@@ -60,7 +60,9 @@
 		 (:file :output)
                  
                  (:file :test-problem)
-                 (:file :validate))))
+                 (:file :validate)
+                 (:file :write-pddl)
+                 (:file :write-plan))))
   :description "PDDL parser"
   :long-description
   #.(with-open-file (stream (merge-pathnames
