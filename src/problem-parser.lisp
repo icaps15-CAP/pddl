@@ -7,7 +7,7 @@
     (let ((domain-symbol (first clause-body)))
       (if (boundp domain-symbol)
           (symbol-value domain-symbol)
-          (warn "the domain ~A is not loaded yet!" domain-symbol)))))
+          (error "the domain ~A is not loaded yet!" domain-symbol)))))
 
 ;; these need to accept additional arguments `params'
 
