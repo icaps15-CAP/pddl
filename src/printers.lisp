@@ -63,8 +63,9 @@
 
 (defmethod print-object ((o pddl-assign-op) s)
   (print-ignoring-unbound-slot
-    (format s "~@<(ASSIGN ~; ~a ~;)~:>"
-            (source o))))
+    (format s "~@<(ASSIGN ~; ~a ~_~a~;)~:>"
+            (place o)
+            (value-form o))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; instances under problems
