@@ -8,8 +8,9 @@
     (eval
      (read-from-string
       (with-output-to-string (s)
-        (print-pddl-object pddl s))))))
-  
+        (let ((copied (shallow-copy pddl :name (symbolicate (name pddl) '-copied))))
+          (print-pddl-object copied s)))))))
+
 
 (test (write-back-pddl :depends-on (and parse-domain parse-problem costs))
   (mapc #'test-re-readability
