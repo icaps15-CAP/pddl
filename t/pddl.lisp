@@ -7,7 +7,6 @@
 (defpackage pddl-test
   (:use :cl
 	:guicho-utilities
-	:repl-utilities
 	:alexandria
 	:iterate
 	:optima

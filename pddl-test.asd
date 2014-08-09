@@ -12,7 +12,6 @@
   :author "guicho"
   :license "LLGPL"
   :depends-on (:pddl
-               :repl-utilities
                :fiveam)
   :components ((:module "t"
 		:serial t

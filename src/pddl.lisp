@@ -15,7 +15,10 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
         :cl-rlimit)
   (:import-from :metatilities :defclass*)
   (:shadow :minimize :maximize)
-  (:export :total-cost :total-time))
+  (:export :total-cost :total-time
+           :parse-typed-list ;; these are required 
+           :not-found-in-dictionary ;; in order to run the test safely
+           :found-in-dictionary))
 (in-package :pddl)
 (use-syntax :annot)
 ;; blah blah blah.
