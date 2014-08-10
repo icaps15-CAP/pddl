@@ -61,7 +61,8 @@
     (restart-case
         (if a
             (assert (= (arity a) (arity ga)))
-            (warn "undefined action ~A" (name ga)))
+            (warn "undefined action ~A" (let ((str (symbol-name (name ga))))
+                                          (subseq str 0 (min 20 (length str))))))
       (ignore ()
         (warn "Applying an action that's not defined in the domain: ~A" (name ga))
         (return-from initialize-instance)))))
