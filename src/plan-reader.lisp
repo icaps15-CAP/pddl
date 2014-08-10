@@ -59,11 +59,12 @@
   (declare (ignore args))
   (let ((a (action (domain ga) ga)))
     (restart-case
-        (assert a nil "undefined action ~A" (name ga))
+        (if a
+            (assert (= (arity a) (arity ga)))
+            (warn "undefined action ~A" (name ga)))
       (ignore ()
         (warn "Applying an action that's not defined in the domain: ~A" (name ga))
-        (return-from initialize-instance)))
-    (assert (= (arity a) (arity ga)))))
+        (return-from initialize-instance)))))
 
 (defmethod action ((dom pddl-domain) (a pddl-ground-action))
   (action dom (name a)))
