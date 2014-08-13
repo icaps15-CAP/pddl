@@ -8,7 +8,6 @@
 
 (defvar *print-type* t)
 
-@export
 (defgeneric print-pddl-object (o &optional s))
 
 (defun pprint-pddl (tree s)

@@ -33,7 +33,9 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            :predicate
            :constant
            :action
-           :define-pddl-class))
+           :define-pddl-class
+           :pprint-pddl
+           :print-pddl-object))
 (in-package :pddl)
 (use-syntax :annot)
 ;; blah blah blah.
