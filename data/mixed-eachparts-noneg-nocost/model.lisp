@@ -44,6 +44,20 @@
               (in outer 
                   (collect `(not-finished ,job ,base))))))
 
+(defun make-initial-arms-noneg-nocost (arms positions)
+  (mappend
+    (lambda (arm pos)
+      `((free ,arm) (at ,arm ,pos) (arm-present ,pos) ))
+    (ensure-list arms)
+    (ensure-list positions)))
+
+(defun not-arm-present (positions except)
+  (mapcar (lambda (pos) `(not-arm-present ,pos))
+          (set-difference positions except)))
+
+(defun not-base-present (positions)
+  (mapcar (lambda (pos) `(not-base-present ,pos)) positions))
+
 (defun 2a2b-mixed-each-noneg-nocost (basenum)
   (let ((bases-2a (iter (for i below basenum) (collect (concatenate-symbols 'base-2a i))))
         (bases-2b (iter (for i below basenum) (collect (concatenate-symbols 'base-2b i))))
@@ -168,8 +182,24 @@
                                  `(j2b-attatch-a j2b-screw-a j2b-attatch-b
                                                  j2b-attatch-c j2b-screw-c))
         ;; Arms ;;;;;;;;;;;;;;;;
-        ,@(make-initial-arms '(arm1 arm2)
-			     '(tray-a oiling-machine)))
+        ,@(make-initial-arms-noneg-nocost
+           '(arm1 arm2)
+           '(tray-a oiling-machine))
+        ,@(not-arm-present '(table-in ; important!
+                             tray-a tray-b tray-c
+                             table1 table2
+                             gasket-machine screw-machine-a oiling-machine
+                             screw-machine-c inspection-machine
+                             table-out ; important!
+                             )
+                           '(tray-a oiling-machine))
+        ,@(not-base-present '(table-in ; important!
+                              tray-a tray-b tray-c
+                              table1 table2
+                              gasket-machine screw-machine-a oiling-machine
+                              screw-machine-c inspection-machine
+                              table-out ; important!
+                              )))
        (:goal (and ,@(make-goal-bases bases-2a 'j2a-inspect-base)
                    ,@(make-goal-bases bases-2b 'j2b-screw-c))))))
 
