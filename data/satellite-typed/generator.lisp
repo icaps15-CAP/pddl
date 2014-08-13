@@ -79,7 +79,8 @@
                     (collect (length val)))))))
 
 (defun write-satellites (&optional (prefix "large"))
-  (iter (for n from 1 to 20)
+  (parse-file "domain.pddl")
+  (iter (for n from 1 to 40)
         (for satellites from 5)
         (for instruments = (floor (* satellites (+ 2 (random 1.0)))))
         (for modes = (+ 10 (floor (* 0.3 n))))
@@ -94,13 +95,9 @@
                             directions
                             n))
         (print path)
-        (with-open-file (s path
-                           :direction :output
-                           :if-does-not-exist :create
-                           :if-exists :supersede)
-          (print (satellites satellites
-                             instruments
-                             modes
-                             stations
-                             directions)
-                 s))))
+        (with-output-to-file (s path :if-does-not-exist :create :if-exists :supersede)
+          (pprint-pddl (satellites satellites
+                                   instruments
+                                   modes
+                                   stations
+                                   directions) s))))

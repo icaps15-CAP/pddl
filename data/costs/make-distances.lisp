@@ -1,6 +1,7 @@
 
-(defpackage pddl.builder
+(defpackage :pddl.builder
   (:use :cl
+        :pddl
 	:guicho-utilities
         :cl-ppcre
         :optima
@@ -8,7 +9,10 @@
 	:iterate
 	:alexandria
 	:eazy-a*
-        :osicat))
+        :osicat)
+  (:shadowing-import-from :pddl :maximize :minimize)
+  (:shadowing-import-from :eazy-a* :cost)
+  (:shadow :lambda-match))
 (in-package :pddl.builder)
 
 (defun make-bases (basenum)
@@ -95,18 +99,6 @@
 			   1000
 			   (1+ (aref a i j)))))))))
 
-
-(defun make-adjacency (a b randomness)
-  (let ((dist (if (plusp randomness)
-		  (1+ (random randomness)) 1)))
-    (list 
-	  `(= (move-cost ,b ,a) ,dist)
-	  `(adjacent ,a ,b)
-	  `(adjacent ,b ,a))))
-
-(defun make-non-adjacency (a b)
-  (list `(= (move-cost ,a ,b) 1000)))
-
 (defun %get-adjacency (position-tree)
   (let ((acc nil)
         (stack nil)
@@ -191,4 +183,4 @@
 		     :if-exists :supersede
 		     :if-does-not-exist :create)
     (let ((*package* (find-package :pddl.builder)))
-      (write (funcall modelfn basenum) :stream s))))
+      (pprint-pddl (funcall modelfn basenum) s))))

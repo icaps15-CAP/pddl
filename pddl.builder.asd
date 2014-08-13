@@ -7,6 +7,7 @@
 	       :guicho-utilities
                :iterate
                :cl-ppcre
+               :pddl
                :osicat
                :alexandria)
   :serial t
@@ -19,6 +20,7 @@
                (:file "data/model2a-each/model")
                (:file "data/model2b-each/model")
                (:file "data/mixed-eachparts/model")
+               (:file "data/mixed-eachparts-noneg-nocost/model")
                (:file "data/elevators/generator")
                (:file "data/satellite-typed/generator"))
   :description "PDDL writer")
