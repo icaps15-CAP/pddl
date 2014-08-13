@@ -30,7 +30,7 @@
   (eval-when (:compile-toplevel :execute)
     (cleanup-pddlfasl))
   @export
-  (defun parse-file (pddl-pathname &optional export)
+  (defun parse-file (pddl-pathname &optional export remove-fasl)
     (let ((*parsing-filename* pddl-pathname)
           (*compile-verbose* t)
           (*compile-print* t)
@@ -50,7 +50,10 @@
                      (file-write-date pddl-pathname)))
           (invoke-restart 'recompile))
         (handler-case
-            (load fasl)
+            (unwind-protect
+                 (load fasl)
+              (when remove-fasl
+                (delete-file fasl)))
           (pddl-definition (c)
             (when export (export (name c)))
             (values (name c) (value c)))))))
