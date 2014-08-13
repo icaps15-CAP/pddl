@@ -47,7 +47,7 @@
 (defun make-initial-arms-noneg-nocost (arms positions)
   (mappend
     (lambda (arm pos)
-      `((free ,arm) (at ,arm ,pos) (arm-present ,pos) ))
+      `((free ,arm) (at ,arm ,pos)))
     (ensure-list arms)
     (ensure-list positions)))
 
