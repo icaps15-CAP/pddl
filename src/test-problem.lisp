@@ -192,7 +192,7 @@ returns:
                                       :problem-path problem
                                       :domain-path domain)
                                 (return nil))))
-             #'string<)
+             #'string>) ; best one first
        (elapsed-time problem "translate")
        (elapsed-time problem "preprocess")
        (elapsed-time problem "search")
