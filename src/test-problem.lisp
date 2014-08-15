@@ -121,7 +121,7 @@
          (declare (ignore c))
          -1)))))
 
-(defun no-solution (problem)
+(defun complete (problem)
   "Parse the log file and extract if there is no solution"
   (ematch (pathname problem)
     ((pathname- name directory)
@@ -130,7 +130,7 @@
                  :directory directory
                  :name (concatenate 'string name "." "search"))))
        (if (probe-file log)
-           (values (scan "Completely explored state space -- no solution"
+           (values (scan "Completely explored state space"
                          (read-file log)) t)
            (values nil nil))))))
 
@@ -217,9 +217,9 @@ returns:
        (max-memory problem "translate")
        (max-memory problem "preprocess")
        (max-memory problem "search")
-       (multiple-value-bind (no-solution find-log)
-           (no-solution problem)
-         (and no-solution find-log)))
+       (multiple-value-bind (complete find-log)
+           (complete problem)
+         (and complete find-log)))
     (file-error (c)
       (format error " Planning failed, File ~a not found!"
               (file-error-pathname c))
