@@ -78,22 +78,14 @@
               (iter (for (key . val) in (plist-alist (analyze2 p)))
                     (collect (length val)))))))
 
-(defun write-satellites (&optional (prefix "large"))
-  (parse-file "domain.pddl")
-  (iter (for n from 1 to 40)
+(defun write-satellites (&optional (prefix "p"))
+  (iter (for n from 1 to 20)
         (for satellites from 5)
         (for instruments = (floor (* satellites (+ 2 (random 1.0)))))
         (for modes = (+ 10 (floor (* 0.3 n))))
         (for stations = 5)
-        (for directions = (+ 150 (floor (* 10 (expt 2 (/ (1- n) 3))))))
-        (for path = (format nil "~a-~a-~a-~a-~a-~a-~a.pddl"
-                            prefix
-                            satellites
-                            instruments
-                            modes
-                            stations
-                            directions
-                            n))
+        (for directions = (+ 20 (floor (* 10 (expt 2 (/ (1- n) 3))))))
+        (for path = (format nil "~a~2,,,'0@a.pddl" prefix n))
         (print path)
         (with-output-to-file (s path :if-does-not-exist :create :if-exists :supersede)
           (pprint-pddl (satellites satellites
