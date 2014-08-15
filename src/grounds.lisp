@@ -56,12 +56,12 @@ symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
      (pddl-atomic-state :name name :parameters objects))))
 
 @export
-(defun ground-function (function objects &optional (*problem* *problem*))
+(defun ground-function (function objects value &optional (*problem* *problem*))
   (ematch function
     ((pddl-function :name name :domain *domain*)
      (assert (= (arity function) (length objects)))
      (assert (query-function *domain* name) nil "undefined function ~A" name)
-     (pddl-function-state :name name :parameters objects))))
+     (pddl-function-state :name name :parameters objects :value value))))
 
 @export
 (defun ground-assign-op (op
@@ -71,13 +71,17 @@ symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
   (labels ((value (p) (or (when-let ((pos (position p params)))
                             (elt objects pos))
                           (when (typep p 'pddl-constant) p)
-                          (error "Parameter ~a not found" p))))
+                          (error "Parameter ~a not found in the problem" p))))
     (ematch op
-      ((pddl-assign-op domain place value-form)
+      ((pddl-assign-op domain (place (pddl-function name parameters)) value-form)
        (let ((*domain* domain))
          (pddl-ground-assign-op
           :place
-          (ground-function place (mapcar #'value (parameters place)))
+          (find-if (lambda-match ((pddl-function-state
+                                   :name (eq name)
+                                   :parameters (equal (mapcar #'value parameters)))
+                                  t))
+                   (init *problem*))
           :value-form 
           (ground-f-exp value-form params objects)))))))
 
@@ -94,8 +98,12 @@ symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
                ((list* (and op (or '+ '- '* '/)) fexps)
                 (list* op (mapcar #'rec fexps)))
                ((type number) e)
-               (_ (ground-function
-                   e (mapcar #'value (parameters e)))))))
+               ((pddl-function name parameters)
+                (find-if (lambda-match ((pddl-function-state
+                                         :name (eq name)
+                                         :parameters (equal (mapcar #'value parameters)))
+                                        t))
+                         (init *problem*))))))
     (rec f-exp)))
 
 ;;;; ground all possible actions and predicates
@@ -131,11 +139,11 @@ symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
               (possible-arguments predicate problem)))))
 
 @export
-(defun ground-functions (function problem)
+(defun ground-functions (function problem &key (initial-value 0))
   "returns a list of all possible grounded functions"
   (ematch function
     ((pddl-function)
      (apply #'map-product
             (lambda (&rest objects)
-              (ground-function function objects))
+              (ground-function function objects initial-value))
             (possible-arguments function problem)))))
