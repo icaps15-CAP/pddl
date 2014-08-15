@@ -121,18 +121,33 @@
          (declare (ignore c))
          -1)))))
 
+(defun no-solution (problem)
+  "Parse the log file and extract if there is no solution"
+  (ematch (pathname problem)
+    ((pathname- name directory)
+     (let ((log (make-pathname
+                 :type "log"
+                 :directory directory
+                 :name (concatenate 'string name "." "search"))))
+       (if (probe-file log)
+           (values (scan "Completely explored state space -- no solution"
+                         (read-file log)) t)
+           (values nil nil))))))
+
 ;;;; main function
 
 (declaim (ftype (function ((or string pathname)
                            (or string pathname)
                            &key
                            (:stream stream)
+                           (:error stream)
                            (:options string)
                            (:verbose boolean)
                            (:memory (or integer keyword))
                            (:time-limit (or integer keyword))
                            (:hard-time-limit (or integer keyword)))
-                          (values list real real real real real real))
+                          (values list real real real real real real
+                                  boolean))
                 test-problem))
 
 @export
@@ -140,6 +155,7 @@
                      domain
                      &key
                        (stream *standard-output*)
+                       (error *error-output*)
                        (options *fd-options*)
                        verbose
                        (memory *memory-limit*)
@@ -155,7 +171,9 @@
 returns:
   a list of pathnames of plan files
   elapsed-times of translate, preprocess, search
-  max-memory of translate, preprocess, search"
+  max-memory of translate, preprocess, search,
+  and finally a boolean, which tells if the problem is negatively proven.
+"
   (let ((problem (pathname problem))
         (domain (pathname domain)))
     (when verbose (fresh-line))
@@ -170,7 +188,7 @@ returns:
                           "-T" ,(ulimit hard-time-limit)
                           -o ,options
                           ,problem ,domain)))
-            :wait nil :output stream :error :output)))
+            :wait nil :output stream :error error)))
       (unwind-protect
            (sb-ext:process-wait process t)
         (when (sb-ext:process-alive-p process)
@@ -198,10 +216,12 @@ returns:
        (elapsed-time problem "search")
        (max-memory problem "translate")
        (max-memory problem "preprocess")
-       (max-memory problem "search"))
+       (max-memory problem "search")
+       (multiple-value-bind (no-solution find-log)
+           (no-solution problem)
+         (and no-solution find-log)))
     (file-error (c)
-      (format *error-output*
-              " Planning failed, File ~a not found!"
+      (format error " Planning failed, File ~a not found!"
               (file-error-pathname c))
-      (values nil 0 0 0 0 0 0)))))
+      (values nil 0 0 0 0 0 0 nil)))))
 
