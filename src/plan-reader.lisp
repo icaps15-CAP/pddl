@@ -32,18 +32,40 @@
 (defun parse-ground-action (a-desc)
   (ematch a-desc
     ((list* name arguments)
-     (ground-action
-      (action *domain* name)
-      (mapcar (curry #'object *problem*) arguments)))))
+     (handler-bind ((error (lambda (c)
+                             (declare (ignore c))
+                             (format *error-output*
+                                     "~&objects: ~a"
+                                     (objects *problem*)))))
+       (ground-action
+        (action *domain* name)
+        (mapcar (curry #'object *problem*) arguments))))))
 
 (defun parse-plan (path-or-descriptions
                    &optional
                      (*domain* *domain*) (*problem* *problem*))
   (typecase path-or-descriptions
     ((or string pathname)
-     (with-open-file (s path-or-descriptions)
-       (iter (for action-desc in (%parse-plan-rec s nil))
-             (collect (parse-ground-action action-desc)))))
+     (handler-bind ((file-error
+                     (lambda (c)
+                       (format *error-output*
+                               "~&Problem while parsing a plan ~a !~&~a"
+                               path-or-descriptions
+                               (file-error-pathname c))))
+                    (error
+                     (lambda (c)
+                       (format *error-output*
+                               "~&Problem while parsing a plan ~a !~&~a"
+                               path-or-descriptions
+                               (type-of c))
+                       (with-open-file (s path-or-descriptions)
+                         (handler-case
+                             (iter (write-char (read-char s) *error-output*))
+                           (end-of-file (c)
+                             (declare (ignore c))))))))
+       (with-open-file (s path-or-descriptions)
+         (iter (for action-desc in (%parse-plan-rec s nil))
+               (collect (parse-ground-action action-desc))))))
     (list
      (iter (for action-desc in path-or-descriptions)
            (collect (parse-ground-action action-desc))))))
