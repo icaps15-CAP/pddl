@@ -29,23 +29,24 @@
          (equal (mapcar #'name objs) params))) 
       (states env)))))
 
+(defun parse-ground-action (a-desc)
+  (ematch a-desc
+    ((list* name arguments)
+     (ground-action
+      (action *domain* name)
+      (mapcar (curry #'object *problem*) arguments)))))
+
 (defun parse-plan (path-or-descriptions
                    &optional
                      (*domain* *domain*) (*problem* *problem*))
-  (flet ((instantiate (a-desc)
-           (ematch a-desc
-             ((list* name arguments)
-              (ground-action
-               (action *domain* name)
-               (mapcar (curry #'object *problem*) arguments))))))
-    (typecase path-or-descriptions
-      ((or string pathname)
-       (with-open-file (s path-or-descriptions)
-         (iter (for action-desc in (%parse-plan-rec s nil))
-               (collect (instantiate action-desc)))))
-      (list
-       (iter (for action-desc in path-or-descriptions)
-             (collect (instantiate action-desc)))))))
+  (typecase path-or-descriptions
+    ((or string pathname)
+     (with-open-file (s path-or-descriptions)
+       (iter (for action-desc in (%parse-plan-rec s nil))
+             (collect (parse-ground-action action-desc)))))
+    (list
+     (iter (for action-desc in path-or-descriptions)
+           (collect (parse-ground-action action-desc))))))
 
 (defun %parse-plan-rec (s acc)
   (if-let ((read (read s nil)))
