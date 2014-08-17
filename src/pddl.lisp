@@ -43,7 +43,16 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            :pprint-pddl
            :print-pddl-object
            :unix-signal
-           :finish))
+           :finish
+           :test-problem
+           :wrap-option
+           :*opt-options*
+           :*lama-options*
+           :*fd-options*
+           :*memory-limit*
+           :*soft-time-limit*
+           :*hard-time-limit*
+           :plan-not-found))
 (in-package :pddl)
 (use-syntax :annot)
 ;; blah blah blah.
