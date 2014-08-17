@@ -25,6 +25,15 @@
           pddl-domain-definition
           pddl-problem-definition))
 
+(defun pddlfasl-pathname (path)
+  (let ((fasl (format nil "/tmp/pddl~a"
+                      (truename
+                       (make-pathname
+                        :type "pddlfasl"
+                        :defaults path)))))
+    (ensure-directories-exist fasl)
+    fasl))
+
 (progn
   ;; if this file is re-compiled, then the pddlfasls are invalidated
   (eval-when (:compile-toplevel :execute)
@@ -34,8 +43,7 @@
     (let ((*parsing-filename* pddl-pathname)
           (*compile-verbose* t)
           (*compile-print* t)
-          (fasl (make-pathname :type "pddlfasl"
-                               :defaults pddl-pathname)))
+          (fasl (pddlfasl-pathname pddl-pathname)))
       (do-restart
           ((recompile
             (lambda ()
