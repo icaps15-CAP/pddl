@@ -8,9 +8,11 @@
     (asdf:system-relative-pathname :pddl ".compiled-pddlfasl-files"))
   (defun delete-file-verbose (path)
     (format t "~&Deleting : ~a" path)
-    (if (probe-file path)
+    (handler-case
         (delete-file path)
-        (format t "~%File not Deleted : not found")))
+      (file-error (c)
+        @ignore c
+        (format t "~%File not Deleted : not found"))))
   (defun cleanup-pddlfasl ()
     (with-open-file (s *compiled-files-logfile*
                        :if-does-not-exist :create)
