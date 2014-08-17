@@ -26,11 +26,9 @@
           pddl-problem-definition))
 
 (defun pddlfasl-pathname (path)
-  (let ((fasl (format nil "/tmp/pddl~a"
-                      (truename
-                       (make-pathname
-                        :type "pddlfasl"
-                        :defaults path)))))
+  (let ((fasl (make-pathname
+               :type "pddlfasl" :defaults
+               (format nil "/tmp/pddl~a" (truename path)))))
     (ensure-directories-exist fasl)
     fasl))
 
