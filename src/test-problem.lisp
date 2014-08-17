@@ -150,6 +150,20 @@
                                   boolean))
                 test-problem))
 
+(define-condition unix-signal ()
+  ((signo :initarg :signo :reader signo)))
+
+(defun %signal (signo)
+  (format *error-output* "~&received ~A~%" (signal-name signo))
+  (signal 'unix-signal :signo signo)
+  (sb-ext:exit :code 1 :abort t))
+
+(defun finalize-process (process verbose)
+  (when (sb-ext:process-alive-p process)
+    (sb-ext:process-kill process 15) ; SIGTERM
+    (when verbose
+      (format t "~&Sending signal 15 to the test-problem process..."))))
+
 @export
 (defun test-problem (problem
                      domain
@@ -177,51 +191,53 @@ returns:
   (let ((problem (pathname problem))
         (domain (pathname domain)))
     (when verbose (fresh-line))
-    (let ((process
-           (sb-ext:run-program
-            *test-problem*
-            (let ((*print-case* :downcase))
-              (mapcar #'princ-to-string
-                      `(,@(when verbose `(-v))
-                          -m ,(ulimit memory)
-                          -t ,(ulimit time-limit)
-                          "-T" ,(ulimit hard-time-limit)
-                          -o ,options
-                          ,problem ,domain)))
-            :wait nil :output stream :error error)))
-      (unwind-protect
-           (sb-ext:process-wait process t)
-        (when (sb-ext:process-alive-p process)
-          (sb-ext:process-kill process 15)
-          (when verbose
-            (format t "~&Sending signal 15 to the test-problem process...")))))
-    (handler-case
-      (values
-       (sort (block nil
-               (run `(pipe (find ,(pathname-directory-pathname problem)
-                                 -maxdepth 1
-                                 -mindepth 1)
-                           (grep (,(pathname-name problem) .plan)))
-                    :show verbose
-                    :output :lines
-                    :on-error (lambda (c)
-                                (declare (ignore c))
-                                (warn 'plan-not-found
-                                      :problem-path problem
-                                      :domain-path domain)
-                                (return nil))))
-             #'string>) ; best one first
-       (elapsed-time problem "translate")
-       (elapsed-time problem "preprocess")
-       (elapsed-time problem "search")
-       (max-memory problem "translate")
-       (max-memory problem "preprocess")
-       (max-memory problem "search")
-       (multiple-value-bind (complete find-log)
-           (complete problem)
-         (and complete find-log)))
-    (file-error (c)
-      (format error " Planning failed, File ~a not found!"
-              (file-error-pathname c))
-      (values nil 0 0 0 0 0 0 nil)))))
+    (tagbody
+       (restart-bind ((finish (lambda () (go :collect))))
+         (signal-handler-bind ((:int #'%signal)
+                               (:xcpu #'%signal))
+           (let ((process
+                  (sb-ext:run-program
+                   *test-problem*
+                   (let ((*print-case* :downcase))
+                     (mapcar #'princ-to-string
+                             `(,@(when verbose `(-v))
+                                 -m ,(ulimit memory)
+                                 -t ,(ulimit time-limit)
+                                 "-T" ,(ulimit hard-time-limit)
+                                 -o ,options
+                                 ,problem ,domain)))
+                   :wait nil :output stream :error error)))
+             (unwind-protect
+                  (sb-ext:process-wait process t)
+               (finalize-process process verbose)))))
+     :collect
+       (handler-case
+           (values
+            (sort (block nil
+                    (run `(pipe (find ,(pathname-directory-pathname problem)
+                                      -maxdepth 1
+                                      -mindepth 1)
+                                (grep (,(pathname-name problem) .plan)))
+                         :show verbose
+                         :output :lines
+                         :on-error (lambda (c)
+                                     (declare (ignore c))
+                                     (warn 'plan-not-found
+                                           :problem-path problem
+                                           :domain-path domain)
+                                     (return nil))))
+                  #'string>) ; best one first
+            (elapsed-time problem "translate")
+            (elapsed-time problem "preprocess")
+            (elapsed-time problem "search")
+            (max-memory problem "translate")
+            (max-memory problem "preprocess")
+            (max-memory problem "search")
+            (multiple-value-bind (complete find-log)
+                (complete problem)
+              (and complete find-log)))
+         (file-error (c)
+           (format error " Planning failed, File ~a not found!"
+                   (file-error-pathname c))
+           (values nil 0 0 0 0 0 0 nil))))))
 

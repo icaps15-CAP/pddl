@@ -5,8 +5,14 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
 
 (in-package :cl-user)
 (defpackage pddl
-  (:use :cl :cl-syntax :optima :alexandria :guicho-utilities
-        :annot.doc :annot.eval-when
+  (:use :cl
+        :cl-syntax
+        :optima
+        :alexandria
+        :guicho-utilities
+        :trivial-signal
+        :annot.doc
+        :annot.eval-when
         :iterate
         :osicat
         :inferior-shell
@@ -35,7 +41,9 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            :action
            :define-pddl-class
            :pprint-pddl
-           :print-pddl-object))
+           :print-pddl-object
+           :unix-signal
+           :finish))
 (in-package :pddl)
 (use-syntax :annot)
 ;; blah blah blah.
