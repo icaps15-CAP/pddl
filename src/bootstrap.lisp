@@ -34,11 +34,13 @@
     (ensure-directories-exist fasl)
     fasl))
 
+
+
 (progn
   ;; if this file is re-compiled, then the pddlfasls are invalidated
   (eval-when (:compile-toplevel :execute)
     (cleanup-pddlfasl))
-  @export
+  #-interpret-pddl
   (defun parse-file (pddl-pathname &optional export remove-fasl)
     (let ((*parsing-filename* pddl-pathname)
           (*compile-verbose* t)
@@ -65,6 +67,14 @@
           (pddl-definition (c)
             (when export (export (name c)))
             (values (name c) (value c)))))))
+  #+interpret-pddl
+  (defun parse-file (pddl-pathname &optional export remove-fasl)
+    @ignorable remove-fasl
+    (handler-case
+        (load pddl-pathname)
+      (pddl-definition (c)
+        (when export (export (name c)))
+        (values (name c) (value c)))))
 
   (define-condition pddl-definition (condition)
     ((name :initarg :name :accessor name)

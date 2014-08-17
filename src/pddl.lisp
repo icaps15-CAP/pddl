@@ -53,7 +53,8 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            :*soft-time-limit*
            :*hard-time-limit*
            :plan-not-found
-           :cleanup-pddlfasl))
+           :cleanup-pddlfasl
+           :parse-file))
 (in-package :pddl)
 (use-syntax :annot)
 ;; blah blah blah.
