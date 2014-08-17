@@ -3,6 +3,11 @@
 
 (defvar *parsing-filename* nil)
 
+;; These file compilations are unsafe on multiprocess environment.  on
+;; multiprocess environment, turn on :interpret-pddl *feature* to force
+;; interpreting the pddl file instead of saving fasl file.  Similarly,
+;; *compiled-files-logfile* is unsafe under multiprocess environment.
+
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (defvar *compiled-files-logfile*
     (asdf:system-relative-pathname :pddl ".compiled-pddlfasl-files"))
