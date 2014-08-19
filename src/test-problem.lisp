@@ -116,7 +116,8 @@
          -1)))))
 
 (defun complete (problem)
-  "Parse the log file and extract if there is no solution"
+  "Parse the log file and extract if the search explored the state space completely.
+Secondary value tells if the log file was found."
   (ematch (pathname problem)
     ((pathname- name directory)
      (let ((log (make-pathname
@@ -179,7 +180,7 @@ returns:
   a list of pathnames of plan files
   elapsed-times of translate, preprocess, search
   max-memory of translate, preprocess, search,
-  and finally a boolean, which tells if the problem is negatively proven.
+  and finally a boolean, which tells if the search completed (all solution was found).
 "
   (let ((problem (pathname problem))
         (domain (pathname domain)))
@@ -230,9 +231,7 @@ returns:
        (max-memory problem "translate")
        (max-memory problem "preprocess")
        (max-memory problem "search")
-       (multiple-value-bind (complete find-log)
-           (complete problem)
-         (and complete find-log)))
+       (complete problem))
     (file-error (c)
       (format error " Planning failed, File ~a not found!"
               (file-error-pathname c))
