@@ -50,8 +50,9 @@
    (domain-path :initarg :domain-path))
   (:report (lambda (c s)
              (with-slots (problem-path domain-path) c
-                (format s "Failed to find a plan! ~a ~a"
-                        problem-path domain-path)))))
+                (format s "Failed to find a plan!~% ~a"
+                        (pathname-directory-pathname
+                         problem-path))))))
 
 ;; http://www.ymeme.com/slurping-a-file-common-lisp-83.html
 (defun slurp (stream)
