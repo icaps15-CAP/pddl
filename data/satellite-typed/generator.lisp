@@ -79,13 +79,13 @@
                     (collect (length val)))))))
 
 (defun write-satellites (&optional (prefix "p"))
-  (iter (for n from 1 to 20)
-        (for satellites from 5)
+  (iter (for n from 15 to 35)
+        (for satellites = (+ n 4))
         (for instruments = (floor (* satellites (+ 2 (random 1.0)))))
         (for modes = (+ 10 (floor (* 0.3 n))))
         (for stations = 5)
-        (for directions = (+ 20 (floor (* 10 (expt 2 (/ (1- n) 3))))))
-        (for path = (format nil "~a~2,,,'0@a.pddl" prefix n))
+        (for directions = (+ 30 (floor (* 3 (expt 2 (/ (1- n) 4.3))))))
+        (for path = (format nil "~a~2,,,'0@a.pddl" prefix (- n 14)))
         (print path)
         (with-output-to-file (s path :if-does-not-exist :create :if-exists :supersede)
           (pprint-pddl (satellites satellites
