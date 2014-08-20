@@ -1,6 +1,7 @@
 (in-package :pddl)
 (cl-syntax:use-syntax :annot)
 
+;;; FD
 ;;;; wrapper functions
 
 (defun ulimit (rlimit)
@@ -17,9 +18,6 @@
 (defparameter *opt-options* (wrap-option "--search astar(lmcut())"))
 (defparameter *lama-options* (wrap-option "ipc seq-sat-lama-2011"))
 (defparameter *fd-options* *lama-options*)
-(defvar *translate* (merge-pathnames "src/translate/translate.py" *fd-dir*))
-(defvar *preprocess* (merge-pathnames "src/preprocess/preprocess" *fd-dir*))
-(defvar *search* (merge-pathnames "src/search/downward" *fd-dir*))
 (defvar *system*
   (pathname-as-directory 
    (asdf:system-source-directory :pddl)))
@@ -115,7 +113,7 @@
          (declare (ignore c))
          -1)))))
 
-(defun complete (problem)
+(defun complete (problem search-keyword)
   "Parse the log file and extract if the search explored the state space completely.
 Secondary value tells if the log file was found."
   (ematch (pathname problem)
@@ -125,8 +123,7 @@ Secondary value tells if the log file was found."
                  :directory directory
                  :name (concatenate 'string name "." "search"))))
        (if (probe-file log)
-           (values (scan "Completely explored state space"
-                         (read-file log)) t)
+           (values (scan search-keyword (read-file log)) t)
            (values nil nil))))))
 
 ;;;; main function
@@ -231,7 +228,93 @@ returns:
        (max-memory problem "translate")
        (max-memory problem "preprocess")
        (max-memory problem "search")
-       (complete problem))
+       (complete problem "Completely explored state space"))
+    (file-error (c)
+      (format error " Planning failed, File ~a not found!"
+              (file-error-pathname c))
+      (values nil 0 0 0 0 0 0 nil))))
+
+;;; FF
+
+;; actually macroff by botea et al
+;; assumes $HOME/repos/macroff/macroff
+
+(defparameter *test-problem-ff*
+  (merge-pathnames "planner-scripts/macroff-clean" *system*))
+
+(defparameter *ff-options* "")
+
+(defun test-problem-ff (problem
+                        domain
+                        &key
+                          (stream *standard-output*)
+                          (error *error-output*)
+                          (options *ff-options*)
+                          verbose
+                          (memory *memory-limit*)
+                          (time-limit *soft-time-limit*)
+                          (hard-time-limit *hard-time-limit*))
+  "Runs test-problem.sh with the following arguments.
+
+  problem, domain : the pathnames of pddl files.
+  options : a string which will be the search and heuristic options to downward.
+  memory : number[kByte], given to ulimit -m
+  time-limit : number[sec.], given to ulimit -t
+
+returns:
+  a list of pathnames of plan files
+  elapsed-times of translate, preprocess, search
+  max-memory of translate, preprocess, search,
+  and finally a boolean, which tells if the search completed (all solution was found).
+"
+  (declare (ignore time-limit))
+  (let ((problem (pathname problem))
+        (domain (pathname domain)))
+    (fresh-line)
+    (restart-case
+      (signal-handler-bind ((:int #'%signal)
+                            (:xcpu #'%signal))
+        (let ((process
+               (sb-ext:run-program
+                *test-problem-ff*
+                (let ((*print-case* :downcase))
+                  (mapcar #'princ-to-string
+                          `(,@(when verbose `(-v))
+                              -m ,(ulimit memory)
+                              -t ,(ulimit hard-time-limit)
+                              -o ,options
+                              ,problem ,domain)))
+                :wait nil :output stream :error error)))
+          (unwind-protect
+               (sb-ext:process-wait process t)
+            (finalize-process process verbose))
+          (invoke-restart
+           (find-restart 'finish))))
+      (finish ()
+        (find-plans-ff domain problem error verbose)))))
+
+(defun find-plans-ff (domain problem error verbose)
+  (handler-case
+      (values
+       (sort (block nil
+               (run `(pipe (find ,(pathname-directory-pathname problem)
+                                 -maxdepth 1
+                                 -mindepth 1)
+                           (grep (,(pathname-name problem) .plan)))
+                    :show verbose
+                    :output :lines
+                    :on-error (lambda (c)
+                                (declare (ignore c))
+                                (warn 'plan-not-found
+                                      :problem-path problem
+                                      :domain-path domain)
+                                (return nil))))
+             #'string>) ; best one first
+       0 0
+       (elapsed-time problem "search")
+       0 0 
+       (max-memory problem "search")
+       (complete problem "problem proven unsolvable"))
     (file-error (c)
       (format error " Planning failed, File ~a not found!"
               (file-error-pathname c))
