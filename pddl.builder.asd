@@ -22,5 +22,6 @@
                (:file "data/mixed-eachparts/model")
                (:file "data/mixed-eachparts-noneg-nocost/model")
                (:file "data/elevators/generator")
+               (:file "data/elevators/generator-nocost")
                (:file "data/satellite-typed/generator"))
   :description "PDDL writer")
