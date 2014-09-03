@@ -238,7 +238,6 @@ returns:
 ;;; FF
 
 ;; actually macroff by botea et al
-;; assumes $HOME/repos/macroff/macroff
 
 (defparameter *test-problem-ff*
   (merge-pathnames "planner-scripts/macroff-clean" *system*))
