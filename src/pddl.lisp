@@ -55,7 +55,8 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            :plan-not-found
            :cleanup-pddlfasl
            :parse-file
-           :test-problem-ff))
+           :test-problem-ff
+           :*ff-options*))
 (in-package :pddl)
 (use-syntax :annot)
 ;; blah blah blah.
