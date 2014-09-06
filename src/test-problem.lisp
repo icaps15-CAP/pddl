@@ -50,7 +50,7 @@
    (domain-path :initarg :domain-path))
   (:report (lambda (c s)
              (with-slots (problem-path domain-path) c
-                (format s "Failed to find a plan!~% ~a"
+                (format s "Failed to find a plan! ~a"
                         (pathname-directory-pathname
                          problem-path))))))
 
