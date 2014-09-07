@@ -13,10 +13,11 @@
 ;;;; ground elements in an action
 
 @export
-(defun ground-action (action objects &optional (*problem* *problem*))
+(defun ground-action (action objects &optional
+                                       (*problem* *problem*)
+                                       (*domain* *domain*))
   (ematch action
     ((pddl-action :name name
-                  :domain *domain*
                   :parameters params
                   :precondition pre
                   :effect eff)
@@ -36,6 +37,7 @@ symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
   (labels ((value (p) (or (when-let ((pos (position p params)))
                             (elt objects pos))
                           (when (typep p 'pddl-constant) p)
+                          (find p (constants *domain*))
                           (error "Parameter ~a not found" p)))
            (rec (e)
              (ematch e
