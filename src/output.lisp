@@ -15,7 +15,7 @@
       ((rec (branch s)
          (match branch
            (nil ;; do nothing
-            nil)
+            (princ "()" s))
            ((list* (and key (or :functions
                                 :predicates 
                                 :init)) rest)
@@ -40,11 +40,12 @@
               (write-char #\Space s)
               (pprint-indent :current 0 s)
               (do ((a (pprint-pop) (pprint-pop))
-                   (p nil a)) (nil)
-                (rec a s)
+                   (prev nil a)) ;; prev
+                  (nil)
+                (when a (rec a s)) ;; do not print nil
                 (pprint-exit-if-list-exhausted)
                 (write-char #\Space s)
-                (when (eq p '-)
+                (when (eq prev '-)
                   (pprint-newline :linear s)))))
            ((list* (and key :action) name rest)
             (pprint-newline :mandatory s)
