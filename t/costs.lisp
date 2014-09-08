@@ -69,7 +69,9 @@
     (is (= 0 (cost *env*)) "the metric is not initialized to 0")
     (finishes (setf *env* (proceed *env*)))
     (is (= 10 (cost *env*)))
-    (is (= 5 (value (function-state *env* '(distance b c)))))
+    ;; function-state is a utility function and not important.
+    ;; removed in 9/8, 2014
+    ;;(is (= 5 (value (function-state *env* '(distance b c)))))
     (finishes (setf *env* (proceed *env*)))
     (is (= 15 (cost *env*)))
     ;; integrated test
