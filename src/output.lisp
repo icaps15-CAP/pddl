@@ -68,8 +68,8 @@
               (rec op s)
               (write-char #\Space s)
               (pprint-indent :current 0 s)
-              (do () (nil)
-                (rec (pprint-pop) s)
+              (do ((a (pprint-pop) (pprint-pop))) (nil)
+                (when a (rec a s)) ;; do not print nil
                 (pprint-exit-if-list-exhausted)
                 (write-char #\Space s)
                 (pprint-newline :mandatory s))))
