@@ -16,7 +16,7 @@
 
 (defparameter *fd-dir* (pathname-as-directory #p"~/repos/downward"))
 (defparameter *opt-options* (wrap-option "--search astar(lmcut())"))
-(defparameter *lama-options* (wrap-option "ipc seq-sat-lama-2011"))
+(defparameter *lama-options* "ipc seq-sat-lama-2011")
 (defparameter *fd-options* *lama-options*)
 (defvar *system*
   (pathname-as-directory 
@@ -235,38 +235,22 @@ returns:
               (file-error-pathname c))
       (values nil 0 0 0 0 0 0 nil))))
 
-;;; FF
+;;;; general planners
 
-;; actually macroff by botea et al
+(defparameter *limitsh*
+  (merge-pathnames "planner-scripts/limit.sh" *system*))
 
-(defparameter *test-problem-ff*
-  (merge-pathnames "planner-scripts/macroff-clean" *system*))
-
-(defparameter *ff-options* "")
-
-(defun test-problem-ff (problem
-                        domain
-                        &key
-                          (stream *standard-output*)
-                          (error *error-output*)
-                          (options *ff-options*)
-                          verbose
-                          (memory *memory-limit*)
-                          (time-limit *soft-time-limit*)
-                          (hard-time-limit *hard-time-limit*))
-  "Runs test-problem.sh with the following arguments.
-
-  problem, domain : the pathnames of pddl files.
-  options : a string which will be the search and heuristic options to downward.
-  memory : number[kByte], given to ulimit -m
-  time-limit : number[sec.], given to ulimit -t
-
-returns:
-  a list of pathnames of plan files
-  elapsed-times of translate, preprocess, search
-  max-memory of translate, preprocess, search,
-  and finally a boolean, which tells if the search completed (all solution was found).
-"
+(defun test-problem-common (problem
+                            domain
+                            &key
+                              (stream *standard-output*)
+                              (error *error-output*)
+                              options
+                              verbose
+                              (name (error "no planner name given!"))
+                              (memory *memory-limit*)
+                              (time-limit *soft-time-limit*)
+                              (hard-time-limit *hard-time-limit*))
   (declare (ignore time-limit))
   (let ((problem (pathname problem))
         (domain (pathname domain)))
@@ -276,14 +260,15 @@ returns:
                             (:xcpu #'%signal))
         (let ((process
                (sb-ext:run-program
-                *test-problem-ff*
+                *limitsh*
                 (let ((*print-case* :downcase))
                   (mapcar #'princ-to-string
-                          `(,@(when verbose `(-v))
-                              -m ,(ulimit memory)
-                              -t ,(ulimit hard-time-limit)
-                              -o ,options
-                              ,problem ,domain)))
+                          `(-m ,(ulimit memory)
+                               -t ,(ulimit hard-time-limit)
+                               ,@(when verbose `(-v))
+                               ,@(when options `(-o ,options))
+                               -- ,name
+                               ,problem ,domain)))
                 :wait nil :output stream :error error)))
           (unwind-protect
                (sb-ext:process-wait process t)
@@ -291,31 +276,52 @@ returns:
           (invoke-restart
            (find-restart 'finish))))
       (finish ()
-        (find-plans-ff domain problem error verbose)))))
+        (find-plans-common domain problem verbose)))))
 
-(defun find-plans-ff (domain problem error verbose)
-  (handler-case
-      (values
-       (sort (block nil
-               (run `(pipe (find ,(pathname-directory-pathname problem)
-                                 -maxdepth 1
-                                 -mindepth 1)
-                           (grep (,(pathname-name problem) .plan)))
-                    :show verbose
-                    :output :lines
-                    :on-error (lambda (c)
-                                (declare (ignore c))
-                                (warn 'plan-not-found
-                                      :problem-path problem
-                                      :domain-path domain)
-                                (return nil))))
-             #'string>) ; best one first
-       0 0
-       (elapsed-time problem "search")
-       0 0 
-       (max-memory problem "search")
-       (complete problem "problem proven unsolvable"))
-    (file-error (c)
-      (format error " Planning failed, File ~a not found!"
-              (file-error-pathname c))
-      (values nil 0 0 0 0 0 0 nil))))
+(defun common-memory (problem)
+  (block nil
+    (ignore-errors
+      (parse-integer
+       (run `(pipe (grep "maxmem"
+                         ,(format nil "~a~a.stat"
+                                  (pathname-directory-pathname problem)
+                                  (pathname-name problem)))
+                   (cut -d " " -f 2))
+            :output :string
+            :on-error (lambda (c)
+                        (declare (ignore c))
+                        (return -1)))))))
+(defun common-time (problem)
+  (block nil
+    (ignore-errors
+      (parse-integer
+       (run `(pipe (grep "cputime"
+                         ,(format nil "~a~a.stat"
+                                  (pathname-directory-pathname problem)
+                                  (pathname-name problem)))
+                   (cut -d " " -f 2))
+            :output :string
+            :on-error (lambda (c)
+                        (declare (ignore c))
+                        (return -1)))))))
+(defun common-complete (problem)
+  (probe-file
+   (format nil "~a~a.negative"
+           (pathname-directory-pathname problem)
+           (pathname-name problem))))
+
+(defun common-plans (problem verbose)
+  (sort (block nil
+          (run `(pipe (find ,(pathname-directory-pathname problem)
+                            -maxdepth 1 -mindepth 1)
+                      (progn (grep (,(pathname-name problem) .plan))
+                             (true)))
+               :show verbose :output :lines))
+        #'string>))
+(defun find-plans-common (domain problem verbose)
+  @ignorable domain
+  (values
+   (common-plans problem verbose)
+   (common-time problem)
+   (common-memory problem)
+   (common-complete problem)))
