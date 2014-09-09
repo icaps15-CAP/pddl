@@ -21,4 +21,7 @@
                                          ,(merge-pathnames plan-pathname))
                            :show verbose
                            :output broadcast)))))
+      ;; NOTE: this implementation is required, because VAL returns 0 when
+      ;; the plan description is malformed.
+      ;; We only trust its result when it outputs "Plan valid".
       (scan "Plan valid" string))))
