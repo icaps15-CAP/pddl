@@ -7,7 +7,11 @@
 ACTION: `pddl-action'.
 supported requirements:
  (:DISJUNCTIVE-PRECONDITIONS :NEGATIVE-PRECONDITIONS)
-returns a boolean."
+returns a boolean.
+
+curret version supports only grounded actions. Do not search for possible
+argument assignments.
+"
 (defun applicable (atomic-states action)
   (applicable-condition atomic-states (precondition action)))
 

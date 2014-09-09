@@ -10,10 +10,13 @@
                ((list 'not op)
                 (remove-if (curry #'eqstate op) states))
                ((pddl-atomic-state)
-                (cons e states))
+                (if (member e states :test #'eqstate)
+                    states (cons e states)))
                ((pddl-assign-op)
                 (apply-assign-op e states)))))
-    (rec states (effect ground-action))))
+    (if (applicable states ground-action) 
+        (rec states (effect ground-action))
+        (error "not applicable!"))))
 
 ;; +deprecated, to be removed+ ... maybe not
 @export
