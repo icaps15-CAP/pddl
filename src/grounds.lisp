@@ -101,10 +101,15 @@ symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
                 (list* op (mapcar #'rec fexps)))
                ((type number) e)
                ((pddl-function name parameters)
-                (find-if (lambda-match ((pddl-function-state
-                                         :name (eq name)
-                                         :parameters (equal (mapcar #'value parameters)))
-                                        t))
+                (find-if (lambda-match
+                           ((pddl-function-state
+                             :name (guard n2 (string= n2 name))
+                             :parameters
+                             (guard params2
+                                    (every #'eqname
+                                           params2
+                                           (mapcar #'value parameters))))
+                            t))
                          (init *problem*))))))
     (rec f-exp)))
 
