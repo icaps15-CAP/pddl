@@ -57,7 +57,8 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            :parse-file
            :test-problem-ff
            :*ff-options*
-           :test-problem-common))
+           :test-problem-common
+           :pddl-ground-action))
 (in-package :pddl)
 (use-syntax :annot)
 ;; blah blah blah.
