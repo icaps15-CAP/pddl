@@ -27,6 +27,9 @@
       :precondition (ground-ctree pre params objects)
       :effect (ground-ctree eff params objects)))))
 
+(define-condition unspecified-parameter (simple-error)
+  ((parameter :reader parameter :initarg :parameter)))
+
 (defun ground-ctree (ctree
                      params
                      objects
@@ -38,7 +41,19 @@ symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
                             (elt objects pos))
                           (when (typep p 'pddl-constant) p)
                           (find p (constants *domain*))
-                          (error "Parameter ~a not found" p)))
+                          (restart-case
+                              (error 'unspecified-parameter
+                                     :format-control
+                                     "In ctree ~a, ~%parameter ~a in the
+                          precond/effect of an action was not found, ~%
+                          neither in the constant list of the domain ~a
+                          ~%nor in the given grounding parameter ~a"
+                                     :format-arguments
+                                     (list ctree p (constants *domain*)
+                                           params)
+                                     :parameter p)
+                            (use-value (object-or-constant)
+                              object-or-constant))))
            (rec (e)
              (ematch e
                ((list* op rest)

@@ -58,7 +58,9 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            :test-problem-ff
            :*ff-options*
            :test-problem-common
-           :pddl-ground-action))
+           :pddl-ground-action
+           :unspecified-parameter
+           :parameter))
 (in-package :pddl)
 (use-syntax :annot)
 ;; blah blah blah.
