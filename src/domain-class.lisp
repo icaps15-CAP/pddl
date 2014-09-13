@@ -33,7 +33,7 @@
 
 (define-pddl-class pddl-domain (pathnamable namable)
   ((requirements :type list)
-   (types :type list)
+   (types :type list :initform nil)
    (predicates :type list :initform nil)
    (constants :type list)
    (functions :type list)

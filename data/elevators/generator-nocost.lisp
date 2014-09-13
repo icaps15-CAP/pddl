@@ -89,6 +89,17 @@
                              :if-does-not-exist :create
                              :if-exists :supersede)
             (pprint-pddl (elevator-nocost floors passengers area-size) s)))))
+(defun elevator-for-comp-lessfloors2 ()
+  (let ((area-size 4) (floors 8))
+    (iter (for passengers from 70 by 20)
+          (for i from 1 to 20)
+          (for path = (format nil "p~2,,,'0@a.pddl" i))
+          (print path)
+          (with-open-file (s path
+                             :direction :output
+                             :if-does-not-exist :create
+                             :if-exists :supersede)
+            (pprint-pddl (elevator-nocost floors passengers area-size) s)))))
 ;; (elevator-for-comp-lessfloors)
 
 ;; old garbage

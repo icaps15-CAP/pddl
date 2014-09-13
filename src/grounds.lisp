@@ -37,23 +37,28 @@
                        (*domain* *domain*) (*problem* *problem*))
   "Grounds each precondition/effect in a condition tree. CTREE is a cons tree of
 symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
-  (labels ((value (p) (or (when-let ((pos (position p params)))
-                            (elt objects pos))
-                          (when (typep p 'pddl-constant) p)
-                          (find p (constants *domain*))
-                          (restart-case
-                              (error 'unspecified-parameter
-                                     :format-control
-                                     "In ctree ~a, ~%parameter ~a in the
-                          precond/effect of an action was not found, ~%
-                          neither in the constant list of the domain ~a
-                          ~%nor in the given grounding parameter ~a"
-                                     :format-arguments
-                                     (list ctree p (constants *domain*)
-                                           params)
-                                     :parameter p)
-                            (use-value (object-or-constant)
-                              object-or-constant))))
+  (labels ((value (p)
+             (or (when-let ((pos (position p params)))
+                   (elt objects pos))
+                 (when (typep p 'pddl-constant) p)
+                 (find p (constants *domain*))
+                 (restart-case
+                     (error 'unspecified-parameter
+                            :format-control
+                            "In ctree ~a,
+parameter ~a in the precond/effect of an action was not found,
+neither in the constant list of the domain ~a
+nor in the original parameter list ~a.
+
+Another possibility might be that
+the object specified for grounding is invalid:
+~a"
+                            :format-arguments
+                            (list ctree p (constants *domain*)
+                                  params objects)
+                            :parameter p)
+                   (use-value (object-or-constant)
+                     object-or-constant))))
            (rec (e)
              (ematch e
                ((list* op rest)

@@ -89,7 +89,8 @@
 
 (defmethod print-pddl-object :around ((o pddl-domain) &optional s)
   (if s
-      (pprint-pddl (call-next-method) s)
+      (progn (pprint-pddl (call-next-method) s)
+             (terpri s))
       (call-next-method)))
 
 (defun %output-when (keyword list)
