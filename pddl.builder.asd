@@ -11,7 +11,8 @@
                :osicat
                :alexandria)
   :serial t
-  :components ((:file "data/costs/make-distances")
+  :components ((:file "data/package")
+               (:file "data/costs/make-distances")
                (:file "data/model2a-loop/model")
                (:file "data/model2b-loop/model")
                (:file "data/model3a-loop/model")
@@ -23,5 +24,6 @@
                (:file "data/mixed-eachparts-noneg-nocost/model")
                (:file "data/elevators/generator")
                (:file "data/elevators/generator-nocost")
-               (:file "data/satellite-typed/generator"))
+               (:file "data/satellite-typed/generator")
+               (:file "data/gripper/generator"))
   :description "PDDL writer")
