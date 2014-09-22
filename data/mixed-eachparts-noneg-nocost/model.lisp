@@ -11,6 +11,14 @@
                        :format-control "p~2,,,'0@a.pddl"
                        :size-list (iota 30 :start 1))))
 
+(defun write-2a2b-mixed-each-noneg-nocost-large ()
+  (let ((*default-pathname-defaults* *2a2b-mixed-each-noneg-nocost-path*))
+    (print *default-pathname-defaults*)
+    (write-models-many #'2a2b-mixed-each-noneg-nocost
+                       :format-control "p~2,,,'0@a.pddl"
+                       :size-list (iter (for i from 1000 to 10000 by 1000)
+                                        (collect i)))))
+
 (defun make-linear-jobs-noneg-nocost (jobspecs &optional
                                                  (lower-limit 1)
                                                  (upper-limit 3)
