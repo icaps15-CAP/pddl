@@ -45,6 +45,14 @@
                            :direction :output
                            :if-does-not-exist :create
                            :if-exists :supersede)
+          (pprint-pddl (gripper-form i) s)))
+  (iter (for i from 1 to 3)
+        (for path = (format nil "t~2,,,'0@a.pddl" i))
+        (print path)
+        (with-open-file (s path
+                           :direction :output
+                           :if-does-not-exist :create
+                           :if-exists :supersede)
           (pprint-pddl (gripper-form i) s))))
 
 
