@@ -30,22 +30,15 @@
 (define-condition unspecified-parameter (simple-error)
   ((parameter :reader parameter :initarg :parameter)))
 
-(defun ground-ctree (ctree
-                     params
-                     objects
-                     &optional
-                       (*domain* *domain*) (*problem* *problem*))
-  "Grounds each precondition/effect in a condition tree. CTREE is a cons tree of
-symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
-  (labels ((value (p)
-             (or (when-let ((pos (position p params)))
-                   (elt objects pos))
-                 (when (typep p 'pddl-constant) p)
-                 (find p (constants *domain*))
-                 (restart-case
-                     (error 'unspecified-parameter
-                            :format-control
-                            "In ctree ~a,
+(defun %ground-parameter (parameters objects p &optional ctx)
+  (or (when-let ((pos (position p parameters)))
+        (elt objects pos))
+      (when (typep p 'pddl-constant) p)
+      (find p (constants *domain*))
+      (restart-case
+          (error 'unspecified-parameter
+                 :format-control
+                 "~@[In context ~a,~]
 parameter ~a in the precond/effect of an action was not found,
 neither in the constant list of the domain ~a
 nor in the original parameter list ~a.
@@ -53,12 +46,21 @@ nor in the original parameter list ~a.
 Another possibility might be that
 the object specified for grounding is invalid:
 ~a"
-                            :format-arguments
-                            (list ctree p (constants *domain*)
-                                  params objects)
-                            :parameter p)
-                   (use-value (object-or-constant)
-                     object-or-constant))))
+                 :format-arguments
+                 (list ctx p (constants *domain*)
+                       parameters objects)
+                 :parameter p)
+        (use-value (object-or-constant)
+          object-or-constant))))
+
+(defun ground-ctree (ctree
+                     params
+                     objects
+                     &optional
+                       (*domain* *domain*) (*problem* *problem*))
+  "Grounds each precondition/effect in a condition tree. CTREE is a cons tree of
+symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
+  (labels ((value (p) (%ground-parameter params objects p ctree))
            (rec (e)
              (ematch e
                ((list* op rest)
@@ -89,32 +91,25 @@ the object specified for grounding is invalid:
 (defun ground-assign-op (op
                          params ;; parameters of the ungrounded action
                          objects ;; objects corresponding to `params'
-                         &optional (*problem* *problem*))
-  (labels ((value (p) (or (when-let ((pos (position p params)))
-                            (elt objects pos))
-                          (when (typep p 'pddl-constant) p)
-                          (error "Parameter ~a not found in the problem" p))))
+                         &optional (*domain* *domain*) (*problem* *problem*))
+  (labels ((value (p) (%ground-parameter params objects p op)))
     (ematch op
-      ((pddl-assign-op domain (place (pddl-function name parameters)) value-form)
-       (let ((*domain* domain))
-         (pddl-ground-assign-op
-          :place
-          (find-if (lambda-match ((pddl-function-state
-                                   :name (eq name)
-                                   :parameters (equal (mapcar #'value parameters)))
-                                  t))
-                   (init *problem*))
-          :value-form 
-          (ground-f-exp value-form params objects)))))))
+      ((pddl-assign-op (place (pddl-function name parameters)) value-form)
+       (pddl-ground-assign-op
+        :place
+        (find-if (lambda-match ((pddl-function-state
+                                 :name (eq name)
+                                 :parameters (equal (mapcar #'value parameters)))
+                                t))
+                 (init *problem*))
+        :value-form 
+        (ground-f-exp value-form params objects))))))
 
 (defun ground-f-exp (f-exp params objects
                      &optional
                        (*domain* *domain*) (*problem* *problem*))
   "Grounds each f-head in a f-exp tree."
-  (labels ((value (p) (or (when-let ((pos (position p params)))
-                            (elt objects pos))
-                          (when (typep p 'pddl-constant) p)
-                          (error "Parameter ~a not found" p)))
+  (labels ((value (p) (%ground-parameter params objects p f-exp))
            (rec (e)
              (ematch e
                ((list* (and op (or '+ '- '* '/)) fexps)
@@ -122,9 +117,9 @@ the object specified for grounding is invalid:
                ((type number) e)
                ((pddl-function name parameters)
                 (find-if (lambda-match
-                           ((pddl-function-state
-                             :name (guard n2 (string= n2 name))
-                             :parameters
+                           ((pddl-function-state ;; (TRAVEL-SLOW N6 N8)
+                             :name (guard n2 (string= n2 name)) ; TRAVEL-SLOW
+                             :parameters ; N6 N8
                              (guard params2
                                     (every #'eqname
                                            params2
