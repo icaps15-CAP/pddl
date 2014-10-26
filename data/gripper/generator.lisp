@@ -37,8 +37,9 @@
          `(at ,(ball j) roomb))))
 
 (defun write-gripper ()
-  (iter (for i from 500 to 10000 by 500)
-        (for path = (format nil "p~2,,,'0@a.pddl" i))
+  (iter (for i from 2500 below 3500 by 100)
+        (for j from 1)
+        (for path = (format nil "p~2,,,'0@a.pddl" j))
         (print path)
         (with-open-file (s path
                            :direction :output
