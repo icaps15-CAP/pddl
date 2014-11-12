@@ -15,7 +15,7 @@
 (test costs
   (finishes
     (define (domain logistics-typed-cost)
-      (:requirements :strips :action-cost)
+      (:requirements :strips :action-costs)
       (:types truck place)
       (:predicates (at ?t - truck ?a - place) (connected ?x ?y - place))
       (:functions (total-cost) (distance ?x ?y - place))
