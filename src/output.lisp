@@ -198,7 +198,8 @@
 
 (defmethod print-pddl-object ((o pddl-assign-op) &optional s)
   @ignore s
-  (source o))
+  `(increase ,(print-pddl-object (place o))
+             ,(print-pddl-object (increase o))))
 
 (defvar *effect-definition-environment* nil)
 (defmethod print-pddl-object ((o pddl-action) &optional s)

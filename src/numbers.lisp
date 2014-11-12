@@ -96,7 +96,7 @@ pddl-function object."
   (ematch source
     ((list 'increase place increase)
      (pddl-assign-op
-      :source source
+      ;; :source source
       :place (parse-f-head place)
       :increase (or (parse-f-exp increase) (error "huh!?"))
       :value-form `(+ ,(parse-f-head place)

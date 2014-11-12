@@ -206,7 +206,9 @@ that of pred2. a predicate p1 is more specific than p2 when:
   ((value-form :type cons)))
 
 (define-pddl-class pddl-assign-op (pddl-fluent-expression)
-  ((source :type cons)
+  (;; (source :type cons)
+   ;; since assign-op is specialized to action-costs (11/12),
+   ;; :source argument is no longer required.
    (place :type pddl-function)
    (increase :type pddl-function)))
 
