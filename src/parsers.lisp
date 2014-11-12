@@ -225,7 +225,7 @@ then it is always used. The reference is determined by the EQNAME."
 (defun parse-effect (effect)
   (match effect
     ((andp ds)
-     `(and ,@(mapcar (rcurry #'parse-c-effect) ds)))
+     `(and ,@(mapcar #'parse-c-effect ds)))
     (_ (parse-c-effect effect))))
 
 (defun parse-c-effect (effect)

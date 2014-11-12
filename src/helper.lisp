@@ -10,7 +10,7 @@
 
 @export
 (defun not-implemented (what)
-  (warn "~A not implemented yet." what))
+  (error "~A not implemented yet." what))
 
 
 (defpattern qor (&rest syms)
