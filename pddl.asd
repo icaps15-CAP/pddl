@@ -50,6 +50,7 @@
 
 		 (:file :numbers)
 		 (:file :fluent-compiler)
+		 (:file :remove-costs)
 		 
 		 (:file :plan-reader)
                  (:file :simulator)
