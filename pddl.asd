@@ -51,10 +51,11 @@
 		 (:file :numbers)
 		 (:file :fluent-compiler)
 		 (:file :remove-costs)
-                 (:file :ground-cost)
 		 
 		 (:file :plan-reader)
                  (:file :simulator)
+
+                 (:file :ground-cost) ;; depends on plan-reader
 		 
 		 (:file :applicability)
 		 (:file :apply-action)
