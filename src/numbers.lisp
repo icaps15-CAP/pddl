@@ -90,27 +90,26 @@ pddl-function object."
 ;;;; parse-numeric-effect and assign-op (ungrounded)
 
 @export
-(defun transform-numeric-to-assign (source)
-  (ematch source
-    ((list 'scale-up place modifier)
-     `(assign ,place (* ,place ,modifier)))
-    ((list 'scale-down place modifier)
-     `(assign ,place (/ ,place ,modifier)))
-    ((list 'increase place modifier)
-     `(assign ,place (+ ,place ,modifier)))
-    ((list 'decrease place modifier)
-     `(assign ,place (- ,place ,modifier)))))
-
-@export
 (defun parse-numeric-effect (source)
   "This function is meant to be called while parsing the action effect.
 *params* is bound to the action parameters."
-  (ematch (transform-numeric-to-assign source)
-    ((list 'assign place new-value)
+  (ematch source
+    ((list 'increase place increase)
      (pddl-assign-op
       :source source
       :place (parse-f-head place)
-      :value-form (parse-f-exp new-value)))))
+      :increase (or (parse-f-exp increase) (error "huh!?"))
+      :value-form `(+ ,(parse-f-head place)
+                      ,(parse-f-exp increase))))
+    ((list* other _)
+     (not-implemented other))
+    ;; ((list 'scale-up place modifier)
+    ;;  `(assign ,place (* ,place ,modifier)))
+    ;; ((list 'scale-down place modifier)
+    ;;  `(assign ,place (/ ,place ,modifier)))
+    ;; ((list 'decrease place modifier)
+    ;;  `(assign ,place (- ,place ,modifier)))
+    ))
 
 ;;;; parse-f-exp parser
 

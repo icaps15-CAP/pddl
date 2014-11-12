@@ -28,7 +28,15 @@
 	       :parameters (?t - truck ?x ?y - place)
 	       :precondition (and (at ?t ?x) (connected ?x ?y))
 	       :effect (and (not (at ?t ?x)) (at ?t ?y)
-                            (increase (total-cost) (distance ?x ?y))))))
+                            (increase (total-cost) (distance ?x ?y))))
+      (:action move-multi-function
+	       :parameters (?t - truck ?x ?y ?z - place)
+	       :precondition (and (at ?t ?x)
+                                  (connected ?x ?y)
+                                  (connected ?y ?z))
+	       :effect (and (not (at ?t ?x)) (at ?t ?z)
+                            (increase (total-cost) (distance ?x ?y))
+                            (increase (total-cost) (distance ?y ?z))))))
   (finishes
     (define (problem logistics-typed-cost-prob)
       (:domain logistics-typed-cost)
@@ -104,7 +112,33 @@
       (:metric minimize (total-cost)))))
 
 
-
+(test (ground-cost :depends-on costs)
+  (let (*env* logistics-plan)
+    (finishes
+      (setf logistics-plan
+            (pddl-plan
+             :actions (parse-plan '((move-multi-function t1 a b c))
+                                  logistics-typed-cost
+                                  logistics-typed-cost-prob))))
+    (finishes
+      (setf *env* (pddl-environment
+                   :domain logistics-typed-cost
+                   :problem logistics-typed-cost-prob
+                   :plan logistics-plan)))
+    (is (= 0 (cost *env*)) "the metric is not initialized to 0")
+    (finishes (setf *env* (proceed *env*)))
+    (is (= 10 (cost *env*))) ;; (distance a b) + (distance b c) = 5+5
+    
+    (let ((multi-func-action (elt (actions logistics-plan) 0)))
+      ;; (distance a b), (distance b c)
+      (is (= 2 (length (assign-ops multi-func-action))))
+      (let ((grounded (ground-cost multi-func-action)))
+        (is (= 1 (length (assign-ops grounded))))
+        (let ((increase (increase
+                         (first
+                          (assign-ops grounded)))))
+          (is (numberp increase))
+          (is (= 10 increase)))))))
 
 
 

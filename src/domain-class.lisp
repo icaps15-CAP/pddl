@@ -207,7 +207,8 @@ that of pred2. a predicate p1 is more specific than p2 when:
 
 (define-pddl-class pddl-assign-op (pddl-fluent-expression)
   ((source :type cons)
-   (place :type pddl-function)))
+   (place :type pddl-function)
+   (increase :type pddl-function)))
 
 (define-pddl-class pddl-action (pddl-domain-slot
                                 pddl-parametrized-object

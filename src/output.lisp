@@ -198,30 +198,7 @@
 
 (defmethod print-pddl-object ((o pddl-assign-op) &optional s)
   @ignore s
-  (mapcar #'print-pddl-object (assign-op->source o)))
-
-(defun action-cost-compat-p (place things)
-  (match place
-    ((pddl-function :name (or 'total-cost 'total-time)
-                    :parameters nil)
-     (= 1 (length
-           (remove-if-not (lambda (x)
-                            (and (typep x 'pddl-function)
-                                 (eqstate x place)))
-                          things))))))
-
-(defun assign-op->source (op)
-  (ematch op
-    ((pddl-assign-op
-      place
-      (value-form
-       (list* '+ (guard things (action-cost-compat-p place things)))))
-     `(and ,@(mapcar (lambda (thing) `(increase ,place ,thing))
-                     (remove-if (lambda (x)
-                                  (and (typep x 'pddl-function)
-                                       (eqstate x place)))
-                                things))))
-    (_ (list (source op)))))
+  (source o))
 
 (defvar *effect-definition-environment* nil)
 (defmethod print-pddl-object ((o pddl-action) &optional s)

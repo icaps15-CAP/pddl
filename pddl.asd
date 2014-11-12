@@ -43,7 +43,7 @@
 		 (:file :equality)
 		 (:file :parsers)
                  (:file :grounds)
-
+		 
 		 (:file :domain-parser)
 		 (:file :problem-parser)
 		 (:file :bootstrap)
@@ -51,6 +51,7 @@
 		 (:file :numbers)
 		 (:file :fluent-compiler)
 		 (:file :remove-costs)
+                 (:file :ground-cost)
 		 
 		 (:file :plan-reader)
                  (:file :simulator)

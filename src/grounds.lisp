@@ -92,18 +92,23 @@ symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
                          params ;; parameters of the ungrounded action
                          objects ;; objects corresponding to `params'
                          &optional (*domain* *domain*) (*problem* *problem*))
-  (labels ((value (p) (%ground-parameter params objects p op)))
+  (labels ((value (p) (%ground-parameter params objects p op))
+           (eqfunc (x y)
+             (and (eqname x y)
+                  (equal (mapcar #'value (parameters x))
+                         (parameters y)))))
     (ematch op
-      ((pddl-assign-op (place (pddl-function name parameters)) value-form)
+      ;;; when increase is a number
+      ((pddl-assign-op place increase value-form)
        (pddl-ground-assign-op
-        :place
-        (find-if (lambda-match ((pddl-function-state
-                                 :name (eq name)
-                                 :parameters (equal (mapcar #'value parameters)))
-                                t))
-                 (init *problem*))
-        :value-form 
-        (ground-f-exp value-form params objects))))))
+        :place (find-if (curry #'eqfunc place) (init *problem*))
+        :increase (etypecase increase
+                    (number increase)
+                    (pddl-function ;; -state : incorrect
+                     (or (find-if (curry #'eqfunc increase) (init *problem*))
+                         (error "the corresponding function state is not defined: ~a ~a ~a"
+                                increase params objects))))
+        :value-form (ground-f-exp value-form params objects))))))
 
 (defun ground-f-exp (f-exp params objects
                      &optional
