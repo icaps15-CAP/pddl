@@ -60,7 +60,8 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            :test-problem-common
            :pddl-ground-action
            :unspecified-parameter
-           :parameter))
+           :parameter
+           :remove-costs))
 (in-package :pddl)
 (use-syntax :annot)
 ;; blah blah blah.
