@@ -29,6 +29,15 @@
       (is (numberp (print search-memory)))
       (mapcar #'delete-file plan-path-list))))
 
+(cerror "Done. Continue testing"
+        'simple-error
+        :format-control "Run in your terminal: ~&   ~a  ~& to continue."
+        :format-arguments
+        (list (namestring
+               (asdf:system-relative-pathname
+                :pddl-test
+                "planner-scripts/cgroup-setup.sh"))))
+
 (test test-problem-fd
   (let ((*default-pathname-defaults*
          (asdf:system-source-directory :pddl-test)))
@@ -59,7 +68,7 @@
         (test-problem-common
          (merge-pathnames "t/data/problem.pddl")
          (merge-pathnames "t/data/domain.pddl")
-         :name "macroff-clean"
+         :name "ff-clean"
          :verbose t)
       (is (not (null plan-path-list)))
       (is (numberp (print search-time)))
@@ -78,7 +87,7 @@
         (test-problem-common
          (merge-pathnames "t/data/problem.pddl")
          (merge-pathnames "t/data/domain.pddl")
-         :name "macroff-clean")
+         :name "ff-clean")
       (is (not (null plan-path-list)))
       (is (numberp (print search-time)))
       (is (numberp (print search-memory)))
