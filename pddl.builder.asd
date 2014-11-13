@@ -21,6 +21,7 @@
                (:file "data/model2a-each/model")
                (:file "data/model2b-each/model")
                (:file "data/mixed-eachparts/model")
+               (:file "data/mixed-eachparts-noneg/model")
                (:file "data/mixed-eachparts-noneg-nocost/model")
                (:file "data/model2a-noneg-nocost/model")
                (:file "data/elevators/generator")
