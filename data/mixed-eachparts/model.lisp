@@ -6,7 +6,8 @@
          (pathname-directory-pathname
           #.*compile-file-pathname*)))
     (write-models-many #'2a2b-mixed-each
-                       :format-control "p~4,,,'0@a.pddl")))
+                       :format-control "p~2,,,'0@a.pddl"
+                       :size-list (iota 20 :start 1))))
 
 (defun write-2a2b-mixed-each-iterative ()
   (let ((*default-pathname-defaults*

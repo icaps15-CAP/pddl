@@ -5,7 +5,8 @@
          (pathname-directory-pathname
           #.*compile-file-pathname*)))
     (write-models-many #'model2a-each
-                       :format-control "p~4,,,'0@a.pddl")))
+                       :format-control "p~2,,,'0@a.pddl"
+                       :size-list (iota 20 :start 1))))
 
 (defun make-component-bases (components bases)
   (iter (for components/kinds in components)
