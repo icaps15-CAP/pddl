@@ -155,7 +155,8 @@
 			  (at ?base ?machine)
 			  ;; job dependency specification (linear)
 			  (depends ?prev-job ?job)
-			  (finished ?prev-job ?base))
+			  (finished ?prev-job ?base)
+                          (not (finished ?job ?base)))
 	   :effect (and (finished ?job ?base)
 			(increase (total-cost) (job-cost ?job))))
   (:action assemble-with-arm
@@ -176,31 +177,8 @@
 			  (at ?base ?pos)
 			  ;; job dependency specification (linear)
 			  (depends ?prev-job ?job)
-			  (finished ?prev-job ?base))
-	   :effect (and (finished ?job ?base)
-			(free ?arm)
-			(not (hold ?arm ?component))
-			(increase (total-cost) (job-cost ?job))))
-  (:action assemble-with-arm
-           ;; Base Assemble Picked Parts by Arm: Uses an arm
-           ;; (?arm) to attach a part (?part) to a base.
-           :parameters (?component - component
-                                   ?job ?prev-job - job
-                                   ?base - base
-                                   ?arm - arm
-                                   ?pos - table)
-           :precondition (and
-                          ;; job specification
-                          (job-available-at ?job ?pos)
-                          (uses ?job ?component)
-                          (component-base ?component ?base)
-                          ;; state specification
-                          (hold ?arm ?component)
-                          (at ?arm ?pos)
-                          (at ?base ?pos)
-                          ;; job dependency specification (linear)
-                          (depends ?prev-job ?job)
-                          (finished ?prev-job ?base))
+			  (finished ?prev-job ?base)
+                          (not (finished ?job ?base)))
            :effect (and (finished ?job ?base)
                         (free ?arm)
                         (not (hold ?arm ?component))
