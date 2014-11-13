@@ -1,4 +1,6 @@
 
+* notes (old)
+
 : ./barman-generator.py <num_cocktails> <num_ingredients> <num_shots>
 
 In IPC SEQ-SAT domains, *the number of ingredients are fixed to 4.*
@@ -34,3 +36,16 @@ so
 : barman-generator.py x 4 x*1.3
 
 seems appropriate.
+
+* notes 11/13/2014
+
+icaps15 large instances created by middle.lisp
+following the old note.
+
+parameters: 
+
+(FOR I FROM 1 TO 20)
+(COCKTAIL = (+ 46 (* 1.25 I)))
+(INGREDIENTS = (+ 4 (* 0.3 I)))
+(SHOTS = (+ 46 (* 1.3 1.25 I)))
+
