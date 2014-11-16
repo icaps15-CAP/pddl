@@ -247,6 +247,7 @@ returns:
                               (error *error-output*)
                               options
                               verbose
+                              iterated
                               (name (error "no planner name given!"))
                               (memory *memory-limit*)
                               (time-limit *soft-time-limit*)
@@ -265,6 +266,7 @@ returns:
                   (mapcar #'princ-to-string
                           `(-m ,(ulimit memory)
                                -t ,(ulimit hard-time-limit)
+                               ,@(when iterated `(-i))
                                ,@(when verbose `(-v))
                                ,@(when options `(-o ,options))
                                -- ,name
