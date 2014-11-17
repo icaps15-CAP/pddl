@@ -147,17 +147,17 @@
   ((signo :initarg :signo :reader signo)))
 
 (defun %signal (signo)
-  (format *error-output* "~&received ~A~%" (signal-name signo))
+  (format t "~&received ~A~%" (signal-name signo))
   (signal 'unix-signal :signo signo)
+  (format t "~&Condition not handled, Exiting.")
   (sb-ext:exit :code 1 :abort t))
 
 (defun finalize-process (process verbose)
+  (format t "~&Sending signal 15 to the test-problem process...")
+  (force-output)
+  (sb-ext:process-kill process 15) ; SIGTERM
   (when (sb-ext:process-alive-p process)
-    (when verbose
-      (format t "~&Sending signal 15 to the test-problem process...")
-      (force-output))
-    (sb-ext:process-kill process 15) ; SIGTERM
-    (sb-ext:process-wait process t)))
+    (sb-ext:process-wait process)))
 
 ;; (defun test-problem (problem
 ;;                      domain
@@ -277,11 +277,12 @@
                                ,problem ,domain)))
                 :wait nil :output stream :error error)))
           (unwind-protect
-               (sb-ext:process-wait process t)
+               (sb-ext:process-wait process)
             (finalize-process process verbose))
           (invoke-restart
            (find-restart 'finish))))
       (finish ()
+        (format t "~&Running finalization")
         (find-plans-common domain problem verbose)))))
 
 (defun common-memory (problem)
