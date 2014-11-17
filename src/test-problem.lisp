@@ -153,9 +153,10 @@ Secondary value tells if the log file was found."
 
 (defun finalize-process (process verbose)
   (when (sb-ext:process-alive-p process)
-    (sb-ext:process-kill process 15) ; SIGTERM
     (when verbose
-      (format t "~&Sending signal 15 to the test-problem process..."))))
+      (format t "~&Sending signal 15 to the test-problem process..."))
+    (sb-ext:process-kill process 15) ; SIGTERM
+    (sb-ext:process-wait process t)))
 
 (defun test-problem (problem
                      domain
