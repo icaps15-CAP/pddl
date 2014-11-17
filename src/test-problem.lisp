@@ -261,10 +261,8 @@
     (restart-case
       (signal-handler-bind ((:int #'%signal)
                             (:xcpu #'%signal)
-                            (16 #'%signal)
-                            (10 #'%signal)
-                            (11 #'%signal)
-                            (30 #'%signal))
+                            (:term #'%signal)
+                            (:usr1 #'%signal))
         (let ((process
                (sb-ext:run-program
                 *limitsh*
