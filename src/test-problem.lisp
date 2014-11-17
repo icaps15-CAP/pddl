@@ -150,14 +150,19 @@
   (format t "~&received ~A~%" (signal-name signo))
   (signal 'unix-signal :signo signo)
   (format t "~&Condition not handled, Exiting.")
-  (sb-ext:exit :code 1 :abort t))
+  (error "~&Condition not handled, Exiting.")
+  ;; (sb-ext:exit :code 1 :abort t)
+  )
 
 (defun finalize-process (process verbose)
   (format t "~&Sending signal 15 to the test-problem process...")
   (force-output)
   (sb-ext:process-kill process 15) ; SIGTERM
-  (when (sb-ext:process-alive-p process)
-    (sb-ext:process-wait process)))
+  ;; (when (sb-ext:process-alive-p process)
+  ;;   (sb-ext:process-wait process))
+  (iter (while (sb-ext:process-alive-p process))
+        (format t "~&waiting")
+        (sleep 1)))
 
 ;; (defun test-problem (problem
 ;;                      domain
@@ -281,6 +286,7 @@
             (finalize-process process verbose))
           (invoke-restart
            (find-restart 'finish))))
+
       (finish ()
         (format t "~&Running finalization")
         (find-plans-common domain problem verbose)))))

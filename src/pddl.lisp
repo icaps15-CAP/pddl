@@ -20,7 +20,7 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
         :osicat
         :cl-rlimit)
   (:import-from :metatilities :defclass*)
-  (:shadow :minimize :maximize)
+  (:shadow :minimize :maximize :unix-signal) ; trivial-signal
   (:export :total-cost :total-time
            :parse-typed-list ;; these are required 
            :not-found-in-dictionary ;; in order to run the test safely
