@@ -2,12 +2,18 @@
 (in-package :pddl)
 (use-syntax :annot)
 
+(define-condition domain-not-found (error)
+  ((name :reader name :initarg :name))
+  (:report (lambda (s c)
+             (format s "the domain ~A is not loaded yet!"
+                     (name c)))))
+
 (define-clause-getter domain :domain
   (lambda (clause-body)
     (let ((domain-symbol (first clause-body)))
       (if (boundp domain-symbol)
           (symbol-value domain-symbol)
-          (error "the domain ~A is not loaded yet!" domain-symbol)))))
+          (error 'domain-not-found :name domain-symbol)))))
 
 ;; these need to accept additional arguments `params'
 

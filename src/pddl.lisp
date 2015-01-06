@@ -24,6 +24,7 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
   (:export :total-cost :total-time
            :parse-typed-list ;; these are required 
            :not-found-in-dictionary ;; in order to run the test safely
+           :domain-not-found
            :found-in-dictionary
            :parse-plan
            :query-function
