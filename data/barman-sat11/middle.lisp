@@ -4,13 +4,14 @@
  (merge-pathnames
              "quicklisp/setup"
              (user-homedir-pathname)))
-
-
+(defpackage :middle
+  (:use :cl))
+(in-package :middle)
 (ql:quickload :asdf)
 (ql:quickload :iterate)
-(ql:quickload :inferior-shell)
+(ql:quickload :trivial-shell)
 (use-package :iterate)
-(use-package :inferior-shell)
+(use-package :trivial-shell)
 
 (defun f (start factor i)
   (floor (+ start (* factor i))))
@@ -21,9 +22,9 @@
       (for shots = (f 46 (* 1.3 1.25) i))
       (for path = (format
                    nil
-                   "python barman-generator.py ~a ~a ~a > p~2,,,'0@a.pddl"
+                   "python barman-generator-cost.py ~a ~a ~a > p~2,,,'0@a.pddl"
                    cocktail ingredients shots i))
-      (run path :show t))
+      (shell-command path))
 
 (format t "~&parameters: ~{~&~a~}"
         '((for i from 1 to 20)

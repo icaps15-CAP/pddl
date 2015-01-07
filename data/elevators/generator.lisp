@@ -179,9 +179,40 @@
 ;; (exit)
 
 ;; icaps15 instances
+;; (defun elevator-icaps15 ()
+;;   (iter (for i from 1 to 20)
+;;         (for passengers from 70 by 20)
+;;         (for floors = 40)
+;;         (for area-size = (/ floors 4))
+;;         (for path = (merge-pathnames
+;;                      (format nil "p~2,,,'0@a.pddl" i)
+;;                      #.*compile-file-pathname*))
+;;         (print path)
+;;         (with-open-file (s path
+;;                            :direction :output
+;;                            :if-does-not-exist :create
+;;                            :if-exists :supersede)
+;;           (pprint-pddl (elevator floors passengers area-size) s))))
+
+;; icaps attempt 2
+;; (defun elevator-icaps15 ()
+;;   (iter (for i from 1 to 20)
+;;         (for passengers from 60 by 7)   ;to 190
+;;         (for floors = 40)
+;;         (for area-size = (/ floors 4))
+;;         (for path = (merge-pathnames
+;;                      (format nil "p~2,,,'0@a.pddl" i)
+;;                      #.*compile-file-pathname*))
+;;         (print path)
+;;         (with-open-file (s path
+;;                            :direction :output
+;;                            :if-does-not-exist :create
+;;                            :if-exists :supersede)
+;;           (pprint-pddl (elevator floors passengers area-size) s))))
+
 (defun elevator-icaps15 ()
-  (iter (for i from 1 to 20)
-        (for passengers from 70 by 20)
+  (iter (for i from 1 to 40)
+        (for passengers from 60 by 2)   ;to 100
         (for floors = 40)
         (for area-size = (/ floors 4))
         (for path = (merge-pathnames
@@ -194,4 +225,4 @@
                            :if-exists :supersede)
           (pprint-pddl (elevator floors passengers area-size) s))))
 
-;; (elevator-icaps15)
+(elevator-icaps15)
