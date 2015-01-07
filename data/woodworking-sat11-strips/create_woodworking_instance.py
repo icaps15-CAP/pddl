@@ -272,11 +272,40 @@ if __name__ == "__main__":
   import random
   random.seed(2011 * 2011)
 
+  # icaps15 attempts
   tasks = [generate_instance(size, wood_factor)
-         for wood_factor in [1.2, 1.4]
-         for size in range (20, 300, 3)]
+           for size in range (13, 100)
+           for wood_factor in [1.2, 1.4]]
   for no, task in enumerate(tasks):
-    task.dump(out=open("p%02d.pddl" % (no + 17), "w"))
+    task.dump(out=open("p%02d.pddl" % (no + 1), "w"))
+  # tasks = [generate_instance(size, wood_factor)
+  #          for wood_factor in [1.2, 1.4]
+  #          for size in range (20, 30)]
+  # for no, task in enumerate(tasks):
+  #   task.dump(out=open("p%02d.pddl" % (no + 1), "w"))
+
+  # # icaps15 3rd attempt
+  # tasks = [generate_instance(100, wood_factor)
+  #          for wood_factor in [1.2, 1.4]
+  #          for i in range (1, 10)]
+  # for no, task in enumerate(tasks):
+  #   task.dump(out=open("p%02d.pddl" % (no + 1), "w"))
+
+  # icaps15 second attempt
+  # tasks = [generate_instance(size, wood_factor)
+  #          for wood_factor in [1.2, 1.4]
+  #          for size in range (100, 120, 2)]
+  # for no, task in enumerate(tasks):
+  #   task.dump(out=open("p%02d.pddl" % (no + 1), "w"))
+
+  # aaai15
+  # tasks = [generate_instance(size, wood_factor)
+  #          for wood_factor in [1.2, 1.4]
+  #          for size in range (20, 300, 3)]
+  # for no, task in enumerate(tasks):
+  #   task.dump(out=open("p%02d.pddl" % (no + 17), "w"))
+
+  # ipc 2011
   # tasks = [generate_instance(size, wood_factor)
   #        for wood_factor in [1.4, 1.2, 1.0]
   #        for size in range (3, 13)]
