@@ -1,7 +1,6 @@
 (in-package :pddl)
 (cl-syntax:use-syntax :annot)
 
-;;; FD
 ;;;; wrapper functions
 
 (defun ulimit (rlimit)
@@ -14,15 +13,9 @@
 
 ;;;; parameters
 
-(defparameter *fd-dir* (pathname-as-directory #p"~/repos/downward"))
-(defparameter *opt-options* (wrap-option "--search astar(lmcut())"))
-(defparameter *lama-options* "ipc seq-sat-lama-2011")
-(defparameter *fd-options* *lama-options*)
 (defvar *system*
   (pathname-as-directory 
    (asdf:system-source-directory :pddl)))
-(defparameter *test-problem*
-  (merge-pathnames "planner-scripts/test-problem.sh" *system*))
 
 ;; in order to make it work on 32bit systems
 (defparameter *memory-limit*
@@ -71,78 +64,6 @@
     "defined for optima matcher"
     (pathnamep path)))
 
-;; (declaim (ftype (function ((or pathname string) string) real)
-;;                 elapsed-time max-memory))
-
-;; (defun elapsed-time (problem kind)
-;;   "Parse the log file and extract the elapsed time in seconds"
-;;   (ematch (pathname problem)
-;;     ((pathname- name directory)
-;;      (handler-case
-;;          (or (register-groups-bind (user-in-seconds)
-;;                  ("user ([.0-9]*)"
-;;                   (read-file
-;;                    (make-pathname
-;;                     :type "log"
-;;                     :directory directory
-;;                     :name (concatenate 'string name "." kind))))
-;;                (if user-in-seconds
-;;                    (read-from-string user-in-seconds)
-;;                    -1))
-;;              -1)
-;;        (error (c)
-;;          (declare (ignore c))
-;;          -1)))))
-
-;; (defun max-memory (problem kind)
-;;   "Parse the log file and extract the elapsed time in kB"
-;;   (ematch (pathname problem)
-;;     ((pathname- name directory)
-;;      (handler-case
-;;          (or (register-groups-bind (user-in-seconds)
-;;                  ("maxmem ([.0-9]*)"
-;;                   (read-file
-;;                    (make-pathname
-;;                     :type "log"
-;;                     :directory directory
-;;                     :name (concatenate 'string name "." kind))))
-;;                (if user-in-seconds
-;;                    (read-from-string user-in-seconds)
-;;                    -1))
-;;              -1)
-;;        (error (c)
-;;          (declare (ignore c))
-;;          -1)))))
-
-;; (defun complete (problem search-keyword)
-;;   "Parse the log file and extract if the search explored the state space completely.
-;; Secondary value tells if the log file was found."
-;;   (ematch (pathname problem)
-;;     ((pathname- name directory)
-;;      (let ((log (make-pathname
-;;                  :type "log"
-;;                  :directory directory
-;;                  :name (concatenate 'string name "." "search"))))
-;;        (if (probe-file log)
-;;            (values (scan search-keyword (read-file log)) t)
-;;            (values nil nil))))))
-
-;;;; main function
-
-(declaim (ftype (function ((or string pathname)
-                           (or string pathname)
-                           &key
-                           (:stream stream)
-                           (:error stream)
-                           (:options string)
-                           (:verbose boolean)
-                           (:memory (or integer keyword))
-                           (:time-limit (or integer keyword))
-                           (:hard-time-limit (or integer keyword)))
-                          (values list real real real real real real
-                                  boolean))
-                test-problem))
-
 (define-condition unix-signal ()
   ((signo :initarg :signo :reader signo)))
 
@@ -163,84 +84,6 @@
   (iter (while (sb-ext:process-alive-p process))
         (format t "~&waiting")
         (sleep 1)))
-
-;; (defun test-problem (problem
-;;                      domain
-;;                      &key
-;;                        (stream *standard-output*)
-;;                        (error *error-output*)
-;;                        (options *fd-options*)
-;;                        verbose
-;;                        (memory *memory-limit*)
-;;                        (time-limit *soft-time-limit*)
-;;                        (hard-time-limit *hard-time-limit*))
-;;   "Runs test-problem.sh with the following arguments.
-
-;;   problem, domain : the pathnames of pddl files.
-;;   options : a string which will be the search and heuristic options to downward.
-;;   memory : number[kByte], given to ulimit -m
-;;   time-limit : number[sec.], given to ulimit -t
-
-;; returns:
-;;   a list of pathnames of plan files
-;;   elapsed-times of translate, preprocess, search
-;;   max-memory of translate, preprocess, search,
-;;   and finally a boolean, which tells if the search completed (all solution was found).
-;; "
-;;   (let ((problem (pathname problem))
-;;         (domain (pathname domain)))
-;;     (fresh-line)
-;;     (restart-case
-;;       (signal-handler-bind ((:int #'%signal)
-;;                             (:xcpu #'%signal))
-;;         (let ((process
-;;                (sb-ext:run-program
-;;                 *test-problem*
-;;                 (let ((*print-case* :downcase))
-;;                   (mapcar #'princ-to-string
-;;                           `(,@(when verbose `(-v))
-;;                               -m ,(ulimit memory)
-;;                               -t ,(ulimit time-limit)
-;;                               "-T" ,(ulimit hard-time-limit)
-;;                               -o ,options
-;;                               ,problem ,domain)))
-;;                 :wait nil :output stream :error error)))
-;;           (unwind-protect
-;;                (sb-ext:process-wait process t)
-;;             (finalize-process process verbose))
-;;           (invoke-restart
-;;            (find-restart 'finish))))
-;;       (finish ()
-;;         (find-plans domain problem error verbose)))))
-
-;; (defun find-plans (domain problem error verbose)
-;;   (handler-case
-;;       (values
-;;        (sort (block nil
-;;                (run `(pipe (find ,(pathname-directory-pathname problem)
-;;                                  -maxdepth 1
-;;                                  -mindepth 1)
-;;                            (grep (,(pathname-name problem) .plan)))
-;;                     :show verbose
-;;                     :output :lines
-;;                     :on-error (lambda (c)
-;;                                 (declare (ignore c))
-;;                                 (warn 'plan-not-found
-;;                                       :problem-path problem
-;;                                       :domain-path domain)
-;;                                 (return nil))))
-;;              #'string>) ; best one first
-;;        (elapsed-time problem "translate")
-;;        (elapsed-time problem "preprocess")
-;;        (elapsed-time problem "search")
-;;        (max-memory problem "translate")
-;;        (max-memory problem "preprocess")
-;;        (max-memory problem "search")
-;;        (complete problem "Completely explored state space"))
-;;     (file-error (c)
-;;       (format error " Planning failed, File ~a not found!"
-;;               (file-error-pathname c))
-;;       (values nil 0 0 0 0 0 0 nil))))
 
 ;;;; general planners
 
