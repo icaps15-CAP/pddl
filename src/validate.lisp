@@ -1,7 +1,7 @@
 (in-package :pddl)
 (cl-syntax:use-syntax :annot)
 
-(defvar *validate* (merge-pathnames #p"src/validate" *fd-dir*))
+(defvar *validate* (merge-pathnames #p"src/validate" (sb-ext:posix-getenv "FD_DIR")))
 
 @export
 (defun validate-plan (domain-pathname
