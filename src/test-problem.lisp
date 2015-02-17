@@ -17,23 +17,13 @@
   (pathname-as-directory 
    (asdf:system-source-directory :pddl)))
 
-;; in order to make it work on 32bit systems
 (defparameter *memory-limit*
-  #+X86
-  :infinity ;MOST-POSITIVE-FIXNUM
-  #+X86-64
   (rlimit +rlimit-address-space+))
 
 (defparameter *soft-time-limit*
-  #+X86
-    :infinity ;MOST-POSITIVE-FIXNUM
-  #+X86-64
   (rlimit +rlimit-cpu-time+))
 
 (defparameter *hard-time-limit*
-  #+X86
-  :infinity ;MOST-POSITIVE-FIXNUM
-  #+X86-64
   (rlimit +rlimit-cpu-time+))
 
 ;;;; helpers
