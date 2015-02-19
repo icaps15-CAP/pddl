@@ -62,7 +62,7 @@
       (ensure-deleted (merge-pathnames "t/data/problem.negative"))
       (mapcar #'delete-file plan-path-list))))
 
-(test test-problem-marvin
+(test test-problem-marvin2
   (let ((*default-pathname-defaults*
          (asdf:system-source-directory :pddl-test)))
     (multiple-value-bind (plan-path-list
@@ -72,7 +72,7 @@
         (test-problem-common
          (merge-pathnames "t/data/problem.pddl")
          (merge-pathnames "t/data/domain.pddl")
-         :name "marvin-clean"
+         :name "marvin2-clean"
          :verbose t)
       (is (not (null plan-path-list)))
       (is (numberp (print search-time)))
@@ -81,7 +81,7 @@
       (ensure-deleted (merge-pathnames "t/data/problem.negative"))
       (mapcar #'delete-file plan-path-list))))
 
-(test test-problem-marvin-noverbose
+(test test-problem-marvin2-noverbose
   (let ((*default-pathname-defaults*
          (asdf:system-source-directory :pddl-test)))
     (multiple-value-bind (plan-path-list
@@ -91,7 +91,7 @@
         (test-problem-common
          (merge-pathnames "t/data/problem.pddl")
          (merge-pathnames "t/data/domain.pddl")
-         :name "marvin-clean")
+         :name "marvin2-clean")
       (is (not (null plan-path-list)))
       (is (numberp (print search-time)))
       (is (numberp (print search-memory)))
