@@ -1,6 +1,8 @@
 (in-package :pddl)
 (cl-syntax:use-syntax :annot)
 
+(defvar *default-fd-dir* "~/repos/downward/")
+
 @export
 (defun validate-plan (domain-pathname
                       problem-pathname
@@ -13,7 +15,9 @@
                     (let ((broadcast (if verbose
                                          (make-broadcast-stream stream string-stream)
                                          string-stream)))
-                      (run `(,(merge-pathnames #p"src/validate" (sb-ext:posix-getenv "FD_DIR"))
+                      (run `(,(merge-pathnames #p"src/validate"
+                                               (or (sb-ext:posix-getenv "FD_DIR")
+                                                   *default-fd-dir*))
                               ,@(when verbose '(-v))
                               ,(merge-pathnames domain-pathname)
                               ,(merge-pathnames problem-pathname)
