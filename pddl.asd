@@ -50,8 +50,11 @@
 
 		 (:file :numbers)
 		 (:file :fluent-compiler)
-		 (:file :remove-costs)
-		 
+                 (:module "compatibility-tools"
+                          :components
+                          ((:file :remove-costs)
+                           (:file :untype)))
+                 
 		 (:file :plan-reader)
                  (:file :simulator)
 

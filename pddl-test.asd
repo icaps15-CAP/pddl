@@ -23,7 +23,10 @@
 		 (:file :costs)
                  (:file :ground-actions)
                  (:file :test-problem)
-                 (:file :remove-costs)
+                 (:module "compatibility-tools"
+                          :components
+                          ((:file :remove-costs)
+                           (:file :untype)))
                  (:file :validate))))
   :perform (load-op :after (op c) 
 		    (eval (read-from-string "(fiveam:run! :pddl)"))

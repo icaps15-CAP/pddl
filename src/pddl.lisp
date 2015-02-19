@@ -62,7 +62,12 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            :pddl-ground-action
            :unspecified-parameter
            :parameter
-           :remove-costs))
+           ;; 
+           :remove-costs
+           ;; 
+           :untype-domain
+           :untype-problem
+           ))
 (in-package :pddl)
 (use-syntax :annot)
 ;; blah blah blah.
