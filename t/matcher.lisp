@@ -71,7 +71,11 @@
 	 (*problem* logistics-prob))
     (check is-true move :t1 :a :b)
     (check is-false move :t1 :a :c)
-    (signals error
+    ;; this test was added for maintaining the consistency wrto domain
+    ;; definition and the ground action e.g. action `foo' below is
+    ;; undefined in the logistics domain.
+    ;; this was changed from error to warning some time. 2015/2/19
+    (signals warning
       (pddl-ground-action
        :name 'foo
        :parameters (list (object *problem* :b)
