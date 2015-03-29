@@ -1,5 +1,0 @@
-
-1/28
-
-Search stopped at problem 06, due to memory allocation error at 15GB.
-

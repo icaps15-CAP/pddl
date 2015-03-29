@@ -1,3 +1,0 @@
-Usage: translate.py [options] [<domain.pddl>] <task.pddl>
-
-translate.py: error: no such option: -t

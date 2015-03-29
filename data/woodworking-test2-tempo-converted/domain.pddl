@@ -1,1 +1,0 @@
-../woodworking-test-tempo-converted/domain.pddl
