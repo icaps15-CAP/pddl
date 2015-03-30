@@ -114,31 +114,28 @@
 
 (test (ground-cost :depends-on costs)
   (let (*env* logistics-plan)
-    (finishes
-      (setf logistics-plan
-            (pddl-plan
-             :actions (parse-plan '((move-multi-function t1 a b c))
-                                  logistics-typed-cost
-                                  logistics-typed-cost-prob))))
-    (finishes
-      (setf *env* (pddl-environment
-                   :domain logistics-typed-cost
-                   :problem logistics-typed-cost-prob
-                   :plan logistics-plan)))
-    (is (= 0 (cost *env*)) "the metric is not initialized to 0")
-    (finishes (setf *env* (proceed *env*)))
-    (is (= 10 (cost *env*))) ;; (distance a b) + (distance b c) = 5+5
+    (let ((*domain* logistics-typed-cost)
+          (*problem* logistics-typed-cost-prob))
+      (finishes
+        (setf logistics-plan
+              (pddl-plan
+               :actions (parse-plan '((move-multi-function t1 a b c))))))
+      (finishes
+        (setf *env* (pddl-environment :plan logistics-plan)))
+      (is (= 0 (cost *env*)) "the metric is not initialized to 0")
+      (finishes (setf *env* (proceed *env*)))
+      (is (= 10 (cost *env*))) ;; (distance a b) + (distance b c) = 5+5
     
-    (let ((multi-func-action (elt (actions logistics-plan) 0)))
-      ;; (distance a b), (distance b c)
-      (is (= 2 (length (assign-ops multi-func-action))))
-      (let ((grounded (ground-cost multi-func-action)))
-        (is (= 1 (length (assign-ops grounded))))
-        (let ((increase (increase
-                         (first
-                          (assign-ops grounded)))))
-          (is (numberp increase))
-          (is (= 10 increase)))))))
+      (let ((multi-func-action (elt (actions logistics-plan) 0)))
+        ;; (distance a b), (distance b c)
+        (is (= 2 (length (assign-ops multi-func-action))))
+        (let ((grounded (ground-cost multi-func-action)))
+          (is (= 1 (length (assign-ops grounded))))
+          (let ((increase (increase
+                           (first
+                            (assign-ops grounded)))))
+            (is (numberp increase))
+            (is (= 10 increase))))))))
 
 
 
