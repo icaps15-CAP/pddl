@@ -1,6 +1,11 @@
 #|
   This file is a part of pddl project.
   Copyright (c) 2015 Masataro Asai (guicho2.71828@gmail.com)
+
+  These functions convert the type notations in PDDL version 2 into unary
+predicates. For example, (?X - depot) will be (?X) and a
+precondition (depot ?X).
+
 |#
 
 ;; (in-package :cl-user)
@@ -37,7 +42,7 @@
       :domain new-domain
       :name  (symbolicate name '-untyped)))))
 
-;;; fundamental function: stores inferred types
+;;; basic functions: stores inferred types
 
 (defun type->predicate (type &optional (param (pddl-variable :name (gensym "OBJ"))))
   (pddl-predicate
@@ -67,27 +72,31 @@
       domain
       (ematch domain
         ((pddl-domain name predicates actions requirements types functions)
-         (shallow-copy domain
-                       :requirements (remove :typing requirements)
-                       :types (remove type types)
-                       :functions (mapcar (curry #'%untype-parametrized type) functions)
-                       :predicates (cons (type->predicate type)
-                                         (mapcar (curry #'%untype-parametrized type)
-                                                 predicates))
-                       :actions (mapcar (curry #'%untype-action type)
-                                        actions))))))
+         (let ((*domain* (shallow-copy domain)))
+           (reinitialize-instance
+            *domain*
+            :requirements (remove :typing requirements)
+            :types (remove type types)
+            :functions (mapcar (curry #'%untype-parametrized type) functions)
+            :predicates (cons (type->predicate type)
+                              (mapcar (curry #'%untype-parametrized type)
+                                      predicates))
+            :actions (mapcar (curry #'%untype-action type)
+                             actions)))))))
 
 (defun %untype-problem (problem type)
   (if (eq type *pddl-primitive-object-type*)
       problem
       (ematch problem
-        ((pddl-problem objects init positive-goals)
+        ((pddl-problem (domain *domain*) objects init positive-goals)
          (let ((*inferred-types* nil))
-           (shallow-copy problem
-                         :objects (mapcar (curry #'%untype-variable type) objects)
-                         :goal `(and ,@(mapcar (curry #'%untype-parametrized type) positive-goals))
-                         :init (append (mapcar (curry #'%untype-parametrized type) init)
-                                       *inferred-types*)))))))
+           (let ((*problem* (shallow-copy problem)))
+             (reinitialize-instance
+              *problem*
+              :objects (mapcar (curry #'%untype-variable type) objects)
+              :goal `(and ,@(mapcar (curry #'%untype-parametrized type) positive-goals))
+              :init (append (mapcar (curry #'%untype-parametrized type) init)
+                            *inferred-types*))))))))
 
 ;;; 3rd layer
 
