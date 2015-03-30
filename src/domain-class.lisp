@@ -124,6 +124,9 @@ that of pred2. a predicate p1 is more specific than p2 when:
                                    namable)
   ())
 
+(defvar *pddl-primitive-object-type*)
+(defvar *pddl-primitive-number-type*)
+
 (define-pddl-class pddl-variable (pddl-domain-slot
                                   namable)
   ((type :initform *pddl-primitive-object-type*)))
@@ -176,19 +179,17 @@ that of pred2. a predicate p1 is more specific than p2 when:
             :key (compose #'string-upcase #'name)
             :test #'string=)))
 
-(defvar *pddl-primitive-object-type*
-  (let ((pt (pddl-type :name 'object
-                       :type nil))) ; to suppress the reference to
-                                    ; *pddl-primitive-object-type* specified in the
-                                    ; :initform of pddl-variable
-    (setf (type pt) pt)
-    pt))
+(setf *pddl-primitive-object-type*
+      (let ((pt (pddl-type :name 'object
+                           :type nil)))
+        (setf (type pt) pt)
+        pt))
 
-(defvar *pddl-primitive-number-type*
-  (let ((pt (pddl-type :name 'number
-                       :type nil)))
-    (setf (type pt) pt)
-    pt))
+(setf *pddl-primitive-number-type*
+      (let ((pt (pddl-type :name 'number
+                           :type nil)))
+        (setf (type pt) pt)
+        pt))
 
 (define-pddl-class pddl-constant (pddl-variable)
   ())
