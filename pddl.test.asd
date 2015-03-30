@@ -4,11 +4,11 @@
 |#
 
 (in-package :cl-user)
-(defpackage pddl-test-asd
+(defpackage pddl.test-asd
   (:use :cl :asdf))
-(in-package :pddl-test-asd)
+(in-package :pddl.test-asd)
 
-(defsystem pddl-test
+(defsystem pddl.test
   :author "guicho"
   :license "LLGPL"
   :depends-on (:pddl
@@ -16,16 +16,15 @@
   :components ((:module "t"
 		:serial t
                 :components
-                ((:file :pddl)
-		 (:file :accessors)
-		 (:file :matcher)
-		 (:file :writer)
-		 (:file :costs)
-                 (:file :ground-actions)
+                ((:file :0.package)
+                 (:file :0.testutil)
+                 (:file :1.parse)
+		 (:file :2.accessors)
+		 (:file :3.matcher)
+		 (:file :4.writer)
+		 (:file :5.costs)
+                 (:file :6.ground-actions)
                  (:module "compatibility-tools"
                           :components
                           ((:file :remove-costs)
-                           (:file :untype))))))
-  :perform (load-op :after (op c) 
-		    (eval (read-from-string "(fiveam:run! :pddl)"))
-		    (asdf:clear-system c)))
+                           (:file :untype)))))))

@@ -1,5 +1,5 @@
 
-(in-package :pddl-test)
+(in-package :pddl.test)
 (in-suite :pddl)
 
 (test (remove-costs :depends-on test-problem-ff)

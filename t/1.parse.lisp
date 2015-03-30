@@ -1,39 +1,6 @@
-#|
-  This file is a part of pddl project.
-  Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
-|#
+(in-package :pddl.test)
 
-(in-package :cl-user)
-(defpackage pddl-test
-  (:use :cl
-	:guicho-utilities
-	:alexandria
-	:iterate
-	:optima
-        :pddl
-        :fiveam)
-  (:shadow :place)
-  (:shadowing-import-from :pddl :maximize :minimize)
-  (:shadowing-import-from :fiveam :fail))
-(in-package :pddl-test)
-
-(defun data (name)
-  (merge-pathnames
-   name (asdf:system-relative-pathname :pddl "t/")))
-
-(defparameter +problem+ (data "depot/pfile1"))
-(defparameter +domain+ (data "depot/domain.pddl"))
-(defparameter +plan+ (data "depot/pfile1.plan.1"))
-
-(def-suite :pddl)
 (in-suite :pddl)
-
-(defvar *domain-sym*)
-(defvar *problem-sym*)
-(defvar *actions*)
-(defvar *depot-actions*)
-(defvar *plan*)
-(defvar *env*)
 
 (test parse-typed-list
 

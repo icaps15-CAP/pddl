@@ -1,5 +1,5 @@
 
-(in-package :pddl-test)
+(in-package :pddl.test)
 (in-suite :pddl)
 
 (defmacro check (tester operator &rest names)

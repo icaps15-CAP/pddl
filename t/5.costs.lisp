@@ -1,4 +1,4 @@
-(in-package :pddl-test)
+(in-package :pddl.test)
 (in-suite :pddl)
 
 (test (read-all-problem-and-plans)

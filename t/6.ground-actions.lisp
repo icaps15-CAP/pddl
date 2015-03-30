@@ -1,4 +1,4 @@
-(in-package :pddl-test)
+(in-package :pddl.test)
 (in-suite :pddl)
 
 (test (grounding :depends-on (and parse-domain parse-problem))
