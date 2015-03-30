@@ -66,8 +66,6 @@
 		 (:file :printers)
 		 (:file :output)
                  
-                 (:file :test-problem)
-                 (:file :validate)
                  (:file :write-pddl)
                  (:file :write-plan))))
   :description "PDDL parser"

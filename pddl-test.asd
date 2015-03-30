@@ -22,12 +22,10 @@
 		 (:file :writer)
 		 (:file :costs)
                  (:file :ground-actions)
-                 (:file :test-problem)
                  (:module "compatibility-tools"
                           :components
                           ((:file :remove-costs)
-                           (:file :untype)))
-                 (:file :validate))))
+                           (:file :untype))))))
   :perform (load-op :after (op c) 
 		    (eval (read-from-string "(fiveam:run! :pddl)"))
 		    (asdf:clear-system c)))
