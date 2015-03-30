@@ -76,7 +76,10 @@
 
 ;;; hierarchical types
 
-(define (domain elevators-sequencedstrips)
+(handler-bind ((warning #'muffle-warning))
+  ;; since functgion-value-missing is signalled.
+  ;; 
+  (define (domain elevators-sequencedstrips)
   (:requirements :typing :action-costs)
   (:types 	elevator - object 
                 slow-elevator fast-elevator - elevator
@@ -125,7 +128,7 @@
            :parameters (?p - passenger ?lift - elevator ?f - count ?n1 - count ?n2 - count)
            :precondition (and  (lift-at ?lift ?f) (boarded ?p ?lift) (passengers ?lift ?n1) (next ?n2 ?n1) )
            :effect (and (passenger-at ?p ?f) (not (boarded ?p ?lift)) (not (passengers ?lift ?n1)) (passengers ?lift ?n2) )))
-(define (problem elevators-sequencedstrips-p16_14_1)
+  (define (problem elevators-sequencedstrips-p16_14_1)
   (:domain elevators-sequencedstrips)
   (:objects 
    n0 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 n16  - count
@@ -211,7 +214,7 @@
     (passenger-at p12 n5)
     (passenger-at p13 n6)))
 
-  (:metric minimize (total-cost)))
+    (:metric minimize (total-cost))))
 
 (test untype-hierarchical
   (finishes
