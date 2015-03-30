@@ -13,18 +13,18 @@
   :license "LLGPL"
   :depends-on (:pddl
                :fiveam)
-  :components ((:module "t"
-		:serial t
-                :components
-                ((:file :0.package)
-                 (:file :0.testutil)
-                 (:file :1.parse)
-		 (:file :2.accessors)
-		 (:file :3.matcher)
-		 (:file :4.writer)
-		 (:file :5.costs)
-                 (:file :6.ground-actions)
-                 (:module "compatibility-tools"
-                          :components
-                          ((:file :remove-costs)
-                           (:file :untype)))))))
+  :pathname "t/"
+  :serial t
+  :components
+  ((:file :0.package)
+   (:file :0.testutil)
+   (:file :1.parse)
+   (:file :2.accessors)
+   (:file :3.matcher)
+   (:file :4.writer)
+   (:file :5.costs)
+   (:file :6.ground-actions)
+   (:module "compatibility-tools"
+            :components
+            ((:file :remove-costs)
+             (:file :untype)))))
