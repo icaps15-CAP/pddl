@@ -6,6 +6,17 @@
 ;;;; a valid pddl problem, domain etc.
 ;;;;
 
+(defvar *action-definition-environment* nil
+  "A local special variable that determines either the current branch should
+  be printed as an action, or as an init definition. In the action
+  definitions it should be true. for example, a function-state is printed
+  like (increase (distance a b) 5). When NIL, the same function-state is
+  printed like (= 5 (distance a b)). ")
+
+(defvar *variable-definition-environment* nil
+  "A local special variable that determines if a variable should be printed
+  with a type e.g. `` ?X - depot ''.")
+
 (defgeneric print-pddl-object (o &optional s))
 
 (defun pprint-pddl (tree s)
@@ -94,9 +105,6 @@
 (defun %output-when (keyword list)
   (when list `((,keyword ,@list))))
 
-
-
-(defvar *variable-definition-environment* nil)
 (defmacro with-variable-definition-environment (&body body)
   `(let ((*variable-definition-environment* t))
      ,@body))
@@ -178,7 +186,7 @@
 
 (defmethod print-pddl-object ((o pddl-function-state) &optional s)
   @ignore s
-  (if *effect-definition-environment*
+  (if *action-definition-environment*
       ;; in the action definition it should be true
       ;; e.g. (and (increase (distance ?a ?b) 5)...)
       `(,(print-pddl-object (name o))
@@ -201,14 +209,13 @@
   `(increase ,(print-pddl-object (place o))
              ,(print-pddl-object (increase o))))
 
-(defvar *effect-definition-environment* nil)
 (defmethod print-pddl-object ((o pddl-action) &optional s)
   @ignore s
   `(:action ,(print-pddl-object (name o))
             :parameters ,(with-variable-definition-environment
                            (mappend #'print-pddl-object (parameters o)))
             :precondition ,(print-pddl-object (precondition o))
-            :effect ,(let ((*effect-definition-environment* t))
+            :effect ,(let ((*action-definition-environment* t))
                        (print-pddl-object (effect o)))))
 
 (defmethod print-pddl-object ((o pddl-ground-action) &optional s)
