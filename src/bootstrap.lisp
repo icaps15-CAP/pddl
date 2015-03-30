@@ -94,11 +94,15 @@
        `(progn
           (defparameter ,name (parse-domain-def ',name ',body))
           ;; signalled in load time
-          (signal 'pddl-domain-definition :name ',name :value ,name)))
+          (if (boundp ',name)
+              (signal 'pddl-domain-definition :name ',name :value (symbol-value ',name))
+              (signal 'pddl-domain-definition :name ',name))))
       ((list 'problem name)
        `(progn
           (defparameter ,name (parse-problem-def ',name ',body))
-          (signal 'pddl-problem-definition :name ',name :value ,name))))))
+          (if (boundp ',name)
+              (signal 'pddl-problem-definition :name ',name :value (symbol-value ',name))
+              (signal 'pddl-problem-definition :name ',name)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; bare parser
