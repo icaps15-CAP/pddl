@@ -11,6 +11,10 @@
                                       `(object *problem* ,name))
                                     names))))))
 
+;; define here in order to suppress style warning
+(defvar *test-domain*)
+(defvar *test-problem*)
+
 (test (applicability :depends-on (and predicate accessors))
   (finishes
     (define (domain *test-domain*)
