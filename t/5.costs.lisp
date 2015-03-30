@@ -1,6 +1,8 @@
 (in-package :pddl.test)
 (in-suite :pddl)
 
+;; remove because now these files are removed
+#+nil
 (test (read-all-problem-and-plans)
   (handler-bind ((found-in-dictionary #'muffle-warning))
     (finishes
