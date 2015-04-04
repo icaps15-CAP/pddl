@@ -43,7 +43,7 @@
 
 (declaim (ftype (function (pddl-domain-slot) pddl-domain) domain))
 (define-pddl-class pddl-domain-slot ()
-  ((domain :type pddl-domain)))
+  ((domain :type (or null pddl-domain))))
 (defmethod initialize-instance :after ((o pddl-domain-slot)
                                        &key (domain *domain*))
   (setf (domain o) domain)
