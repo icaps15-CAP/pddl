@@ -29,7 +29,7 @@
 (define-pddl-class namable ()
   ((name :type symbol)))
 (define-pddl-class pathnamable ()
-  ((path :type pathname)))
+  ((path :type (or pathname null))))
 
 (define-pddl-class pddl-domain (pathnamable namable)
   ((requirements :type list)
@@ -292,13 +292,10 @@ that of pred2. a predicate p1 is more specific than p2 when:
                  (precondition a))
       acc)))
 
-
+#+nil
 (define-pddl-class pddl-durative-action (pddl-domain-slot namable)
-  ((parameters :type pddl-variable)
-   duration
-   condition
-   effect))
+  (parameters duration condition effect))
 
+#+nil
 (define-pddl-class pddl-derived-predicate (pddl-domain-slot)
-  ((parameters :type pddl-variable)
-   effect))
+  (parameters effect))
