@@ -11,9 +11,8 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
         :guicho-utilities
         :annot.doc
         :annot.eval-when
-        :iterate
         :osicat
-        :inferior-shell
+        :iterate
         :cl-ppcre
         :cl-rlimit)
   (:import-from :metatilities :defclass*)
