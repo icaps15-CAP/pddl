@@ -85,7 +85,7 @@
        :parameters (list (object *problem* :b)
                          (object *problem* :c))))))
 
-(test (apply-action :depends-on applicability)
+(test (apply-action :depends-on (and applicability logistics))
   (let* ((*domain* logistics)
 	 (*problem* logistics-prob)
          (ga1 (ground-action (action *domain* :move)

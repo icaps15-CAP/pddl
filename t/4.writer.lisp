@@ -12,7 +12,7 @@
           (print-pddl-object copied s)))))))
 
 
-(test (write-back-pddl :depends-on (and parse-domain parse-problem costs))
+(test (write-back-pddl :depends-on (and parse-domain parse-problem costs logistics))
   (mapc #'test-re-readability
         (list depot
               depotprob1818
