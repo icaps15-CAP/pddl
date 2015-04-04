@@ -17,7 +17,6 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
         :osicat
         :inferior-shell
         :cl-ppcre
-        :osicat
         :cl-rlimit)
   (:import-from :metatilities :defclass*)
   (:shadow :minimize :maximize :unix-signal) ; trivial-signal
