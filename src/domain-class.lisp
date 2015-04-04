@@ -204,7 +204,7 @@ that of pred2. a predicate p1 is more specific than p2 when:
         :test #'string=))
 
 (define-pddl-class pddl-fluent-expression (pddl-domain-slot)
-  ((value-form :type cons)))
+  ((value-form :type (or list number pddl-function))))
 
 (define-pddl-class pddl-assign-op (pddl-fluent-expression)
   (;; (source :type cons)
