@@ -1,5 +1,5 @@
 (in-package :pddl)
-(use-syntax :annot)
+(cl-syntax:use-syntax :annot)
 
 @export
 @doc "the domain currently parsing now. only used during the parsing,

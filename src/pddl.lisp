@@ -6,7 +6,6 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
 (in-package :cl-user)
 (defpackage pddl
   (:use :cl
-        :cl-syntax
         :optima
         :alexandria
         :guicho-utilities
@@ -53,7 +52,7 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            :untype-problem
            ))
 (in-package :pddl)
-(use-syntax :annot)
+(cl-syntax:use-syntax :annot)
 ;; blah blah blah.
 (package-optimize-setting 0 3 3 3)
 (optimize*)

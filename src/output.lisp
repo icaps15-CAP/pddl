@@ -1,5 +1,5 @@
 (in-package :pddl)
-(use-syntax :annot)
+(cl-syntax:use-syntax :annot)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; turn pddl objects into a cons so that it can be

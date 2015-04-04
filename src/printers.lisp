@@ -1,5 +1,5 @@
 (in-package :pddl)
-(use-syntax :annot)
+(cl-syntax:use-syntax :annot)
 
 ;; This file contains methods for pretty printers. Note that these are not for
 ;; formatting PDDL files. For PDDL formatter, see output.lisp .
