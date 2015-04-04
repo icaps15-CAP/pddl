@@ -211,7 +211,7 @@ that of pred2. a predicate p1 is more specific than p2 when:
    ;; since assign-op is specialized to action-costs (11/12),
    ;; :source argument is no longer required.
    (place :type pddl-function)
-   (increase :type pddl-function)))
+   (increase :type (or integer pddl-function))))
 
 (define-pddl-class pddl-action (pddl-domain-slot
                                 pddl-parametrized-object
