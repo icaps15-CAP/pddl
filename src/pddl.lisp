@@ -10,7 +10,6 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
         :optima
         :alexandria
         :guicho-utilities
-        :trivial-signal
         :annot.doc
         :annot.eval-when
         :iterate
@@ -19,7 +18,7 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
         :cl-ppcre
         :cl-rlimit)
   (:import-from :metatilities :defclass*)
-  (:shadow :minimize :maximize :unix-signal) ; trivial-signal
+  (:shadow :minimize :maximize)
   (:export :total-cost :total-time
            :parse-typed-list ;; these are required 
            :not-found-in-dictionary ;; in order to run the test safely

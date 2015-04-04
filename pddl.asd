@@ -19,7 +19,6 @@
   :author "guicho"
   :license "LLGPL"
   :depends-on (:guicho-utilities
-               :trivial-signal
 	       :metatilities
                :optima
                :iterate
