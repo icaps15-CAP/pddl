@@ -21,7 +21,6 @@
   :depends-on (:guicho-utilities
                :trivial-signal
 	       :metatilities
-               :fiveam
                :optima
                :iterate
                :alexandria
