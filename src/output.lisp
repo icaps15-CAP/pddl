@@ -62,6 +62,7 @@
               (rec key s)
               (write-char #\Space s)
               (rec name s)
+              (write-char #\Space s)
               (pprint-indent :block 0)
               (pprint-newline :mandatory s)
               (do () (nil)
