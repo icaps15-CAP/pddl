@@ -43,22 +43,8 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            :define-pddl-class
            :pprint-pddl
            :print-pddl-object
-           :unix-signal
-           :finish
-           :test-problem
-           :wrap-option
-           :*opt-options*
-           :*lama-options*
-           :*fd-options*
-           :*memory-limit*
-           :*soft-time-limit*
-           :*hard-time-limit*
-           :plan-not-found
            :cleanup-pddlfasl
            :parse-file
-           :test-problem-ff
-           :*ff-options*
-           :test-problem-common
            :pddl-ground-action
            :unspecified-parameter
            :parameter
