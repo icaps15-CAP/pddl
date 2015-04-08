@@ -1,4 +1,6 @@
-* Pddl  - PDDL parser
+* PDDL  - PDDL parser
+
+[[https://travis-ci.org/guicho271828/pddl.svg?branch%3Dmaster][https://travis-ci.org/guicho271828/pddl.svg?branch=master]]
 
 ** Usage
 
@@ -30,12 +32,6 @@ Also, it depends on the following libraries:
 
 + ANAPHORA  ::
     
-
-
-
-** Installation
-
-
 ** Author
 
 + guicho (guicho2.71828@gmail.com)
@@ -43,7 +39,6 @@ Also, it depends on the following libraries:
 * Copyright
 
 Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
-
 
 * License
 

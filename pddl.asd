@@ -19,9 +19,7 @@
   :author "guicho"
   :license "LLGPL"
   :depends-on (:guicho-utilities
-               :trivial-signal
 	       :metatilities
-               :fiveam
                :optima
                :iterate
                :alexandria
@@ -66,8 +64,6 @@
 		 (:file :printers)
 		 (:file :output)
                  
-                 (:file :test-problem)
-                 (:file :validate)
                  (:file :write-pddl)
                  (:file :write-plan))))
   :description "PDDL parser"
@@ -83,7 +79,7 @@
                                :fill-pointer t)))
           (setf (fill-pointer seq) (read-sequence seq stream))
           seq)))
-  :in-order-to ((test-op (load-op :pddl-test))))
+  :in-order-to ((test-op (load-op :pddl.test))))
 
 
 (defmethod asdf:perform ((op asdf:test-op)

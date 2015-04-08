@@ -1,5 +1,5 @@
 (in-package :pddl)
-(use-syntax :annot)
+(cl-syntax:use-syntax :annot)
 ;; metatilities:defclass*
 
 ;; (defmacro define-class-pattern (class-name)
@@ -29,7 +29,7 @@
 (define-pddl-class namable ()
   ((name :type symbol)))
 (define-pddl-class pathnamable ()
-  ((path :type pathname)))
+  ((path :type (or pathname null))))
 
 (define-pddl-class pddl-domain (pathnamable namable)
   ((requirements :type list)
@@ -43,7 +43,7 @@
 
 (declaim (ftype (function (pddl-domain-slot) pddl-domain) domain))
 (define-pddl-class pddl-domain-slot ()
-  ((domain :type pddl-domain)))
+  ((domain :type (or null pddl-domain))))
 (defmethod initialize-instance :after ((o pddl-domain-slot)
                                        &key (domain *domain*))
   (setf (domain o) domain)
@@ -124,6 +124,9 @@ that of pred2. a predicate p1 is more specific than p2 when:
                                    namable)
   ())
 
+(defvar *pddl-primitive-object-type*)
+(defvar *pddl-primitive-number-type*)
+
 (define-pddl-class pddl-variable (pddl-domain-slot
                                   namable)
   ((type :initform *pddl-primitive-object-type*)))
@@ -176,19 +179,17 @@ that of pred2. a predicate p1 is more specific than p2 when:
             :key (compose #'string-upcase #'name)
             :test #'string=)))
 
-(defvar *pddl-primitive-object-type*
-  (let ((pt (pddl-type :name 'object
-                       :type nil))) ; to suppress the reference to
-                                    ; *pddl-primitive-object-type* specified in the
-                                    ; :initform of pddl-variable
-    (setf (type pt) pt)
-    pt))
+(setf *pddl-primitive-object-type*
+      (let ((pt (pddl-type :name 'object
+                           :type nil)))
+        (setf (type pt) pt)
+        pt))
 
-(defvar *pddl-primitive-number-type*
-  (let ((pt (pddl-type :name 'number
-                       :type nil)))
-    (setf (type pt) pt)
-    pt))
+(setf *pddl-primitive-number-type*
+      (let ((pt (pddl-type :name 'number
+                           :type nil)))
+        (setf (type pt) pt)
+        pt))
 
 (define-pddl-class pddl-constant (pddl-variable)
   ())
@@ -203,14 +204,14 @@ that of pred2. a predicate p1 is more specific than p2 when:
         :test #'string=))
 
 (define-pddl-class pddl-fluent-expression (pddl-domain-slot)
-  ((value-form :type cons)))
+  ((value-form :type (or list number pddl-function))))
 
 (define-pddl-class pddl-assign-op (pddl-fluent-expression)
   (;; (source :type cons)
    ;; since assign-op is specialized to action-costs (11/12),
    ;; :source argument is no longer required.
    (place :type pddl-function)
-   (increase :type pddl-function)))
+   (increase :type (or integer pddl-function))))
 
 (define-pddl-class pddl-action (pddl-domain-slot
                                 pddl-parametrized-object
@@ -291,13 +292,10 @@ that of pred2. a predicate p1 is more specific than p2 when:
                  (precondition a))
       acc)))
 
-
+#+nil
 (define-pddl-class pddl-durative-action (pddl-domain-slot namable)
-  ((parameters :type pddl-variable)
-   duration
-   condition
-   effect))
+  (parameters duration condition effect))
 
+#+nil
 (define-pddl-class pddl-derived-predicate (pddl-domain-slot)
-  ((parameters :type pddl-variable)
-   effect))
+  (parameters effect))

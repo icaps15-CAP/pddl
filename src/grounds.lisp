@@ -146,31 +146,32 @@ symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
                objects :key #'type)))))
 
 @export
-(defun ground-actions (action problem)
-  "returns a list of all possible grounded actions"
+(defun ground-actions (action *problem* &aux (*domain* (domain action)))
+  "returns a list of all possible grounded actions. The problem slots of the
+returned grounded actions are set to *problem*."
   (ematch action
     ((pddl-action)
      (apply #'map-product
             (lambda (&rest objects)
               (ground-action action objects))
-            (possible-arguments action problem)))))
+            (possible-arguments action *problem*)))))
 
 @export
-(defun ground-predicates (predicate problem)
+(defun ground-predicates (predicate *problem*)
   "returns a list of all possible grounded predicates"
     (ematch predicate
       ((pddl-predicate)
        (apply #'map-product
               (lambda (&rest objects)
                 (ground-predicate predicate objects))
-              (possible-arguments predicate problem)))))
+              (possible-arguments predicate *problem*)))))
 
 @export
-(defun ground-functions (function problem &key (initial-value 0))
+(defun ground-functions (function *problem* &key (initial-value 0))
   "returns a list of all possible grounded functions"
   (ematch function
     ((pddl-function)
      (apply #'map-product
             (lambda (&rest objects)
               (ground-function function objects initial-value))
-            (possible-arguments function problem)))))
+            (possible-arguments function *problem*)))))

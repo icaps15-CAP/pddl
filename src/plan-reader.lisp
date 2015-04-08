@@ -1,6 +1,6 @@
 
 (in-package :pddl)
-(use-syntax :annot)
+(cl-syntax:use-syntax :annot)
 
 (define-pddl-class pddl-plan (pddl-problem-slot pathnamable namable)
   (actions))

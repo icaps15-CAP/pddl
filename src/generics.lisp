@@ -1,5 +1,5 @@
 (in-package :pddl)
-(use-syntax :annot)
+(cl-syntax:use-syntax :annot)
 
 @export
 (defgeneric delete-list (pddl-action))

@@ -1,6 +1,6 @@
 
 (in-package :pddl)
-(use-syntax :annot)
+(cl-syntax:use-syntax :annot)
 
 ;; metatilities:defclass*
 
@@ -39,7 +39,7 @@
   (setf (slot-value pddl-problem 'objects) new-value))
 
 (define-pddl-class pddl-problem-slot (pddl-domain-slot)
-  (problem))
+  ((problem :type (or null pddl-problem))))
 
 (defmethod initialize-instance :after ((o pddl-problem-slot)
                                        &key (problem *problem*))

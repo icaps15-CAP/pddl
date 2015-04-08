@@ -6,21 +6,17 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
 (in-package :cl-user)
 (defpackage pddl
   (:use :cl
-        :cl-syntax
         :optima
         :alexandria
         :guicho-utilities
-        :trivial-signal
         :annot.doc
         :annot.eval-when
+        :osicat
         :iterate
-        :osicat
-        :inferior-shell
         :cl-ppcre
-        :osicat
         :cl-rlimit)
   (:import-from :metatilities :defclass*)
-  (:shadow :minimize :maximize :unix-signal) ; trivial-signal
+  (:shadow :minimize :maximize)
   (:export :total-cost :total-time
            :parse-typed-list ;; these are required 
            :not-found-in-dictionary ;; in order to run the test safely
@@ -43,22 +39,8 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            :define-pddl-class
            :pprint-pddl
            :print-pddl-object
-           :unix-signal
-           :finish
-           :test-problem
-           :wrap-option
-           :*opt-options*
-           :*lama-options*
-           :*fd-options*
-           :*memory-limit*
-           :*soft-time-limit*
-           :*hard-time-limit*
-           :plan-not-found
            :cleanup-pddlfasl
            :parse-file
-           :test-problem-ff
-           :*ff-options*
-           :test-problem-common
            :pddl-ground-action
            :unspecified-parameter
            :parameter
@@ -69,7 +51,7 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            :untype-problem
            ))
 (in-package :pddl)
-(use-syntax :annot)
+(cl-syntax:use-syntax :annot)
 ;; blah blah blah.
 (package-optimize-setting 0 3 3 3)
 (optimize*)

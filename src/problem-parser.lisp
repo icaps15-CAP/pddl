@@ -1,6 +1,6 @@
 
 (in-package :pddl)
-(use-syntax :annot)
+(cl-syntax:use-syntax :annot)
 
 (define-condition domain-not-found (error)
   ((name :reader name :initarg :name))
