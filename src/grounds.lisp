@@ -101,7 +101,10 @@ symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
       ;;; when increase is a number
       ((pddl-assign-op place increase value-form)
        (pddl-ground-assign-op
-        :place (find-if (curry #'eqfunc place) (init *problem*))
+        :place (or (find-if (curry #'eqfunc place) (init *problem*))
+                   (error "the corresponding function state not defined: ~a ~a"
+                          place
+                          (init *problem*)))
         :increase (etypecase increase
                     (number increase)
                     (pddl-function ;; -state : incorrect
