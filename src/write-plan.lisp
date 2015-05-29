@@ -6,9 +6,7 @@
                               &optional
                                 (basedir (user-homedir-pathname))
                                 verbose)
-  (let ((path 
-         (merge-pathnames
-          name (pathname-as-directory basedir))))
+  (let ((path (merge-pathnames name (truename basedir))))
     (ensure-directories-exist path :verbose verbose)
     (when verbose
       (format t "~&Writing ~a~&" path))

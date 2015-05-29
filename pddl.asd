@@ -26,8 +26,7 @@
                :cl-syntax-annot
                :inferior-shell
                :cl-ppcre
-               :cl-rlimit
-               :osicat)
+               :cl-rlimit)
   :components ((:module "src"
 		:serial t
                 :components
