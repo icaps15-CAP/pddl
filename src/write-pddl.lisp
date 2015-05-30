@@ -2,13 +2,22 @@
 (in-package :pddl)
 (cl-syntax:use-syntax :annot)
 
+(defun pathname-as-directory (path)
+  (if (pathname-name path)
+      (make-pathname :directory
+                     `(,@(pathname-directory path)
+                         ,(file-namestring path))
+                     :name nil
+                     :type nil
+                     :defaults path)
+      (pathname path)))
 
 @export
 (defun write-pddl (thing name
                    &optional
                      (basedir (user-homedir-pathname))
                      verbose)
-  (let ((path (merge-pathnames name (truename basedir))))
+  (let ((path (merge-pathnames name (pathname-as-directory basedir))))
     (ensure-directories-exist path :verbose verbose)
     (when verbose
       (format t "~&Writing ~a~&" path))
