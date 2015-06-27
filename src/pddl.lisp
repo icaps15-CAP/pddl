@@ -11,8 +11,7 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
         :guicho-utilities
         :annot.doc
         :annot.eval-when
-        :iterate
-        :cl-ppcre)
+        :iterate)
   (:import-from :metatilities :defclass*)
   (:shadow :minimize :maximize)
   (:export :total-cost :total-time

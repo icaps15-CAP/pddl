@@ -23,8 +23,7 @@
                :optima
                :iterate
                :alexandria
-               :cl-syntax-annot
-               :cl-ppcre)
+               :cl-syntax-annot)
   :components ((:module "src"
 		:serial t
                 :components
