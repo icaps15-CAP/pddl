@@ -24,7 +24,6 @@
                :iterate
                :alexandria
                :cl-syntax-annot
-               :inferior-shell
                :cl-ppcre)
   :components ((:module "src"
 		:serial t
