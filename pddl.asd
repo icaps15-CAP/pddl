@@ -25,8 +25,7 @@
                :alexandria
                :cl-syntax-annot
                :inferior-shell
-               :cl-ppcre
-               :cl-rlimit)
+               :cl-ppcre)
   :components ((:module "src"
 		:serial t
                 :components
