@@ -102,15 +102,20 @@ symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
       ((pddl-assign-op place increase value-form)
        (pddl-ground-assign-op
         :place (or (find-if (curry #'eqfunc place) (init *problem*))
-                   (error "the corresponding function state not defined: ~a ~a"
-                          place
-                          (init *problem*)))
+                   (error "the corresponding function state not defined:~%~s"
+                          `(:place ,place
+                            :init ,(init *problem*)
+                            :problem ,*problem*)))
         :increase (etypecase increase
                     (number increase)
                     (pddl-function ;; -state : incorrect
                      (or (find-if (curry #'eqfunc increase) (init *problem*))
-                         (error "the corresponding function state is not defined: ~a ~a ~a"
-                                increase params objects))))
+                         (error "the corresponding function state is not defined:~%~s"
+                                `(:increase ,increase
+                                  :params ,params 
+                                  :objects ,objects
+                                  :init ,(init *problem*)
+                                  :problem ,*problem*)))))
         :value-form (ground-f-exp value-form params objects))))))
 
 (defun ground-f-exp (f-exp params objects
