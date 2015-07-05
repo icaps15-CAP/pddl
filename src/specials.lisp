@@ -2,16 +2,18 @@
 (cl-syntax:use-syntax :annot)
 
 @export
-@doc "the domain currently parsing now. only used during the parsing,
+(defvar *domain*)
+(setf (documentation '*domain* 'variable)
+      "the domain currently parsing now. only used during the parsing,
 do not use it to store a specific variable.
-The consequence is undefined if the value changes during the parsing."
-(defvar *domain* nil)
+The consequence is undefined if the value changes during the parsing.")
 
 @export
-@doc "the problem currently parsing. only used during the parsing,
+(defvar *problem*)
+(setf (documentation '*problem* 'variable)
+      "the problem currently parsing. only used during the parsing,
 do not use it to store a specific variable.
-The consequence is undefined if the value changes during the parsing."
-(defvar *problem* nil)
+The consequence is undefined if the value changes during the parsing.")
 
 @export
 @doc "the parameters in the action currently parsing.

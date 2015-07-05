@@ -4,10 +4,10 @@
 
 (test parse-typed-list
 
-  (signals not-found-in-dictionary
-    (parse-typed-list '(a b c)))
-
   (let ((*domain* (pddl-domain)))
+    (signals not-found-in-dictionary
+      (parse-typed-list '(a b c)))
+    
     (setf (types *domain*)
 	  (list *pddl-primitive-object-type*
 		*pddl-primitive-number-type*))

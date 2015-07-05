@@ -21,6 +21,7 @@
   :depends-on (:guicho-utilities
 	       :metatilities
                :optima
+               :function-cache
                :iterate
                :alexandria
                :cl-syntax-annot)

@@ -180,13 +180,15 @@ that of pred2. a predicate p1 is more specific than p2 when:
             :test #'string=)))
 
 (setf *pddl-primitive-object-type*
-      (let ((pt (pddl-type :name 'object
+      (let ((pt (pddl-type :domain nil
+                           :name 'object
                            :type nil)))
         (setf (type pt) pt)
         pt))
 
 (setf *pddl-primitive-number-type*
-      (let ((pt (pddl-type :name 'number
+      (let ((pt (pddl-type :domain nil
+                           :name 'number
                            :type nil)))
         (setf (type pt) pt)
         pt))
