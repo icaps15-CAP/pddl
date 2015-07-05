@@ -48,6 +48,7 @@
                  (:module "compatibility-tools"
                           :components
                           ((:file :remove-costs)
+                           (:file :add-costs)
                            (:file :untype)))
                  
 		 (:file :plan-reader)
