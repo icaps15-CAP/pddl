@@ -46,7 +46,9 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            ;; 
            :untype-domain
            :untype-problem
-           :add-costs))
+           :add-costs
+           :undefined-predicate
+           :undefined-pddl-function))
 (in-package :pddl)
 (cl-syntax:use-syntax :annot)
 ;; blah blah blah.
