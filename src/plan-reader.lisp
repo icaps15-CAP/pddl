@@ -54,8 +54,9 @@
                                (file-error-pathname c))))
                     (error
                      (lambda (c)
+                       (signal c)
                        (format *error-output*
-                               "~&Problem while parsing a plan ~a !~&~a"
+                               "~&Problem while parsing a plan ~a !~&~a~&"
                                path-or-descriptions
                                (type-of c))
                        (with-open-file (s path-or-descriptions)
