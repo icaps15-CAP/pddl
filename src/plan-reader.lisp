@@ -49,7 +49,7 @@
      (handler-bind ((file-error
                      (lambda (c)
                        (format *error-output*
-                               "~&Problem while parsing a plan ~a !~&~a"
+                               "~&No such file exists! ~a ~&~a"
                                path-or-descriptions
                                (file-error-pathname c))))
                     (error
