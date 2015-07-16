@@ -32,14 +32,14 @@
 (defun parse-ground-action (a-desc)
   (ematch a-desc
     ((list* name arguments)
-     (handler-bind ((error (lambda (c)
-                             (declare (ignore c))
-                             (format *error-output*
-                                     "~&objects: ~a"
-                                     (objects *problem*)))))
-       (ground-action
-        (action *domain* name)
-        (mapcar (curry #'object *problem*) arguments))))))
+     ;; (handler-bind ((error (lambda (c)
+     ;;                         (declare (ignore c))
+     ;;                         (format *error-output*
+     ;;                                 "~&error: ~objects: ~a"
+     ;;                                 (objects *problem*))))))
+     (ground-action
+      (action *domain* name)
+      (mapcar (curry #'object *problem*) arguments)))))
 
 (defun parse-plan (path-or-descriptions
                    &optional
