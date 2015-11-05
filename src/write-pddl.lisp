@@ -2,6 +2,15 @@
 (in-package :pddl)
 (cl-syntax:use-syntax :annot)
 
+(defun pathname-as-directory (path)
+  (if (pathname-name path)
+      (make-pathname :directory
+                     `(,@(pathname-directory path)
+                         ,(file-namestring path))
+                     :name nil
+                     :type nil
+                     :defaults path)
+      (pathname path)))
 
 @export
 (defun write-pddl (thing name

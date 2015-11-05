@@ -32,14 +32,14 @@
 (defun parse-ground-action (a-desc)
   (ematch a-desc
     ((list* name arguments)
-     (handler-bind ((error (lambda (c)
-                             (declare (ignore c))
-                             (format *error-output*
-                                     "~&objects: ~a"
-                                     (objects *problem*)))))
-       (ground-action
-        (action *domain* name)
-        (mapcar (curry #'object *problem*) arguments))))))
+     ;; (handler-bind ((error (lambda (c)
+     ;;                         (declare (ignore c))
+     ;;                         (format *error-output*
+     ;;                                 "~&error: ~objects: ~a"
+     ;;                                 (objects *problem*))))))
+     (ground-action
+      (action *domain* name)
+      (mapcar (curry #'object *problem*) arguments)))))
 
 (defun parse-plan (path-or-descriptions
                    &optional
@@ -49,13 +49,14 @@
      (handler-bind ((file-error
                      (lambda (c)
                        (format *error-output*
-                               "~&Problem while parsing a plan ~a !~&~a"
+                               "~&No such file exists! ~a ~&~a"
                                path-or-descriptions
                                (file-error-pathname c))))
                     (error
                      (lambda (c)
+                       (signal c)
                        (format *error-output*
-                               "~&Problem while parsing a plan ~a !~&~a"
+                               "~&Problem while parsing a plan ~a !~&~a~&"
                                path-or-descriptions
                                (type-of c))
                        (with-open-file (s path-or-descriptions)

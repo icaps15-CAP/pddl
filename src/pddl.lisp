@@ -11,10 +11,7 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
         :guicho-utilities
         :annot.doc
         :annot.eval-when
-        :osicat
-        :iterate
-        :cl-ppcre
-        :cl-rlimit)
+        :iterate)
   (:import-from :metatilities :defclass*)
   (:shadow :minimize :maximize)
   (:export :total-cost :total-time
@@ -49,7 +46,9 @@ Copyright (c) 2013 guicho (guicho2.71828@gmail.com)
            ;; 
            :untype-domain
            :untype-problem
-           ))
+           :add-costs
+           :undefined-predicate
+           :undefined-pddl-function))
 (in-package :pddl)
 (cl-syntax:use-syntax :annot)
 ;; blah blah blah.

@@ -23,7 +23,8 @@ value is 2 and 3, (increase (total-cost) 5) ."
              ;; while the domain is not an action-cost domain.
              ;; I am not sure if this `when' statement is sufficient
              ;; 
-             (list (parse-numeric-effect
+             (list (let ((*domain* (domain gaction)))
+                     (parse-numeric-effect
                     `(increase
                       (total-cost)
                       ,(reduce #'+
@@ -36,5 +37,5 @@ value is 2 and 3, (increase (total-cost) 5) ."
                                                 i
                                                 (init (problem gaction)))))
                                              (number i))))
-                                       (assign-ops gaction))))))))
+                                         (assign-ops gaction)))))))))
    'assign-ops +unbound+))

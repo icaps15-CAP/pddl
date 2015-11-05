@@ -63,20 +63,31 @@ symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
   (labels ((value (p) (%ground-parameter params objects p ctree))
            (rec (e)
              (ematch e
-               ((list* op rest)
-                (list* op (mapcar #'rec rest)))
+               ((list* op predicates)
+                (list* op
+                       (iter (for p in predicates)
+                             (restart-case
+                                 (collect (rec p))
+                               (ignore ())))))
                ((pddl-predicate parameters)
                 (ground-predicate e (mapcar #'value parameters)))
                ((pddl-assign-op)
                 (ground-assign-op e params objects)))))
     (rec ctree)))
 
+(define-condition undefined-predicate (simple-error)
+  ((name :reader name :initarg :name))
+  (:report (lambda (c s) (format s "undefined predicate ~A" (name c)))))
+(define-condition undefined-pddl-function (simple-error)
+  ((name :reader name :initarg :name))
+  (:report (lambda (c s) (format s "undefined function ~A" (name c)))))
+
 @export
 (defun ground-predicate (predicate objects &optional (*problem* *problem*))
   (ematch predicate
     ((pddl-predicate :name name :domain *domain*)
      (assert (= (arity predicate) (length objects)))
-     (assert (predicate *domain* name) nil "undefined predicate ~A" name)
+     (assert (predicate *domain* name) nil 'undefined-predicate :name name)
      (pddl-atomic-state :name name :parameters objects))))
 
 @export
@@ -84,7 +95,7 @@ symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
   (ematch function
     ((pddl-function :name name :domain *domain*)
      (assert (= (arity function) (length objects)))
-     (assert (query-function *domain* name) nil "undefined function ~A" name)
+     (assert (query-function *domain* name) nil 'undefined-pddl-function :name name)
      (pddl-function-state :name name :parameters objects :value value))))
 
 @export
@@ -101,13 +112,21 @@ symbol AND, NOT and OR, or instances of pddl-predicate or pddl-assign-op."
       ;;; when increase is a number
       ((pddl-assign-op place increase value-form)
        (pddl-ground-assign-op
-        :place (find-if (curry #'eqfunc place) (init *problem*))
+        :place (or (find-if (curry #'eqfunc place) (init *problem*))
+                   (error "the corresponding function state not defined:~%~s"
+                          `(:place ,place
+                            :init ,(init *problem*)
+                            :problem ,*problem*)))
         :increase (etypecase increase
                     (number increase)
                     (pddl-function ;; -state : incorrect
                      (or (find-if (curry #'eqfunc increase) (init *problem*))
-                         (error "the corresponding function state is not defined: ~a ~a ~a"
-                                increase params objects))))
+                         (error "the corresponding function state is not defined:~%~s"
+                                `(:increase ,increase
+                                  :params ,params 
+                                  :objects ,objects
+                                  :init ,(init *problem*)
+                                  :problem ,*problem*)))))
         :value-form (ground-f-exp value-form params objects))))))
 
 (defun ground-f-exp (f-exp params objects

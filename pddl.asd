@@ -21,13 +21,10 @@
   :depends-on (:guicho-utilities
 	       :metatilities
                :optima
+               :function-cache
                :iterate
                :alexandria
-               :cl-syntax-annot
-               :inferior-shell
-               :cl-ppcre
-               :cl-rlimit
-               :osicat)
+               :cl-syntax-annot)
   :components ((:module "src"
 		:serial t
                 :components
@@ -51,6 +48,7 @@
                  (:module "compatibility-tools"
                           :components
                           ((:file :remove-costs)
+                           (:file :add-costs)
                            (:file :untype)))
                  
 		 (:file :plan-reader)

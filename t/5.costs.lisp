@@ -62,7 +62,9 @@
       (:goal (at t1 c))
       (:metric minimize (total-cost))))
 
-  (let (*env* logistics-plan)
+  (let (*env* logistics-plan
+        (*domain* logistics-typed-cost)
+        (*problem* logistics-typed-cost-prob))
 
     (finishes
       (setf logistics-plan
