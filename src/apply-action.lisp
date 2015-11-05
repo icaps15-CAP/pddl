@@ -2,6 +2,14 @@
 (cl-syntax:use-syntax :annot)
 
 @export
+(define-condition application-failure (simple-error)
+  ((states :initarg :states)
+   (action :initarg :action))
+  (:report (lambda (c s)
+             (with-slots (states action) c
+                (format s "Failed to apply ~a to ~a" action states)))))
+
+@export
 (defun apply-ground-action (ground-action states)
   (labels ((rec (states e)
              (ematch e
@@ -16,7 +24,7 @@
                 (apply-assign-op e states)))))
     (if (applicable states ground-action) 
         (rec states (effect ground-action))
-        (error "not applicable!"))))
+        (error 'application-failure :states states :action ground-action))))
 
 ;; +deprecated, to be removed+ ... maybe not
 @export
