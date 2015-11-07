@@ -22,6 +22,9 @@
   (setf (index env) 0
         (states env) (init (problem env))))
 
+(defun can-proceed-p (env)
+  (array-in-bounds-p (actions (plan env)) (1+ (index env))))
+
 @export
 (defun proceed (env)
   (let ((a (elt (actions (plan env)) (index env))))
@@ -32,7 +35,7 @@
       :plan (plan env)
       :index (1+ (index env))
       :states (apply-ground-action a (states env)))
-     (array-in-bounds-p (actions (plan env)) (1+ (index env))))))
+     (can-proceed-p env))))
 
 @export
 (defun simulate-plan (env &optional function)
@@ -48,7 +51,8 @@ env)) signals an index-out-of-bound error.
 the plan.  The initial state has the index 0."
   (reinitialize-instance env)
   (iter (for (values e safe-next)
-             initially (values env t)
+             ;; issue #4 : plans could be of length 0
+             initially (values env (can-proceed-p env))
              then (proceed e))
         (when (functionp function)
           (funcall function e safe-next))

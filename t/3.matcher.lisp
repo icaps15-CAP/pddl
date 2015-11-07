@@ -114,3 +114,12 @@
         (is-true (typep last-env 'pddl-environment))
         (is (goal-p *problem* (states last-env)))))))
 
+(test (issue4-null-plan :depends-on apply-action)
+  (let* ((*domain* logistics)
+	 (*problem* logistics-prob))
+    (let* ((*actions* nil)
+           (*plan* (pddl-plan :actions *actions*))
+           (*env* (pddl-environment :plan *plan*)))
+      (let ((last-env (simulate-plan *env*)))
+        (is-true (typep last-env 'pddl-environment))))))
+
