@@ -117,7 +117,7 @@
 (test (issue4-null-plan :depends-on apply-action)
   (let* ((*domain* logistics)
 	 (*problem* logistics-prob))
-    (let* ((*actions* nil)
+    (let* ((*actions* #())
            (*plan* (pddl-plan :actions *actions*))
            (*env* (pddl-environment :plan *plan*)))
       (let ((last-env (simulate-plan *env*)))
