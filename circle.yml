@@ -11,5 +11,5 @@ dependencies:
 
 test:
   override:
-    - ros -L sbcl-bin testscr.lisp
-    - ros -L ccl-bin testscr.lisp
+    - ros -L sbcl-bin testscr.ros
+    - ros -L ccl-bin testscr.ros
