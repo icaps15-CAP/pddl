@@ -29,15 +29,17 @@
                                 :predicates 
                                 :init)) rest)
             (pprint-newline :mandatory s)
-            (pprint-logical-block (s rest :prefix "(" :suffix ")")
-              (rec key s)
-              (pprint-newline :mandatory s)
-              (pprint-indent :block 0 s)
-              (do () (nil)
-                (rec (pprint-pop) s)
-                (pprint-exit-if-list-exhausted)
-                (write-char #\Space s)
-                (pprint-newline :mandatory s))))
+            (if rest
+                (pprint-logical-block (s rest :prefix "(" :suffix ")")
+                  (rec key s)
+                  (pprint-newline :mandatory s)
+                  (pprint-indent :block 0 s)
+                  (do () (nil)
+                    (rec (pprint-pop) s)
+                    (pprint-exit-if-list-exhausted)
+                    (write-char #\Space s)
+                    (pprint-newline :mandatory s)))
+                (format s "(:~a)" key)))
            ((list* (and key (or :objects
                                 :constants
                                 :types
@@ -140,7 +142,7 @@
      (:domain ,(print-pddl-object (name (domain o))))
      (:objects ,@(with-variable-definition-environment
                    (mappend #'print-pddl-object (objects/const o))))
-     (:init ,@(print-pddl-object (init o)))
+     (:init ,@(when (init o) (print-pddl-object (init o))))
      (:goal ,(print-pddl-object (goal o)))
      ,@(when-let ((m (metric o)))
                  `(,(print-pddl-object m)))
