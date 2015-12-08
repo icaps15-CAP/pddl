@@ -31,7 +31,7 @@ matrix:
 
 install:
   - curl -L https://raw.githubusercontent.com/snmsts/roswell/release/scripts/install-for-ci.sh | sh
-  - git clone git@github.com:guicho271828/guicho-utilities.git ~/lisp/guicho-utilities
+  - git clone https://github.com/guicho271828/guicho-utilities.git ~/lisp/guicho-utilities
 
 cache:
   directories:
