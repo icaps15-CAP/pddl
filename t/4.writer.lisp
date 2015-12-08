@@ -24,6 +24,15 @@
     (:init)
   (:goal (and)))
 
+(define (domain null3)
+  (:requirements)
+  (:predicates)
+  (:types)
+  (:constants)
+  (:action act :parameters ()
+           :precondition (and)
+           :effect (and)))
+
 (test (write-back-pddl :depends-on (and parse-domain parse-problem costs logistics))
   (mapc #'test-re-readability
         (list depot
@@ -34,4 +43,5 @@
               logistics-typed-cost-prob
               null1
               null2
+              null3
               nullp)))
