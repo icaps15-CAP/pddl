@@ -116,17 +116,18 @@
   @ignore s
   `(define (domain ,(print-pddl-object (name o)))
      ,@(%output-when :requirements (requirements o))
-     ,@(%output-when :types (with-variable-definition-environment
-                              (mappend #'print-pddl-object
-                                       (remove *pddl-primitive-object-type*
-                                               (types o)))))
-     ,@(%output-when :constants (with-variable-definition-environment
-                                  (mappend #'print-pddl-object (constants o))))
-     ,@(%output-when :predicates (with-variable-definition-environment
-                                   (print-pddl-object (predicates o))))
-     ,@(%output-when :functions (with-variable-definition-environment
-                                  (mapcar #'print-pddl-object (functions o))))
-     ;; (:functions ,@(print-pddl-object (functions o)))
+     ,@(%output-when :types (when-let ((it (remove *pddl-primitive-object-type* (types o))))
+                              (with-variable-definition-environment
+                                (mappend #'print-pddl-object it))))
+     ,@(%output-when :constants (when-let ((it (constants o)))
+                                  (with-variable-definition-environment
+                                    (mappend #'print-pddl-object it))))
+     ,@(%output-when :predicates (when-let ((it (predicates o)))
+                                   (with-variable-definition-environment
+                                     (print-pddl-object it))))
+     ,@(%output-when :functions (when-let ((it (functions o)))
+                                  (with-variable-definition-environment
+                                    (mapcar #'print-pddl-object it))))
      ,@(mapcar #'print-pddl-object (actions o))
      ,@(mapcar #'print-pddl-object (durative-actions o))
      ,@(mapcar #'print-pddl-object (derived-predicates o))))
@@ -140,9 +141,11 @@
   @ignore s
   `(define (problem ,(print-pddl-object (name o)))
      (:domain ,(print-pddl-object (name (domain o))))
-     (:objects ,@(with-variable-definition-environment
-                   (mappend #'print-pddl-object (objects/const o))))
-     (:init ,@(when (init o) (print-pddl-object (init o))))
+     (:objects ,@(when-let ((it (objects/const o)))
+                   (with-variable-definition-environment
+                     (mappend #'print-pddl-object it))))
+     (:init ,@(when-let ((it (init o)))
+                (print-pddl-object it)))
      (:goal ,(print-pddl-object (goal o)))
      ,@(when-let ((m (metric o)))
                  `(,(print-pddl-object m)))
